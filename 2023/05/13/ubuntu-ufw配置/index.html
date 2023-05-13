@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="/images/thumb/zznnlogo.webp">
   
-  <title>云计算学习 | zznn-boke</title>
+  <title>ubuntu-ufw配置 | zznn-boke</title>
   
   <meta name="author" content="zznn" />
   <meta http-equiv="Cache-Control" content="no-transform" />
@@ -15,20 +15,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="云计算" />
+    <meta name="keywords" content="ubuntu - ubuntu" />
   
-  <meta name="description" content="云前言： 云计算初学比较难但只要一步一步来还是很容易的 云计算就是：一台物理设备虚拟为很多台设备 达到资源的最高利用率 传统一台物理服务器只能 跑一个操作系统 云计算则一台服务器可以跑多台设备各种操作系统 如云计算一台物理机上面可以运行 windows ubuntu macos centos等任何v系统 云计算公司如：华为云 阿里云 腾讯云等 我们常使用的百度网盘就是云计算的一种其底层是分布式存储">
+  <meta name="description" content="ubuntu-ufw 配置参考：  https:&#x2F;&#x2F;ednovas.xyz&#x2F;2021&#x2F;08&#x2F;15&#x2F;ufw&#x2F;  前言： 只有防火墙内部有规则的时候 使用 ufw status &#x2F;ufw status verbose 才能显示规则 情况 否则显示 &#x2F;活动&#x2F;不活动&#x2F;激活&#x2F;未激活 一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙123456789101112131415161718192021">
 <meta property="og:type" content="article">
-<meta property="og:title" content="云计算学习">
-<meta property="og:url" content="http://example.com/2023/05/10/%E4%BA%91/index.html">
+<meta property="og:title" content="ubuntu-ufw配置">
+<meta property="og:url" content="http://example.com/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="zznn-boke">
-<meta property="og:description" content="云前言： 云计算初学比较难但只要一步一步来还是很容易的 云计算就是：一台物理设备虚拟为很多台设备 达到资源的最高利用率 传统一台物理服务器只能 跑一个操作系统 云计算则一台服务器可以跑多台设备各种操作系统 如云计算一台物理机上面可以运行 windows ubuntu macos centos等任何v系统 云计算公司如：华为云 阿里云 腾讯云等 我们常使用的百度网盘就是云计算的一种其底层是分布式存储">
+<meta property="og:description" content="ubuntu-ufw 配置参考：  https:&#x2F;&#x2F;ednovas.xyz&#x2F;2021&#x2F;08&#x2F;15&#x2F;ufw&#x2F;  前言： 只有防火墙内部有规则的时候 使用 ufw status &#x2F;ufw status verbose 才能显示规则 情况 否则显示 &#x2F;活动&#x2F;不活动&#x2F;激活&#x2F;未激活 一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙123456789101112131415161718192021">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/thumb/zznnlogo.webp">
-<meta property="article:published_time" content="2023-05-10T15:20:43.000Z">
-<meta property="article:modified_time" content="2023-05-12T06:01:45.188Z">
+<meta property="article:published_time" content="2023-05-13T12:55:50.000Z">
+<meta property="article:modified_time" content="2023-05-13T13:17:12.327Z">
 <meta property="article:author" content="zznn">
-<meta property="article:tag" content="云计算">
+<meta property="article:tag" content="ubuntu - ubuntu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/thumb/zznnlogo.webp">
   
@@ -189,15 +189,15 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/10/%E4%BA%91/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">云计算学习</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">ubuntu-ufw配置</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><time datetime="2023-05-10T15:20:43.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-10</time></li>
+                <li><time datetime="2023-05-13T12:55:50.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-13</time></li>
                 <li itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
                 </li>
@@ -206,7 +206,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            814
+                            ~2.61K
                         
                         字
                     </li>
@@ -218,22 +218,32 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1683871305188"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1683983832327"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
             
             <hr />
-            <div itemprop="articleBody"><h3 id="云"><a href="#云" class="headerlink" title="云"></a>云</h3><p>前言：</p>
-<p>云计算初学比较难但只要一步一步来还是很容易的</p>
-<p>云计算就是：一台物理设备虚拟为很多台设备 达到资源的最高利用率 传统一台物理服务器只能 跑一个操作系统</p>
-<p>云计算则一台服务器可以跑多台设备各种操作系统 如云计算一台物理机上面可以运行 windows ubuntu macos centos等任何v系统 云计算公司如：华为云 阿里云 腾讯云等 我们常使用的百度网盘就是云计算的一种其底层是分布式存储ceph 在云计算领域百度网盘这样的 又叫对象存储</p>
-<p><img src="/2023/05/10/%E4%BA%91/image-20230511211624858.png" alt="image-20230511211624858"></p>
-<h2 id="一-基础部分"><a href="#一-基础部分" class="headerlink" title="一. 基础部分"></a>一. 基础部分</h2><p>电脑下载一个workstdtion workstdtion安装一个ubuntu18.04操作系统系统你先学个linux 把这些视频看完: </p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 学习linux</span></span><br><span class="line">https://www.bilibili.com/video/BV14z4y1Q7Hm/?spm_id_from=333.999.0.0</span><br><span class="line"><span class="comment"># 学习shell脚本：</span></span><br><span class="line">https://www.bilibili.com/video/BV1XB4y1P7Sh/?spm_id_from=333.999.0.0</span><br><span class="line"><span class="comment"># 学习mysql:</span></span><br><span class="line">https://www.bilibili.com/video/BV1KW411u7vy/?spm_id_from=333.999.0.0</span><br><span class="line"><span class="comment"># 学习docker:</span></span><br><span class="line">https://www.bilibili.com/video/BV1Ls411n7mx/?spm_id_from=333.999.0.0</span><br><span class="line"><span class="comment"># 学习常用监控软件 telegraf，prometheus，grafana , influxdb ： </span></span><br><span class="line">关注微信公众号麦兜IT 查看prometheus  telegraf grafana学习视频 </span><br></pre></td></tr></table></figure>
+            <div itemprop="articleBody"><h2 id="ubuntu-ufw-配置"><a href="#ubuntu-ufw-配置" class="headerlink" title="ubuntu-ufw 配置"></a>ubuntu-ufw 配置</h2><p>参考：</p>
+<p> <a target="_blank" rel="noopener" href="https://ednovas.xyz/2021/08/15/ufw/">https://ednovas.xyz/2021/08/15/ufw/</a></p>
+<p> 前言：</p>
+<p>只有防火墙内部有规则的时候 使用 ufw status /ufw status verbose 才能显示规则 情况 否则显示 /活动/不活动/激活/未激活</p>
+<h3 id="一-重置防火墙会把所有已添加的规则全部删除并且禁用防火墙"><a href="#一-重置防火墙会把所有已添加的规则全部删除并且禁用防火墙" class="headerlink" title="一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙"></a>一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 常规操作</span></span><br><span class="line">Sudo ufw reset //重置防火墙</span><br><span class="line">Sudo ufw <span class="built_in">disable</span> //禁用防火墙</span><br><span class="line">Sudo ufw <span class="built_in">enable</span> //开启防火墙</span><br><span class="line">sudo ufw status 查看防火墙状态</span><br><span class="line">sudo ufw <span class="built_in">enable</span> 开启防火墙</span><br><span class="line">Sudo ufw status verbose 查看比status查看的更详细的防火墙</span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br><span class="line">Sudo ufw default deny</span><br><span class="line">Sudo ufw allow ssh   允许ssh服务</span><br><span class="line">Sudo ufw deny ssh    禁用ssh服务</span><br><span class="line">Sudo ufw logging on  启用日志记录</span><br><span class="line">Sudo ufw logging off 禁用日志记录</span><br><span class="line">Sudo ufw status verbose 查看防火墙状态</span><br><span class="line">Sudo ufw status verbose 查看比status查看的更详细</span><br><span class="line"></span><br><span class="line">Sudo ufw allow 53 允许端口53上传入tcp udp数据包</span><br><span class="line">sudo ufw allow 53/tcp 允许端口53上传入tcp 数据包</span><br><span class="line"><span class="comment"># Deny（拒绝）</span></span><br><span class="line">Sudo ufw deny 53 拒绝端口53上的tcp udp数据包</span><br><span class="line">Sudo ufw deny 53/tcp 拒绝端口53上传的tcp 数据包</span><br><span class="line">Sudo ufw deny 53/udp 允许端口53上传入udp数据包</span><br><span class="line"><span class="comment"># 删除现有规则 要删除规则只需要在原始规则前面加上delete即可。例如，如果原始规则是：</span></span><br><span class="line">Sudo ufw deny 80/tcp 以前的规则是拒绝80/tcp端口上传的数据</span><br><span class="line">Sudo ufw delete deny 80/tcp 现在删除这个规则</span><br><span class="line">Server（服务）</span><br><span class="line"><span class="comment"># 可以通过服务名称允许或拒绝，因为ufw从/etc/services读取服务名称</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="二-云计算部分"><a href="#二-云计算部分" class="headerlink" title="二. 云计算部分"></a>二. 云计算部分</h2><p>学习：vmware ,vcenter，exsi虚拟化<br>学习：openstack<br>学习：分布式存储 ceph</p>
-<h2 id="三-监控部分概览-（-用于大致了解容器技术-）"><a href="#三-监控部分概览-（-用于大致了解容器技术-）" class="headerlink" title="三. 监控部分概览 （ 用于大致了解容器技术 ）"></a>三. 监控部分概览 （ 用于大致了解容器技术 ）</h2></div>
+<h3 id="二-要查看获取服务列表"><a href="#二-要查看获取服务列表" class="headerlink" title="二. 要查看获取服务列表"></a>二. 要查看获取服务列表</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 按服务名称允许</span></span><br><span class="line">22.Sudo ufw allow &lt;服务名称&gt; </span><br><span class="line">23.Sudo ufw allow ssh.service 按服务名称允许</span><br><span class="line">24.Sudo ufw deny by service name </span><br><span class="line">25.Sudo ufw deny &lt;服务名称&gt; 按服务名称拒绝</span><br><span class="line"><span class="comment"># Logging关于ufw的日志</span></span><br><span class="line">Sudo ufw logging on启用日志</span><br><span class="line">Sudo ufw logging off禁用日志</span><br></pre></td></tr></table></figure>
+
+<h3 id="三-高级语法"><a href="#三-高级语法" class="headerlink" title="三. 高级语法"></a>三. 高级语法</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 允许特定ip访问</span></span><br><span class="line">1.Sudo ufw allow from &lt;ip address&gt; 特定ip允许</span><br><span class="line">2.Sudo ufw allow from 207.46.132.182 允许此ip访问我的服务器</span><br><span class="line"><span class="comment"># 子网允许 可使用网络掩码 （允许来自207....的数据包）</span></span><br><span class="line">14. Sudo ufw allow from 207.46.132.182 0/24</span><br><span class="line">1.通过特定端口和ip地址允许</span><br><span class="line">sudo ufw allow from &lt;target&gt; to &lt;destination&gt; port &lt;port number&gt;</span><br><span class="line">例子1 允许ip地址192.168.0.4访问所有协议的端口22</span><br><span class="line">Sudo ufw allow from 192.168..... to any port 22</span><br><span class="line">2.通过特定ip地址和协议允许</span><br><span class="line">sudo ufw allow from &lt;target&gt; to &lt;destination&gt; port &lt;port number&gt; proto &lt;protocol name&gt;</span><br><span class="line">示例：允许 IP 地址 192.168.0.4 使用 TCP 访问端口 22</span><br><span class="line">Sudo ufw allow from 192.168.....to any port 22 proto tcp</span><br></pre></td></tr></table></figure>
+
+<h3 id="四-启用-禁PING-不常用"><a href="#四-启用-禁PING-不常用" class="headerlink" title="四. 启用 /  禁PING(不常用)"></a>四. 启用 /  禁PING(不常用)</h3><p>注意：对于现代破解脚本来说，默默无闻的安全性可能没有什么实际好处。默认情况下，UFW 允许 ping 请求。您可能会发现您希望启用 (icmp) ping 请求以诊断网络问题。<br>为了禁用 ping (icmp) 请求，您需要编辑/etc/ufw/before.rules并删除以下行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ok icmp codes for INPUT</span></span><br><span class="line">-A ufw-before-input -p icmp --icmp-type destination-unreachable -j ACCEPT</span><br><span class="line">-A ufw-before-input -p icmp --icmp-type time-exceeded -j ACCEPT</span><br><span class="line">-A ufw-before-input -p icmp --icmp-type parameter-problem -j ACCEPT</span><br><span class="line">-A ufw-before-input -p icmp --icmp-type echo-request -j ACCEPT</span><br><span class="line"><span class="comment"># 将允许改为删除</span></span><br><span class="line">-A ufw-before-input -p icmp --icmp-type echo-request -j ACCEPT &gt;&gt; DROP</span><br><span class="line">-A ufw-before-input -p icmp --icmp-type echo-request -j DROP</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/image-20230513211430569.png" alt="image-20230513211430569"></p>
+<p><img src="/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/image-20230513210304793.png" alt="image-20230513210304793"></p>
+<h3 id="五．拒绝访问"><a href="#五．拒绝访问" class="headerlink" title="五．拒绝访问"></a>五．拒绝访问</h3><p>被特定 IP 拒绝 不允许ip访问我的服务器<br>Sudo ufw deny from ip <ip address><br>示例：拒绝所有协议的 ip 地址 192.168.0.3访问<br>sudo ufw deny from 192.168.0.3 阻止来自192.168.0.3的数据</ip></p>
+<p><img src="/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/image-20230513210413321.png" alt="image-20230513210413321"></p>
+<p>通过特定端口和 IP 地址拒绝<br>sudo ufw deny from <ip address> to <protocol> port <port number><br>拒绝所有协议的 ip 地址 192.168.0.1 访问端口 22</port></protocol></ip></p>
+<img src="/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/image-20230513210432231.png" alt="image-20230513210432231">
+</div>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
@@ -286,7 +296,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2023/05/10/%E4%BA%91/",
+                text: "http://example.com/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -298,12 +308,12 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2023/05/10/%E4%BA%91/";
-            const title         = "「云计算学习」";
-            const excerpt       = `云前言：
-云计算初学比较难但只要一步一步来还是很容易的
-云计算就是：一台物理设备虚拟为很多台设备 达到资源的最高利用率 传统一台物理服务器只能 跑一个操作系统
-云计算则一台服务器可以跑多台设备各种操作系统 如云计算一台物理机上面可以运...`;
+            const hostUrl       = "http://example.com/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/";
+            const title         = "「ubuntu-ufw配置」";
+            const excerpt       = `ubuntu-ufw 配置参考：
+ https://ednovas.xyz/2021/08/15/ufw/
+ 前言：
+只有防火墙内部有规则的时候 使用 ufw status /ufw status verbose 才能显示规则 情况 ...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -322,10 +332,10 @@
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a>
+                    <a class="tag-none-link" href="/tags/ubuntu-ubuntu/" rel="tag">ubuntu - ubuntu</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-12T06:01:45.188Z" itemprop="dateModified">最后编辑：2023-05-12</time>
+                    <time datetime="2023-05-13T13:17:12.327Z" itemprop="dateModified">最后编辑：2023-05-13</time>
                 </div>
             </div>
         </footer>
@@ -333,10 +343,10 @@
     
         <nav class="navigation post-navigation clearfix" role="navigation">
             
-            
-            <div class="nav-next clearfix">
-                <a title=" zabbix6.0搭建" href="/2023/05/11/zabbix6-0搭建/">下一篇 &gt;</a>
+            <div class="nav-previous clearfix">
+                <a title=" Hello World" href="/2023/05/12/hello-world/">&lt; 上一篇</a>
             </div>
+            
             
         </nav>
     
@@ -345,8 +355,8 @@
 
 <script>
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2023/05/10/%E4%BA%91/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '2023/05/10/云/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2023/05/13/ubuntu-ufw配置/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     var load_comm = () => {
         if (typeof DISQUS === 'undefined') {
@@ -358,8 +368,8 @@
             DISQUS.reset({
                 reload: true,
                 config: function () {  
-                    this.page.url = 'http://example.com/2023/05/10/%E4%BA%91/';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = '2023/05/10/云/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    this.page.url = 'http://example.com/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2023/05/13/ubuntu-ufw配置/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
                 }
             });
         }
@@ -433,7 +443,7 @@
         <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%91"><span class="toc-text">云</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86"><span class="toc-text">一. 基础部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E4%BA%91%E8%AE%A1%E7%AE%97%E9%83%A8%E5%88%86"><span class="toc-text">二. 云计算部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E7%9B%91%E6%8E%A7%E9%83%A8%E5%88%86%E6%A6%82%E8%A7%88-%EF%BC%88-%E7%94%A8%E4%BA%8E%E5%A4%A7%E8%87%B4%E4%BA%86%E8%A7%A3%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-%EF%BC%89"><span class="toc-text">三. 监控部分概览 （ 用于大致了解容器技术 ）</span></a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu-ufw-%E9%85%8D%E7%BD%AE"><span class="toc-text">ubuntu-ufw 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E9%87%8D%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99%E4%BC%9A%E6%8A%8A%E6%89%80%E6%9C%89%E5%B7%B2%E6%B7%BB%E5%8A%A0%E7%9A%84%E8%A7%84%E5%88%99%E5%85%A8%E9%83%A8%E5%88%A0%E9%99%A4%E5%B9%B6%E4%B8%94%E7%A6%81%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E8%A6%81%E6%9F%A5%E7%9C%8B%E8%8E%B7%E5%8F%96%E6%9C%8D%E5%8A%A1%E5%88%97%E8%A1%A8"><span class="toc-text">二. 要查看获取服务列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E9%AB%98%E7%BA%A7%E8%AF%AD%E6%B3%95"><span class="toc-text">三. 高级语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E5%90%AF%E7%94%A8-%E7%A6%81PING-%E4%B8%8D%E5%B8%B8%E7%94%A8"><span class="toc-text">四. 启用 &#x2F;  禁PING(不常用)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%EF%BC%8E%E6%8B%92%E7%BB%9D%E8%AE%BF%E9%97%AE"><span class="toc-text">五．拒绝访问</span></a></li></ol></li></ol>
     </div>
 </aside>
                 
