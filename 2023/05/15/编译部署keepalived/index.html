@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="/images/thumb/zznnlogo.webp">
   
-  <title>Dockerfile构建telegraf_py版及oracle客户端 | zznn</title>
+  <title>编译部署keepalived | zznn</title>
   
   <meta name="author" content="zznn" />
   <meta http-equiv="Cache-Control" content="no-transform" />
@@ -15,20 +15,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="云原生监控" />
+    <meta name="keywords" content="常用软件" />
   
-  <meta name="description" content="概览： 容器内：  部署telegraf 部署oracle客户端 安装python3环境 安装cx_Oracle库  12345678910111213141516171819202122232425262728293031323334FROM centos:7RUN yum update -yRUN yum install -y python3 \&amp;&amp;  yum -y insta">
+  <meta name="description" content="编译部署keepalived一. centos 编译部署keepalived12345678910111213141516171819202122232425262728293031323334353637383940414243#!&#x2F;bin&#x2F;bash#环境：centos7#软件版：keepalived-2.0.18.tar.gz dir&#x3D;&quot;&#x2F;usr&#x2F;local&#x2F;src&quot;kee">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Dockerfile构建telegraf_py版及oracle客户端">
-<meta property="og:url" content="http://example.com/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/index.html">
+<meta property="og:title" content="编译部署keepalived">
+<meta property="og:url" content="http://example.com/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/index.html">
 <meta property="og:site_name" content="zznn">
-<meta property="og:description" content="概览： 容器内：  部署telegraf 部署oracle客户端 安装python3环境 安装cx_Oracle库  12345678910111213141516171819202122232425262728293031323334FROM centos:7RUN yum update -yRUN yum install -y python3 \&amp;&amp;  yum -y insta">
+<meta property="og:description" content="编译部署keepalived一. centos 编译部署keepalived12345678910111213141516171819202122232425262728293031323334353637383940414243#!&#x2F;bin&#x2F;bash#环境：centos7#软件版：keepalived-2.0.18.tar.gz dir&#x3D;&quot;&#x2F;usr&#x2F;local&#x2F;src&quot;kee">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/thumb/zznnlogo.webp">
-<meta property="article:published_time" content="2023-05-12T06:19:44.000Z">
-<meta property="article:modified_time" content="2023-05-12T06:21:57.152Z">
+<meta property="article:published_time" content="2023-05-15T09:18:48.000Z">
+<meta property="article:modified_time" content="2023-05-15T09:25:44.102Z">
 <meta property="article:author" content="zznn">
-<meta property="article:tag" content="云原生监控">
+<meta property="article:tag" content="常用软件">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/thumb/zznnlogo.webp">
   
@@ -189,15 +189,15 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">Dockerfile构建telegraf_py版及oracle客户端</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">编译部署keepalived</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><time datetime="2023-05-12T06:19:44.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-12</time></li>
+                <li><time datetime="2023-05-15T09:18:48.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-15</time></li>
                 <li itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
                 </li>
@@ -206,7 +206,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            1462
+                            ~2.40K
                         
                         字
                     </li>
@@ -218,23 +218,16 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1683872517152"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1684142744102"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
             
             <hr />
-            <div itemprop="articleBody"><p>概览：</p>
-<p>容器内：</p>
-<ol>
-<li>部署telegraf</li>
-<li>部署oracle客户端</li>
-<li>安装python3环境</li>
-<li>安装cx_Oracle库</li>
-</ol>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> centos:<span class="number">7</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> yum update -y</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> yum install -y python3 \</span></span><br><span class="line"><span class="language-bash">&amp;&amp;  yum -y install epel-release </span></span><br><span class="line"><span class="comment">#yum update -y \</span></span><br><span class="line"><span class="comment">#yum install -y python3 \</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> yum install -y python-pip </span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash">  pip3 install --upgrade pip==19.3.1 </span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash">  pip3 install cx_Oracle </span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash">  yum install -y unzip \</span></span><br><span class="line"><span class="language-bash">&amp;&amp;  <span class="built_in">mkdir</span> -p /opt/telegraf</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> ./telegraf-1.20.4_linux_amd64.tar.gz /opt/</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chmod</span> a+x /opt/telegraf-1.20.4/usr/bin/telegraf</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./telegraf.conf /opt/telegraf-1.20.4/etc/telegraf/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./qidong.sh /opt/telegraf-1.20.4/ </span></span><br><span class="line"><span class="comment">#COPY ./telegraf.conf /opt/telegraf/</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chmod</span> a+x /opt/telegraf-1.20.4/qidong.sh</span></span><br><span class="line"><span class="comment">#构建oracle客客户端</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./profile /etc</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">mkdir</span> -p /home/oracle \</span></span><br><span class="line"><span class="language-bash">&amp;&amp;  <span class="built_in">chmod</span> 755 /home/oracle -R \</span></span><br><span class="line"><span class="language-bash">&amp;&amp;  yum install -y libaio* \</span></span><br><span class="line"><span class="language-bash">&amp;&amp;  yum install -y vim </span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> ./instantclient_11_2.tar.gz /home/oracle/</span></span><br><span class="line"><span class="comment">#RUN unzip /home/oracle/instantclient-basic-linux.x64-11.2.0.4.0.zip \</span></span><br><span class="line"><span class="comment">#&amp;&amp; unzip /home/oracle/instantclient-precomp-linux-11.2.0.4.0.zip \</span></span><br><span class="line"><span class="comment">#&amp;&amp; unzip /home/oracle/instantclient-sdk-linux.x64-11.2.0.4.0.zip \</span></span><br><span class="line"><span class="comment">#&amp;&amp; unzip /home/oracle/instantclient-sqlplus-linux.x64-11.2.0.4.0.zip</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8092</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8094</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8152</span></span><br><span class="line"><span class="comment">#CMD [&quot;/opt/telegraf-1.20.4/usr/bin/telegraf --config /opt/telegraf-1.20.4/etc/telegraf/telegraf.conf \</span></span><br><span class="line"><span class="comment">#--config-directory /opt/telegraf-1.20.4/etc/telegraf/telegraf.d&quot;]</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;bash /opt/telegraf-1.20.4/qidong.sh&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+            <div itemprop="articleBody"><h2 id="编译部署keepalived"><a href="#编译部署keepalived" class="headerlink" title="编译部署keepalived"></a>编译部署<code>keepalived</code></h2><h3 id="一-centos-编译部署keepalived"><a href="#一-centos-编译部署keepalived" class="headerlink" title="一. centos 编译部署keepalived"></a>一. centos 编译部署keepalived</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#环境：centos7</span></span><br><span class="line"><span class="comment">#软件版：keepalived-2.0.18.tar.gz </span></span><br><span class="line"><span class="built_in">dir</span>=<span class="string">&quot;/usr/local/src&quot;</span></span><br><span class="line">keepalived=<span class="string">&quot;keepalived-2.0.18&quot;</span></span><br><span class="line">keepalived_v=<span class="string">&quot;keepalived-2.0.18.tar.gz&quot;</span></span><br><span class="line">yilai=<span class="string">&quot;openssl openssl-devel wget vim lrzsz&quot;</span></span><br><span class="line"><span class="function"><span class="title">keepalived_make</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[33m 此脚本容错率较低请不要重复执行 \033[0m&quot;</span></span><br><span class="line">    <span class="built_in">sleep</span> 10</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[36m ===============开始拉取安装包:<span class="variable">$&#123;keepalived_v&#125;</span> \033[0m&quot;</span> </span><br><span class="line">    wget --no-check-certificate https://www.keepalived.org/software/<span class="variable">$&#123;keepalived_v&#125;</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[36m 解压到： <span class="variable">$&#123;dir&#125;</span>  \033[0m&quot;</span> </span><br><span class="line">    tar -zxvf ./<span class="variable">$&#123;keepalived_v&#125;</span> -C <span class="variable">$&#123;dir&#125;</span></span><br><span class="line">    yum install -y <span class="variable">$&#123;yilai&#125;</span></span><br><span class="line">    <span class="built_in">cd</span> <span class="variable">$&#123;dir&#125;</span>/<span class="variable">$&#123;keepalived&#125;</span>/ &amp;&amp; ./configure --prefix=/usr/local/keepalived</span><br><span class="line">    <span class="built_in">cd</span> <span class="variable">$&#123;dir&#125;</span>/<span class="variable">$&#123;keepalived&#125;</span>/ &amp;&amp; make </span><br><span class="line">    <span class="built_in">cd</span> <span class="variable">$&#123;dir&#125;</span>/<span class="variable">$&#123;keepalived&#125;</span>/ &amp;&amp; make install</span><br><span class="line">    [ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[36m 编译安装<span class="variable">$&#123;keepalived&#125;</span>成功 \033[0m&quot;</span>  || <span class="built_in">echo</span> -e <span class="string">&quot;\033[33m 编译安装<span class="variable">$&#123;keepalived&#125;</span>失败 \033[0m&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">keepalived_system</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[36m ===============开始配置：<span class="variable">$&#123;keepalived&#125;</span> \033[0m&quot;</span></span><br><span class="line">    [ -d <span class="string">&quot;/etc/keepalived&quot;</span> ] || <span class="built_in">mkdir</span> -p /etc/keepalived</span><br><span class="line">    <span class="built_in">cp</span> /usr/local/keepalived/etc/keepalived/keepalived.conf /etc/keepalived/</span><br><span class="line">    <span class="built_in">cp</span> /usr/local/keepalived/sbin/keepalived /etc/init.d/</span><br><span class="line">    systemctl daemon-reload</span><br><span class="line">    systemctl start keepalived </span><br><span class="line">    systemctl <span class="built_in">enable</span> keepalived </span><br><span class="line">    systemctl status keepalived </span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[36m </span></span><br><span class="line"><span class="string">            常用命令：</span></span><br><span class="line"><span class="string">            systemctl restart keepalived </span></span><br><span class="line"><span class="string">            systemctl status keepalived </span></span><br><span class="line"><span class="string">            systemctl enable keepalived            </span></span><br><span class="line"><span class="string">            \033[0m&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;keepalived版本是:&quot;</span></span><br><span class="line">    /usr/local/keepalived/sbin/keepalived -v</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">    keepalived_make</span><br><span class="line">    keepalived_system</span><br><span class="line">&#125;</span><br><span class="line">main</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/image-20230512142122678.png" alt="image-20230512142122678"></p>
+<h3 id="二-ubuntu部署keepailved"><a href="#二-ubuntu部署keepailved" class="headerlink" title="二. ubuntu部署keepailved"></a>二. ubuntu部署keepailved</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1 查看keepalived软件版本</span><br><span class="line"><span class="comment"># apt-cache madison keepalived</span></span><br><span class="line">keepalived | 1:2.0.19-2 | http://mirrors.aliyun.com/ubuntu focal/main amd64 Packages</span><br><span class="line">2.2 安装keepalived</span><br><span class="line"><span class="comment"># apt -y install keepalived</span></span><br><span class="line">2.3 准备keepalived.conf文件</span><br><span class="line"><span class="comment"># cp /usr/share/doc/keepalived/samples/keepalived.conf.sample /etc/keepalived/keepalived.conf</span></span><br><span class="line">2.4 修改keepalived.conf文件 （不执行）</span><br><span class="line"><span class="comment"># sed -i &#x27;s@interface eth0@interface ens33@g&#x27; /etc/keepalived/keepalived.conf </span></span><br></pre></td></tr></table></figure>
+
 </div>
         </div>
         
@@ -288,7 +281,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/",
+                text: "http://example.com/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -300,17 +293,9 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/";
-            const title         = "「Dockerfile构建telegraf_py版及oracle客户端」";
-            const excerpt       = `概览：
-容器内：
-
-部署telegraf
-部署oracle客户端
-安装python3环境
-安装cx_Oracle库
-
-1234567891011121314151617181920212223242526272829303132333...`;
+            const hostUrl       = "http://example.com/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/";
+            const title         = "「编译部署keepalived」";
+            const excerpt       = `编译部署keepalived一. centos 编译部署keepalived12345678910111213141516171819202122232425262728293031323334353637383940414243#!...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -329,10 +314,10 @@
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a>
+                    <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-12T06:21:57.152Z" itemprop="dateModified">最后编辑：2023-05-12</time>
+                    <time datetime="2023-05-15T09:25:44.102Z" itemprop="dateModified">最后编辑：2023-05-15</time>
                 </div>
             </div>
         </footer>
@@ -341,12 +326,12 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" vmware_v2v迁移脚本" href="/2023/05/12/vmware-v2v迁移脚本/">&lt; 上一篇</a>
+                <a title=" 各种加速器" href="/2023/05/15/各种加速器/">&lt; 上一篇</a>
             </div>
             
             
             <div class="nav-next clearfix">
-                <a title=" ubuntu-ufw配置" href="/2023/05/13/ubuntu-ufw配置/">下一篇 &gt;</a>
+                <a title=" 编译部署nginx" href="/2023/05/15/编译部署nginx/">下一篇 &gt;</a>
             </div>
             
         </nav>
@@ -356,8 +341,8 @@
 
 <script>
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '2023/05/12/Dockerfile构建telegraf-py版及oracle客户端/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2023/05/15/编译部署keepalived/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     var load_comm = () => {
         if (typeof DISQUS === 'undefined') {
@@ -369,8 +354,8 @@
             DISQUS.reset({
                 reload: true,
                 config: function () {  
-                    this.page.url = 'http://example.com/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = '2023/05/12/Dockerfile构建telegraf-py版及oracle客户端/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    this.page.url = 'http://example.com/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2023/05/15/编译部署keepalived/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
                 }
             });
         }
@@ -435,6 +420,18 @@
 </aside>
             
                     <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived"><span class="toc-text">编译部署keepalived</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-centos-%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived"><span class="toc-text">一. centos 编译部署keepalived</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-ubuntu%E9%83%A8%E7%BD%B2keepailved"><span class="toc-text">二. ubuntu部署keepailved</span></a></li></ol></li></ol>
+    </div>
+</aside>
                 
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
