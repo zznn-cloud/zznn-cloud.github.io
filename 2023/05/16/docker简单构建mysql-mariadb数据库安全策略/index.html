@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="/images/thumb/zznnlogo.webp">
   
-  <title>mysql备份脚本 | zznn</title>
+  <title>docker简单构建mysql-mariadb数据库安全策略 | zznn</title>
   
   <meta name="author" content="zznn" />
   <meta http-equiv="Cache-Control" content="no-transform" />
@@ -15,21 +15,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="mysql, shell" />
+    <meta name="keywords" content="mysql" />
   
-  <meta name="description" content="数据库备份一.  数据库备份1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#!&#x2F;bin&#x2F;bash#mysqlbak_version:1.3 #标准换数据库备份脚本set -ewelcome()&amp;#123;cat &amp;l">
+  <meta name="description" content="docker简单构建mysql-mariadb数据库安全策略12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql备份脚本">
-<meta property="og:url" content="http://example.com/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:title" content="docker简单构建mysql-mariadb数据库安全策略">
+<meta property="og:url" content="http://example.com/2023/05/16/docker%E7%AE%80%E5%8D%95%E6%9E%84%E5%BB%BAmysql-mariadb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/index.html">
 <meta property="og:site_name" content="zznn">
-<meta property="og:description" content="数据库备份一.  数据库备份1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#!&#x2F;bin&#x2F;bash#mysqlbak_version:1.3 #标准换数据库备份脚本set -ewelcome()&amp;#123;cat &amp;l">
+<meta property="og:description" content="docker简单构建mysql-mariadb数据库安全策略12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/thumb/zznnlogo.webp">
-<meta property="article:published_time" content="2023-05-15T09:37:32.000Z">
-<meta property="article:modified_time" content="2023-05-15T09:47:06.781Z">
+<meta property="article:published_time" content="2023-05-16T03:43:09.000Z">
+<meta property="article:modified_time" content="2023-05-16T04:25:48.599Z">
 <meta property="article:author" content="zznn">
 <meta property="article:tag" content="mysql">
-<meta property="article:tag" content="shell">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/thumb/zznnlogo.webp">
   
@@ -190,15 +189,15 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/16/docker%E7%AE%80%E5%8D%95%E6%9E%84%E5%BB%BAmysql-mariadb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">mysql备份脚本</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">docker简单构建mysql-mariadb数据库安全策略</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><time datetime="2023-05-15T09:37:32.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-15</time></li>
+                <li><time datetime="2023-05-16T03:43:09.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-16</time></li>
                 <li itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
                 </li>
@@ -207,7 +206,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            ~3.06K
+                            ~3.63K
                         
                         字
                     </li>
@@ -219,16 +218,16 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1684144026781"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1684211148599"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
             
             <hr />
-            <div itemprop="articleBody"><h2 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h2><h3 id="一-数据库备份"><a href="#一-数据库备份" class="headerlink" title="一.  数据库备份"></a>一.  数据库备份</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#mysqlbak_version:1.3 </span></span><br><span class="line"><span class="comment">#标准换数据库备份脚本</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"><span class="function"><span class="title">welcome</span></span>()&#123;</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">   2.mysqldump(mysqldump -P(端口)-p(密码)-u(用户名) -h(ip)</span></span><br><span class="line"><span class="string">   3.--single-transaction --events(-E) --routines(-R) --databases(-B)+数据库名字 |gzip ......sql.gz</span></span><br><span class="line"><span class="string">   4..sz -be +(文件全路径) --single-transaction --events --routines</span></span><br><span class="line"><span class="string">   6.参数：--single-transaction(确保导出数据的一致性) --events(E导出事件) --routines(R-导出存储过程以及自定义函数) $&#123;db&#125;</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="title">bak_mysql</span></span>()&#123;</span><br><span class="line">   bak_name=<span class="string">&quot;wgcloud&quot;</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;\033[33m 开始备份数据库:<span class="variable">$&#123;bak_name&#125;</span> \033[0m&quot;</span></span><br><span class="line">   bak_dir=<span class="string">&quot;/opt/mysqlbak/bak&quot;</span></span><br><span class="line">   time=`<span class="built_in">date</span> +%F_%H_%M`</span><br><span class="line">   port_bak=3306</span><br><span class="line">   user_bak=<span class="string">&quot;root&quot;</span></span><br><span class="line">   passwd_bak=<span class="string">&quot;123&quot;</span></span><br><span class="line">   ip_bak=localhost</span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="variable">$&#123;bak_dir&#125;</span> ];</span><br><span class="line">   <span class="keyword">then</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[33m 开始创建目录:<span class="variable">$&#123;bak_dir&#125;</span> \033[0m&quot;</span></span><br><span class="line">       <span class="built_in">mkdir</span> -p  <span class="variable">$&#123;bak_dir&#125;</span> &amp;&amp; <span class="built_in">chmod</span> 755 <span class="variable">$&#123;bak_dir&#125;</span></span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[36m <span class="variable">$&#123;bak_dir&#125;</span>目录已存在  \033[0m&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">mysqldump -P<span class="variable">$&#123;port_bak&#125;</span> -p<span class="variable">$&#123;passwd_bak&#125;</span> -u<span class="variable">$&#123;user_bak&#125;</span> -h<span class="variable">$&#123;ip_bak&#125;</span> --single-transaction -R -E -B <span class="variable">$&#123;bak_name&#125;</span> |gzip &gt;<span class="variable">$&#123;bak_dir&#125;</span>/<span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz</span><br><span class="line"><span class="keyword">if</span> [ $? = 0 ]; </span><br><span class="line">   <span class="keyword">then</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[36m  <span class="variable">$&#123;time&#125;</span>数据库:<span class="variable">$&#123;bak_name&#125;</span>备份成功,</span></span><br><span class="line"><span class="string">                备份位置:<span class="variable">$&#123;bak_dir&#125;</span>/<span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz  \033[0m&quot;</span> &gt;&gt; /opt/mysqlbak/ShellScript/wgcloud_bak.log  </span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[36m <span class="variable">$&#123;time&#125;</span>数据库:<span class="variable">$&#123;bak_name&#125;</span>备份成功,</span></span><br><span class="line"><span class="string">                备份位置:<span class="variable">$&#123;bak_dir&#125;</span>/<span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz</span></span><br><span class="line"><span class="string">                <span class="variable">$&#123;bak_dir&#125;</span>目录正在删除五天前的备份。 \033[0m&quot;</span> </span><br><span class="line">       find <span class="variable">$&#123;bak_dir&#125;</span> -<span class="built_in">type</span> f -mtime +5 |xargs <span class="built_in">rm</span> -f   </span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[31m <span class="variable">$&#123;time&#125;</span>数据库:<span class="variable">$&#123;bak_name&#125;</span>备份失败，请检查。 \033[0m&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">ncftp</span></span>() &#123;   </span><br><span class="line"><span class="comment"># 配置ncftp将sql文件下载到windows</span></span><br><span class="line">ftp_user=<span class="string">&#x27;root&#x27;</span></span><br><span class="line">ftp_pass=<span class="string">&#x27;123456&#x27;</span></span><br><span class="line">ftp_ip=<span class="string">&#x27;windowsip&#x27;</span></span><br><span class="line">ftp_dir=<span class="string">&#x27;/&#x27;</span></span><br><span class="line">ftp_bak=<span class="string">&#x27;$&#123;bak_dir&#125;/$&#123;bak_name&#125;_$&#123;ip_bak&#125;_$&#123;time&#125;.sql.gz&#x27;</span></span><br><span class="line">ncftpput -u <span class="variable">$&#123;ftp_user&#125;</span>  -p <span class="variable">$&#123;ftp_pass&#125;</span> -R <span class="variable">$&#123;ftp_ip&#125;</span> /  <span class="variable">$&#123;ftp_bak&#125;</span></span><br><span class="line"><span class="keyword">if</span> [ $? = 0 ]; </span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;\033[36m <span class="variable">$&#123;time&#125;</span> <span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz <span class="variable">$&#123;bak_dir&#125;</span> 下载到windows:<span class="variable">$&#123;ftp_ip&#125;</span>成功 \033[0m&quot;</span>   </span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;\033[31m <span class="variable">$&#123;time&#125;</span> <span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz <span class="variable">$&#123;bak_dir&#125;</span> 下载到windows:<span class="variable">$&#123;ftp_ip&#125;</span>失败 \033[0m&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">    welcome</span><br><span class="line">    bak_mysql</span><br><span class="line">    <span class="comment">#ncftp 此处ip不通暂时注释</span></span><br><span class="line">&#125;</span><br><span class="line">main</span><br></pre></td></tr></table></figure>
+            <div itemprop="articleBody"><h3 id="docker简单构建mysql-mariadb数据库安全策略"><a href="#docker简单构建mysql-mariadb数据库安全策略" class="headerlink" title="docker简单构建mysql-mariadb数据库安全策略"></a>docker简单构建mysql-mariadb数据库安全策略</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo <span class="built_in">tee</span> /home/gegewu/shell/1.txt &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line"></span><br><span class="line">welcome-------------------&gt;</span><br><span class="line">许鹏666啊~~~~~~~</span><br><span class="line"></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建运程登录用户</span></span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;gegewu&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;qw123321&#x27;</span> WITH GRANT OPTION;  /</span><br><span class="line">注:此用户只能用于远程登录 本地用户只能用于本地登录</span><br><span class="line">mysql  -uroot -pshenainiZX00-</span><br><span class="line"><span class="comment">#修改数据库密码</span></span><br><span class="line">SET PASSWORD FOR root@<span class="string">&#x27;localhost&#x27;</span> = password(<span class="string">&#x27;qw123321&#x27;</span>);</span><br><span class="line">SET PASSWORD FOR root@<span class="string">&#x27;localhost&#x27;</span> = password(<span class="string">&#x27;shenainiZX00-&#x27;</span>);</span><br><span class="line">SET PASSWORD FOR root@<span class="string">&#x27;%&#x27;</span> = password(<span class="string">&#x27;qw123321&#x27;</span>);</span><br><span class="line"><span class="built_in">set</span> password <span class="keyword">for</span> root@<span class="string">&#x27;%&#x27;</span> = password (<span class="string">&#x27;qw123321&#x27;</span>);</span><br><span class="line">mysqladmin -u root password <span class="string">&#x27;shenainiZX00-&#x27;</span></span><br><span class="line">mysqladmin -u root -p <span class="string">&#x27;123456&#x27;</span> password <span class="string">&#x27;shenainiZX00-&#x27;</span></span><br><span class="line">------------------------------------&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#控制台执行语句1 -------------------&gt;创建远程登录用户</span></span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;qw123321&#x27;</span> WITH GRANT OPTION;</span><br><span class="line"><span class="comment">#开放端口放行：</span></span><br><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">加上--permanet参数永久生效.如果前面修改了端口号.此处的3306就应改成对应的端口号.然后使用命令重新读取防火墙规则：</span><br><span class="line">firewall-cmd --reload</span><br><span class="line"></span><br><span class="line"><span class="comment">#控制台执行语句2: 刷新</span></span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看mysql端口</span></span><br><span class="line">show global variables like <span class="string">&#x27;port&#x27;</span>; </span><br><span class="line"><span class="comment">#例出所有my.conf文件</span></span><br><span class="line">locate my.cnf</span><br><span class="line"><span class="comment">#修改mysql默认端口</span></span><br><span class="line">vim /etc/my.conf</span><br><span class="line">[mysqld]</span><br><span class="line">port=2022</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#docker版mysql：5.7数据库构建</span></span><br><span class="line">docker run -d -p 3306:3306 --privileged=<span class="literal">true</span> \</span><br><span class="line">-v /mysql/log:/var/log/mysql \</span><br><span class="line">-v /mysql/data:/var/lib/mysql \</span><br><span class="line">-v /mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=123456 \</span><br><span class="line">--name mysql1 mysql:5.7</span><br><span class="line">-----------------------------------------&gt;</span><br><span class="line"><span class="comment">##docker版mysql：5.7数据库构建</span></span><br><span class="line"><span class="comment">#账户：root 密码：qw123321</span></span><br><span class="line">--------------------------&gt;</span><br><span class="line"><span class="comment">#docker版mariadb数据库构建</span></span><br><span class="line">docker run -d -p 3306:3306 --privileged=<span class="literal">true</span> \</span><br><span class="line">-v /mariadb/log:/var/log/mysql \</span><br><span class="line">-v /mariadb/data:/var/lib/mysql \</span><br><span class="line">-v /mariadb/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=123456 \</span><br><span class="line">--name mariadb1 mariadb</span><br><span class="line"><span class="comment">#docker版mariadb数据库构建</span></span><br><span class="line"><span class="comment">#账户: root 密码：qw123321</span></span><br><span class="line">--------------------------------------------------- &gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#mariadb:/etc/mysql/my.cnf 安全策略插件配置</span></span><br><span class="line"><span class="comment">#数据库密码:shenainiZX00- 账户:gegewu ip:10.0.0.11</span></span><br><span class="line"><span class="comment">#密码复杂度插件</span></span><br><span class="line">plugin_load_add = simple_password_check.so    <span class="comment">#启动服务加载插件</span></span><br><span class="line">simple_password_check = FORCE_PLUS_PERMANENT  <span class="comment">#防止插件在运行过程中被卸载</span></span><br><span class="line"><span class="comment">### 审计 ###</span></span><br><span class="line">plugin-load-add = server_audit.so             <span class="comment">#启动服务加载此插件</span></span><br><span class="line">server_audit_logging = ON                     <span class="comment">#开启日志记录，默认是关闭</span></span><br><span class="line">server_audit = FORCE_PLUS_PERMANENT           <span class="comment">#防止插件被卸载</span></span><br><span class="line">server_audit_file_path = server_audit.log     <span class="comment">#定义审计日志文件名</span></span><br><span class="line">server_audit_file_rotate_now = OFF            <span class="comment">#是否强制切割审计日志</span></span><br><span class="line">server_audit_file_rotate_size = 1073741824    <span class="comment">#定义切割审计日志的文件大小1073741824=1GB</span></span><br><span class="line">server_audit_file_rotations = 9               <span class="comment">#定义审计日志的轮询个数，0为不轮询</span></span><br><span class="line">server_audit_events = <span class="string">&#x27;connect,query,table&#x27;</span>    <span class="comment">#日志记录的操作</span></span><br><span class="line">server_audit_events = <span class="string">&#x27;query_ddl,query_dml&#x27;</span>    <span class="comment">#不记录select查询操作，只记录增删改、DDL操作</span></span><br><span class="line">server_audit_incl_users = <span class="string">&#x27;gegewu,root&#x27;</span>        <span class="comment">#审计的用户对象，不设置则针对所有用户</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#mysql社区版:/etc/mysql/my.cnf 安全策略插件配置</span></span><br><span class="line"><span class="comment">#数据库密码:qw123321 账户:gegewu ip:10.0.0.10</span></span><br><span class="line">[mysqld]</span><br><span class="line">plugin-load-add = validate_password.so      <span class="comment">#服务器在启动时加载插件，并防止在服务器运行时删除插件。</span></span><br><span class="line">validate-password = FORCE_PLUS_PERMANENT    <span class="comment">#并防止在服务器运行时删除插件</span></span><br><span class="line">validate_password_policy= 2                 <span class="comment">#密码安全度等级2 </span></span><br><span class="line"><span class="comment">###安全策略密码检查延迟###</span></span><br><span class="line">plugin-load-add = connection_control.so    <span class="comment">#在启动时加载插件</span></span><br><span class="line">connection-control = FORCE_PLUS_PERMANENT  <span class="comment">#并防止它们在运行时被删除</span></span><br><span class="line">connection-control-failed-login-attempts = FORCE_PLUS_PERMANENT <span class="comment">#并防止它们在运行时被删除   </span></span><br><span class="line">connection_control_min_connection_delay = 60000                 <span class="comment">#最小延迟时间</span></span><br><span class="line">connection_control_max_connection_delay = 86400                 <span class="comment">#最大延迟时间</span></span><br><span class="line">connection_control_failed_connections_threshold	= 3             <span class="comment">#延迟时间触发输错密码次数 </span></span><br></pre></td></tr></table></figure>
 
-<h3 id="二-恢复备份的数据"><a href="#二-恢复备份的数据" class="headerlink" title="二.  恢复备份的数据"></a>二.  恢复备份的数据</h3><p>show databases;<br>use wgcloud;<br>source /opt/mysqlbak/ShellScript/wgcloud_localhost_2023-02-01_14_44.sql</p>
-<p>观察导入是否成功： 说明导入成功<br>Query OK, 0 rows affected, 1 warning (0.00 sec)<br>Query OK, 0 rows affected (0.00 sec)<br>Query OK, 0 rows affected (0.00 sec)</p>
+<p>截图</p>
+<p><img src="/2023/05/16/docker%E7%AE%80%E5%8D%95%E6%9E%84%E5%BB%BAmysql-mariadb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/image-20230516122544109.png" alt="image-20230516122544109"></p>
 </div>
         </div>
         
@@ -282,7 +281,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/",
+                text: "http://example.com/2023/05/16/docker%E7%AE%80%E5%8D%95%E6%9E%84%E5%BB%BAmysql-mariadb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -294,9 +293,9 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/";
-            const title         = "「mysql备份脚本」";
-            const excerpt       = `数据库备份一.  数据库备份1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556...`;
+            const hostUrl       = "http://example.com/2023/05/16/docker%E7%AE%80%E5%8D%95%E6%9E%84%E5%BB%BAmysql-mariadb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/";
+            const title         = "「docker简单构建mysql-mariadb数据库安全策略」";
+            const excerpt       = `docker简单构建mysql-mariadb数据库安全策略123456789101112131415161718192021222324252627282930313233343536373839404142434445464748...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -315,10 +314,10 @@
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/mysql/" rel="tag">mysql</a>, <a class="tag-none-link" href="/tags/shell/" rel="tag">shell</a>
+                    <a class="tag-none-link" href="/tags/mysql/" rel="tag">mysql</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-15T09:47:06.781Z" itemprop="dateModified">最后编辑：2023-05-15</time>
+                    <time datetime="2023-05-16T04:25:48.599Z" itemprop="dateModified">最后编辑：2023-05-16</time>
                 </div>
             </div>
         </footer>
@@ -327,13 +326,9 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 编译部署nginx" href="/2023/05/15/编译部署nginx/">&lt; 上一篇</a>
+                <a title=" mysql-mariadb配置远程连接" href="/2023/05/16/mysql-mariadb配置远程连接/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" Hello World" href="/2023/05/16/hello-world/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
@@ -342,8 +337,8 @@
 
 <script>
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '2023/05/15/mysql备份脚本/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2023/05/16/docker%E7%AE%80%E5%8D%95%E6%9E%84%E5%BB%BAmysql-mariadb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2023/05/16/docker简单构建mysql-mariadb数据库安全策略/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     var load_comm = () => {
         if (typeof DISQUS === 'undefined') {
@@ -355,8 +350,8 @@
             DISQUS.reset({
                 reload: true,
                 config: function () {  
-                    this.page.url = 'http://example.com/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = '2023/05/15/mysql备份脚本/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    this.page.url = 'http://example.com/2023/05/16/docker%E7%AE%80%E5%8D%95%E6%9E%84%E5%BB%BAmysql-mariadb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2023/05/16/docker简单构建mysql-mariadb数据库安全策略/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
                 }
             });
         }
@@ -430,7 +425,7 @@
         <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD"><span class="toc-text">数据库备份</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD"><span class="toc-text">一.  数据库备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E6%81%A2%E5%A4%8D%E5%A4%87%E4%BB%BD%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">二.  恢复备份的数据</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker%E7%AE%80%E5%8D%95%E6%9E%84%E5%BB%BAmysql-mariadb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5"><span class="toc-text">docker简单构建mysql-mariadb数据库安全策略</span></a></li></ol>
     </div>
 </aside>
                 
