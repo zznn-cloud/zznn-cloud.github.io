@@ -212,6 +212,11 @@
                     </li>
                 
                 
+                    <li id="/2023/05/11/zabbix6-0%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="zabbix6.0搭建">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
             </ul>
         </header>
         <div class="kratos-post-content">
@@ -222,6 +227,10 @@
             </div>
             
             
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#zabbix6-0"><span class="toc-text">zabbix6.0</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E6%8D%A2%E6%BA%90-%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6-%E4%B8%8B%E8%BD%BDdeb%E5%8C%85"><span class="toc-text">一. 换源 &#x2F; 安装常用软件 &#x2F; 下载deb包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E5%AE%89%E8%A3%85Zabbix-server%EF%BC%8CWeb%E5%89%8D%E7%AB%AF%EF%BC%8Cagent"><span class="toc-text">二. 安装Zabbix server，Web前端，agent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E5%AE%89%E8%A3%85mysql%EF%BC%88mysql5-7-%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">三. 安装mysql（mysql5.7 可选）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">四. 初始化数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94-%E4%B8%BAzabbix%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">五. 为zabbix配置数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD-%E4%B8%BAZabbix%E5%89%8D%E7%AB%AF%E9%85%8D%E7%BD%AEPHP-%E5%8F%AF%E9%80%89"><span class="toc-text">六. 为Zabbix前端配置PHP ( 可选 )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%83-%E5%90%AF%E5%8A%A8Zabbix-server%E5%92%8Cagent%E8%BF%9B%E7%A8%8B-%E5%90%AF%E5%8A%A8Zabbix-server%E5%92%8Cagent%E8%BF%9B%E7%A8%8B%EF%BC%8C%E5%B9%B6%E4%B8%BA%E5%AE%83%E4%BB%AC%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%9A"><span class="toc-text">七. 启动Zabbix server和agent进程 启动Zabbix server和agent进程，并为它们设置开机自启：</span></a></li></ol></li></ol></li></ol>
+                </div>
             
             <hr />
             <div itemprop="articleBody"><h2 id="zabbix6-0"><a href="#zabbix6-0" class="headerlink" title="zabbix6.0"></a><code>zabbix6.0</code></h2><p>环境：<code>ubuntu18.04</code></p>
@@ -362,34 +371,29 @@
         </nav>
     
     
-        <div id="disqus_thread" class="post-comments lazy-load"></div>
-
+        <div id="v-comments" class="post-comments"></div>
 <script>
-    var disqus_config = function () {
-        this.page.url = 'http://example.com/2023/05/11/zabbix6-0%E6%90%AD%E5%BB%BA/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '2023/05/11/zabbix6-0搭建/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
     var load_comm = () => {
-        if (typeof DISQUS === 'undefined') {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        } else {
-            DISQUS.reset({
-                reload: true,
-                config: function () {  
-                    this.page.url = 'http://example.com/2023/05/11/zabbix6-0%E6%90%AD%E5%BB%BA/';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = '2023/05/11/zabbix6-0搭建/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                }
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: '',
+                appKey: '',
+                visitor: true,
+                enableQQ: false,
+                path: '/2023/05/11/zabbix6-0%E6%90%AD%E5%BB%BA/'
             });
         }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
     };
-    
 </script>
-<script async id="dsq-count-scr" src="//.disqus.com/count.js"></script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
 
-<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     
 </article>
 

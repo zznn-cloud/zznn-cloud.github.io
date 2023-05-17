@@ -212,6 +212,11 @@
                     </li>
                 
                 
+                    <li id="/2023/05/15/%E5%90%84%E7%A7%8D%E5%8A%A0%E9%80%9F%E5%99%A8/" class="leancloud_visitors" data-flag-title="各种加速器">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
             </ul>
         </header>
         <div class="kratos-post-content">
@@ -222,6 +227,10 @@
             </div>
             
             
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E5%90%84%E7%A7%8D%E5%8A%A0%E9%80%9F%E5%99%A8"><span class="toc-text">linux各种加速器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-pip%E5%8A%A0%E9%80%9F"><span class="toc-text">一. pip加速</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-docker%E5%8A%A0%E9%80%9F%E5%99%A8"><span class="toc-text">二. docker加速器</span></a></li></ol></li></ol>
+                </div>
             
             <hr />
             <div itemprop="articleBody"><h2 id="linux各种加速器"><a href="#linux各种加速器" class="headerlink" title="linux各种加速器"></a>linux各种加速器</h2><h3 id="一-pip加速"><a href="#一-pip加速" class="headerlink" title="一. pip加速"></a>一. pip加速</h3><p>新版ubuntu要求使用https源，要注意。<br>清华：<a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a><br>阿里云：<a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/pypi/simple/">http://mirrors.aliyun.com/pypi/simple/</a><br>中国科技大学 <a target="_blank" rel="noopener" href="https://pypi.mirrors.ustc.edu.cn/simple/">https://pypi.mirrors.ustc.edu.cn/simple/</a><br>华中理工大学：<a target="_blank" rel="noopener" href="http://pypi.hustunique.com/">http://pypi.hustunique.com/</a><br>山东理工大学：<a target="_blank" rel="noopener" href="http://pypi.sdutlinux.org/">http://pypi.sdutlinux.org/</a><br>豆瓣：<a target="_blank" rel="noopener" href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/</a></p>
@@ -343,34 +352,29 @@
         </nav>
     
     
-        <div id="disqus_thread" class="post-comments lazy-load"></div>
-
+        <div id="v-comments" class="post-comments"></div>
 <script>
-    var disqus_config = function () {
-        this.page.url = 'http://example.com/2023/05/15/%E5%90%84%E7%A7%8D%E5%8A%A0%E9%80%9F%E5%99%A8/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '2023/05/15/各种加速器/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
     var load_comm = () => {
-        if (typeof DISQUS === 'undefined') {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        } else {
-            DISQUS.reset({
-                reload: true,
-                config: function () {  
-                    this.page.url = 'http://example.com/2023/05/15/%E5%90%84%E7%A7%8D%E5%8A%A0%E9%80%9F%E5%99%A8/';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = '2023/05/15/各种加速器/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                }
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: '',
+                appKey: '',
+                visitor: true,
+                enableQQ: false,
+                path: '/2023/05/15/%E5%90%84%E7%A7%8D%E5%8A%A0%E9%80%9F%E5%99%A8/'
             });
         }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
     };
-    
 </script>
-<script async id="dsq-count-scr" src="//.disqus.com/count.js"></script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
 
-<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     
 </article>
 

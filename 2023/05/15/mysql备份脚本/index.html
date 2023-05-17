@@ -213,6 +213,11 @@
                     </li>
                 
                 
+                    <li id="/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/" class="leancloud_visitors" data-flag-title="mysql备份脚本">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
             </ul>
         </header>
         <div class="kratos-post-content">
@@ -223,6 +228,10 @@
             </div>
             
             
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD"><span class="toc-text">数据库备份</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD"><span class="toc-text">一.  数据库备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E6%81%A2%E5%A4%8D%E5%A4%87%E4%BB%BD%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">二.  恢复备份的数据</span></a></li></ol></li></ol>
+                </div>
             
             <hr />
             <div itemprop="articleBody"><h2 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h2><h3 id="一-数据库备份"><a href="#一-数据库备份" class="headerlink" title="一.  数据库备份"></a>一.  数据库备份</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#mysqlbak_version:1.3 </span></span><br><span class="line"><span class="comment">#标准换数据库备份脚本</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"><span class="function"><span class="title">welcome</span></span>()&#123;</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">   2.mysqldump(mysqldump -P(端口)-p(密码)-u(用户名) -h(ip)</span></span><br><span class="line"><span class="string">   3.--single-transaction --events(-E) --routines(-R) --databases(-B)+数据库名字 |gzip ......sql.gz</span></span><br><span class="line"><span class="string">   4..sz -be +(文件全路径) --single-transaction --events --routines</span></span><br><span class="line"><span class="string">   6.参数：--single-transaction(确保导出数据的一致性) --events(E导出事件) --routines(R-导出存储过程以及自定义函数) $&#123;db&#125;</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="title">bak_mysql</span></span>()&#123;</span><br><span class="line">   bak_name=<span class="string">&quot;wgcloud&quot;</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;\033[33m 开始备份数据库:<span class="variable">$&#123;bak_name&#125;</span> \033[0m&quot;</span></span><br><span class="line">   bak_dir=<span class="string">&quot;/opt/mysqlbak/bak&quot;</span></span><br><span class="line">   time=`<span class="built_in">date</span> +%F_%H_%M`</span><br><span class="line">   port_bak=3306</span><br><span class="line">   user_bak=<span class="string">&quot;root&quot;</span></span><br><span class="line">   passwd_bak=<span class="string">&quot;123&quot;</span></span><br><span class="line">   ip_bak=localhost</span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="variable">$&#123;bak_dir&#125;</span> ];</span><br><span class="line">   <span class="keyword">then</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[33m 开始创建目录:<span class="variable">$&#123;bak_dir&#125;</span> \033[0m&quot;</span></span><br><span class="line">       <span class="built_in">mkdir</span> -p  <span class="variable">$&#123;bak_dir&#125;</span> &amp;&amp; <span class="built_in">chmod</span> 755 <span class="variable">$&#123;bak_dir&#125;</span></span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[36m <span class="variable">$&#123;bak_dir&#125;</span>目录已存在  \033[0m&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">mysqldump -P<span class="variable">$&#123;port_bak&#125;</span> -p<span class="variable">$&#123;passwd_bak&#125;</span> -u<span class="variable">$&#123;user_bak&#125;</span> -h<span class="variable">$&#123;ip_bak&#125;</span> --single-transaction -R -E -B <span class="variable">$&#123;bak_name&#125;</span> |gzip &gt;<span class="variable">$&#123;bak_dir&#125;</span>/<span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz</span><br><span class="line"><span class="keyword">if</span> [ $? = 0 ]; </span><br><span class="line">   <span class="keyword">then</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[36m  <span class="variable">$&#123;time&#125;</span>数据库:<span class="variable">$&#123;bak_name&#125;</span>备份成功,</span></span><br><span class="line"><span class="string">                备份位置:<span class="variable">$&#123;bak_dir&#125;</span>/<span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz  \033[0m&quot;</span> &gt;&gt; /opt/mysqlbak/ShellScript/wgcloud_bak.log  </span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[36m <span class="variable">$&#123;time&#125;</span>数据库:<span class="variable">$&#123;bak_name&#125;</span>备份成功,</span></span><br><span class="line"><span class="string">                备份位置:<span class="variable">$&#123;bak_dir&#125;</span>/<span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz</span></span><br><span class="line"><span class="string">                <span class="variable">$&#123;bak_dir&#125;</span>目录正在删除五天前的备份。 \033[0m&quot;</span> </span><br><span class="line">       find <span class="variable">$&#123;bak_dir&#125;</span> -<span class="built_in">type</span> f -mtime +5 |xargs <span class="built_in">rm</span> -f   </span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[31m <span class="variable">$&#123;time&#125;</span>数据库:<span class="variable">$&#123;bak_name&#125;</span>备份失败，请检查。 \033[0m&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">ncftp</span></span>() &#123;   </span><br><span class="line"><span class="comment"># 配置ncftp将sql文件下载到windows</span></span><br><span class="line">ftp_user=<span class="string">&#x27;root&#x27;</span></span><br><span class="line">ftp_pass=<span class="string">&#x27;123456&#x27;</span></span><br><span class="line">ftp_ip=<span class="string">&#x27;windowsip&#x27;</span></span><br><span class="line">ftp_dir=<span class="string">&#x27;/&#x27;</span></span><br><span class="line">ftp_bak=<span class="string">&#x27;$&#123;bak_dir&#125;/$&#123;bak_name&#125;_$&#123;ip_bak&#125;_$&#123;time&#125;.sql.gz&#x27;</span></span><br><span class="line">ncftpput -u <span class="variable">$&#123;ftp_user&#125;</span>  -p <span class="variable">$&#123;ftp_pass&#125;</span> -R <span class="variable">$&#123;ftp_ip&#125;</span> /  <span class="variable">$&#123;ftp_bak&#125;</span></span><br><span class="line"><span class="keyword">if</span> [ $? = 0 ]; </span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;\033[36m <span class="variable">$&#123;time&#125;</span> <span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz <span class="variable">$&#123;bak_dir&#125;</span> 下载到windows:<span class="variable">$&#123;ftp_ip&#125;</span>成功 \033[0m&quot;</span>   </span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;\033[31m <span class="variable">$&#123;time&#125;</span> <span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz <span class="variable">$&#123;bak_dir&#125;</span> 下载到windows:<span class="variable">$&#123;ftp_ip&#125;</span>失败 \033[0m&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">    welcome</span><br><span class="line">    bak_mysql</span><br><span class="line">    <span class="comment">#ncftp 此处ip不通暂时注释</span></span><br><span class="line">&#125;</span><br><span class="line">main</span><br></pre></td></tr></table></figure>
@@ -340,34 +349,29 @@
         </nav>
     
     
-        <div id="disqus_thread" class="post-comments lazy-load"></div>
-
+        <div id="v-comments" class="post-comments"></div>
 <script>
-    var disqus_config = function () {
-        this.page.url = 'http://example.com/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '2023/05/15/mysql备份脚本/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
     var load_comm = () => {
-        if (typeof DISQUS === 'undefined') {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        } else {
-            DISQUS.reset({
-                reload: true,
-                config: function () {  
-                    this.page.url = 'http://example.com/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = '2023/05/15/mysql备份脚本/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                }
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: '',
+                appKey: '',
+                visitor: true,
+                enableQQ: false,
+                path: '/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/'
             });
         }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
     };
-    
 </script>
-<script async id="dsq-count-scr" src="//.disqus.com/count.js"></script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
 
-<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     
 </article>
 

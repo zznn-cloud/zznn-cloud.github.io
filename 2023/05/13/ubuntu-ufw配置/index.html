@@ -212,6 +212,11 @@
                     </li>
                 
                 
+                    <li id="/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/" class="leancloud_visitors" data-flag-title="ubuntu-ufw配置">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
             </ul>
         </header>
         <div class="kratos-post-content">
@@ -222,6 +227,10 @@
             </div>
             
             
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu-ufw-%E9%85%8D%E7%BD%AE"><span class="toc-text">ubuntu-ufw 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E9%87%8D%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99%E4%BC%9A%E6%8A%8A%E6%89%80%E6%9C%89%E5%B7%B2%E6%B7%BB%E5%8A%A0%E7%9A%84%E8%A7%84%E5%88%99%E5%85%A8%E9%83%A8%E5%88%A0%E9%99%A4%E5%B9%B6%E4%B8%94%E7%A6%81%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E8%A6%81%E6%9F%A5%E7%9C%8B%E8%8E%B7%E5%8F%96%E6%9C%8D%E5%8A%A1%E5%88%97%E8%A1%A8"><span class="toc-text">二. 要查看获取服务列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E9%AB%98%E7%BA%A7%E8%AF%AD%E6%B3%95"><span class="toc-text">三. 高级语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E5%90%AF%E7%94%A8-%E7%A6%81PING-%E4%B8%8D%E5%B8%B8%E7%94%A8"><span class="toc-text">四. 启用 &#x2F;  禁PING(不常用)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%EF%BC%8E%E6%8B%92%E7%BB%9D%E8%AE%BF%E9%97%AE"><span class="toc-text">五．拒绝访问</span></a></li></ol></li></ol>
+                </div>
             
             <hr />
             <div itemprop="articleBody"><h2 id="ubuntu-ufw-配置"><a href="#ubuntu-ufw-配置" class="headerlink" title="ubuntu-ufw 配置"></a>ubuntu-ufw 配置</h2><p>参考：</p>
@@ -357,34 +366,29 @@
         </nav>
     
     
-        <div id="disqus_thread" class="post-comments lazy-load"></div>
-
+        <div id="v-comments" class="post-comments"></div>
 <script>
-    var disqus_config = function () {
-        this.page.url = 'http://example.com/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '2023/05/13/ubuntu-ufw配置/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
     var load_comm = () => {
-        if (typeof DISQUS === 'undefined') {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        } else {
-            DISQUS.reset({
-                reload: true,
-                config: function () {  
-                    this.page.url = 'http://example.com/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = '2023/05/13/ubuntu-ufw配置/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                }
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: '',
+                appKey: '',
+                visitor: true,
+                enableQQ: false,
+                path: '/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/'
             });
         }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
     };
-    
 </script>
-<script async id="dsq-count-scr" src="//.disqus.com/count.js"></script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
 
-<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     
 </article>
 

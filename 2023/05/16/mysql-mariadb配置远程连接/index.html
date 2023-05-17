@@ -212,6 +212,11 @@
                     </li>
                 
                 
+                    <li id="/2023/05/16/mysql-mariadb%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/" class="leancloud_visitors" data-flag-title="mysql-mariadb配置远程连接">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
             </ul>
         </header>
         <div class="kratos-post-content">
@@ -222,6 +227,10 @@
             </div>
             
             
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-mariadb%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="toc-text">mysql-mariadb配置远程连接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-MySQL5-7%E6%8E%88%E6%9D%83%E7%94%A8%E6%88%B7%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE"><span class="toc-text">一.  MySQL5.7授权用户远程访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E4%BE%8B%E5%AD%90mariadb-mysql%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="toc-text">二. 例子mariadb mysql配置远程连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-mysql8%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E4%B8%8D%E5%A4%AA%E4%B8%80%E6%A0%B7"><span class="toc-text">三. mysql8配置远程连接不太一样</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">四. mysql常用命令</span></a></li></ol></li></ol>
+                </div>
             
             <hr />
             <div itemprop="articleBody"><h2 id="mysql-mariadb配置远程连接"><a href="#mysql-mariadb配置远程连接" class="headerlink" title="mysql-mariadb配置远程连接"></a><code>mysql-mariadb</code>配置远程连接</h2><h3 id="一-MySQL5-7授权用户远程访问"><a href="#一-MySQL5-7授权用户远程访问" class="headerlink" title="一.  MySQL5.7授权用户远程访问"></a>一.  <code>MySQL5.7</code>授权用户远程访问</h3><p>做个记录，每次弄环境的时候，特别是弄mysql环境，时不时都要用到下面的命令 命令如下:</p>
@@ -369,34 +378,29 @@
         </nav>
     
     
-        <div id="disqus_thread" class="post-comments lazy-load"></div>
-
+        <div id="v-comments" class="post-comments"></div>
 <script>
-    var disqus_config = function () {
-        this.page.url = 'http://example.com/2023/05/16/mysql-mariadb%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '2023/05/16/mysql-mariadb配置远程连接/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
     var load_comm = () => {
-        if (typeof DISQUS === 'undefined') {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        } else {
-            DISQUS.reset({
-                reload: true,
-                config: function () {  
-                    this.page.url = 'http://example.com/2023/05/16/mysql-mariadb%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = '2023/05/16/mysql-mariadb配置远程连接/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                }
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: '',
+                appKey: '',
+                visitor: true,
+                enableQQ: false,
+                path: '/2023/05/16/mysql-mariadb%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/'
             });
         }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
     };
-    
 </script>
-<script async id="dsq-count-scr" src="//.disqus.com/count.js"></script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
 
-<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     
 </article>
 

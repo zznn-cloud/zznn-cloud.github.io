@@ -212,6 +212,11 @@
                     </li>
                 
                 
+                    <li id="/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/" class="leancloud_visitors" data-flag-title="编译部署keepalived">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
             </ul>
         </header>
         <div class="kratos-post-content">
@@ -222,6 +227,10 @@
             </div>
             
             
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived"><span class="toc-text">编译部署keepalived</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-centos-%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived"><span class="toc-text">一. centos 编译部署keepalived</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-ubuntu%E9%83%A8%E7%BD%B2keepailved"><span class="toc-text">二. ubuntu部署keepailved</span></a></li></ol></li></ol>
+                </div>
             
             <hr />
             <div itemprop="articleBody"><h2 id="编译部署keepalived"><a href="#编译部署keepalived" class="headerlink" title="编译部署keepalived"></a>编译部署<code>keepalived</code></h2><h3 id="一-centos-编译部署keepalived"><a href="#一-centos-编译部署keepalived" class="headerlink" title="一. centos 编译部署keepalived"></a>一. centos 编译部署keepalived</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#环境：centos7</span></span><br><span class="line"><span class="comment">#软件版：keepalived-2.0.18.tar.gz </span></span><br><span class="line"><span class="built_in">dir</span>=<span class="string">&quot;/usr/local/src&quot;</span></span><br><span class="line">keepalived=<span class="string">&quot;keepalived-2.0.18&quot;</span></span><br><span class="line">keepalived_v=<span class="string">&quot;keepalived-2.0.18.tar.gz&quot;</span></span><br><span class="line">yilai=<span class="string">&quot;openssl openssl-devel wget vim lrzsz&quot;</span></span><br><span class="line"><span class="function"><span class="title">keepalived_make</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[33m 此脚本容错率较低请不要重复执行 \033[0m&quot;</span></span><br><span class="line">    <span class="built_in">sleep</span> 10</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[36m ===============开始拉取安装包:<span class="variable">$&#123;keepalived_v&#125;</span> \033[0m&quot;</span> </span><br><span class="line">    wget --no-check-certificate https://www.keepalived.org/software/<span class="variable">$&#123;keepalived_v&#125;</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[36m 解压到： <span class="variable">$&#123;dir&#125;</span>  \033[0m&quot;</span> </span><br><span class="line">    tar -zxvf ./<span class="variable">$&#123;keepalived_v&#125;</span> -C <span class="variable">$&#123;dir&#125;</span></span><br><span class="line">    yum install -y <span class="variable">$&#123;yilai&#125;</span></span><br><span class="line">    <span class="built_in">cd</span> <span class="variable">$&#123;dir&#125;</span>/<span class="variable">$&#123;keepalived&#125;</span>/ &amp;&amp; ./configure --prefix=/usr/local/keepalived</span><br><span class="line">    <span class="built_in">cd</span> <span class="variable">$&#123;dir&#125;</span>/<span class="variable">$&#123;keepalived&#125;</span>/ &amp;&amp; make </span><br><span class="line">    <span class="built_in">cd</span> <span class="variable">$&#123;dir&#125;</span>/<span class="variable">$&#123;keepalived&#125;</span>/ &amp;&amp; make install</span><br><span class="line">    [ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[36m 编译安装<span class="variable">$&#123;keepalived&#125;</span>成功 \033[0m&quot;</span>  || <span class="built_in">echo</span> -e <span class="string">&quot;\033[33m 编译安装<span class="variable">$&#123;keepalived&#125;</span>失败 \033[0m&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">keepalived_system</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[36m ===============开始配置：<span class="variable">$&#123;keepalived&#125;</span> \033[0m&quot;</span></span><br><span class="line">    [ -d <span class="string">&quot;/etc/keepalived&quot;</span> ] || <span class="built_in">mkdir</span> -p /etc/keepalived</span><br><span class="line">    <span class="built_in">cp</span> /usr/local/keepalived/etc/keepalived/keepalived.conf /etc/keepalived/</span><br><span class="line">    <span class="built_in">cp</span> /usr/local/keepalived/sbin/keepalived /etc/init.d/</span><br><span class="line">    systemctl daemon-reload</span><br><span class="line">    systemctl start keepalived </span><br><span class="line">    systemctl <span class="built_in">enable</span> keepalived </span><br><span class="line">    systemctl status keepalived </span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[36m </span></span><br><span class="line"><span class="string">            常用命令：</span></span><br><span class="line"><span class="string">            systemctl restart keepalived </span></span><br><span class="line"><span class="string">            systemctl status keepalived </span></span><br><span class="line"><span class="string">            systemctl enable keepalived            </span></span><br><span class="line"><span class="string">            \033[0m&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;keepalived版本是:&quot;</span></span><br><span class="line">    /usr/local/keepalived/sbin/keepalived -v</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">    keepalived_make</span><br><span class="line">    keepalived_system</span><br><span class="line">&#125;</span><br><span class="line">main</span><br></pre></td></tr></table></figure>
@@ -339,34 +348,29 @@
         </nav>
     
     
-        <div id="disqus_thread" class="post-comments lazy-load"></div>
-
+        <div id="v-comments" class="post-comments"></div>
 <script>
-    var disqus_config = function () {
-        this.page.url = 'http://example.com/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '2023/05/15/编译部署keepalived/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
     var load_comm = () => {
-        if (typeof DISQUS === 'undefined') {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        } else {
-            DISQUS.reset({
-                reload: true,
-                config: function () {  
-                    this.page.url = 'http://example.com/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = '2023/05/15/编译部署keepalived/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                }
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: '',
+                appKey: '',
+                visitor: true,
+                enableQQ: false,
+                path: '/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/'
             });
         }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
     };
-    
 </script>
-<script async id="dsq-count-scr" src="//.disqus.com/count.js"></script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
 
-<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     
 </article>
 

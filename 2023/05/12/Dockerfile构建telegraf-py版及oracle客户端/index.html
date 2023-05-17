@@ -212,6 +212,11 @@
                     </li>
                 
                 
+                    <li id="/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/" class="leancloud_visitors" data-flag-title="Dockerfile构建telegraf_py版及oracle客户端">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
             </ul>
         </header>
         <div class="kratos-post-content">
@@ -354,34 +359,29 @@
         </nav>
     
     
-        <div id="disqus_thread" class="post-comments lazy-load"></div>
-
+        <div id="v-comments" class="post-comments"></div>
 <script>
-    var disqus_config = function () {
-        this.page.url = 'http://example.com/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '2023/05/12/Dockerfile构建telegraf-py版及oracle客户端/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
     var load_comm = () => {
-        if (typeof DISQUS === 'undefined') {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        } else {
-            DISQUS.reset({
-                reload: true,
-                config: function () {  
-                    this.page.url = 'http://example.com/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = '2023/05/12/Dockerfile构建telegraf-py版及oracle客户端/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                }
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: '',
+                appKey: '',
+                visitor: true,
+                enableQQ: false,
+                path: '/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/'
             });
         }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
     };
-    
 </script>
-<script async id="dsq-count-scr" src="//.disqus.com/count.js"></script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
 
-<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     
 </article>
 
