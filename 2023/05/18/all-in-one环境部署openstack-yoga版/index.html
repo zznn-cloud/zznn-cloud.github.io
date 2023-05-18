@@ -26,7 +26,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/thumb/zznnlogo.webp">
 <meta property="article:published_time" content="2023-05-18T02:05:15.000Z">
-<meta property="article:modified_time" content="2023-05-18T02:34:29.128Z">
+<meta property="article:modified_time" content="2023-05-18T02:59:00.619Z">
 <meta property="article:author" content="zznn">
 <meta property="article:tag" content="云计算">
 <meta name="twitter:card" content="summary">
@@ -206,7 +206,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            ~10.61K
+                            ~11.45K
                         
                         字
                     </li>
@@ -223,7 +223,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1684377269128"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1684378740619"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -246,7 +246,7 @@
 
 <img src="/2023/05/18/all-in-one%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2openstack-yoga%E7%89%88/image-20230518103356096.png" alt="image-20230518103356096" style="zoom:67%;">
 
-<h3 id="四-扩展配置私有阿里云仓库（-可选-）"><a href="#四-扩展配置私有阿里云仓库（-可选-）" class="headerlink" title="四.  扩展配置私有阿里云仓库（ 可选 ）"></a>四.  扩展配置私有阿里云仓库（ 可选 ）</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置私有阿里云仓库</span></span><br><span class="line"><span class="attr">openstack_release:</span> <span class="string">&quot;zznnyoga&quot;</span></span><br><span class="line"><span class="attr">docker_registry:</span> <span class="string">&quot;registry.cn-hangzhou.aliyuncs.com&quot;</span>        <span class="comment"># 拉取 docker 镜像的源</span></span><br><span class="line"><span class="attr">docker_namespace:</span> <span class="string">&quot;zznn&quot;</span>  </span><br></pre></td></tr></table></figure>
+<h3 id="四-扩展配置私有阿里云仓库（-可选-）"><a href="#四-扩展配置私有阿里云仓库（-可选-）" class="headerlink" title="四.  扩展配置私有阿里云仓库（ 可选 ）"></a>四.  扩展配置私有阿里云仓库（ 可选 ）</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置私有阿里云仓库</span></span><br><span class="line"><span class="attr">openstack_release:</span> <span class="string">&quot;zznnyoga&quot;</span></span><br><span class="line"><span class="attr">docker_registry:</span> <span class="string">&quot;registry.cn-hangzhou.aliyuncs.com&quot;</span>        <span class="comment"># 拉取 docker 镜像的源</span></span><br><span class="line"><span class="attr">docker_namespace:</span> <span class="string">&quot;zznn&quot;</span> </span><br><span class="line"><span class="comment"># 遇到错误时</span></span><br><span class="line"><span class="comment"># 导入环境变量</span></span><br><span class="line"><span class="string">cd</span> <span class="string">~</span> <span class="string">&amp;&amp;</span> <span class="string">source</span> <span class="string">/root/venv3/bin/activate</span></span><br><span class="line"><span class="comment"># 遇到报错，销毁已安装的环境</span></span><br><span class="line"><span class="string">kolla-ansible</span> <span class="string">-i</span> <span class="string">./all-in-one</span> <span class="string">destroy</span> <span class="string">--yes-i-really-really-mean-it</span></span><br><span class="line"><span class="comment"># 删除docker volume 卷</span></span><br><span class="line"><span class="string">docker</span> <span class="string">volume</span> <span class="string">ls</span> </span><br><span class="line"><span class="string">docker</span> <span class="string">volume</span> <span class="string">rm</span> <span class="string">&lt;卷名&gt;</span></span><br><span class="line"><span class="comment"># 删除/etc/kolla/所有容器映射目录</span></span><br><span class="line"><span class="comment"># 清除所有节点容器</span></span><br><span class="line"><span class="string">docker</span> <span class="string">rm</span> <span class="string">-f</span> <span class="string">$(docker</span> <span class="string">ps</span> <span class="string">-a</span> <span class="string">|</span> <span class="string">awk</span> <span class="string">&#x27;&#123;print $1&#125;&#x27;</span><span class="string">)</span></span><br><span class="line"><span class="comment"># 清除volume卷</span></span><br><span class="line"><span class="string">docker</span> <span class="string">volume</span> <span class="string">remove</span> <span class="string">$(docker</span> <span class="string">volume</span> <span class="string">ls</span> <span class="string">|</span> <span class="string">awk</span> <span class="string">&#x27;&#123;print $2&#125;&#x27;</span><span class="string">)</span></span><br><span class="line"><span class="comment"># 删除所有镜像</span></span><br><span class="line"><span class="string">docker</span> <span class="string">rmi</span> <span class="string">$(docker</span> <span class="string">images</span> <span class="string">-q)</span></span><br><span class="line"><span class="comment"># 停止docker服务</span></span><br><span class="line"><span class="string">systemctl</span> <span class="string">stop</span> <span class="string">docker</span></span><br><span class="line"><span class="comment"># 清除tmp下文件</span></span><br><span class="line"><span class="string">rm</span> <span class="string">-rf</span> <span class="string">/var/lib/docker/tmp/*</span></span><br><span class="line"><span class="comment"># 启动docker服务</span></span><br><span class="line"><span class="string">systemctl</span> <span class="string">restart</span> <span class="string">docker</span></span><br><span class="line"><span class="comment"># 再次部署一切正常</span></span><br><span class="line"><span class="string">kolla-ansible</span> <span class="string">-i</span> <span class="string">./all-in-one</span> <span class="string">deploy</span></span><br><span class="line"><span class="string">注：</span> <span class="string">此时集群仍然是不可用的需要完成《创建实例报错》文档openstack与ceph集成</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># openstack 管理命令-重新配置集群</span></span><br><span class="line"><span class="string">kolla-ansible</span> <span class="string">-i</span> <span class="string">all-in-one</span> <span class="string">reconfigure</span></span><br><span class="line"><span class="comment"># 如执行deploy部署 raitmbbq报错时 重新配置集群rabbitmq</span></span><br><span class="line"><span class="string">kolla-ansible</span> <span class="string">-i</span> <span class="string">all-in-one</span> <span class="string">reconfigure</span> <span class="string">-t</span> <span class="string">rabbitmq</span></span><br></pre></td></tr></table></figure>
 
 <p>结语 祝好。</p>
 </div>
@@ -343,7 +343,7 @@
                     <a class="tag-none-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-18T02:34:29.128Z" itemprop="dateModified">最后编辑：2023-05-18</time>
+                    <time datetime="2023-05-18T02:59:00.619Z" itemprop="dateModified">最后编辑：2023-05-18</time>
                 </div>
             </div>
         </footer>
