@@ -17,16 +17,16 @@
   
     <meta name="keywords" content="ubuntu, 环境部署" />
   
-  <meta name="description" content="ubuntu-ufw 配置参考：  https:&#x2F;&#x2F;ednovas.xyz&#x2F;2021&#x2F;08&#x2F;15&#x2F;ufw&#x2F;  前言： 只有防火墙内部有规则的时候 使用 ufw status &#x2F;ufw status verbose 才能显示规则 情况 否则显示 &#x2F;活动&#x2F;不活动&#x2F;激活&#x2F;未激活 一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙123456789101112131415161718192021">
+  <meta name="description" content="ubuntu-ufw 配置参考：  https:&#x2F;&#x2F;ednovas.xyz&#x2F;2021&#x2F;08&#x2F;15&#x2F;ufw&#x2F;  前言： 只有防火墙内部有规则的时候 使用 ufw status &#x2F;ufw status verbose 才能显示规则 情况 否则显示 &#x2F;活动&#x2F;不活动&#x2F;激活&#x2F;未激活 防火墙拓补：  一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙1234567891011121314151617">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu-ufw配置">
 <meta property="og:url" content="http://gegewu12.gitee.io/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="zznn">
-<meta property="og:description" content="ubuntu-ufw 配置参考：  https:&#x2F;&#x2F;ednovas.xyz&#x2F;2021&#x2F;08&#x2F;15&#x2F;ufw&#x2F;  前言： 只有防火墙内部有规则的时候 使用 ufw status &#x2F;ufw status verbose 才能显示规则 情况 否则显示 &#x2F;活动&#x2F;不活动&#x2F;激活&#x2F;未激活 一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙123456789101112131415161718192021">
+<meta property="og:description" content="ubuntu-ufw 配置参考：  https:&#x2F;&#x2F;ednovas.xyz&#x2F;2021&#x2F;08&#x2F;15&#x2F;ufw&#x2F;  前言： 只有防火墙内部有规则的时候 使用 ufw status &#x2F;ufw status verbose 才能显示规则 情况 否则显示 &#x2F;活动&#x2F;不活动&#x2F;激活&#x2F;未激活 防火墙拓补：  一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙1234567891011121314151617">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://gegewu12.gitee.io/images/thumb/zznnlogo.webp">
 <meta property="article:published_time" content="2023-05-13T12:55:50.000Z">
-<meta property="article:modified_time" content="2023-05-21T12:36:27.393Z">
+<meta property="article:modified_time" content="2023-05-22T02:44:56.246Z">
 <meta property="article:author" content="zznn">
 <meta property="article:tag" content="ubuntu">
 <meta property="article:tag" content="环境部署">
@@ -207,7 +207,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            ~2.61K
+                            ~2.62K
                         
                         字
                     </li>
@@ -224,7 +224,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1684672587393"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1684723496246"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -238,6 +238,8 @@
 <p> <a target="_blank" rel="noopener" href="https://ednovas.xyz/2021/08/15/ufw/">https://ednovas.xyz/2021/08/15/ufw/</a></p>
 <p> 前言：</p>
 <p>只有防火墙内部有规则的时候 使用 ufw status /ufw status verbose 才能显示规则 情况 否则显示 /活动/不活动/激活/未激活</p>
+<p>防火墙拓补：</p>
+<p><img src="/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/image-20230522104450862.png" alt="image-20230522104450862"></p>
 <h3 id="一-重置防火墙会把所有已添加的规则全部删除并且禁用防火墙"><a href="#一-重置防火墙会把所有已添加的规则全部删除并且禁用防火墙" class="headerlink" title="一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙"></a>一.  重置防火墙会把所有已添加的规则全部删除并且禁用防火墙</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 常规操作</span></span><br><span class="line">sudo ufw reset //重置防火墙</span><br><span class="line">sudo ufw <span class="built_in">disable</span> //禁用防火墙</span><br><span class="line">sudo ufw <span class="built_in">enable</span> //开启防火墙</span><br><span class="line">sudo ufw status 查看防火墙状态</span><br><span class="line">sudo ufw <span class="built_in">enable</span> 开启防火墙</span><br><span class="line">sudo ufw status verbose 查看比status查看的更详细的防火墙</span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br><span class="line">sudo ufw default deny</span><br><span class="line">sudo ufw allow ssh   允许ssh服务</span><br><span class="line">sudo ufw deny ssh    禁用ssh服务</span><br><span class="line">sudo ufw logging on  启用日志记录</span><br><span class="line">sudo ufw logging off 禁用日志记录</span><br><span class="line">sudo ufw status verbose 查看防火墙状态</span><br><span class="line">sudo ufw status verbose 查看比status查看的更详细</span><br><span class="line"></span><br><span class="line">sudo ufw allow 53 允许端口53上传入tcp udp数据包</span><br><span class="line">sudo ufw allow 53/tcp 允许端口53上传入tcp 数据包</span><br><span class="line"><span class="comment"># Deny（拒绝）</span></span><br><span class="line">sudo ufw deny 53 拒绝端口53上的tcp udp数据包</span><br><span class="line">sudo ufw deny 53/tcp 拒绝端口53上传的tcp 数据包</span><br><span class="line">sudo ufw deny 53/udp 允许端口53上传入udp数据包</span><br><span class="line"><span class="comment"># 删除现有规则 要删除规则只需要在原始规则前面加上delete即可。例如，如果原始规则是：</span></span><br><span class="line">sudo ufw deny 80/tcp 以前的规则是拒绝80/tcp端口上传的数据</span><br><span class="line">sudo ufw delete deny 80/tcp 现在删除这个规则</span><br><span class="line">server（服务）</span><br><span class="line"><span class="comment"># 可以通过服务名称允许或拒绝，因为ufw从/etc/services读取服务名称</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="二-要查看获取服务列表"><a href="#二-要查看获取服务列表" class="headerlink" title="二. 要查看获取服务列表"></a>二. 要查看获取服务列表</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 按服务名称允许</span></span><br><span class="line">22.sudo ufw allow &lt;服务名称&gt; </span><br><span class="line">23.sudo ufw allow ssh.service 按服务名称允许</span><br><span class="line">24.sudo ufw deny by service name </span><br><span class="line">25.sudo ufw deny &lt;服务名称&gt; 按服务名称拒绝</span><br><span class="line"><span class="comment"># Logging关于ufw的日志</span></span><br><span class="line">sudo ufw logging on启用日志</span><br><span class="line">sudo ufw logging off禁用日志</span><br></pre></td></tr></table></figure>
@@ -347,7 +349,7 @@
                     <a class="tag-none-link" href="/tags/ubuntu/" rel="tag">ubuntu</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-21T12:36:27.393Z" itemprop="dateModified">最后编辑：2023-05-21</time>
+                    <time datetime="2023-05-22T02:44:56.246Z" itemprop="dateModified">最后编辑：2023-05-22</time>
                 </div>
             </div>
         </footer>
