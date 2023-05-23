@@ -66,52 +66,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-mysql备份脚本" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/" class="article-date">
-  <time datetime="2023-05-15T09:37:32.000Z" itemprop="datePublished">2023-05-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/shell/">shell</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/">mysql备份脚本</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h2><h3 id="一-数据库备份"><a href="#一-数据库备份" class="headerlink" title="一.  数据库备份"></a>一.  数据库备份</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#mysqlbak_version:1.3 </span></span><br><span class="line"><span class="comment">#标准换数据库备份脚本</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"><span class="function"><span class="title">welcome</span></span>()&#123;</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">   2.mysqldump(mysqldump -P(端口)-p(密码)-u(用户名) -h(ip)</span></span><br><span class="line"><span class="string">   3.--single-transaction --events(-E) --routines(-R) --databases(-B)+数据库名字 |gzip ......sql.gz</span></span><br><span class="line"><span class="string">   4..sz -be +(文件全路径) --single-transaction --events --routines</span></span><br><span class="line"><span class="string">   6.参数：--single-transaction(确保导出数据的一致性) --events(E导出事件) --routines(R-导出存储过程以及自定义函数) $&#123;db&#125;</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="title">bak_mysql</span></span>()&#123;</span><br><span class="line">   bak_name=<span class="string">&quot;wgcloud&quot;</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;\033[33m 开始备份数据库:<span class="variable">$&#123;bak_name&#125;</span> \033[0m&quot;</span></span><br><span class="line">   bak_dir=<span class="string">&quot;/opt/mysqlbak/bak&quot;</span></span><br><span class="line">   time=`<span class="built_in">date</span> +%F_%H_%M`</span><br><span class="line">   port_bak=3306</span><br><span class="line">   user_bak=<span class="string">&quot;root&quot;</span></span><br><span class="line">   passwd_bak=<span class="string">&quot;123&quot;</span></span><br><span class="line">   ip_bak=localhost</span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="variable">$&#123;bak_dir&#125;</span> ];</span><br><span class="line">   <span class="keyword">then</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[33m 开始创建目录:<span class="variable">$&#123;bak_dir&#125;</span> \033[0m&quot;</span></span><br><span class="line">       <span class="built_in">mkdir</span> -p  <span class="variable">$&#123;bak_dir&#125;</span> &amp;&amp; <span class="built_in">chmod</span> 755 <span class="variable">$&#123;bak_dir&#125;</span></span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[36m <span class="variable">$&#123;bak_dir&#125;</span>目录已存在  \033[0m&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">mysqldump -P<span class="variable">$&#123;port_bak&#125;</span> -p<span class="variable">$&#123;passwd_bak&#125;</span> -u<span class="variable">$&#123;user_bak&#125;</span> -h<span class="variable">$&#123;ip_bak&#125;</span> --single-transaction -R -E -B <span class="variable">$&#123;bak_name&#125;</span> |gzip &gt;<span class="variable">$&#123;bak_dir&#125;</span>/<span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz</span><br><span class="line"><span class="keyword">if</span> [ $? = 0 ]; </span><br><span class="line">   <span class="keyword">then</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[36m  <span class="variable">$&#123;time&#125;</span>数据库:<span class="variable">$&#123;bak_name&#125;</span>备份成功,</span></span><br><span class="line"><span class="string">                备份位置:<span class="variable">$&#123;bak_dir&#125;</span>/<span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz  \033[0m&quot;</span> &gt;&gt; /opt/mysqlbak/ShellScript/wgcloud_bak.log  </span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[36m <span class="variable">$&#123;time&#125;</span>数据库:<span class="variable">$&#123;bak_name&#125;</span>备份成功,</span></span><br><span class="line"><span class="string">                备份位置:<span class="variable">$&#123;bak_dir&#125;</span>/<span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz</span></span><br><span class="line"><span class="string">                <span class="variable">$&#123;bak_dir&#125;</span>目录正在删除五天前的备份。 \033[0m&quot;</span> </span><br><span class="line">       find <span class="variable">$&#123;bak_dir&#125;</span> -<span class="built_in">type</span> f -mtime +5 |xargs <span class="built_in">rm</span> -f   </span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">&quot;\033[31m <span class="variable">$&#123;time&#125;</span>数据库:<span class="variable">$&#123;bak_name&#125;</span>备份失败，请检查。 \033[0m&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">ncftp</span></span>() &#123;   </span><br><span class="line"><span class="comment"># 配置ncftp将sql文件下载到windows</span></span><br><span class="line">ftp_user=<span class="string">&#x27;root&#x27;</span></span><br><span class="line">ftp_pass=<span class="string">&#x27;123456&#x27;</span></span><br><span class="line">ftp_ip=<span class="string">&#x27;windowsip&#x27;</span></span><br><span class="line">ftp_dir=<span class="string">&#x27;/&#x27;</span></span><br><span class="line">ftp_bak=<span class="string">&#x27;$&#123;bak_dir&#125;/$&#123;bak_name&#125;_$&#123;ip_bak&#125;_$&#123;time&#125;.sql.gz&#x27;</span></span><br><span class="line">ncftpput -u <span class="variable">$&#123;ftp_user&#125;</span>  -p <span class="variable">$&#123;ftp_pass&#125;</span> -R <span class="variable">$&#123;ftp_ip&#125;</span> /  <span class="variable">$&#123;ftp_bak&#125;</span></span><br><span class="line"><span class="keyword">if</span> [ $? = 0 ]; </span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;\033[36m <span class="variable">$&#123;time&#125;</span> <span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz <span class="variable">$&#123;bak_dir&#125;</span> 下载到windows:<span class="variable">$&#123;ftp_ip&#125;</span>成功 \033[0m&quot;</span>   </span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;\033[31m <span class="variable">$&#123;time&#125;</span> <span class="variable">$&#123;bak_name&#125;</span>_<span class="variable">$&#123;ip_bak&#125;</span>_<span class="variable">$&#123;time&#125;</span>.sql.gz <span class="variable">$&#123;bak_dir&#125;</span> 下载到windows:<span class="variable">$&#123;ftp_ip&#125;</span>失败 \033[0m&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">    welcome</span><br><span class="line">    bak_mysql</span><br><span class="line">    <span class="comment">#ncftp 此处ip不通暂时注释</span></span><br><span class="line">&#125;</span><br><span class="line">main</span><br></pre></td></tr></table></figure>
-
-<h3 id="二-恢复备份的数据"><a href="#二-恢复备份的数据" class="headerlink" title="二.  恢复备份的数据"></a>二.  恢复备份的数据</h3><p>show databases;<br>use wgcloud;<br>source /opt/mysqlbak/ShellScript/wgcloud_localhost_2023-02-01_14_44.sql</p>
-<p>观察导入是否成功： 说明导入成功<br>Query OK, 0 rows affected, 1 warning (0.00 sec)<br>Query OK, 0 rows affected (0.00 sec)<br>Query OK, 0 rows affected (0.00 sec)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://gegewu12.gitee.io/2023/05/15/mysql%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/" data-id="clhsiqwzj000bt0qm8ikkd49z" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/" rel="tag">shell</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-编译部署nginx" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2nginx/" class="article-date">
@@ -146,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gegewu12.gitee.io/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2nginx/" data-id="clhsiqwzv0012t0qm1yco9zrq" class="article-share-link">Share</a>
+      <a data-url="http://gegewu12.gitee.io/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2nginx/" data-id="cli02daoc0042zsqm9znk9hum" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a></li></ul>
@@ -192,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gegewu12.gitee.io/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/" data-id="clhsiqwzu000zt0qm14be6ihl" class="article-share-link">Share</a>
+      <a data-url="http://gegewu12.gitee.io/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2keepalived/" data-id="cli02daob0040zsqmcspz6zl3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a></li></ul>
@@ -242,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gegewu12.gitee.io/2023/05/15/%E5%90%84%E7%A7%8D%E5%8A%A0%E9%80%9F%E5%99%A8/" data-id="clhsiqwzs000ut0qm2yub3spo" class="article-share-link">Share</a>
+      <a data-url="http://gegewu12.gitee.io/2023/05/15/%E5%90%84%E7%A7%8D%E5%8A%A0%E9%80%9F%E5%99%A8/" data-id="cli02danw001xzsqmheqq1ute" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/club/" rel="tag">club</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a></li></ul>
@@ -305,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gegewu12.gitee.io/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/" data-id="clhsiqwzk000ft0qm1rkv39fg" class="article-share-link">Share</a>
+      <a data-url="http://gegewu12.gitee.io/2023/05/13/ubuntu-ufw%E9%85%8D%E7%BD%AE/" data-id="cli02danp001bzsqm75wz9eu9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a></li></ul>
@@ -372,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gegewu12.gitee.io/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/" data-id="clhsiqwz00000t0qm27ss9nnf" class="article-share-link">Share</a>
+      <a data-url="http://gegewu12.gitee.io/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/" data-id="cli02damx0000zsqm8v49231o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a></li></ul>
@@ -435,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gegewu12.gitee.io/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/" data-id="clhsiqwzl000ht0qmd3f8clmv" class="article-share-link">Share</a>
+      <a data-url="http://gegewu12.gitee.io/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/" data-id="cli02danr001gzsqmdpjh92fp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/change-cloub/" rel="tag">change-cloub</a></li></ul>
@@ -485,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gegewu12.gitee.io/2023/05/11/%E5%86%99%E6%96%87%E7%AB%A0%E9%BB%98%E8%AE%A4%E5%8A%A0%E7%AD%BE/" data-id="clhsiqwzp000st0qm4yodfd85" class="article-share-link">Share</a>
+      <a data-url="http://gegewu12.gitee.io/2023/05/11/%E5%86%99%E6%96%87%E7%AB%A0%E9%BB%98%E8%AE%A4%E5%8A%A0%E7%AD%BE/" data-id="cli02danv001tzsqm0b2seyoz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/club/" rel="tag">club</a></li></ul>
@@ -553,7 +507,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gegewu12.gitee.io/2023/05/11/zabbix6-0%E6%90%AD%E5%BB%BA/" data-id="clhsiqwzn000lt0qm7to82xxi" class="article-share-link">Share</a>
+      <a data-url="http://gegewu12.gitee.io/2023/05/11/zabbix6-0%E6%90%AD%E5%BB%BA/" data-id="cli02dans001izsqm0wmh6i93" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a></li></ul>
@@ -605,7 +559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gegewu12.gitee.io/2023/05/10/%E4%BA%91/" data-id="clhsiqwzo000nt0qm0626g3cn" class="article-share-link">Share</a>
+      <a data-url="http://gegewu12.gitee.io/2023/05/10/%E4%BA%91/" data-id="cli02dant001nzsqm6egecatp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a></li></ul>
@@ -617,11 +571,60 @@
 
 
   
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/05/23/hello-world/" class="article-date">
+  <time datetime="2023-05-23T09:10:04.606Z" itemprop="datePublished">2023-05-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/05/23/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://gegewu12.gitee.io/2023/05/23/hello-world/" data-id="cli02dane000lzsqmafl495mf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
 
 </section>
@@ -674,6 +677,14 @@
       <ul>
         
           <li>
+            <a href="/2023/05/23/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/23/butterfly%E4%B8%BB%E9%A2%98%E8%AE%BE%E7%BD%AE/">butterfly主题设置</a>
+          </li>
+        
+          <li>
             <a href="/2023/05/23/%E7%95%99%E8%A8%80%E6%9D%BF/">留言板</a>
           </li>
         
@@ -683,14 +694,6 @@
         
           <li>
             <a href="/2023/05/23/smtplib%E5%8F%91%E9%80%81%E6%AD%A3%E6%96%87%E5%B8%A6%E5%9B%BE%E7%89%87%E9%99%84%E5%8A%A0%E6%A0%BC%E5%BC%8F%E7%9A%84%E9%82%AE%E4%BB%B6%E5%88%B0QQ%E9%82%AE%E7%AE%B1/">smtplib发送正文带图片附加格式的邮件到QQ邮箱</a>
-          </li>
-        
-          <li>
-            <a href="/2023/05/22/%E7%A3%81%E7%9B%98%E7%83%AD%E6%89%A9%E5%AE%B9/">磁盘热扩容</a>
-          </li>
-        
-          <li>
-            <a href="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/">rsync热同步磁盘</a>
           </li>
         
       </ul>
