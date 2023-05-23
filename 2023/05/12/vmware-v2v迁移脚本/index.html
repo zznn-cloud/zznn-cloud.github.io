@@ -1,22 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-  <!-- 元数据 -->
+<html>
+<head>
   <meta charset="utf-8">
-  <link rel="icon" href="/images/thumb/zznnlogo.webp">
+  
+
   
   <title>vmware_v2v迁移脚本 | zznn</title>
-  
-  <meta name="author" content="zznn" />
-  <meta http-equiv="Cache-Control" content="no-transform" />
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="robots" content="index,follow" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="format-detection" content="telphone=no, email=no" />
-  
-    <meta name="keywords" content="change-cloub" />
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="v2v迁移vmware脚本一. vmware.sh脚本功能 半自动的迁移脚本（vmware.sh）功能：自动安装windows驱动自动导出vmware虚拟机为qcm2格式自动安装could-init（centos7 ubuntu）ubuntu安装could-init未成功 123456789101112131415161718192021222324252627282930313233343536">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vmware_v2v迁移脚本">
@@ -24,261 +14,90 @@
 <meta property="og:site_name" content="zznn">
 <meta property="og:description" content="v2v迁移vmware脚本一. vmware.sh脚本功能 半自动的迁移脚本（vmware.sh）功能：自动安装windows驱动自动导出vmware虚拟机为qcm2格式自动安装could-init（centos7 ubuntu）ubuntu安装could-init未成功 123456789101112131415161718192021222324252627282930313233343536">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://gegewu12.gitee.io/images/thumb/zznnlogo.webp">
+<meta property="og:image" content="http://gegewu12.gitee.io/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/image-20230516111248633.png">
+<meta property="og:image" content="http://gegewu12.gitee.io/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/image-20230516111702414.png">
+<meta property="og:image" content="http://gegewu12.gitee.io/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/image-20230516112119735.png">
 <meta property="article:published_time" content="2023-05-12T06:04:20.000Z">
 <meta property="article:modified_time" content="2023-05-16T06:46:49.066Z">
 <meta property="article:author" content="zznn">
 <meta property="article:tag" content="change-cloub">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://gegewu12.gitee.io/images/thumb/zznnlogo.webp">
+<meta name="twitter:image" content="http://gegewu12.gitee.io/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/image-20230516111248633.png">
   
-  <!-- 站点验证相关 -->
-  
-    
-    
-    
-  
-  <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
-  
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
-    <script src="/js/kr-dark.min.js"></script>
+    <link rel="alternate" href="/atom.xml" title="zznn" type="application/atom+xml">
   
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
-  
-  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
-  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+    <link rel="icon" href="/favicon.png">
   
   
-    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
   
-    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
-  
-  <!-- 不得不预先加载的一些JS文件 -->
-  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
-  
-    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
-  
-  
-  <style>
-    
-    
-  </style>
-  
+<link rel="stylesheet" href="/css/style.css">
+
 <meta name="generator" content="Hexo 5.4.2"></head>
 
-
-    <body class="custom-background">
-        <div id="kratos-wrapper">
-    <div id="kratos-page">
-        <div id="kratos-header">
-            <header id="kratos-desktop-topnav" class="kratos-topnav">
-                <div class="container">
-                    <div class="nav-header">
-                        <nav id="kratos-menu-wrap">
-                            <ul id="kratos-primary-menu" class="sf-menu">
-                                
-                                    
-                                        <li>
-                                            
-                                                <a href="/">
-                                            
-                                                
-                                                    <i class="fa fa-home"></i>
-                                                
-                                                首页
-                                            </a>
-                                            
-                                        </li>
-                                    
-                                        <li>
-                                            
-                                                <a href="/archives/">
-                                            
-                                                
-                                                    <i class="fa fa-file"></i>
-                                                
-                                                档案馆
-                                            </a>
-                                            
-                                        </li>
-                                    
-                                        <li>
-                                            
-                                                <a href="/friends/">
-                                            
-                                                
-                                                    <i class="fa fa-paw"></i>
-                                                
-                                                好伙伴
-                                            </a>
-                                            
-                                        </li>
-                                    
-                                        <li>
-                                            
-                                                <a>
-                                            
-                                                
-                                                    <i class="fa fa-link"></i>
-                                                
-                                                链接
-                                            </a>
-                                            
-                                                <ul class="sub-menu">
-                                                    
-                                                        <li>
-                                                            <a href="http://gegewu12.gitee.io">
-                                                                
-                                                                作者博客
-                                                            </a>
-                                                        </li>
-                                                    
-                                                        <li>
-                                                            <a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">
-                                                                
-                                                                项目链接
-                                                            </a>
-                                                        </li>
-                                                    
-                                                        <li>
-                                                            <a target="_blank" rel="noopener" href="https://fontawesome.com.cn/v4/icons">
-                                                                
-                                                                图标库
-                                                            </a>
-                                                        </li>
-                                                    
-                                                        <li>
-                                                            <a target="_blank" rel="noopener" href="https://kr-demo.candinya.com/posts/Kratos-Rebirth-Manual/">
-                                                                
-                                                                Kratos-Rebirth
-                                                            </a>
-                                                        </li>
-                                                    
-                                                        <li>
-                                                            <a target="_blank" rel="noopener" href="https://console-e1.leancloud.cn/login">
-                                                                
-                                                                leanCloud
-                                                            </a>
-                                                        </li>
-                                                    
-                                                </ul>
-                                            
-                                        </li>
-                                    
-                                        <li>
-                                            
-                                                <a target="_blank" rel="noopener" href="https://chatgptmirror.com/chat">
-                                            
-                                                
-                                                    <i class="fa fa-cloud"></i>
-                                                
-                                                chatgpt
-                                            </a>
-                                            
-                                        </li>
-                                    
-                                        <li>
-                                            
-                                                <a href="https://gegewu12.gitee.io/2023/05/22/关于/">
-                                            
-                                                
-                                                    <i class="fa fa-heart"></i>
-                                                
-                                                关于
-                                            </a>
-                                            
-                                        </li>
-                                    
-                                
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </header>
-            <header id="kratos-mobile-topnav" class="kratos-topnav">
-                <div class="container">
-                    <div class="color-logo"><a href="/">zznn</a></div>
-                    <div class="nav-toggle">
-                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
-                            <i></i>
-                        </a>
-                    </div>
-                </div>
-            </header>
-        </div>
-        <div class="kratos-start kratos-hero-2">
-            <!-- <div class="kratos-overlay"></div> -->
-            <div class="kratos-cover kratos-cover-2 text-center">
-                <div class="desc desc2 animate-box">
-                    <a href="/">
-                        <h2>zznn</h2> <br />
-                        <span>平芜尽处是春山.</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div id="kratos-blog-post">
-            <div class="container">
-                <div id="main" class="row">
-                    
-
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zznn</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-
-            <section class="col-md-8">
-
+          <a class="main-nav-link" href="/">Home</a>
         
-
-            <article itemscope itemtype="https://schema.org/Article">
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://gegewu12.gitee.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vmware-v2v迁移脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/" class="article-date">
+  <time datetime="2023-05-12T06:04:20.000Z" itemprop="datePublished">2023-05-12</time>
+</a>
     
-    <link itemprop="mainEntityOfPage" href="http://gegewu12.gitee.io/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/">
-    <div class="kratos-hentry kratos-post-inner clearfix">
-        <header class="kratos-entry-header">
-            
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">vmware_v2v迁移脚本</h1>
-            
-            
-            <ul class="kratos-post-meta text-center">
-                <li><time datetime="2023-05-12T06:04:20.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-12</time></li>
-                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
-                    <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
-                </li>
-                
-                    <li>
-                        <i class="fa fa-edit"></i> 
-                        
-                        
-                            ~7.72K
-                        
-                        字
-                    </li>
-                
-                
-                    <li id="/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/" class="leancloud_visitors" data-flag-title="vmware_v2v迁移脚本">
-                        <i class="fa fa-eye"></i>
-                        <span class="leancloud-visitors-count"> </span> 次阅读
-                    </li>
-                
-            </ul>
-        </header>
-        <div class="kratos-post-content">
-            
-            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1684219609066"></time> 前，其中的内容可能需要更新。</p></div>
-            </div>
-            
-            
-            
-                <div class="kratos-post-inner-toc toc-div-class" >
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#v2v%E8%BF%81%E7%A7%BBvmware%E8%84%9A%E6%9C%AC"><span class="toc-text">v2v迁移vmware脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-vmware-sh"><span class="toc-text">一. vmware.sh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-text">二. 脚本执行方式</span></a></li></ol></li></ol>
-                </div>
-            
-            <hr />
-            <div itemprop="articleBody"><h2 id="v2v迁移vmware脚本"><a href="#v2v迁移vmware脚本" class="headerlink" title="v2v迁移vmware脚本"></a><code>v2v</code>迁移<code>vmware</code>脚本</h2><h3 id="一-vmware-sh"><a href="#一-vmware-sh" class="headerlink" title="一. vmware.sh"></a>一. vmware.sh</h3><p>脚本功能 半自动的迁移脚本（vmware.sh）<br>功能：<br>自动安装windows驱动<br>自动导出vmware虚拟机为qcm2格式<br>自动安装could-init（centos7 ubuntu）ubuntu安装could-init未成功</p>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vmware_v2v迁移脚本
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="v2v迁移vmware脚本"><a href="#v2v迁移vmware脚本" class="headerlink" title="v2v迁移vmware脚本"></a><code>v2v</code>迁移<code>vmware</code>脚本</h2><h3 id="一-vmware-sh"><a href="#一-vmware-sh" class="headerlink" title="一. vmware.sh"></a>一. vmware.sh</h3><p>脚本功能 半自动的迁移脚本（vmware.sh）<br>功能：<br>自动安装windows驱动<br>自动导出vmware虚拟机为qcm2格式<br>自动安装could-init（centos7 ubuntu）ubuntu安装could-init未成功</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#v2v半自动迁移脚本</span></span><br><span class="line"><span class="comment">#环境centos7</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line">red=<span class="string">&quot;31m&quot;</span></span><br><span class="line">green=<span class="string">&quot;36m&quot;</span></span><br><span class="line">could_init_v=<span class="string">&quot;1662444422717_install-cloudinit-scripts.zip&quot;</span></span><br><span class="line">could_init=<span class="string">&quot;https://www.wangsu.com/wos/draft/news/1662444422565/<span class="variable">$&#123;could_init_v&#125;</span>&quot;</span></span><br><span class="line">exsi_ip=<span class="string">&quot;exsi-ip&quot;</span></span><br><span class="line"><span class="comment">#environment() &#123;</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> </span></span><br><span class="line"><span class="string">            执行安装v2v  \033[0m&quot;</span></span><br><span class="line">app=<span class="string">&quot;qemu-kvm libvirt virt-manager virt-v2v wget&quot;</span></span><br><span class="line">yum install -y <span class="variable">$&#123;app&#125;</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> </span></span><br><span class="line"><span class="string">            执行安装windows驱动  \033[0m&quot;</span></span><br><span class="line">yum install libguestfs-winsupport libguestfs-tools -y</span><br><span class="line">wget https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo -O /etc/yum.repos.d/virtio-win.repo --no-check-certificate</span><br><span class="line">yum install virtio-win -y</span><br><span class="line">[ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> windows驱动安装完成  \033[0m&quot;</span></span><br><span class="line">systemctl start libvirtd &amp;&amp; systemctl <span class="built_in">enable</span> libvirtd</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> </span></span><br><span class="line"><span class="string">            期间会多次输入esxi密码建议不要输错多次输错会导致 exsi锁定</span></span><br><span class="line"><span class="string">            输入exsi密码 列出exsi下虚拟机 \033[0m&quot;</span></span><br><span class="line">virsh -c esx://root@<span class="variable">$&#123;exsi_ip&#125;</span>?no_verify=1 list --all </span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;在上述列表中选取输入需要执行导出的虚拟机: &quot;</span> vmware_host</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> </span></span><br><span class="line"><span class="string">            你输入的虚拟机是：<span class="variable">$&#123;vmware_host&#125;</span> \033[0m&quot;</span></span><br><span class="line"><span class="built_in">sleep</span> 4</span><br><span class="line">[ ! -d <span class="variable">$&#123;vmware_host&#125;</span> ] &amp;&amp; <span class="built_in">mkdir</span> -p <span class="variable">$&#123;vmware_host&#125;</span> || <span class="literal">true</span></span><br><span class="line"><span class="comment">#&#125;</span></span><br><span class="line"><span class="function"><span class="title">export_vmware</span></span>() &#123;</span><br><span class="line">   <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> </span></span><br><span class="line"><span class="string">                执行导出<span class="variable">$&#123;vmware_host&#125;</span>虚拟机为vmdk格式文件 </span></span><br><span class="line"><span class="string">                输入exsi密码 可能重复要求输入多次 \033[0m&quot;</span></span><br><span class="line">   virt-v2v-copy-to-local -ic esx://root@<span class="variable">$&#123;exsi_ip&#125;</span>/?no_verify=1 <span class="variable">$&#123;vmware_host&#125;</span></span><br><span class="line">   [ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> 执行导出成功  \033[0m&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">change_format</span></span>() &#123;</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> 执行转换格式  \033[0m&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;进入引导</span></span><br><span class="line"><span class="string">      0.输入0 获取帮助 </span></span><br><span class="line"><span class="string">      1.输入1 存在数据盘   只转换系统盘格式为qcm2 </span></span><br><span class="line"><span class="string">      2.输入2 不存在数据盘 直接执行转换为qcm2 或 系统盘和数据盘一起转换为qcm2格式  </span></span><br><span class="line"><span class="string">      3.输入3 退出格式转换步骤&quot;</span></span><br><span class="line"><span class="keyword">while</span> :</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">&quot;请输入数字 0 1 2 3 : &quot;</span> n  </span><br><span class="line">    <span class="keyword">case</span> <span class="variable">$n</span> <span class="keyword">in</span></span><br><span class="line">0)<span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> </span></span><br><span class="line"><span class="string">     帮助信息:</span></span><br><span class="line"><span class="string">        1. 当虚拟机存在数据盘 只需要转换系统盘为qcm2格式时需要 手动修改xml中关于数据盘的配置部分 </span></span><br><span class="line"><span class="string">        2. 当虚拟机只存在系统盘则直接执行转换系统盘格式为qcm2格式</span></span><br><span class="line"><span class="string">        3. 导入云平台创建云主机 开机需要注释：/etc/fstab相关配置</span></span><br><span class="line"><span class="string">        4. 转换格式后的文件将存放于脚本自动创建的虚拟机同名文件夹</span></span><br><span class="line"><span class="string">        5. 导出后需要手动迁移数据盘建议挂载磁盘后采用dd的方式克隆数据</span></span><br><span class="line"><span class="string">           或: qemu-img convert -f qcow2 -O raw Qcms1-data.qcow2 /dev/vdb </span></span><br><span class="line"><span class="string">           此种方式dd与qemu集成 可直接将qcm2转为raw格式后克隆到磁盘若选择此种方式则下方输入引导项: &#x27;2&#x27; 导出.</span></span><br><span class="line"><span class="string">        6. 输入3退出此步骤执行下一步 输入0 1 2 则执行对应步骤  \033[0m&quot;</span>  </span><br><span class="line">  <span class="built_in">continue</span></span><br><span class="line">  ;;</span><br><span class="line">1)<span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> 存在数据盘 只转换系统盘格式为qcm2  \033[0m&quot;</span>        </span><br><span class="line">        <span class="built_in">cp</span> <span class="variable">$&#123;vmware_host&#125;</span>.xml&#123;,.bak&#125;</span><br><span class="line">        <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> 手动修改xml文件系统盘部分 \033[0m&quot;</span></span><br><span class="line">        <span class="built_in">sleep</span> 4</span><br><span class="line">        vim <span class="variable">$&#123;vmware_host&#125;</span>.xml</span><br><span class="line">        <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> 开始导出 \033[0m&quot;</span></span><br><span class="line">        virt-v2v -i libvirtxml <span class="variable">$&#123;vmware_host&#125;</span>.xml -o <span class="built_in">local</span> -os <span class="variable">$&#123;vmware_host&#125;</span>/ -of qcow2 --compressed</span><br><span class="line">        [ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> <span class="variable">$&#123;vmware_host&#125;</span>vmdk导出成功 \033[0m&quot;</span></span><br><span class="line">  <span class="built_in">continue</span></span><br><span class="line">  ;;</span><br><span class="line">2)<span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> 不存在数据盘 或 数据盘和系统盘一起直接执行转换为qcm2 \033[0m&quot;</span>    </span><br><span class="line">        virt-v2v -i libvirtxml <span class="variable">$&#123;vmware_host&#125;</span>.xml -o <span class="built_in">local</span> -os <span class="variable">$&#123;vmware_host&#125;</span>/ -of qcow2 --compressed</span><br><span class="line">        [ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> <span class="variable">$&#123;vmware_host&#125;</span>vmdk导出成功 \033[0m&quot;</span></span><br><span class="line">  <span class="built_in">continue</span></span><br><span class="line">  ;;        </span><br><span class="line">3)<span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> 退出格式转换 \033[0m&quot;</span> </span><br><span class="line">  <span class="built_in">break</span></span><br><span class="line">  ;;</span><br><span class="line">*)<span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;red&#125;</span> 输入错误重新输入 或 输入0获取帮助信息 \033[0m&quot;</span></span><br><span class="line">  <span class="built_in">continue</span></span><br><span class="line">  ;;   </span><br><span class="line">  <span class="keyword">esac</span> </span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">centos_could_init</span></span>() &#123;</span><br><span class="line">    <span class="comment"># centos6-7</span></span><br><span class="line">    <span class="built_in">rm</span> -rf <span class="variable">$&#123;could_init_v&#125;</span> install-cloudinit-scripts || <span class="literal">true</span></span><br><span class="line">    <span class="keyword">if</span> [ `<span class="built_in">cat</span> /etc/redhat-release |awk -F<span class="string">&#x27;[ .]+&#x27;</span> <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>` = <span class="string">&quot;CentOS&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">       <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> 执行卸载旧版could-init \033[0m&quot;</span> </span><br><span class="line">       yum -y remove cloud-init  ||<span class="literal">true</span></span><br><span class="line">       <span class="built_in">rm</span> -f /etc/cloud/cloud.cfg.rpmsave ||<span class="literal">true</span></span><br><span class="line">       yum install -y unzip wget</span><br><span class="line">       [ ! -f <span class="variable">$&#123;could_init_v&#125;</span> ] &amp;&amp; wget <span class="variable">$&#123;could_init&#125;</span></span><br><span class="line">       unzip <span class="variable">$&#123;could_init_v&#125;</span></span><br><span class="line">       <span class="built_in">chmod</span> a+x install-cloudinit-scripts/ -R</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="comment"># install centos could-init部分 </span></span><br><span class="line">    centos_version=`<span class="built_in">cat</span> /etc/redhat-release |awk -F<span class="string">&#x27;[ .]+&#x27;</span> <span class="string">&#x27;&#123;print $1 $4&#125;&#x27;</span>`</span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$&#123;centos_version&#125;</span> = <span class="string">&quot;CentOS7&quot;</span> ];<span class="keyword">then</span> </span><br><span class="line">       <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> <span class="variable">$&#123;centos_version&#125;</span>执行安装could-init \033[0m&quot;</span> </span><br><span class="line">       <span class="built_in">cd</span> install-cloudinit-scripts &amp;&amp; bash CentOS7-install-cloudinit.sh</span><br><span class="line">       systemctl start cloud-init &amp;&amp; systemctl status cloud-init </span><br><span class="line">       [ <span class="variable">$&#123;?&#125;</span> = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> <span class="variable">$&#123;centos_version&#125;</span> could-init 安装成功！ \033[0m&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$&#123;centos_version&#125;</span> = <span class="string">&quot;CentOS6&quot;</span> ];</span><br><span class="line">       <span class="keyword">then</span></span><br><span class="line">       <span class="built_in">cd</span> install-cloudinit-scripts &amp;&amp; bash CentOS6-install-cloudinit.sh</span><br><span class="line">       systemctl start cloud-init &amp;&amp; systemctl status cloud-init </span><br><span class="line">       [ <span class="variable">$&#123;?&#125;</span> = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> <span class="variable">$&#123;centos_version&#125;</span> could-init 安装成功！ \033[0m&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$&#123;centos_version&#125;</span> = <span class="string">&quot;CentOS8&quot;</span> ];</span><br><span class="line">       <span class="keyword">then</span></span><br><span class="line">       <span class="built_in">cd</span> install-cloudinit-scripts &amp;&amp; bash CentOS8-install-cloudinit.sh</span><br><span class="line">       systemctl start cloud-init &amp;&amp; systemctl status cloud-init </span><br><span class="line">       [ <span class="variable">$&#123;?&#125;</span> = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> <span class="variable">$&#123;centos_version&#125;</span> could-init 安装成功！ \033[0m&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">ubuntu_could_init</span></span>()&#123;</span><br><span class="line">    <span class="comment"># ubuntu</span></span><br><span class="line">    <span class="built_in">rm</span> -rf <span class="variable">$&#123;could_init_v&#125;</span> install-cloudinit-scripts || <span class="literal">true</span></span><br><span class="line">    <span class="keyword">if</span> [ `<span class="built_in">cat</span> /etc/lsb-release |awk -F<span class="string">&#x27;[ =]+&#x27;</span> <span class="string">&#x27;NR==1&#123;print $2&#125;&#x27;</span>` = <span class="string">&quot;Ubuntu&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> 执行卸载旧版could-init \033[0m&quot;</span> </span><br><span class="line">        apt-get -y remove cloud-init ||<span class="literal">true</span></span><br><span class="line">        apt install -y unzip wget</span><br><span class="line">        <span class="built_in">rm</span> -rf /etc/cloud/* ||<span class="literal">true</span></span><br><span class="line">        <span class="built_in">rm</span> -rf /usr/lib/python2.7/dist-packages/cloudinit ||<span class="literal">true</span></span><br><span class="line">        [ ! -f <span class="variable">$&#123;could_init_v&#125;</span> ] &amp;&amp; wget <span class="variable">$&#123;could_init&#125;</span></span><br><span class="line">        unzip <span class="variable">$&#123;could_init_v&#125;</span></span><br><span class="line">        <span class="built_in">chmod</span> a+x install-cloudinit-scripts/ -R</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="comment"># install ubuntu could-init部分 </span></span><br><span class="line">    ubuntu_version=`<span class="built_in">cat</span> /etc/lsb-release |awk -F<span class="string">&#x27;[ =]+&#x27;</span> <span class="string">&#x27;NR==1&#123;print $2&#125;&#x27;</span>`</span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$&#123;ubuntu_version&#125;</span> = <span class="string">&quot;Ubuntu&quot;</span> ];<span class="keyword">then</span> </span><br><span class="line">       <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> <span class="variable">$&#123;ubuntu_version&#125;</span>执行安装could-init \033[0m&quot;</span> </span><br><span class="line">       <span class="built_in">cd</span> install-cloudinit-scripts &amp;&amp; bash Ubuntu-install-cloudinit.sh</span><br><span class="line">       systemctl start cloud-init &amp;&amp; systemctl status cloud-init</span><br><span class="line">       [ <span class="variable">$&#123;?&#125;</span> = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> <span class="variable">$&#123;ubuntu_version&#125;</span>执行安装could-init成功! \033[0m&quot;</span></span><br><span class="line">    <span class="keyword">fi</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">        <span class="comment">#//environment (不存在的模块)</span></span><br><span class="line">        export_vmware</span><br><span class="line">        change_format</span><br><span class="line">        <span class="comment">#centos_could_init  导入云平台后注释其他模块 按系统类型选择取消could-init的注释安装项目 </span></span><br><span class="line">        <span class="comment">#ubuntu_could_init  导入云平台后注释其他模块 按系统类型选择取消could-init的注释安装项目</span></span><br><span class="line">&#125;</span><br><span class="line">main</span><br></pre></td></tr></table></figure>
 
 <h3 id="二-脚本执行方式"><a href="#二-脚本执行方式" class="headerlink" title="二. 脚本执行方式"></a>二. 脚本执行方式</h3><ol>
@@ -299,434 +118,154 @@
 <img src="/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/image-20230516112119735.png" alt="image-20230516112119735" style="zoom: 50%;">
 
 <p>祝好。</p>
-</div>
-        </div>
-        
-            <div class="kratos-copyright text-center clearfix">
-                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
-            </div>
-        
-        <footer class="kratos-entry-footer clearfix">
-            
-                <div class="post-like-donate text-center clearfix" id="post-like-donate">
-                
-                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
-                
-                
-                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
-                    <div class="share-wrap" style="display: none;">
-    <div class="share-group">
-        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-qq"></i>
-            </div>
-        </a>
-        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-star"></i>
-            </div>
-        </a>
-        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-weixin"></i>
-            </div>
-            <div class="share-int">
-                <div class="qrcode" id="wechat-qr"></div>
-                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
-            </div>
-        </a>
-        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-weibo"></i>
-            </div>
-        </a>
-        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-facebook"></i>
-            </div>
-        </a>
-        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-twitter"></i>
-            </div>
-        </a>
-    </div>
-    <script type="text/javascript">
-        $(()=>{
-            new QRCode("wechat-qr", {
-                text: "http://gegewu12.gitee.io/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/",
-                width: 150,
-                height: 150,
-                correctLevel : QRCode.CorrectLevel.H
-            });
-        });
-        function share(dest) {
-            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
-            const weiboBase     = "https://service.weibo.com/share/share.php?";
-            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
-            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
-            const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://gegewu12.gitee.io/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/";
-            const title         = "「vmware_v2v迁移脚本」";
-            const excerpt       = `v2v迁移vmware脚本一. vmware.sh脚本功能 半自动的迁移脚本（vmware.sh）功能：自动安装windows驱动自动导出vmware虚拟机为qcm2格式自动安装could-init（centos7 ubuntu）ub...`;
-            let _URL;
-            switch (dest) {
-                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
-                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
-                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
-                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
-                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
-            }
-            window.open(_URL);
-        };
-    </script>
-</div>
-                
-                </div>
-            
-            <div class="footer-tag clearfix">
-                <div class="pull-left">
-                <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/change-cloub/" rel="tag">change-cloub</a>
-                </div>
-                <div class="pull-date">
-                    <time datetime="2023-05-16T06:46:49.066Z" itemprop="dateModified">最后编辑：2023-05-16</time>
-                </div>
-            </div>
-        </footer>
-    </div>
-    
-        <nav class="navigation post-navigation clearfix" role="navigation">
-            
-            <div class="nav-previous clearfix">
-                <a title=" 写文章默认加签" href="/2023/05/11/写文章默认加签/">&lt; 上一篇</a>
-            </div>
-            
-            
-            <div class="nav-next clearfix">
-                <a title=" Dockerfile构建telegraf_py版及oracle客户端" href="/2023/05/12/Dockerfile构建telegraf-py版及oracle客户端/">下一篇 &gt;</a>
-            </div>
-            
-        </nav>
-    
-    
-        <div id="v-comments" class="post-comments bg-image"></div>
-<script>
-    var load_comm = () => {
-        const init = () => {
-            new Valine({
-                el: '#v-comments',
-                appId: 'j2rHZR7PYdL07dtteIjU2I6p-9Nh9j0Va',
-                appKey: 'QGQtOyQ3KRl2gUnQAESqz6Nc',
-                visitor: true,
-                enableQQ: false,
-                path: '/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/'
-            });
-        }
-        if (typeof Valine === 'undefined') {
-            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
-            $.getScript(src, init);
-        } else {
-            init();
-        }
-    };
-</script>
-<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://gegewu12.gitee.io/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/" data-id="clhsiqwzl000ht0qmd3f8clmv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/change-cloub/" rel="tag">change-cloub</a></li></ul>
+
+    </footer>
+  </div>
+  
     
+<nav id="article-nav">
+  
+    <a href="/2023/05/12/Dockerfile%E6%9E%84%E5%BB%BAtelegraf-py%E7%89%88%E5%8F%8Aoracle%E5%AE%A2%E6%88%B7%E7%AB%AF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Dockerfile构建telegraf_py版及oracle客户端
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/11/%E5%86%99%E6%96%87%E7%AB%A0%E9%BB%98%E8%AE%A4%E5%8A%A0%E7%AD%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">写文章默认加签</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-        
-
-            </section>
-
-        
-
-                
-            
-
-<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
-    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
-    
-    
-                <aside id="krw-about" class="widget widget-kratos-about clearfix">
-    <div class="photo-background"></div>
-    <div class="photo-wrapper clearfix">
-        <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
-        </div>
-    </div>
-    <div class="textwidget">
-        <p class="text-center">努力做个博学而有趣的人</p>
-    </div>
-    <div class="site-meta">
-        <a class="meta-item" href="/archives/">
-            <span class="title">
-                文章
-            </span>
-            <span class="count">
-                28
-            </span>
-        </a>
-        <a class="meta-item" href="/categories/">
-            <span class="title">
-                分类
-            </span>
-            <span class="count">
-                12
-            </span>
-        </a>
-        <a class="meta-item" href="/tags/">
-            <span class="title">
-                标签
-            </span>
-            <span class="count">
-                12
-            </span>
-        </a>
-    </div>
-</aside>
-            
-                    <div class="sticky-area">
-                
-                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
-    <div class="photo-background"></div>
-    <h4 class="widget-title no-after">
-        <i class="fa fa-compass"></i>
-        文章目录
-        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
-    </h4>
-    <div class="textwidget">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#v2v%E8%BF%81%E7%A7%BBvmware%E8%84%9A%E6%9C%AC"><span class="toc-text">v2v迁移vmware脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-vmware-sh"><span class="toc-text">一. vmware.sh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-text">二. 脚本执行方式</span></a></li></ol></li></ol>
-    </div>
-</aside>
-                
-                
-  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
-    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a><span class="category-list-count">1</span></li></ul>
-  </aside>
-
-
-            
-                
-  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
-    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
-      <div class="tag-clouds">
-        <a href="/tags/centos/" style="font-size: 0.72em;">centos</a> <a href="/tags/change-cloub/" style="font-size: 0.6em;">change-cloub</a> <a href="/tags/club/" style="font-size: 0.72em;">club</a> <a href="/tags/docker/" style="font-size: 0.68em;">docker</a> <a href="/tags/mysql/" style="font-size: 0.68em;">mysql</a> <a href="/tags/python/" style="font-size: 0.64em;">python</a> <a href="/tags/shell/" style="font-size: 0.64em;">shell</a> <a href="/tags/ubuntu/" style="font-size: 0.72em;">ubuntu</a> <a href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" style="font-size: 0.64em;">云原生监控</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 0.68em;">云计算</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" style="font-size: 0.8em;">常用软件</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" style="font-size: 0.76em;">环境部署</a>
-      </div>
-  </aside>
-
-            
-                
-  <aside id="krw-posts" class="widget widget-kratos-posts">
-  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
-  <div class="tab-content">
-      <ul class="list-group">
-        
-        
-          
-          
-            <a class="list-group-item" href="/2023/05/22/%E7%A3%81%E7%9B%98%E7%83%AD%E6%89%A9%E5%AE%B9/"><i class="fa  fa-book"></i> 磁盘热扩容</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/"><i class="fa  fa-book"></i> rsync热同步磁盘</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/2023/05/22/guestmount-%E9%95%9C%E5%83%8F%E6%8C%82%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0/"><i class="fa  fa-book"></i> guestmount 镜像挂载到本地</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/2023/05/22/%E5%85%B3%E4%BA%8E/"><i class="fa  fa-book"></i> 关于</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/2023/05/22/centos-chrony%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/"><i class="fa  fa-book"></i> centos chrony设置时间同步</a>
-            
-          
-        
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-      </ul>
-  </div>
-  </aside>
-
-            
-    </div>
 </section>
         
-        </div>
-    </div>
-</div>
-<footer>
-    <div id="footer"  class="ap-lrc"  >
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 footer-list text-center">
-                    <ul class="kratos-social-icons">
-                        <!-- Keep for compatibility -->
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <!-- New links -->
-                        
-                    </ul>
-                    <ul class="kratos-copyright">
-                        <div>
-                            <li>&copy; 2023 zznn 版权所有.</li>
-                            <li>本站已运行<span id="span_dt">Loading...</span></li>
-                        </div>
-                        <div>
-                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
-                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by zznn.</li>
-                        </div>
-                        <div>
-                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
-                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
-                        </div>
-                        <div>
-                            
-                            
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="kr-tool text-center">
-            <div class="tool">
-                
-                    <div class="box search-box">
-                        <a href="/search/">
-                            <span class="fa fa-search"></span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="box theme-box" id="darkmode-switch">
-                        <span class="fa fa-adjust"></span>
-                    </div>
-                
-                
-                    <div class="box theme-box" id="snow-switch">
-                        <span class="fa fa-snowflake-o"></span>
-                    </div>
-                
-                
-            </div>
-            <div class="box gotop-box">
-                <span class="fa fa-chevron-up"></span>
-            </div>
-        </div>
-    </div>
-</footer>
-</div>
-</div>
-
-        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
-<script>
-    if (!window.kr) {
-        window.kr = {};
-    }
-    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
-    window.kr.siteRoot = "/";
-</script>
-
-    <div>
-        <canvas id="snow"></canvas>
-        <script async src="/js/snow.min.js"></script>
-    </div>
-
-
-    <script async src="/js/candy.min.js"></script>
-
-
-
-    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+          <aside id="sidebar">
+  
     
-    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
-    <meting-js
-        server="netease"
-        type="playlist"
-        id="2208907642"
-        order="random"
-        fixed="true"
-    >
-    </meting-js>
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/change-cloub/" rel="tag">change-cloub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/club/" rel="tag">club</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/centos/" style="font-size: 15px;">centos</a> <a href="/tags/change-cloub/" style="font-size: 10px;">change-cloub</a> <a href="/tags/club/" style="font-size: 16.67px;">club</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/shell/" style="font-size: 11.67px;">shell</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" style="font-size: 11.67px;">云原生监控</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 13.33px;">云计算</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">常用软件</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" style="font-size: 18.33px;">环境部署</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/23/%E7%95%99%E8%A8%80%E6%9D%BF/">留言板</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/23/growpart%E7%A3%81%E7%9B%98%E7%83%AD%E6%89%A9%E5%AE%B9/">growpart磁盘热扩容</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/23/smtplib%E5%8F%91%E9%80%81%E6%AD%A3%E6%96%87%E5%B8%A6%E5%9B%BE%E7%89%87%E9%99%84%E5%8A%A0%E6%A0%BC%E5%BC%8F%E7%9A%84%E9%82%AE%E4%BB%B6%E5%88%B0QQ%E9%82%AE%E7%AE%B1/">smtplib发送正文带图片附加格式的邮件到QQ邮箱</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/22/%E7%A3%81%E7%9B%98%E7%83%AD%E6%89%A9%E5%AE%B9/">磁盘热扩容</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/">rsync热同步磁盘</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 zznn<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
 
-    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-<script defer src="/js/kratosr.min.js"></script>
-<script defer src="/js/pjax.min.js"></script>
-
-    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+<script src="/js/script.js"></script>
 
 
 
-<!-- Extra support for third-party plguins  -->
 
-
-    </body>
+  </div>
+</body>
 </html>

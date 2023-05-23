@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>smtplib发送正文带图片附加格式的邮件到QQ邮箱 | zznn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="smtplib发送正文带图片附加格式的邮件到QQ邮箱1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859import smtplibfrom smtplib import SMTP_SSL           # 用于加密邮件内容 防">
+<meta property="og:type" content="article">
+<meta property="og:title" content="smtplib发送正文带图片附加格式的邮件到QQ邮箱">
+<meta property="og:url" content="http://gegewu12.gitee.io/2023/05/23/smtplib%E5%8F%91%E9%80%81%E6%AD%A3%E6%96%87%E5%B8%A6%E5%9B%BE%E7%89%87%E9%99%84%E5%8A%A0%E6%A0%BC%E5%BC%8F%E7%9A%84%E9%82%AE%E4%BB%B6%E5%88%B0QQ%E9%82%AE%E7%AE%B1/index.html">
+<meta property="og:site_name" content="zznn">
+<meta property="og:description" content="smtplib发送正文带图片附加格式的邮件到QQ邮箱1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859import smtplibfrom smtplib import SMTP_SSL           # 用于加密邮件内容 防">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://gegewu12.gitee.io/2023/05/23/smtplib%E5%8F%91%E9%80%81%E6%AD%A3%E6%96%87%E5%B8%A6%E5%9B%BE%E7%89%87%E9%99%84%E5%8A%A0%E6%A0%BC%E5%BC%8F%E7%9A%84%E9%82%AE%E4%BB%B6%E5%88%B0QQ%E9%82%AE%E7%AE%B1/image-20230523093414516.png">
+<meta property="article:published_time" content="2023-05-23T01:31:52.000Z">
+<meta property="article:modified_time" content="2023-05-23T01:34:58.572Z">
+<meta property="article:author" content="zznn">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://gegewu12.gitee.io/2023/05/23/smtplib%E5%8F%91%E9%80%81%E6%AD%A3%E6%96%87%E5%B8%A6%E5%9B%BE%E7%89%87%E9%99%84%E5%8A%A0%E6%A0%BC%E5%BC%8F%E7%9A%84%E9%82%AE%E4%BB%B6%E5%88%B0QQ%E9%82%AE%E7%AE%B1/image-20230523093414516.png">
+  
+    <link rel="alternate" href="/atom.xml" title="zznn" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zznn</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://gegewu12.gitee.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-smtplib发送正文带图片附加格式的邮件到QQ邮箱" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/05/23/smtplib%E5%8F%91%E9%80%81%E6%AD%A3%E6%96%87%E5%B8%A6%E5%9B%BE%E7%89%87%E9%99%84%E5%8A%A0%E6%A0%BC%E5%BC%8F%E7%9A%84%E9%82%AE%E4%BB%B6%E5%88%B0QQ%E9%82%AE%E7%AE%B1/" class="article-date">
+  <time datetime="2023-05-23T01:31:52.000Z" itemprop="datePublished">2023-05-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/py/">py</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      smtplib发送正文带图片附加格式的邮件到QQ邮箱
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="smtplib发送正文带图片附加格式的邮件到QQ邮箱"><a href="#smtplib发送正文带图片附加格式的邮件到QQ邮箱" class="headerlink" title="smtplib发送正文带图片附加格式的邮件到QQ邮箱"></a><code>smtplib</code>发送正文带图片附加格式的邮件到<code>QQ</code>邮箱</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line"><span class="keyword">from</span> smtplib <span class="keyword">import</span> SMTP_SSL           <span class="comment"># 用于加密邮件内容 防止中途被人截获</span></span><br><span class="line"><span class="keyword">from</span> email.mime.image <span class="keyword">import</span> MIMEImage <span class="comment"># 用于发送正文带图片的邮件</span></span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText   <span class="comment"># 用于构造邮件的正文</span></span><br><span class="line"><span class="keyword">from</span> email.mime.multipart <span class="keyword">import</span> MIMEMultipart     <span class="comment"># 把邮件的各个部分装在一起 是邮件的主题</span></span><br><span class="line"><span class="keyword">from</span> email.header <span class="keyword">import</span> Header                    <span class="comment"># 邮件头（包括邮件标题 收件人）</span></span><br><span class="line"><span class="keyword">from</span> email.mime.application <span class="keyword">import</span> MIMEApplication <span class="comment"># 用于发送附件</span></span><br><span class="line"></span><br><span class="line">host_server = <span class="string">&#x27;smtp.qq.com&#x27;</span>              <span class="comment"># qq邮箱的smtp服务器地址 端口465下方登录时填写</span></span><br><span class="line">sender_sina_mail = <span class="string">&#x27;878891611@qq.com&#x27;</span>    <span class="comment"># 发件人邮箱</span></span><br><span class="line">receiver = [<span class="string">&#x27;878891611@qq.com&#x27;</span>]          <span class="comment"># 收件人邮箱 （可以写成一样的） 以逗号分隔可以写多个</span></span><br><span class="line">pwd = <span class="string">&#x27;unjwwrsj&#x27;</span>                         <span class="comment"># 邮箱授权码 不是密码</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#构造一封邮件的时候需要先填写发件人和收件人</span></span><br><span class="line">mail_title = <span class="string">&#x27;python自动化办公&#x27;</span>                                               <span class="comment"># 邮箱标题</span></span><br><span class="line">mail_content = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;p&gt;Python 邮件发送测试...&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;p&gt;&lt;a href=&quot;http://www.runoob.com&quot;&gt;这是一个链接&lt;/a&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;p&gt;图片演示：&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;p&gt;&lt;img decoding=&quot;async&quot; src=&quot;cid:image1&quot;&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>  <span class="comment"># 邮件的html正文内容</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化邮件主体</span></span><br><span class="line">msg = MIMEMultipart()                          <span class="comment"># 邮件主体 刚才我们已经构建了 邮件的发收 等下面只需要装入主体即可</span></span><br><span class="line">msg[<span class="string">&quot;Subject&quot;</span>] = Header(mail_title, <span class="string">&#x27;utf-8&#x27;</span>)   <span class="comment"># 使用Header将邮件标题处理成可识别的utf-8格式 &quot;Subject&quot; 邮件主题</span></span><br><span class="line">msg[<span class="string">&quot;From&quot;</span>] = sender_sina_mail                 <span class="comment"># 寄件人</span></span><br><span class="line">msg[<span class="string">&quot;To&quot;</span>] = Header(<span class="string">&quot;测试邮箱&quot;</span>, <span class="string">&#x27;utf-8&#x27;</span>)         <span class="comment"># 显示收件人此处可自定义</span></span><br><span class="line">msg.attach(MIMEText(mail_content, <span class="string">&#x27;html&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>))  <span class="comment"># 邮件正文内容以无格式添加进整个邮件的主体</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">附件部分</span></span><br><span class="line"><span class="string">Content-Disposition() 内容设置 设置的内容attachmen 附件  filename给它重命名</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">attachment = MIMEApplication(<span class="built_in">open</span>(<span class="string">&#x27;./py测试目录/客户1_价格通知.docx&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read())         <span class="comment"># 打开附件 rb  r-read b-以二进制打开文件 不加则以字符串打开</span></span><br><span class="line">attachment.add_header(<span class="string">&#x27;Content-Disposition&#x27;</span>, <span class="string">&#x27;attachment&#x27;</span>, filename=<span class="string">&#x27;客户1-价格通知.docx&#x27;</span>) <span class="comment"># 给附件改名字</span></span><br><span class="line">msg.attach(attachment)  <span class="comment">#添加附件</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">发送正文带图片的邮件</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 指定图片为当前目录</span></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;安静.png&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">msgImage = MIMEImage(fp.read())</span><br><span class="line">fp.close() </span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义图片 ID，在 HTML 文本中引用</span></span><br><span class="line">msgImage.add_header(<span class="string">&#x27;Content-ID&#x27;</span>, <span class="string">&#x27;&lt;image1&gt;&#x27;</span>)</span><br><span class="line">msg.attach(msgImage)</span><br><span class="line"></span><br><span class="line"><span class="comment">#登录邮箱服务器并且发送邮件</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    smtp = SMTP_SSL(host_server, <span class="number">465</span>)   <span class="comment"># SSL登录</span></span><br><span class="line">    smtp.set_debuglevel(<span class="number">0</span>)              <span class="comment"># 开启smtp的dbug 关闭调试改成0 </span></span><br><span class="line">    <span class="comment">#smtp.ehlo(host_server, 465)        # 根服务器=打个招呼说我们要连接确定一下状态 建议加上比如Gmail就必须要有这个才能连接到smtp服务器</span></span><br><span class="line">    smtp.login(sender_sina_mail, pwd)   <span class="comment"># 发件人授权码登录</span></span><br><span class="line">    smtp.sendmail(sender_sina_mail, receiver, msg.as_string())  <span class="comment"># 发件人收件人 以及msg.as_string-邮件的主体</span></span><br><span class="line">    smtp.quit()                    <span class="comment"># 退出邮箱</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;邮件发送成功&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> smtplib.SMTPException:      <span class="comment"># 捕获smtp的异常</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Error: 无法发送邮件&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="/2023/05/23/smtplib%E5%8F%91%E9%80%81%E6%AD%A3%E6%96%87%E5%B8%A6%E5%9B%BE%E7%89%87%E9%99%84%E5%8A%A0%E6%A0%BC%E5%BC%8F%E7%9A%84%E9%82%AE%E4%BB%B6%E5%88%B0QQ%E9%82%AE%E7%AE%B1/image-20230523093414516.png" alt="image-20230523093414516"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://gegewu12.gitee.io/2023/05/23/smtplib%E5%8F%91%E9%80%81%E6%AD%A3%E6%96%87%E5%B8%A6%E5%9B%BE%E7%89%87%E9%99%84%E5%8A%A0%E6%A0%BC%E5%BC%8F%E7%9A%84%E9%82%AE%E4%BB%B6%E5%88%B0QQ%E9%82%AE%E7%AE%B1/" data-id="cli029x8p0003goqmavwwebrk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/05/23/growpart%E7%A3%81%E7%9B%98%E7%83%AD%E6%89%A9%E5%AE%B9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          growpart磁盘热扩容
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/22/%E7%A3%81%E7%9B%98%E7%83%AD%E6%89%A9%E5%AE%B9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">磁盘热扩容</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/change-cloub/" rel="tag">change-cloub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/club/" rel="tag">club</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/centos/" style="font-size: 15px;">centos</a> <a href="/tags/change-cloub/" style="font-size: 10px;">change-cloub</a> <a href="/tags/club/" style="font-size: 16.67px;">club</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/shell/" style="font-size: 11.67px;">shell</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" style="font-size: 11.67px;">云原生监控</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 13.33px;">云计算</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">常用软件</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" style="font-size: 18.33px;">环境部署</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/23/%E7%95%99%E8%A8%80%E6%9D%BF/">留言板</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/23/growpart%E7%A3%81%E7%9B%98%E7%83%AD%E6%89%A9%E5%AE%B9/">growpart磁盘热扩容</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/23/smtplib%E5%8F%91%E9%80%81%E6%AD%A3%E6%96%87%E5%B8%A6%E5%9B%BE%E7%89%87%E9%99%84%E5%8A%A0%E6%A0%BC%E5%BC%8F%E7%9A%84%E9%82%AE%E4%BB%B6%E5%88%B0QQ%E9%82%AE%E7%AE%B1/">smtplib发送正文带图片附加格式的邮件到QQ邮箱</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/22/%E7%A3%81%E7%9B%98%E7%83%AD%E6%89%A9%E5%AE%B9/">磁盘热扩容</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/">rsync热同步磁盘</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 zznn<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
