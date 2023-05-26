@@ -17,16 +17,16 @@
   
     <meta name="keywords" content="云原生监控, 常用软件" />
   
-  <meta name="description" content="zabbix6.0环境：ubuntu18.04 一. 换源 &#x2F; 安装常用软件 &#x2F; 下载deb包换源见链接： https:&#x2F;&#x2F;developer.aliyun.com&#x2F;mirror&#x2F;ubuntu?spm&#x3D;a2c6h.13651102.0.0.3e221b11daA4Kl 123456# 安装常用软件apt install -y lrzsz vim wget # 下载并安装deb包wget https">
+  <meta name="description" content="zabbix6.0环境：ubuntu18.04 一. 换源 &#x2F; 安装常用软件 &#x2F; 下载deb包换源见链接：https:&#x2F;&#x2F;developer.aliyun.com&#x2F;mirror&#x2F;ubuntu?spm&#x3D;a2c6h.13651102.0.0.3e221b11daA4Kl 123456# 安装常用软件apt install -y lrzsz vim wget # 下载并安装deb包wget https:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="zabbix6.0搭建">
 <meta property="og:url" content="https://gegewu12.github.io/2023/05/11/zabbix6-0%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="zznn">
-<meta property="og:description" content="zabbix6.0环境：ubuntu18.04 一. 换源 &#x2F; 安装常用软件 &#x2F; 下载deb包换源见链接： https:&#x2F;&#x2F;developer.aliyun.com&#x2F;mirror&#x2F;ubuntu?spm&#x3D;a2c6h.13651102.0.0.3e221b11daA4Kl 123456# 安装常用软件apt install -y lrzsz vim wget # 下载并安装deb包wget https">
+<meta property="og:description" content="zabbix6.0环境：ubuntu18.04 一. 换源 &#x2F; 安装常用软件 &#x2F; 下载deb包换源见链接：https:&#x2F;&#x2F;developer.aliyun.com&#x2F;mirror&#x2F;ubuntu?spm&#x3D;a2c6h.13651102.0.0.3e221b11daA4Kl 123456# 安装常用软件apt install -y lrzsz vim wget # 下载并安装deb包wget https:">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
 <meta property="article:published_time" content="2023-05-11T06:55:53.000Z">
-<meta property="article:modified_time" content="2023-05-23T02:45:49.560Z">
+<meta property="article:modified_time" content="2023-05-26T08:00:29.296Z">
 <meta property="article:author" content="zznn">
 <meta property="article:tag" content="云原生监控">
 <meta property="article:tag" content="常用软件">
@@ -276,7 +276,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1684809949560"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1685088029296"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -287,7 +287,7 @@
             
             <hr />
             <div itemprop="articleBody"><h2 id="zabbix6-0"><a href="#zabbix6-0" class="headerlink" title="zabbix6.0"></a><code>zabbix6.0</code></h2><p>环境：<code>ubuntu18.04</code></p>
-<h4 id="一-换源-安装常用软件-下载deb包"><a href="#一-换源-安装常用软件-下载deb包" class="headerlink" title="一. 换源 / 安装常用软件 / 下载deb包"></a>一. 换源 / 安装常用软件 / 下载<code>deb</code>包</h4><p>换源见链接： <a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/ubuntu?spm=a2c6h.13651102.0.0.3e221b11daA4Kl">https://developer.aliyun.com/mirror/ubuntu?spm=a2c6h.13651102.0.0.3e221b11daA4Kl</a></p>
+<h4 id="一-换源-安装常用软件-下载deb包"><a href="#一-换源-安装常用软件-下载deb包" class="headerlink" title="一. 换源 / 安装常用软件 / 下载deb包"></a>一. 换源 / 安装常用软件 / 下载<code>deb</code>包</h4><p>换源见链接：<br><a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/ubuntu?spm=a2c6h.13651102.0.0.3e221b11daA4Kl">https://developer.aliyun.com/mirror/ubuntu?spm=a2c6h.13651102.0.0.3e221b11daA4Kl</a></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装常用软件</span></span><br><span class="line">apt install -y lrzsz vim wget </span><br><span class="line"><span class="comment"># 下载并安装deb包</span></span><br><span class="line">wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu18.04_all.deb</span><br><span class="line">dpkg -i zabbix-release_6.0-4+ubuntu18.04_all.deb</span><br><span class="line">apt update</span><br></pre></td></tr></table></figure>
 
 <h4 id="二-安装Zabbix-server，Web前端，agent"><a href="#二-安装Zabbix-server，Web前端，agent" class="headerlink" title="二. 安装Zabbix server，Web前端，agent"></a>二. 安装<code>Zabbix server，Web</code>前端，<code>agent</code></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install zabbix-server-mysql zabbix-frontend-php zabbix-nginx-conf zabbix-sql-scripts zabbix-agent -y</span><br></pre></td></tr></table></figure>
@@ -382,7 +382,7 @@
             const hostUrl       = "https://gegewu12.github.io/2023/05/11/zabbix6-0%E6%90%AD%E5%BB%BA/";
             const title         = "「zabbix6.0搭建」";
             const excerpt       = `zabbix6.0环境：ubuntu18.04
-一. 换源 / 安装常用软件 / 下载deb包换源见链接： https://developer.aliyun.com/mirror/ubuntu?spm=a2c6h.13651102.0...`;
+一. 换源 / 安装常用软件 / 下载deb包换源见链接：https://developer.aliyun.com/mirror/ubuntu?spm=a2c6h.13651102.0....`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -404,7 +404,7 @@
                     <a class="tag-none-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a>, <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-23T02:45:49.560Z" itemprop="dateModified">最后编辑：2023-05-23</time>
+                    <time datetime="2023-05-26T08:00:29.296Z" itemprop="dateModified">最后编辑：2023-05-26</time>
                 </div>
             </div>
         </footer>
