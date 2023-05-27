@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="/images/thumb/zznnlogo.webp">
   
-  <title>lvm卷扩容 | zznn</title>
+  <title>linux下oracle客户端部署 | zznn</title>
   
   <meta name="author" content="zznn" />
   <meta http-equiv="Cache-Control" content="no-transform" />
@@ -15,23 +15,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="centos, shell, ubuntu, 环境部署" />
+    <meta name="keywords" content="docker, 常用软件, 环境部署" />
   
-  <meta name="description" content="lvm卷扩容脚本一. 创建一个lvm卷1.添加一块磁盘并对磁盘分区 2.创建vg卷组1234# 创建VG &#x2F; 查看VG（sdb1容量为5G）vgcreate vg_test &#x2F;dev&#x2F;sdb1  vgdisplay# 创建完成后找到这个卷并记录大小 5G pe 1279   3.创建LV逻辑卷12345678# 扫面系统LV &#x2F; 创建LV （1279 是VG中PE的个数）lvscan lvcrea">
+  <meta name="description" content="linux下oracle客户端部署https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lim-sy&#x2F;p&#x2F;16805630.html 1. 下载安装包​          zip包（免安装）：​          instantclient-sqlplus-linux.x64-11.2.0.4.0.zip​          instantclient-basic-linux.x64-11.2.0.4.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lvm卷扩容">
-<meta property="og:url" content="https://gegewu12.github.io/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/index.html">
+<meta property="og:title" content="linux下oracle客户端部署">
+<meta property="og:url" content="https://gegewu12.github.io/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/index.html">
 <meta property="og:site_name" content="zznn">
-<meta property="og:description" content="lvm卷扩容脚本一. 创建一个lvm卷1.添加一块磁盘并对磁盘分区 2.创建vg卷组1234# 创建VG &#x2F; 查看VG（sdb1容量为5G）vgcreate vg_test &#x2F;dev&#x2F;sdb1  vgdisplay# 创建完成后找到这个卷并记录大小 5G pe 1279   3.创建LV逻辑卷12345678# 扫面系统LV &#x2F; 创建LV （1279 是VG中PE的个数）lvscan lvcrea">
+<meta property="og:description" content="linux下oracle客户端部署https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lim-sy&#x2F;p&#x2F;16805630.html 1. 下载安装包​          zip包（免安装）：​          instantclient-sqlplus-linux.x64-11.2.0.4.0.zip​          instantclient-basic-linux.x64-11.2.0.4.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
-<meta property="article:published_time" content="2023-05-19T01:00:04.000Z">
-<meta property="article:modified_time" content="2023-05-26T09:37:37.285Z">
+<meta property="article:published_time" content="2023-05-27T07:01:41.000Z">
+<meta property="article:modified_time" content="2023-05-27T07:28:03.294Z">
 <meta property="article:author" content="zznn">
-<meta property="article:tag" content="centos">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="常用软件">
 <meta property="article:tag" content="环境部署">
-<meta property="article:tag" content="ubuntu">
-<meta property="article:tag" content="shell">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
   
@@ -244,15 +243,15 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/">
+    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">lvm卷扩容</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">linux下oracle客户端部署</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><time datetime="2023-05-19T01:00:04.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-19</time></li>
+                <li><time datetime="2023-05-27T07:01:41.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-27</time></li>
                 <li itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
                 </li>
@@ -261,13 +260,13 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            ~3.79K
+                            ~1.79K
                         
                         字
                     </li>
                 
                 
-                    <li id="/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/" class="leancloud_visitors" data-flag-title="lvm卷扩容">
+                    <li id="/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/" class="leancloud_visitors" data-flag-title="linux下oracle客户端部署">
                         <i class="fa fa-eye"></i>
                         <span class="leancloud-visitors-count"> </span> 次阅读
                     </li>
@@ -278,46 +277,30 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1685093857285"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1685172483294"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
             
                 <div class="kratos-post-inner-toc toc-div-class" >
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#lvm%E5%8D%B7%E6%89%A9%E5%AE%B9%E8%84%9A%E6%9C%AC"><span class="toc-text">lvm卷扩容脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAlvm%E5%8D%B7"><span class="toc-text">一. 创建一个lvm卷</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B7%BB%E5%8A%A0%E4%B8%80%E5%9D%97%E7%A3%81%E7%9B%98%E5%B9%B6%E5%AF%B9%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA"><span class="toc-text">1.添加一块磁盘并对磁盘分区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BAvg%E5%8D%B7%E7%BB%84"><span class="toc-text">2.创建vg卷组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BALV%E9%80%BB%E8%BE%91%E5%8D%B7"><span class="toc-text">3.创建LV逻辑卷</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%B0%B8%E4%B9%85%E6%8C%82%E8%BD%BDlvm%E5%8D%B7"><span class="toc-text">二. 格式化永久挂载lvm卷</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%B4%E6%97%B6%E6%8C%82%E8%BD%BD"><span class="toc-text">1.临时挂载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%B0%B8%E4%B9%85%E6%8C%82%E8%BD%BD"><span class="toc-text">2.永久挂载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-lvm%E5%8D%B7%E8%87%AA%E5%8A%A8%E6%89%A9%E5%AE%B9%E8%84%9A%E6%9C%AC"><span class="toc-text">三.  lvm卷自动扩容脚本</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E4%B8%8Boracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="toc-text">linux下oracle客户端部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">1. 下载安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%88%B0-home-oracle%E7%9B%AE%E5%BD%95"><span class="toc-text">2.安装解压缩到&#x2F;home&#x2F;oracle目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">3.配置环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="toc-text">4.测试数据库连接</span></a></li></ol></li></ol>
                 </div>
             
             <hr />
-            <div itemprop="articleBody"><h2 id="lvm卷扩容脚本"><a href="#lvm卷扩容脚本" class="headerlink" title="lvm卷扩容脚本"></a><code>lvm</code>卷扩容脚本</h2><h3 id="一-创建一个lvm卷"><a href="#一-创建一个lvm卷" class="headerlink" title="一. 创建一个lvm卷"></a>一. 创建一个<code>lvm</code>卷</h3><h4 id="1-添加一块磁盘并对磁盘分区"><a href="#1-添加一块磁盘并对磁盘分区" class="headerlink" title="1.添加一块磁盘并对磁盘分区"></a>1.添加一块磁盘并对磁盘分区</h4><p><img src="/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/image-20230519091559885.png" alt="image-20230519091559885"></p>
-<h4 id="2-创建vg卷组"><a href="#2-创建vg卷组" class="headerlink" title="2.创建vg卷组"></a>2.创建vg卷组</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建VG / 查看VG（sdb1容量为5G）</span></span><br><span class="line">vgcreate vg_test /dev/sdb1  </span><br><span class="line">vgdisplay</span><br><span class="line"><span class="comment"># 创建完成后找到这个卷并记录大小 5G pe 1279</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/image-20230519091819385.png" alt="image-20230519091819385"></p>
-<h4 id="3-创建LV逻辑卷"><a href="#3-创建LV逻辑卷" class="headerlink" title="3.创建LV逻辑卷"></a><code>3.</code><strong>创建<code>LV</code>逻辑卷</strong></h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 扫面系统LV / 创建LV （1279 是VG中PE的个数）</span></span><br><span class="line">lvscan </span><br><span class="line">lvcreate -l 1279 -n lv_test vg_test </span><br><span class="line"><span class="comment"># 查看LV</span></span><br><span class="line">lvdisplay</span><br><span class="line"></span><br><span class="line"><span class="comment"># vg_test vg卷组名</span></span><br><span class="line"><span class="comment"># lv_test lv卷组名</span></span><br></pre></td></tr></table></figure>
-
-<p>此时逻辑卷创建完成：</p>
-<p><img src="/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/image-20230519092234399.png"></p>
-<p>扩展</p>
-<p>删除<code>lvm</code>卷</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除逻辑卷</span></span><br><span class="line">lvremove /dev/mapper/vg_test-lv_test </span><br></pre></td></tr></table></figure>
-
-<h3 id="二-格式化永久挂载lvm卷"><a href="#二-格式化永久挂载lvm卷" class="headerlink" title="二. 格式化永久挂载lvm卷"></a>二. 格式化永久挂载<code>lvm</code>卷</h3><h4 id="1-临时挂载"><a href="#1-临时挂载" class="headerlink" title="1.临时挂载"></a><code>1.</code>临时挂载</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 格式化lvm 创建挂载目录</span></span><br><span class="line">mkfs -t ext4 /dev/vg_test/lv_test</span><br><span class="line"><span class="built_in">mkdir</span> /opt/ultrapower</span><br><span class="line"><span class="comment"># 临时挂载</span></span><br><span class="line">mount /dev/vg_test/lv_test /opt/ultrapower</span><br><span class="line">或</span><br><span class="line">mount /dev/mapper/vg_test-lv_test  /opt/ultrapower</span><br><span class="line"><span class="comment"># 如果要卸载挂载</span></span><br><span class="line">umount /dev/mapper/vg_test-lv_test</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-永久挂载"><a href="#2-永久挂载" class="headerlink" title="2.永久挂载"></a><code>2</code>.永久挂载</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 永久挂载</span></span><br><span class="line">vim /etc/fstab</span><br><span class="line">/dev/mapper/vg_test-lv_test    /opt/ultrapower   ext4    defaults  0 0</span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">mount -a</span><br></pre></td></tr></table></figure>
-
-<p>成功</p>
-<p><img src="/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/image-20230519093011676.png" alt="image-20230519093011676"></p>
-<h3 id="三-lvm卷自动扩容脚本"><a href="#三-lvm卷自动扩容脚本" class="headerlink" title="三.  lvm卷自动扩容脚本"></a>三. <code> lvm</code>卷自动扩容脚本</h3><p>前言：扩容<code>lvm</code>不会对<code>swap</code>产生影响 <code>df -Th</code>中也不会有<code>swap</code></p>
-<p><img src="/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/image-20230526173107265.png" alt="image-20230526173107265"></p>
-<p>脚本执行方式</p>
+            <div itemprop="articleBody"><h2 id="linux下oracle客户端部署"><a href="#linux下oracle客户端部署" class="headerlink" title="linux下oracle客户端部署"></a><code>linux</code>下<code>oracle</code>客户端部署</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lim-sy/p/16805630.html">https://www.cnblogs.com/lim-sy/p/16805630.html</a></p>
+<h3 id="1-下载安装包"><a href="#1-下载安装包" class="headerlink" title="1. 下载安装包"></a><code>1. </code>下载安装包</h3><p>​          zip包（免安装）：<br>​          instantclient-sqlplus-linux.x64-11.2.0.4.0.zip<br>​          instantclient-basic-linux.x64-11.2.0.4.0.zip<br>​          instantclient-sdk-linux.x64-11.2.0.4.0.zip<br>​          instantclient-precomp-linux-11.2.0.4.0.zip #PRO*C程序开发用到的预编译工具，即proc程序；</p>
 <ol>
-<li>输入磁盘如：sdb</li>
-<li>输入对sda分区后的扩展磁盘：sdb1</li>
+<li>sqlplus、basic、sdk下载地址:<br><a target="_blank" rel="noopener" href="https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html">https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html</a><br>precomp下载地址：<br><a target="_blank" rel="noopener" href="https://www.oracle.com/database/technologies/instant-client/precompiler-downloads.html">https://www.oracle.com/database/technologies/instant-client/precompiler-downloads.html</a></li>
 </ol>
-<p>代码：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">     <span class="comment"># 适用于ubuntu/centos</span></span><br><span class="line">     <span class="built_in">set</span> -e</span><br><span class="line">     blk=`lsblk`  </span><br><span class="line">     kong=<span class="string">&quot;/dev/null 2&gt;1&amp;&quot;</span></span><br><span class="line">     <span class="built_in">echo</span> -e <span class="string">&quot;\033[33m 选择输入需要进行虚拟卷扩容的磁盘 \033[0m&quot;</span></span><br><span class="line">     <span class="built_in">read</span> -p <span class="string">&quot;<span class="variable">$&#123;blk&#125;</span>选取输入 : &quot;</span> n</span><br><span class="line">     shuru=<span class="string">&quot;/dev/<span class="variable">$&#123;n&#125;</span>&quot;</span></span><br><span class="line">     vg=`lvs |awk <span class="string">&#x27;NR==2&#123;print $2&#125;&#x27;</span>`</span><br><span class="line">     xt=`<span class="built_in">df</span> -Th |grep <span class="string">&#x27;/dev/mapper&#x27;</span> |awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>`</span><br><span class="line">     wjxt=`<span class="built_in">df</span> -Th |grep <span class="string">&#x27;/dev/mapper&#x27;</span> |awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>`</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">welcome</span></span>() &#123;</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">1. 适用于centos+ubuntu</span></span><br><span class="line"><span class="string">2. 只适用于文件系统是 xfs and ext4 类型的文件系统</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">disk_partitioning</span></span> ()&#123;</span><br><span class="line">     <span class="comment">#blk=`lsblk`</span></span><br><span class="line">     <span class="comment">#read -p &quot;输入需要进行虚拟卷扩容的磁盘可在如上列表中$&#123;blk&#125; 选取输入: &quot; n</span></span><br><span class="line">     <span class="comment">#shuru=&quot;/dev/$&#123;n&#125;&quot; </span></span><br><span class="line">     <span class="built_in">echo</span> -e <span class="string">&quot;\033[33m 您输入的磁盘是<span class="variable">$&#123;shuru&#125;</span> \033[0m&quot;</span>    </span><br><span class="line">     jc=`lsblk |grep <span class="string">&quot;<span class="variable">$&#123;n&#125;</span>&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [ $? = 0 ];</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> -e <span class="string">&quot;\033[33m 开始执行格式化磁盘 \n</span></span><br><span class="line"><span class="string">                     开始执行磁盘分区   \n \033[0m&quot;</span></span><br><span class="line">   mkfs -t ext4 <span class="variable">$&#123;shuru&#125;</span> </span><br><span class="line">   fdisk <span class="variable">$&#123;shuru&#125;</span>           <span class="comment"># 可不执行直接按n</span></span><br><span class="line">   [ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[33m 分区+格式化完成开始进行下一步 \033[0m&quot;</span> || <span class="built_in">exit</span></span><br><span class="line">   <span class="built_in">sleep</span> 2</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> -e <span class="string">&quot;\033[31m 磁盘不存在<span class="variable">$&#123;shuru&#125;</span>即将退出脚本 \033[0m&quot;</span></span><br><span class="line">   <span class="built_in">sleep</span> 2</span><br><span class="line">   <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">expansion_lvm</span></span> ()&#123;</span><br><span class="line">  vg=`lvs |awk <span class="string">&#x27;NR==2&#123;print $2&#125;&#x27;</span>`</span><br><span class="line">  <span class="built_in">echo</span> -e <span class="string">&quot;\033[33m vg为<span class="variable">$&#123;vg&#125;</span> \033[0m&quot;</span> </span><br><span class="line">  <span class="built_in">echo</span> -e <span class="string">&quot;\033[33m 开始创建pv物理卷 \n</span></span><br><span class="line"><span class="string">                    开始将物理卷扩展到卷组 \n</span></span><br><span class="line"><span class="string">                    开始将卷组中空闲空间扩展到,并刷新卷组 \n \033[0m&quot;</span>  </span><br><span class="line">        bl=`lsblk`</span><br><span class="line">        <span class="built_in">echo</span> -e <span class="string">&quot;\033[33m 分区完成后再次选择列表中磁盘进行虚拟卷扩容 \033[0m&quot;</span></span><br><span class="line">        <span class="built_in">read</span> -p <span class="string">&quot;<span class="variable">$&#123;bl&#125;</span>选取输入 : &quot;</span> m </span><br><span class="line">        pvcreate /dev/<span class="variable">$&#123;m&#125;</span> <span class="variable">$&#123;kong&#125;</span></span><br><span class="line">        [ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[34m 创建pv(物理卷)&gt;&gt;成功进行下一步 \033[0m&quot;</span> || <span class="built_in">exit</span></span><br><span class="line">        vgextend <span class="variable">$&#123;vg&#125;</span> /dev/<span class="variable">$&#123;m&#125;</span> </span><br><span class="line">        [ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[34m 将物理卷扩展到卷组&gt;&gt;成功进行下一步 \033[0m&quot;</span> || <span class="built_in">exit</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;开始将物理卷扩展到卷组并且刷新文件系统&quot;</span></span><br><span class="line">        lvextend -l +100%FREE <span class="variable">$&#123;xt&#125;</span> </span><br><span class="line">        [ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[34m #####100%空闲空间扩展&gt;&gt;成功进行下一步 \033[0m&quot;</span> || <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$&#123;wjxt&#125;</span>&quot;</span> = <span class="string">&quot;xfs&quot;</span> ];</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">     xfs_growfs  <span class="variable">$&#123;xt&#125;</span> </span><br><span class="line">     RL=`<span class="built_in">df</span> -Th |grep <span class="string">&#x27;/dev/mapper&#x27;</span> |awk <span class="string">&#x27;&#123;print $3&#125;&#x27;</span>`</span><br><span class="line">     [ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[34m 虚拟卷到:<span class="variable">$&#123;RL&#125;</span>完成 \033[0m&quot;</span> || <span class="built_in">echo</span> -e <span class="string">&quot;\033[31m 虚拟卷扩容失败 \033[0m&quot;</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$&#123;wjxt&#125;</span>&quot;</span> = <span class="string">&quot;ext4&quot;</span> ];</span><br><span class="line">     <span class="keyword">then</span></span><br><span class="line">     resize2fs <span class="variable">$&#123;xt&#125;</span> </span><br><span class="line">     RL=`<span class="built_in">df</span> -Th |grep <span class="string">&#x27;/dev/mapper&#x27;</span> |awk <span class="string">&#x27;&#123;print $3&#125;&#x27;</span>`</span><br><span class="line">     [ $? = 0 ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">&quot;\033[34m 虚拟卷到:<span class="variable">$&#123;RL&#125;</span>完成 \033[0m&quot;</span> || <span class="built_in">echo</span> -e <span class="string">&quot;\033[31m 虚拟卷扩容失败 \033[0m&quot;</span></span><br><span class="line"><span class="keyword">fi</span>       </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">main</span></span> ()&#123;</span><br><span class="line">     welcome</span><br><span class="line">     disk_partitioning</span><br><span class="line">     expansion_lvm</span><br><span class="line">&#125;</span><br><span class="line">main</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/image-20230527150720932.png" alt="image-20230527150720932"></p>
+<h3 id="2-安装解压缩到-home-oracle目录"><a href="#2-安装解压缩到-home-oracle目录" class="headerlink" title="2.安装解压缩到/home/oracle目录"></a><code>2.</code>安装解压缩到/home/oracle目录</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line">unzip instantclient-sqlplus-linux.x64-11.2.0.4.0.zip</span><br><span class="line">unzip instantclient-basic-linux.x64-11.2.0.4.0.zip</span><br><span class="line">unzip instantclient-sdk-linux.x64-11.2.0.4.0.zip</span><br><span class="line">unzip instantclient-precomp-linux-11.2.0.4.0.zip</span><br><span class="line"><span class="comment"># 安装必要驱动</span></span><br><span class="line">apt install -y libaio*  (ubuntu)</span><br><span class="line">yum install -y libaio*  (centos)</span><br><span class="line"><span class="comment"># 创建文件夹 切换到目录</span></span><br><span class="line"><span class="built_in">cd</span> /home/oracle/instantclient_11_2 &amp;&amp; <span class="built_in">mkdir</span> -p ./network/admin</span><br><span class="line"><span class="comment"># ===============================================================</span></span><br><span class="line">框内配置可暂且不做配置先看能否远程连接</span><br><span class="line"><span class="comment"># 新建tnsnames.ora文件</span></span><br><span class="line">vi tnsnames.ora</span><br><span class="line"><span class="comment"># history_162：数据库sid，host：oracle数据库ip，port：oracle数据库端口，SID：数据库的sidhistory_162 =</span></span><br><span class="line">(DESCRIPTION =</span><br><span class="line">(ADDRESS = (PROTOCOL = TCP)(HOST = 10.0.0.131)(PORT = 1521))</span><br><span class="line">(CONNECT_DATA =</span><br><span class="line">(SERVER = DEDICATED)</span><br><span class="line">(SID =xxx)</span><br><span class="line">)</span><br><span class="line">)</span><br><span class="line"><span class="comment"># ===============================================================</span></span><br></pre></td></tr></table></figure>
 
-<p>验证：</p>
-<p><img src="/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/image-20230526173711649.png" alt="image-20230526173711649"></p>
+<h3 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3.配置环境变量"></a><code>3.</code>配置环境变量</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置环境变量（可直接写入系统变量：/etc/profile）</span></span><br><span class="line">vi .bash_profile</span><br><span class="line"><span class="built_in">export</span> ORACLE_HOME=/home/oracle/instantclient_11_2</span><br><span class="line"><span class="built_in">export</span> TNS_ADMIN=<span class="variable">$ORACLE_HOME</span>/network/admin</span><br><span class="line"><span class="comment"># exportNLS_LANG=AMERICAN_AMERICA.ZHS16GBKexport </span></span><br><span class="line">NLS_LANG=AMERICAN_AMERICA.AL32UTF8</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$ORACLE_HOME</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$ORACLE_HOME</span>:<span class="variable">$PATH</span></span><br><span class="line"><span class="comment"># 刷新环境变量</span></span><br><span class="line"><span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-测试数据库连接"><a href="#4-测试数据库连接" class="headerlink" title="4.测试数据库连接"></a><code>4.</code>测试数据库连接</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试数据库连接</span></span><br><span class="line">sqlplus username/passwd@sid</span><br><span class="line">sqlplus system/oracle@10.0.0.131:1521/helowin</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/image-20230527152556143.png" alt="image-20230527152556143"></p>
+<p>结语祝好！</p>
 </div>
         </div>
         
@@ -373,7 +356,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "https://gegewu12.github.io/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/",
+                text: "https://gegewu12.github.io/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -385,10 +368,10 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "https://gegewu12.github.io/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/";
-            const title         = "「lvm卷扩容」";
-            const excerpt       = `lvm卷扩容脚本一. 创建一个lvm卷1.添加一块磁盘并对磁盘分区
-2.创建vg卷组1234# 创建VG / 查看VG（sdb1容量为5G）vgcreate vg_test /dev/sdb1  vgdisplay# 创建完成后找到这...`;
+            const hostUrl       = "https://gegewu12.github.io/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/";
+            const title         = "「linux下oracle客户端部署」";
+            const excerpt       = `linux下oracle客户端部署https://www.cnblogs.com/lim-sy/p/16805630.html
+1. 下载安装包​          zip包（免安装）：​          instantclient...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -407,10 +390,10 @@
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/centos/" rel="tag">centos</a>, <a class="tag-none-link" href="/tags/shell/" rel="tag">shell</a>, <a class="tag-none-link" href="/tags/ubuntu/" rel="tag">ubuntu</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
+                    <a class="tag-none-link" href="/tags/docker/" rel="tag">docker</a>, <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-26T09:37:37.285Z" itemprop="dateModified">最后编辑：2023-05-26</time>
+                    <time datetime="2023-05-27T07:28:03.294Z" itemprop="dateModified">最后编辑：2023-05-27</time>
                 </div>
             </div>
         </footer>
@@ -419,13 +402,9 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" all-in-one环境部署openstack-yoga版" href="/2023/05/18/all-in-one环境部署openstack-yoga版/">&lt; 上一篇</a>
+                <a title=" docker部署oracle" href="/2023/05/26/docker部署oracle/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" kodcloud部署" href="/2023/05/20/kodcloud部署/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
@@ -440,7 +419,7 @@
                 appKey: 'QGQtOyQ3KRl2gUnQAESqz6Nc',
                 visitor: true,
                 enableQQ: false,
-                path: '/2023/05/19/lvm%E5%8D%B7%E6%89%A9%E5%AE%B9/'
+                path: '/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/'
             });
         }
         if (typeof Valine === 'undefined') {
@@ -517,7 +496,7 @@
         <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#lvm%E5%8D%B7%E6%89%A9%E5%AE%B9%E8%84%9A%E6%9C%AC"><span class="toc-text">lvm卷扩容脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAlvm%E5%8D%B7"><span class="toc-text">一. 创建一个lvm卷</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B7%BB%E5%8A%A0%E4%B8%80%E5%9D%97%E7%A3%81%E7%9B%98%E5%B9%B6%E5%AF%B9%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA"><span class="toc-text">1.添加一块磁盘并对磁盘分区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BAvg%E5%8D%B7%E7%BB%84"><span class="toc-text">2.创建vg卷组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BALV%E9%80%BB%E8%BE%91%E5%8D%B7"><span class="toc-text">3.创建LV逻辑卷</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%B0%B8%E4%B9%85%E6%8C%82%E8%BD%BDlvm%E5%8D%B7"><span class="toc-text">二. 格式化永久挂载lvm卷</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%B4%E6%97%B6%E6%8C%82%E8%BD%BD"><span class="toc-text">1.临时挂载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%B0%B8%E4%B9%85%E6%8C%82%E8%BD%BD"><span class="toc-text">2.永久挂载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-lvm%E5%8D%B7%E8%87%AA%E5%8A%A8%E6%89%A9%E5%AE%B9%E8%84%9A%E6%9C%AC"><span class="toc-text">三.  lvm卷自动扩容脚本</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E4%B8%8Boracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="toc-text">linux下oracle客户端部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">1. 下载安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%88%B0-home-oracle%E7%9B%AE%E5%BD%95"><span class="toc-text">2.安装解压缩到&#x2F;home&#x2F;oracle目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">3.配置环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="toc-text">4.测试数据库连接</span></a></li></ol></li></ol>
     </div>
 </aside>
                 

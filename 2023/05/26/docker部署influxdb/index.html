@@ -26,7 +26,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
 <meta property="article:published_time" content="2023-05-26T14:40:59.000Z">
-<meta property="article:modified_time" content="2023-05-26T15:58:50.124Z">
+<meta property="article:modified_time" content="2023-05-27T06:24:58.140Z">
 <meta property="article:author" content="zznn">
 <meta property="article:tag" content="云原生监控">
 <meta property="article:tag" content="docker">
@@ -260,7 +260,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            ~1.89K
+                            ~1.97K
                         
                         字
                     </li>
@@ -277,7 +277,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1685116730124"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1685168698140"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -297,7 +297,7 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -di -p 8083:8083 -p 8086:8086 --expose 8090 --expose 8099 --name influx tutum/influxdb </span><br></pre></td></tr></table></figure>
 
 <p><code>docker-compose.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.0&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">influxdb:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tutum/influxdb</span> </span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">influx</span></span><br><span class="line">    <span class="comment"># environment:</span></span><br><span class="line">    <span class="comment">#   - INFLUXDB_ADMIN_ENABLED:&quot;true&quot;</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8083:8083&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8086:8086&quot;</span></span><br><span class="line">    <span class="attr">expose:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8090</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8099</span></span><br><span class="line">    <span class="comment"># volumes:</span></span><br><span class="line">    <span class="comment">#   - influxdb-storage:/var/lib/influxdb</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tpng</span></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">tpng:</span></span><br><span class="line">    <span class="attr">driver:</span> <span class="string">bridge</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.0&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">influxdb:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tutum/influxdb</span> </span><br><span class="line">           <span class="comment"># registry.cn-hangzhou.aliyuncs.com/zznn/mycentos:tutum-influxdb</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">influx</span></span><br><span class="line">    <span class="comment"># environment:</span></span><br><span class="line">    <span class="comment">#   - INFLUXDB_ADMIN_ENABLED:&quot;true&quot;</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8083:8083&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8086:8086&quot;</span></span><br><span class="line">    <span class="attr">expose:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8090</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8099</span></span><br><span class="line">    <span class="comment"># volumes:</span></span><br><span class="line">    <span class="comment">#   - influxdb-storage:/var/lib/influxdb</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tpng</span></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">tpng:</span></span><br><span class="line">    <span class="attr">driver:</span> <span class="string">bridge</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="二-influxdb常规操作"><a href="#二-influxdb常规操作" class="headerlink" title="二. influxdb常规操作"></a>二. <code>influxdb</code>常规操作</h3><p><img src="/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/image-20230526225139820.png" alt="image-20230526225139820"></p>
 <p>创建用户创建数据库授予用户操作数据库的所有权限</p>
@@ -308,8 +308,10 @@
 <p>开启<code>http</code>登录授权</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启http登录授权修改/etc/influxdb/influxdb.conf 文件中的[http]部分，将以下两个参数设置为true</span></span><br><span class="line">[http]</span><br><span class="line"><span class="comment"># Determines whether HTTP endpoint is enabled.</span></span><br><span class="line">enabled = <span class="literal">true</span></span><br><span class="line"><span class="comment"># Determines whether user authentication is enabled over HTTP/HTTPS.</span></span><br><span class="line">auth-enabled = <span class="literal">true</span></span><br><span class="line"><span class="comment"># 重启生效</span></span><br><span class="line">systemctl restart influxdb</span><br></pre></td></tr></table></figure>
 
+<hr>
 <p>效果</p>
-<p><img src="/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/image-20230526235843701.png" alt="image-20230526235843701"></p>
+<p><img src="/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/image-20230527142352705.png" alt="image-20230527142352705"></p>
+<p><img src="/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/image-20230527142434850.png" alt="image-20230527142434850"></p>
 </div>
         </div>
         
@@ -402,7 +404,7 @@ https://www.cnblogs.com/Detector/p/10104254.htmlhttps://blog.csdn.net/weixin_440
                     <a class="tag-none-link" href="/tags/docker/" rel="tag">docker</a>, <a class="tag-none-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a>, <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-26T15:58:50.124Z" itemprop="dateModified">最后编辑：2023-05-26</time>
+                    <time datetime="2023-05-27T06:24:58.140Z" itemprop="dateModified">最后编辑：2023-05-27</time>
                 </div>
             </div>
         </footer>
@@ -477,7 +479,7 @@ https://www.cnblogs.com/Detector/p/10104254.htmlhttps://blog.csdn.net/weixin_440
                 文章
             </span>
             <span class="count">
-                41
+                42
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -516,7 +518,7 @@ https://www.cnblogs.com/Detector/p/10104254.htmlhttps://blog.csdn.net/weixin_440
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a><span class="category-list-count">1</span></li></ul>
   </aside>
 
 
@@ -536,6 +538,12 @@ https://www.cnblogs.com/Detector/p/10104254.htmlhttps://blog.csdn.net/weixin_440
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/"><i class="fa  fa-book"></i> linux下oracle客户端部署</a>
+            
+          
         
           
           
@@ -562,11 +570,7 @@ https://www.cnblogs.com/Detector/p/10104254.htmlhttps://blog.csdn.net/weixin_440
           
         
           
-          
-            <a class="list-group-item" href="/2023/05/26/grafana%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E5%91%8A%E8%AD%A6/"><i class="fa  fa-book"></i> grafana_tprg配置邮件告警</a>
             
-          
-        
           
             
           
