@@ -17,16 +17,16 @@
   
     <meta name="keywords" content="环境部署" />
   
-  <meta name="description" content="dmsetup wipefs mkfs.ext4命令详情12345678910# 查看占用的磁盘 解除磁盘占用dmsetup status dmsetup remove_all# 解除指定占用dmsetup remove ceph--6e3ff135--e8ab--46a3--a29d--02fadcadf9a4-osd--block--dfe8408e--104a--4c03--b225--ee">
+  <meta name="description" content="dmsetup wipefs mkfs.ext4命令详情12345678910# 查看占用的磁盘 解除未在使用的所有磁盘的占用dmsetup status dmsetup remove_all# 解除指定占用dmsetup remove ceph--6e3ff135--e8ab--46a3--a29d--02fadcadf9a4-osd--block--dfe8408e--104a--4c03--">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dmsetup wipefs mkfs.ext4命令">
 <meta property="og:url" content="https://gegewu12.github.io/2023/05/27/dmsetup-wipefs-mkfs-ext4%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="zznn">
-<meta property="og:description" content="dmsetup wipefs mkfs.ext4命令详情12345678910# 查看占用的磁盘 解除磁盘占用dmsetup status dmsetup remove_all# 解除指定占用dmsetup remove ceph--6e3ff135--e8ab--46a3--a29d--02fadcadf9a4-osd--block--dfe8408e--104a--4c03--b225--ee">
+<meta property="og:description" content="dmsetup wipefs mkfs.ext4命令详情12345678910# 查看占用的磁盘 解除未在使用的所有磁盘的占用dmsetup status dmsetup remove_all# 解除指定占用dmsetup remove ceph--6e3ff135--e8ab--46a3--a29d--02fadcadf9a4-osd--block--dfe8408e--104a--4c03--">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
 <meta property="article:published_time" content="2023-05-27T07:49:22.000Z">
-<meta property="article:modified_time" content="2023-05-27T07:59:30.422Z">
+<meta property="article:modified_time" content="2023-05-28T10:45:39.742Z">
 <meta property="article:author" content="zznn">
 <meta property="article:tag" content="环境部署">
 <meta name="twitter:card" content="summary">
@@ -258,7 +258,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            345
+                            353
                         
                         字
                     </li>
@@ -275,7 +275,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1685174370422"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1685270739742"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -285,7 +285,7 @@
                 </div>
             
             <hr />
-            <div itemprop="articleBody"><h2 id="dmsetup-wipefs-mkfs-ext4命令详情"><a href="#dmsetup-wipefs-mkfs-ext4命令详情" class="headerlink" title="dmsetup wipefs mkfs.ext4命令详情"></a><code>dmsetup wipefs mkfs.ext4</code>命令详情</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看占用的磁盘 解除磁盘占用</span></span><br><span class="line">dmsetup status </span><br><span class="line">dmsetup remove_all</span><br><span class="line"><span class="comment"># 解除指定占用</span></span><br><span class="line">dmsetup remove ceph--6e3ff135--e8ab--46a3--a29d--02fadcadf9a4-osd--block--dfe8408e--104a--4c03--b225--eeea2c50fe06</span><br><span class="line"><span class="comment"># 格式化磁盘 （清空数据）</span></span><br><span class="line">mkfs.ext4  /dev/sdb 或 mkfs -t ext4 /dev/sdb</span><br><span class="line">mkfs.xfs   /dev/sdb</span><br><span class="line"><span class="comment"># 清空磁盘后添加osd （清空磁盘只是清除磁盘上的文件系统并不会清空数据）</span></span><br><span class="line">wipefs -a /dev/sdb</span><br></pre></td></tr></table></figure>
+            <div itemprop="articleBody"><h2 id="dmsetup-wipefs-mkfs-ext4命令详情"><a href="#dmsetup-wipefs-mkfs-ext4命令详情" class="headerlink" title="dmsetup wipefs mkfs.ext4命令详情"></a><code>dmsetup wipefs mkfs.ext4</code>命令详情</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看占用的磁盘 解除未在使用的所有磁盘的占用</span></span><br><span class="line">dmsetup status </span><br><span class="line">dmsetup remove_all</span><br><span class="line"><span class="comment"># 解除指定占用</span></span><br><span class="line">dmsetup remove ceph--6e3ff135--e8ab--46a3--a29d--02fadcadf9a4-osd--block--dfe8408e--104a--4c03--b225--eeea2c50fe06</span><br><span class="line"><span class="comment"># 格式化磁盘 （清空数据）</span></span><br><span class="line">mkfs.ext4  /dev/sdb 或 mkfs -t ext4 /dev/sdb</span><br><span class="line">mkfs.xfs   /dev/sdb</span><br><span class="line"><span class="comment"># 清空磁盘后添加osd （清空磁盘只是清除磁盘上的文件系统并不会清空数据）</span></span><br><span class="line">wipefs -a /dev/sdb</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2023/05/27/dmsetup-wipefs-mkfs-ext4%E5%91%BD%E4%BB%A4/image-20230527155205959.png" alt="image-20230527155205959"></p>
 </div>
@@ -357,7 +357,7 @@
             const twitterBase   = "https://twitter.com/intent/tweet?";
             const hostUrl       = "https://gegewu12.github.io/2023/05/27/dmsetup-wipefs-mkfs-ext4%E5%91%BD%E4%BB%A4/";
             const title         = "「dmsetup wipefs mkfs.ext4命令」";
-            const excerpt       = `dmsetup wipefs mkfs.ext4命令详情12345678910# 查看占用的磁盘 解除磁盘占用dmsetup status dmsetup remove_all# 解除指定占用dmsetup remove ceph--...`;
+            const excerpt       = `dmsetup wipefs mkfs.ext4命令详情12345678910# 查看占用的磁盘 解除未在使用的所有磁盘的占用dmsetup status dmsetup remove_all# 解除指定占用dmsetup remov...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -379,7 +379,7 @@
                     <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-27T07:59:30.422Z" itemprop="dateModified">最后编辑：2023-05-27</time>
+                    <time datetime="2023-05-28T10:45:39.742Z" itemprop="dateModified">最后编辑：2023-05-28</time>
                 </div>
             </div>
         </footer>

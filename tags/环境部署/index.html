@@ -348,7 +348,7 @@
                         <p itemProp="description">
                             
                                 mount永久挂载磁盘1. 清空磁盘
-123456# 如果服务器上有多块磁盘，建议除系统盘外，对所有盘执行清理操作dmsetup remove_all   dmsetup statuas     #查看磁盘wipefs -a /dev...
+123456789# 如果服务器上有多块磁盘，建议除系统盘外，对所有盘执行清理操作# 解除未在使用的所有磁盘的占用dmsetup remove_all   # 查看占用磁盘dmsetup stat...
                             
                         </p>
                     </div>
@@ -410,7 +410,7 @@
                     <div class="kratos-entry-content-new">
                         <p itemProp="description">
                             
-                                dmsetup wipefs mkfs.ext4命令详情12345678910# 查看占用的磁盘 解除磁盘占用dmsetup status dmsetup remove_all# 解除指定占用dmsetup remove ceph--...
+                                dmsetup wipefs mkfs.ext4命令详情12345678910# 查看占用的磁盘 解除未在使用的所有磁盘的占用dmsetup status dmsetup remove_all# 解除指定占用dmsetup remov...
                             
                         </p>
                     </div>
