@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="/images/thumb/zznnlogo.webp">
   
-  <title>docker部署influxdb | zznn</title>
+  <title>fio测试磁盘rbd块存储等性能 | zznn</title>
   
   <meta name="author" content="zznn" />
   <meta http-equiv="Cache-Control" content="no-transform" />
@@ -15,22 +15,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="docker, 云原生监控, 常用软件" />
+    <meta name="keywords" content="常用软件, 环境部署" />
   
-  <meta name="description" content="docker部署influxdb参考 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Detector&#x2F;p&#x2F;10104254.htmlhttps:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44062177&#x2F;article&#x2F;details&#x2F;116330290  一. influxdb容器化部署镜像可选： 1234# 官网镜像tutum&#x2F;influxdb# 阿里云镜像registry.cn-han">
+  <meta name="description" content="fio测试磁盘rbd块存储等性能一. fio安装1234# centos安装fioyum install -y fio# ubuntu安装fioapt install -y fio  二. fio测试类型12345678910# 100%随机，100%读， 4Kfio -filename&#x3D;&#x2F;mnt&#x2F;rbd-demo&#x2F;test -direct&#x3D;1 -iodepth 1 -thread -rw&#x3D;ran">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker部署influxdb">
-<meta property="og:url" content="https://gegewu12.github.io/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/index.html">
+<meta property="og:title" content="fio测试磁盘rbd块存储等性能">
+<meta property="og:url" content="https://gegewu12.github.io/2023/05/29/fio%E6%B5%8B%E8%AF%95%E7%A3%81%E7%9B%98rbd%E5%9D%97%E5%AD%98%E5%82%A8%E7%AD%89%E6%80%A7%E8%83%BD/index.html">
 <meta property="og:site_name" content="zznn">
-<meta property="og:description" content="docker部署influxdb参考 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Detector&#x2F;p&#x2F;10104254.htmlhttps:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44062177&#x2F;article&#x2F;details&#x2F;116330290  一. influxdb容器化部署镜像可选： 1234# 官网镜像tutum&#x2F;influxdb# 阿里云镜像registry.cn-han">
+<meta property="og:description" content="fio测试磁盘rbd块存储等性能一. fio安装1234# centos安装fioyum install -y fio# ubuntu安装fioapt install -y fio  二. fio测试类型12345678910# 100%随机，100%读， 4Kfio -filename&#x3D;&#x2F;mnt&#x2F;rbd-demo&#x2F;test -direct&#x3D;1 -iodepth 1 -thread -rw&#x3D;ran">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
-<meta property="article:published_time" content="2023-05-26T14:40:59.000Z">
-<meta property="article:modified_time" content="2023-05-27T06:24:58.140Z">
+<meta property="article:published_time" content="2023-05-29T09:03:35.000Z">
+<meta property="article:modified_time" content="2023-05-29T09:14:00.263Z">
 <meta property="article:author" content="zznn">
-<meta property="article:tag" content="云原生监控">
-<meta property="article:tag" content="docker">
 <meta property="article:tag" content="常用软件">
+<meta property="article:tag" content="环境部署">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
   
@@ -243,15 +242,15 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/">
+    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/05/29/fio%E6%B5%8B%E8%AF%95%E7%A3%81%E7%9B%98rbd%E5%9D%97%E5%AD%98%E5%82%A8%E7%AD%89%E6%80%A7%E8%83%BD/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">docker部署influxdb</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">fio测试磁盘rbd块存储等性能</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><time datetime="2023-05-26T14:40:59.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-26</time></li>
+                <li><time datetime="2023-05-29T09:03:35.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-29</time></li>
                 <li itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
                 </li>
@@ -260,13 +259,13 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            ~1.97K
+                            ~4.56K
                         
                         字
                     </li>
                 
                 
-                    <li id="/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/" class="leancloud_visitors" data-flag-title="docker部署influxdb">
+                    <li id="/2023/05/29/fio%E6%B5%8B%E8%AF%95%E7%A3%81%E7%9B%98rbd%E5%9D%97%E5%AD%98%E5%82%A8%E7%AD%89%E6%80%A7%E8%83%BD/" class="leancloud_visitors" data-flag-title="fio测试磁盘rbd块存储等性能">
                         <i class="fa fa-eye"></i>
                         <span class="leancloud-visitors-count"> </span> 次阅读
                     </li>
@@ -277,41 +276,25 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1685168698140"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1685351640263"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
             
                 <div class="kratos-post-inner-toc toc-div-class" >
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E9%83%A8%E7%BD%B2influxdb"><span class="toc-text">docker部署influxdb</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-influxdb%E5%AE%B9%E5%99%A8%E5%8C%96%E9%83%A8%E7%BD%B2"><span class="toc-text">一. influxdb容器化部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-influxdb%E5%B8%B8%E8%A7%84%E6%93%8D%E4%BD%9C"><span class="toc-text">二. influxdb常规操作</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#fio%E6%B5%8B%E8%AF%95%E7%A3%81%E7%9B%98rbd%E5%9D%97%E5%AD%98%E5%82%A8%E7%AD%89%E6%80%A7%E8%83%BD"><span class="toc-text">fio测试磁盘rbd块存储等性能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-fio%E5%AE%89%E8%A3%85"><span class="toc-text">一. fio安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-fio%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B"><span class="toc-text">二. fio测试类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E6%B5%8B%E8%AF%95%E6%95%88%E6%9E%9C-%E4%B8%BB%E8%A6%81%E7%9C%8B-bw-io-iops"><span class="toc-text">三. 测试效果 (主要看 bw io iops )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-fio%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A"><span class="toc-text">四.  fio参数解释</span></a></li></ol></li></ol>
                 </div>
             
             <hr />
-            <div itemprop="articleBody"><h2 id="docker部署influxdb"><a href="#docker部署influxdb" class="headerlink" title="docker部署influxdb"></a><code>docker</code>部署<code>influxdb</code></h2><p>参考</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Detector/p/10104254.html">https://www.cnblogs.com/Detector/p/10104254.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44062177/article/details/116330290">https://blog.csdn.net/weixin_44062177/article/details/116330290</a></p>
-<p><img src="/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/image-20230526224422699.png" alt="image-20230526224422699"></p>
-<h3 id="一-influxdb容器化部署"><a href="#一-influxdb容器化部署" class="headerlink" title="一. influxdb容器化部署"></a>一. <code>influxdb</code>容器化部署</h3><p>镜像可选：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 官网镜像</span></span><br><span class="line">tutum/influxdb</span><br><span class="line"><span class="comment"># 阿里云镜像</span></span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/zznn/mycentos:tutum-influxdb</span><br></pre></td></tr></table></figure>
+            <div itemprop="articleBody"><h2 id="fio测试磁盘rbd块存储等性能"><a href="#fio测试磁盘rbd块存储等性能" class="headerlink" title="fio测试磁盘rbd块存储等性能"></a><code>fio</code>测试磁盘<code>rbd</code>块存储等性能</h2><h3 id="一-fio安装"><a href="#一-fio安装" class="headerlink" title="一. fio安装"></a>一. <code>fio</code>安装</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># centos安装fio</span></span><br><span class="line">yum install -y fio</span><br><span class="line"><span class="comment"># ubuntu安装fio</span></span><br><span class="line">apt install -y fio</span><br></pre></td></tr></table></figure>
 
-<p><code>docker</code>命令行的方式：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -di -p 8083:8083 -p 8086:8086 --expose 8090 --expose 8099 --name influx tutum/influxdb </span><br></pre></td></tr></table></figure>
+<h3 id="二-fio测试类型"><a href="#二-fio测试类型" class="headerlink" title="二. fio测试类型"></a>二. <code>fio</code>测试类型</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 100%随机，100%读， 4K</span></span><br><span class="line">fio -filename=/mnt/rbd-demo/test -direct=1 -iodepth 1 -thread -rw=randread -ioengine=psync -bs=4k -size=100M -numjobs=50 -runtime=180 -group_reporting -name=rand_100read_4k</span><br><span class="line"><span class="comment"># 100%随机，100%写， 4K</span></span><br><span class="line">fio -filename=/mnt/rbd-demo/test -direct=1 -iodepth 1 -thread -rw=randwrite -ioengine=psync -bs=4k -size=100M -numjobs=50 -runtime=180 -group_reporting -name=rand_100write_4k</span><br><span class="line"><span class="comment"># 100%顺序，100%读 ，4K</span></span><br><span class="line">fio -filename=/mnt/rbd-demo/test -direct=1 -iodepth 1 -thread -rw=<span class="built_in">read</span> -ioengine=psync -bs=4k -size=100M -numjobs=50 -runtime=180 -group_reporting -name=sqe_100read_4k</span><br><span class="line"><span class="comment"># 100%顺序，100%写 ，4K</span></span><br><span class="line">fio -filename=/mnt/rbd-demo/test -direct=1 -iodepth 1 -thread -rw=write -ioengine=psync -bs=4k -size=100M -numjobs=50 -runtime=180 -group_reporting -name=sqe_100write_4k</span><br><span class="line"><span class="comment"># 100%随机，70%读，30%写 4K</span></span><br><span class="line">fio -filename=/mnt/rbd-demo/test -direct=1 -iodepth 1 -thread -rw=randrw -rwmixread=70 -ioengine=psync -bs=4k -size=100M -numjobs=50 -runtime=180 -group_reporting -name=randrw_70read_4k</span><br></pre></td></tr></table></figure>
 
-<p><code>docker-compose.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.0&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">influxdb:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tutum/influxdb</span> </span><br><span class="line">           <span class="comment"># registry.cn-hangzhou.aliyuncs.com/zznn/mycentos:tutum-influxdb</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">influx</span></span><br><span class="line">    <span class="comment"># environment:</span></span><br><span class="line">    <span class="comment">#   - INFLUXDB_ADMIN_ENABLED:&quot;true&quot;</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8083:8083&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8086:8086&quot;</span></span><br><span class="line">    <span class="attr">expose:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8090</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8099</span></span><br><span class="line">    <span class="comment"># volumes:</span></span><br><span class="line">    <span class="comment">#   - influxdb-storage:/var/lib/influxdb</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tpng</span></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">tpng:</span></span><br><span class="line">    <span class="attr">driver:</span> <span class="string">bridge</span></span><br></pre></td></tr></table></figure>
+<h3 id="三-测试效果-主要看-bw-io-iops"><a href="#三-测试效果-主要看-bw-io-iops" class="headerlink" title="三. 测试效果 (主要看 bw io iops )"></a>三. 测试效果 (主要看 <code>bw io iops</code> )</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 100%随机，100%读， 4K</span></span><br><span class="line">root@ceph-1:/mnt/rbd-demo<span class="comment"># fio -filename=/mnt/rbd-demo/test -direct=1 -iodepth 1 -thread -rw=randread -ioengine=psync -bs=4k -size=100M -numjobs=50 -runtime=180 -group_reporting -name=rand_100read_4k</span></span><br><span class="line">rand_100read_4k: (g=0): rw=randread, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=psync, iodepth=1</span><br><span class="line">...</span><br><span class="line">fio-3.16</span><br><span class="line">Starting 50 threads</span><br><span class="line">rand_100read_4k: Laying out IO file (1 file / 100MiB)</span><br><span class="line">Jobs: 50 (f=50): [r(50)][25.5%][eta 08m:55s]                          </span><br><span class="line">rand_100read_4k: (groupid=0, <span class="built_in">jobs</span>=50): err= 0: pid=19546: Wed Mar  1 17:46:39 2023</span><br><span class="line">  <span class="built_in">read</span>: IOPS=1837, BW=7350KiB/s (7526kB/s)(1310MiB/182536msec)</span><br><span class="line">    clat (usec): min=314, max=3642.9k, avg=27202.59, stdev=217705.72</span><br><span class="line">     lat (usec): min=314, max=3642.9k, avg=27203.14, stdev=217705.73</span><br><span class="line">    clat percentiles (usec):</span><br><span class="line">     |  1.00th=[    758],  5.00th=[    963], 10.00th=[   1106],</span><br><span class="line">     | 20.00th=[   1369], 30.00th=[   1663], 40.00th=[   2147],</span><br><span class="line">     | 50.00th=[   3097], 60.00th=[   5342], 70.00th=[   8160],</span><br><span class="line">     | 80.00th=[  11600], 90.00th=[  17695], 95.00th=[  24773],</span><br><span class="line">     | 99.00th=[  95945], 99.50th=[1635779], 99.90th=[3338666],</span><br><span class="line">     | 99.95th=[3472884], 99.99th=[3640656]</span><br><span class="line">   bw (  KiB/s): min=  350, max=42945, per=100.00%, avg=17074.17, stdev=301.72, samples=7850</span><br><span class="line">   iops        : min=   50, max=10735, avg=4264.67, stdev=75.43, samples=7850</span><br><span class="line">  lat (usec)   : 500=0.11%, 750=0.79%, 1000=5.25%</span><br><span class="line">  lat (msec)   : 2=31.39%, 4=17.24%, 10=21.04%, 20=16.33%, 50=6.47%</span><br><span class="line">  lat (msec)   : 100=0.38%, 2000=0.67%, &gt;=2000=0.33%</span><br><span class="line">  cpu          : usr=0.05%, sys=0.16%, ctx=342161, majf=0, minf=49</span><br><span class="line">  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, &gt;=64=0.0%</span><br><span class="line">     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%</span><br><span class="line">     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%</span><br><span class="line">     issued rwts: total=335394,0,0,0 short=0,0,0,0 dropped=0,0,0,0</span><br><span class="line">     latency   : target=0, window=0, percentile=100.00%, depth=1</span><br><span class="line"></span><br><span class="line">Run status group 0 (all <span class="built_in">jobs</span>):</span><br><span class="line">   READ: bw=7350KiB/s (7526kB/s), 7350KiB/s-7350KiB/s (7526kB/s-7526kB/s), io=1310MiB (1374MB), run=182536-182536msec</span><br><span class="line"></span><br><span class="line">Disk stats (<span class="built_in">read</span>/write):</span><br><span class="line">  rbd0: ios=337590/6757, merge=1/29, ticks=2274317/134222, in_queue=1793584, util=99.62%</span><br><span class="line">  </span><br><span class="line">io=1310MiB          执行了多少M的IO</span><br><span class="line">bw=7350KIB/s         平均IO带宽</span><br><span class="line">iops=10735</span><br><span class="line">runt=60001-60001msec</span><br></pre></td></tr></table></figure>
 
-<h3 id="二-influxdb常规操作"><a href="#二-influxdb常规操作" class="headerlink" title="二. influxdb常规操作"></a>二. <code>influxdb</code>常规操作</h3><p><img src="/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/image-20230526225139820.png" alt="image-20230526225139820"></p>
-<p>创建用户创建数据库授予用户操作数据库的所有权限</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@manager ~]<span class="comment"># influx </span></span><br><span class="line">&gt; create database telegraf; </span><br><span class="line">&gt; use telegraf; </span><br><span class="line">&gt; create user <span class="string">&quot;fxkj&quot;</span> with password <span class="string">&#x27;123456&#x27;</span> with all privileges; </span><br><span class="line">&gt; show <span class="built_in">users</span>; </span><br><span class="line">user admin</span><br><span class="line">---- -----</span><br><span class="line">fxkj <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="四-fio参数解释"><a href="#四-fio参数解释" class="headerlink" title="四.  fio参数解释"></a>四. <code> fio</code>参数解释</h3><p><code>fio</code>参数解释 可以使用<code>fio -help</code>查看每个参数，具体的参数左右可以在官网查看<code>how to</code>文档，如下为几个常见的参数描述</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------分割线-----------------------------------------</span></span><br><span class="line">filename=/dev/emcpowerb　<span class="comment"># 支持文件系统或者裸设备，-filename=/dev/sda2或-filename=/dev/sdb</span></span><br><span class="line">direct=1                 <span class="comment"># 测试过程绕过机器自带的buffer，使测试结果更真实</span></span><br><span class="line">rw=randwread             <span class="comment"># 测试随机读的I/O</span></span><br><span class="line">rw=randwrite             <span class="comment"># 测试随机写的I/O</span></span><br><span class="line">rw=randrw                <span class="comment"># 测试随机混合写和读的I/O</span></span><br><span class="line">rw=<span class="built_in">read</span>                  <span class="comment"># 测试顺序读的I/O</span></span><br><span class="line">rw=write                 <span class="comment"># 测试顺序写的I/O</span></span><br><span class="line">rw=rw                    <span class="comment"># 测试顺序混合写和读的I/O</span></span><br><span class="line">bs=4k                    <span class="comment"># 单次io的块文件大小为4k</span></span><br><span class="line">bsrange=512-2048         <span class="comment"># 同上，提定数据块的大小范围</span></span><br><span class="line">size=5g                  <span class="comment"># 本次的测试文件大小为5g，以每次4k的io进行测试</span></span><br><span class="line">numjobs=30               <span class="comment"># 本次的测试线程为30</span></span><br><span class="line">runtime=1000             <span class="comment"># 测试时间为1000秒，如果不写则一直将5g文件分4k每次写完为止</span></span><br><span class="line">ioengine=psync           <span class="comment"># io引擎使用pync方式，如果要使用libaio引擎，需要yum install libaio-devel包</span></span><br><span class="line">rwmixwrite=30            <span class="comment"># 在混合读写的模式下，写占30%</span></span><br><span class="line">group_reporting          <span class="comment"># 关于显示结果的，汇总每个进程的信息</span></span><br><span class="line"><span class="comment"># 此外</span></span><br><span class="line">lockmem=1g    <span class="comment"># 只使用1g内存进行测试</span></span><br><span class="line">zero_buffers  <span class="comment"># 用0初始化系统buffer</span></span><br><span class="line">nrfiles=8     <span class="comment"># 每个进程生成文件的数量</span></span><br><span class="line"><span class="comment"># ---------------------------------分割线-----------------------------------------</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有用户</span></span><br><span class="line">&gt; show <span class="built_in">users</span></span><br><span class="line">user admin</span><br><span class="line">---- -----</span><br><span class="line"><span class="comment"># 创建一个root用户，设置密码为newpwd，主要不要使用双引号&quot; 括起来，不然会报错</span></span><br><span class="line">&gt; create user <span class="string">&quot;root&quot;</span> with password <span class="string">&#x27;newpwd&#x27;</span></span><br><span class="line"><span class="comment"># 再次查看用户信息，发现admin为false，说明还要设置一下权限。</span></span><br><span class="line">&gt; show <span class="built_in">users</span></span><br><span class="line">user admin</span><br><span class="line">---- -----</span><br><span class="line">root <span class="literal">false</span></span><br><span class="line"><span class="comment"># 删除root用户</span></span><br><span class="line">&gt; drop user root</span><br><span class="line">&gt; show <span class="built_in">users</span></span><br><span class="line">user admin</span><br><span class="line">---- -----</span><br><span class="line">	Ø create database vmware；</span><br><span class="line"><span class="comment"># 重新设置root用户，并设置带上所有权限</span></span><br><span class="line">	Ø create user <span class="string">&quot;root&quot;</span> with password <span class="string">&#x27;newpwd&#x27;</span> with all privileges；</span><br><span class="line"><span class="comment"># 发现admin权限为true了，那么admin的用户就创建好了。</span></span><br><span class="line">	Ø show <span class="built_in">users</span></span><br><span class="line">user admin</span><br><span class="line">---- -----</span><br><span class="line">root <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>开启<code>http</code>登录授权</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启http登录授权修改/etc/influxdb/influxdb.conf 文件中的[http]部分，将以下两个参数设置为true</span></span><br><span class="line">[http]</span><br><span class="line"><span class="comment"># Determines whether HTTP endpoint is enabled.</span></span><br><span class="line">enabled = <span class="literal">true</span></span><br><span class="line"><span class="comment"># Determines whether user authentication is enabled over HTTP/HTTPS.</span></span><br><span class="line">auth-enabled = <span class="literal">true</span></span><br><span class="line"><span class="comment"># 重启生效</span></span><br><span class="line">systemctl restart influxdb</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>效果</p>
-<p><img src="/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/image-20230527142352705.png" alt="image-20230527142352705"></p>
-<p><img src="/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/image-20230527142434850.png" alt="image-20230527142434850"></p>
 </div>
         </div>
         
@@ -367,7 +350,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "https://gegewu12.github.io/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/",
+                text: "https://gegewu12.github.io/2023/05/29/fio%E6%B5%8B%E8%AF%95%E7%A3%81%E7%9B%98rbd%E5%9D%97%E5%AD%98%E5%82%A8%E7%AD%89%E6%80%A7%E8%83%BD/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -379,10 +362,11 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "https://gegewu12.github.io/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/";
-            const title         = "「docker部署influxdb」";
-            const excerpt       = `docker部署influxdb参考
-https://www.cnblogs.com/Detector/p/10104254.htmlhttps://blog.csdn.net/weixin_44062177/article/deta...`;
+            const hostUrl       = "https://gegewu12.github.io/2023/05/29/fio%E6%B5%8B%E8%AF%95%E7%A3%81%E7%9B%98rbd%E5%9D%97%E5%AD%98%E5%82%A8%E7%AD%89%E6%80%A7%E8%83%BD/";
+            const title         = "「fio测试磁盘rbd块存储等性能」";
+            const excerpt       = `fio测试磁盘rbd块存储等性能一. fio安装1234# centos安装fioyum install -y fio# ubuntu安装fioapt install -y fio
+
+二. fio测试类型12345678910# 10...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -401,10 +385,10 @@ https://www.cnblogs.com/Detector/p/10104254.htmlhttps://blog.csdn.net/weixin_440
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/docker/" rel="tag">docker</a>, <a class="tag-none-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a>, <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>
+                    <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-27T06:24:58.140Z" itemprop="dateModified">最后编辑：2023-05-27</time>
+                    <time datetime="2023-05-29T09:14:00.263Z" itemprop="dateModified">最后编辑：2023-05-29</time>
                 </div>
             </div>
         </footer>
@@ -413,12 +397,12 @@ https://www.cnblogs.com/Detector/p/10104254.htmlhttps://blog.csdn.net/weixin_440
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" Hello World" href="/2023/05/26/hello-world/">&lt; 上一篇</a>
+                <a title=" swap扩容" href="/2023/05/28/swap扩容/">&lt; 上一篇</a>
             </div>
             
             
             <div class="nav-next clearfix">
-                <a title=" docker部署oracle" href="/2023/05/26/docker部署oracle/">下一篇 &gt;</a>
+                <a title=" dd命令简单使用" href="/2023/05/29/dd命令简单使用/">下一篇 &gt;</a>
             </div>
             
         </nav>
@@ -434,7 +418,7 @@ https://www.cnblogs.com/Detector/p/10104254.htmlhttps://blog.csdn.net/weixin_440
                 appKey: 'QGQtOyQ3KRl2gUnQAESqz6Nc',
                 visitor: true,
                 enableQQ: false,
-                path: '/2023/05/26/docker%E9%83%A8%E7%BD%B2influxdb/'
+                path: '/2023/05/29/fio%E6%B5%8B%E8%AF%95%E7%A3%81%E7%9B%98rbd%E5%9D%97%E5%AD%98%E5%82%A8%E7%AD%89%E6%80%A7%E8%83%BD/'
             });
         }
         if (typeof Valine === 'undefined') {
@@ -511,7 +495,7 @@ https://www.cnblogs.com/Detector/p/10104254.htmlhttps://blog.csdn.net/weixin_440
         <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E9%83%A8%E7%BD%B2influxdb"><span class="toc-text">docker部署influxdb</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-influxdb%E5%AE%B9%E5%99%A8%E5%8C%96%E9%83%A8%E7%BD%B2"><span class="toc-text">一. influxdb容器化部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-influxdb%E5%B8%B8%E8%A7%84%E6%93%8D%E4%BD%9C"><span class="toc-text">二. influxdb常规操作</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#fio%E6%B5%8B%E8%AF%95%E7%A3%81%E7%9B%98rbd%E5%9D%97%E5%AD%98%E5%82%A8%E7%AD%89%E6%80%A7%E8%83%BD"><span class="toc-text">fio测试磁盘rbd块存储等性能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-fio%E5%AE%89%E8%A3%85"><span class="toc-text">一. fio安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-fio%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B"><span class="toc-text">二. fio测试类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E6%B5%8B%E8%AF%95%E6%95%88%E6%9E%9C-%E4%B8%BB%E8%A6%81%E7%9C%8B-bw-io-iops"><span class="toc-text">三. 测试效果 (主要看 bw io iops )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-fio%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A"><span class="toc-text">四.  fio参数解释</span></a></li></ol></li></ol>
     </div>
 </aside>
                 
