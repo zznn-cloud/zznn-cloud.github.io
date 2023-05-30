@@ -26,7 +26,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
 <meta property="article:published_time" content="2023-05-30T09:07:45.000Z">
-<meta property="article:modified_time" content="2023-05-30T09:09:56.281Z">
+<meta property="article:modified_time" content="2023-05-30T09:10:59.861Z">
 <meta property="article:author" content="zznn">
 <meta property="article:tag" content="云计算">
 <meta property="article:tag" content="环境部署">
@@ -259,7 +259,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            303
+                            304
                         
                         字
                     </li>
@@ -276,7 +276,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1685437796281"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1685437859861"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -289,6 +289,7 @@
             <div itemprop="articleBody"><h2 id="配置其他机器能使用ceph命令"><a href="#配置其他机器能使用ceph命令" class="headerlink" title="配置其他机器能使用ceph命令"></a>配置其他机器能使用<code>ceph</code>命令</h2><p>只需要两部</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在节点安装ceph-common，ceph-common包会提供ceph命令并在etc下创建ceph目录</span></span><br><span class="line">apt install ceph-common -y            </span><br><span class="line"><span class="comment"># 拷贝密钥交互文件到对应节点</span></span><br><span class="line">scp /etc/ceph/ceph.conf ceph-2:/etc/ceph/                    <span class="comment">#将ceph.conf文件传输至对应节点</span></span><br><span class="line">scp /etc/ceph/ceph.client.admin.keyring ceph-2:/etc/ceph/    <span class="comment">#将密钥文件传输至对应节点</span></span><br></pre></td></tr></table></figure>
 
+<p><img src="/2023/05/30/%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E8%83%BD%E4%BD%BF%E7%94%A8ceph%E5%91%BD%E4%BB%A4/image-20230530171052047.png" alt="image-20230530171052047"></p>
 <p>此时即可使用<code>ceph</code>命令。</p>
 </div>
         </div>
@@ -382,7 +383,7 @@
                     <a class="tag-none-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-30T09:09:56.281Z" itemprop="dateModified">最后编辑：2023-05-30</time>
+                    <time datetime="2023-05-30T09:10:59.861Z" itemprop="dateModified">最后编辑：2023-05-30</time>
                 </div>
             </div>
         </footer>
