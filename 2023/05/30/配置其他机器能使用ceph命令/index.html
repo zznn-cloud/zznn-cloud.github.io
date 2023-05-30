@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="/images/thumb/zznnlogo.webp">
   
-  <title>linux下oracle客户端部署 | zznn</title>
+  <title>配置其他机器能使用ceph命令 | zznn</title>
   
   <meta name="author" content="zznn" />
   <meta http-equiv="Cache-Control" content="no-transform" />
@@ -15,21 +15,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="docker, 常用软件, 环境部署" />
+    <meta name="keywords" content="云计算, 环境部署" />
   
-  <meta name="description" content="linux下oracle客户端部署https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lim-sy&#x2F;p&#x2F;16805630.html 1. 下载安装包​          zip包（免安装）：​          instantclient-sqlplus-linux.x64-11.2.0.4.0.zip​          instantclient-basic-linux.x64-11.2.0.4.">
+  <meta name="description" content="配置其他机器能使用ceph命令只需要两部 12345#在节点安装ceph-common，ceph-common包会提供ceph命令并在etc下创建ceph目录apt install ceph-common -y            # 拷贝密钥交互文件到对应节点scp &#x2F;etc&#x2F;ceph&#x2F;ceph.conf ceph-2:&#x2F;etc&#x2F;ceph&#x2F;                    #将ceph.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux下oracle客户端部署">
-<meta property="og:url" content="https://gegewu12.github.io/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:title" content="配置其他机器能使用ceph命令">
+<meta property="og:url" content="https://gegewu12.github.io/2023/05/30/%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E8%83%BD%E4%BD%BF%E7%94%A8ceph%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="zznn">
-<meta property="og:description" content="linux下oracle客户端部署https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lim-sy&#x2F;p&#x2F;16805630.html 1. 下载安装包​          zip包（免安装）：​          instantclient-sqlplus-linux.x64-11.2.0.4.0.zip​          instantclient-basic-linux.x64-11.2.0.4.">
+<meta property="og:description" content="配置其他机器能使用ceph命令只需要两部 12345#在节点安装ceph-common，ceph-common包会提供ceph命令并在etc下创建ceph目录apt install ceph-common -y            # 拷贝密钥交互文件到对应节点scp &#x2F;etc&#x2F;ceph&#x2F;ceph.conf ceph-2:&#x2F;etc&#x2F;ceph&#x2F;                    #将ceph.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
-<meta property="article:published_time" content="2023-05-27T07:01:41.000Z">
-<meta property="article:modified_time" content="2023-05-27T07:28:03.294Z">
+<meta property="article:published_time" content="2023-05-30T09:07:45.000Z">
+<meta property="article:modified_time" content="2023-05-30T09:09:56.281Z">
 <meta property="article:author" content="zznn">
-<meta property="article:tag" content="docker">
-<meta property="article:tag" content="常用软件">
+<meta property="article:tag" content="云计算">
 <meta property="article:tag" content="环境部署">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
@@ -243,15 +242,15 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/">
+    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/05/30/%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E8%83%BD%E4%BD%BF%E7%94%A8ceph%E5%91%BD%E4%BB%A4/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">linux下oracle客户端部署</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">配置其他机器能使用ceph命令</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><time datetime="2023-05-27T07:01:41.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-27</time></li>
+                <li><time datetime="2023-05-30T09:07:45.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-30</time></li>
                 <li itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
                 </li>
@@ -260,13 +259,13 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            ~1.79K
+                            303
                         
                         字
                     </li>
                 
                 
-                    <li id="/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/" class="leancloud_visitors" data-flag-title="linux下oracle客户端部署">
+                    <li id="/2023/05/30/%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E8%83%BD%E4%BD%BF%E7%94%A8ceph%E5%91%BD%E4%BB%A4/" class="leancloud_visitors" data-flag-title="配置其他机器能使用ceph命令">
                         <i class="fa fa-eye"></i>
                         <span class="leancloud-visitors-count"> </span> 次阅读
                     </li>
@@ -277,30 +276,20 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1685172483294"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1685437796281"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
             
                 <div class="kratos-post-inner-toc toc-div-class" >
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E4%B8%8Boracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="toc-text">linux下oracle客户端部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">1. 下载安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%88%B0-home-oracle%E7%9B%AE%E5%BD%95"><span class="toc-text">2.安装解压缩到&#x2F;home&#x2F;oracle目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">3.配置环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="toc-text">4.测试数据库连接</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E8%83%BD%E4%BD%BF%E7%94%A8ceph%E5%91%BD%E4%BB%A4"><span class="toc-text">配置其他机器能使用ceph命令</span></a></li></ol>
                 </div>
             
             <hr />
-            <div itemprop="articleBody"><h2 id="linux下oracle客户端部署"><a href="#linux下oracle客户端部署" class="headerlink" title="linux下oracle客户端部署"></a><code>linux</code>下<code>oracle</code>客户端部署</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lim-sy/p/16805630.html">https://www.cnblogs.com/lim-sy/p/16805630.html</a></p>
-<h3 id="1-下载安装包"><a href="#1-下载安装包" class="headerlink" title="1. 下载安装包"></a><code>1. </code>下载安装包</h3><p>​          zip包（免安装）：<br>​          instantclient-sqlplus-linux.x64-11.2.0.4.0.zip<br>​          instantclient-basic-linux.x64-11.2.0.4.0.zip<br>​          instantclient-sdk-linux.x64-11.2.0.4.0.zip<br>​          instantclient-precomp-linux-11.2.0.4.0.zip #PRO*C程序开发用到的预编译工具，即proc程序；</p>
-<ol>
-<li>sqlplus、basic、sdk下载地址:<br><a target="_blank" rel="noopener" href="https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html">https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html</a><br>precomp下载地址：<br><a target="_blank" rel="noopener" href="https://www.oracle.com/database/technologies/instant-client/precompiler-downloads.html">https://www.oracle.com/database/technologies/instant-client/precompiler-downloads.html</a></li>
-</ol>
-<p><img src="/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/image-20230527150720932.png" alt="image-20230527150720932"></p>
-<h3 id="2-安装解压缩到-home-oracle目录"><a href="#2-安装解压缩到-home-oracle目录" class="headerlink" title="2.安装解压缩到/home/oracle目录"></a><code>2.</code>安装解压缩到/home/oracle目录</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line">unzip instantclient-sqlplus-linux.x64-11.2.0.4.0.zip</span><br><span class="line">unzip instantclient-basic-linux.x64-11.2.0.4.0.zip</span><br><span class="line">unzip instantclient-sdk-linux.x64-11.2.0.4.0.zip</span><br><span class="line">unzip instantclient-precomp-linux-11.2.0.4.0.zip</span><br><span class="line"><span class="comment"># 安装必要驱动</span></span><br><span class="line">apt install -y libaio*  (ubuntu)</span><br><span class="line">yum install -y libaio*  (centos)</span><br><span class="line"><span class="comment"># 创建文件夹 切换到目录</span></span><br><span class="line"><span class="built_in">cd</span> /home/oracle/instantclient_11_2 &amp;&amp; <span class="built_in">mkdir</span> -p ./network/admin</span><br><span class="line"><span class="comment"># ===============================================================</span></span><br><span class="line">框内配置可暂且不做配置先看能否远程连接</span><br><span class="line"><span class="comment"># 新建tnsnames.ora文件</span></span><br><span class="line">vi tnsnames.ora</span><br><span class="line"><span class="comment"># history_162：数据库sid，host：oracle数据库ip，port：oracle数据库端口，SID：数据库的sidhistory_162 =</span></span><br><span class="line">(DESCRIPTION =</span><br><span class="line">(ADDRESS = (PROTOCOL = TCP)(HOST = 10.0.0.131)(PORT = 1521))</span><br><span class="line">(CONNECT_DATA =</span><br><span class="line">(SERVER = DEDICATED)</span><br><span class="line">(SID =xxx)</span><br><span class="line">)</span><br><span class="line">)</span><br><span class="line"><span class="comment"># ===============================================================</span></span><br></pre></td></tr></table></figure>
+            <div itemprop="articleBody"><h2 id="配置其他机器能使用ceph命令"><a href="#配置其他机器能使用ceph命令" class="headerlink" title="配置其他机器能使用ceph命令"></a>配置其他机器能使用<code>ceph</code>命令</h2><p>只需要两部</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在节点安装ceph-common，ceph-common包会提供ceph命令并在etc下创建ceph目录</span></span><br><span class="line">apt install ceph-common -y            </span><br><span class="line"><span class="comment"># 拷贝密钥交互文件到对应节点</span></span><br><span class="line">scp /etc/ceph/ceph.conf ceph-2:/etc/ceph/                    <span class="comment">#将ceph.conf文件传输至对应节点</span></span><br><span class="line">scp /etc/ceph/ceph.client.admin.keyring ceph-2:/etc/ceph/    <span class="comment">#将密钥文件传输至对应节点</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3.配置环境变量"></a><code>3.</code>配置环境变量</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置环境变量（可直接写入系统变量：/etc/profile）</span></span><br><span class="line">vi .bash_profile</span><br><span class="line"><span class="built_in">export</span> ORACLE_HOME=/home/oracle/instantclient_11_2</span><br><span class="line"><span class="built_in">export</span> TNS_ADMIN=<span class="variable">$ORACLE_HOME</span>/network/admin</span><br><span class="line"><span class="comment"># exportNLS_LANG=AMERICAN_AMERICA.ZHS16GBKexport </span></span><br><span class="line">NLS_LANG=AMERICAN_AMERICA.AL32UTF8</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$ORACLE_HOME</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$ORACLE_HOME</span>:<span class="variable">$PATH</span></span><br><span class="line"><span class="comment"># 刷新环境变量</span></span><br><span class="line"><span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-测试数据库连接"><a href="#4-测试数据库连接" class="headerlink" title="4.测试数据库连接"></a><code>4.</code>测试数据库连接</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试数据库连接</span></span><br><span class="line">sqlplus username/passwd@sid</span><br><span class="line">sqlplus system/oracle@10.0.0.131:1521/helowin</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/image-20230527152556143.png" alt="image-20230527152556143"></p>
-<p>结语祝好！</p>
+<p>此时即可使用<code>ceph</code>命令。</p>
 </div>
         </div>
         
@@ -356,7 +345,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "https://gegewu12.github.io/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/",
+                text: "https://gegewu12.github.io/2023/05/30/%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E8%83%BD%E4%BD%BF%E7%94%A8ceph%E5%91%BD%E4%BB%A4/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -368,10 +357,10 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "https://gegewu12.github.io/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/";
-            const title         = "「linux下oracle客户端部署」";
-            const excerpt       = `linux下oracle客户端部署https://www.cnblogs.com/lim-sy/p/16805630.html
-1. 下载安装包​          zip包（免安装）：​          instantclient...`;
+            const hostUrl       = "https://gegewu12.github.io/2023/05/30/%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E8%83%BD%E4%BD%BF%E7%94%A8ceph%E5%91%BD%E4%BB%A4/";
+            const title         = "「配置其他机器能使用ceph命令」";
+            const excerpt       = `配置其他机器能使用ceph命令只需要两部
+12345#在节点安装ceph-common，ceph-common包会提供ceph命令并在etc下创建ceph目录apt install ceph-common -y            ...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -390,10 +379,10 @@
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/docker/" rel="tag">docker</a>, <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
+                    <a class="tag-none-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-27T07:28:03.294Z" itemprop="dateModified">最后编辑：2023-05-27</time>
+                    <time datetime="2023-05-30T09:09:56.281Z" itemprop="dateModified">最后编辑：2023-05-30</time>
                 </div>
             </div>
         </footer>
@@ -402,13 +391,9 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" docker部署oracle" href="/2023/05/26/docker部署oracle/">&lt; 上一篇</a>
+                <a title=" 钉钉ceph告警脚本" href="/2023/05/30/钉钉ceph告警脚本/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" dmsetup wipefs mkfs.ext4命令" href="/2023/05/27/dmsetup-wipefs-mkfs-ext4命令/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
@@ -423,7 +408,7 @@
                 appKey: 'QGQtOyQ3KRl2gUnQAESqz6Nc',
                 visitor: true,
                 enableQQ: false,
-                path: '/2023/05/27/oracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2/'
+                path: '/2023/05/30/%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E8%83%BD%E4%BD%BF%E7%94%A8ceph%E5%91%BD%E4%BB%A4/'
             });
         }
         if (typeof Valine === 'undefined') {
@@ -500,7 +485,7 @@
         <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E4%B8%8Boracle%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="toc-text">linux下oracle客户端部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">1. 下载安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%88%B0-home-oracle%E7%9B%AE%E5%BD%95"><span class="toc-text">2.安装解压缩到&#x2F;home&#x2F;oracle目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">3.配置环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="toc-text">4.测试数据库连接</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E8%83%BD%E4%BD%BF%E7%94%A8ceph%E5%91%BD%E4%BB%A4"><span class="toc-text">配置其他机器能使用ceph命令</span></a></li></ol>
     </div>
 </aside>
                 
