@@ -17,16 +17,16 @@
   
     <meta name="keywords" content="云原生监控, 云计算" />
   
-  <meta name="description" content="ceph状态监控环境：ubuntu18.04 ceph-n版 使用：脚本名称已固定不能更改，将dingding.sh中钉钉机器人信息填写正确 将两脚本存放于 &#x2F;opt&#x2F;dingding&#x2F; 目录 添加定时任务即可。  一.   钉钉告警脚本（dingding.sh）123456789101112131415161718192021222324252627282930313233#&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+  <meta name="description" content="ceph状态监控环境：ubuntu18.04 ceph-n版使用：脚本名称已固定不能更改，将dingding.sh中钉钉机器人信息填写正确 将两脚本存放于 &#x2F;opt&#x2F;dingding&#x2F; 目录 添加定时任务即可。  一.   钉钉告警脚本（dingding.sh）123456789101112131415161718192021222324252627282930313233#&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="钉钉ceph告警脚本">
 <meta property="og:url" content="https://gegewu12.github.io/2023/05/30/%E9%92%89%E9%92%89ceph%E5%91%8A%E8%AD%A6%E8%84%9A%E6%9C%AC/index.html">
 <meta property="og:site_name" content="zznn">
-<meta property="og:description" content="ceph状态监控环境：ubuntu18.04 ceph-n版 使用：脚本名称已固定不能更改，将dingding.sh中钉钉机器人信息填写正确 将两脚本存放于 &#x2F;opt&#x2F;dingding&#x2F; 目录 添加定时任务即可。  一.   钉钉告警脚本（dingding.sh）123456789101112131415161718192021222324252627282930313233#&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:description" content="ceph状态监控环境：ubuntu18.04 ceph-n版使用：脚本名称已固定不能更改，将dingding.sh中钉钉机器人信息填写正确 将两脚本存放于 &#x2F;opt&#x2F;dingding&#x2F; 目录 添加定时任务即可。  一.   钉钉告警脚本（dingding.sh）123456789101112131415161718192021222324252627282930313233#&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
 <meta property="article:published_time" content="2023-05-30T08:41:03.000Z">
-<meta property="article:modified_time" content="2023-05-31T01:55:15.344Z">
+<meta property="article:modified_time" content="2023-05-31T08:14:18.403Z">
 <meta property="article:author" content="zznn">
 <meta property="article:tag" content="云原生监控">
 <meta property="article:tag" content="云计算">
@@ -276,7 +276,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1685498115344"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1685520858403"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -286,8 +286,7 @@
                 </div>
             
             <hr />
-            <div itemprop="articleBody"><h2 id="ceph状态监控"><a href="#ceph状态监控" class="headerlink" title="ceph状态监控"></a><code>ceph</code>状态监控</h2><p>环境：ubuntu18.04 ceph-n版</p>
-<p>使用：脚本名称已固定不能更改，将<code>dingding.sh</code>中钉钉机器人信息填写正确 将两脚本存放于 <code>/opt/dingding/ </code>目录 添加定时任务即可。</p>
+            <div itemprop="articleBody"><h2 id="ceph状态监控"><a href="#ceph状态监控" class="headerlink" title="ceph状态监控"></a><code>ceph</code>状态监控</h2><p>环境：ubuntu18.04 ceph-n版<br>使用：脚本名称已固定不能更改，将<code>dingding.sh</code>中钉钉机器人信息填写正确 将两脚本存放于 <code>/opt/dingding/ </code>目录 添加定时任务即可。</p>
 <p><img src="/2023/05/30/%E9%92%89%E9%92%89ceph%E5%91%8A%E8%AD%A6%E8%84%9A%E6%9C%AC/image-20230531095453792.png" alt="image-20230531095453792"></p>
 <h3 id="一-钉钉告警脚本（dingding-sh）"><a href="#一-钉钉告警脚本（dingding-sh）" class="headerlink" title="一.   钉钉告警脚本（dingding.sh）"></a>一.   钉钉告警脚本（<code>dingding.sh</code>）</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#=====================================分割线=============================================</span></span><br><span class="line"><span class="comment">#!/bin/sh</span></span><br><span class="line"><span class="comment">#@特定的人</span></span><br><span class="line"><span class="comment">#&#x27;atMobiles&#x27;: [$&#123;atMobiles&#125;]  </span></span><br><span class="line"><span class="comment">#@所有人</span></span><br><span class="line"><span class="comment">#&#x27;isAtAll&#x27;: true 自行更改curl下at部分</span></span><br><span class="line"><span class="comment">#执行方式: ./dingding.sh 第一段文字 第二段文字</span></span><br><span class="line"></span><br><span class="line">webhook=<span class="string">&#x27;https://oapi.dingtalk.com/robot/send?access_token=87939c93a91b1&#x27;</span></span><br><span class="line"><span class="comment">#钉钉机器人设置的关键字</span></span><br><span class="line">cluster=<span class="string">&#x27;消息&#x27;</span></span><br><span class="line"><span class="comment">#钉钉@的人</span></span><br><span class="line"><span class="comment">#atMobiles=&#x27;&quot;176xxx&quot;,&quot;132xxx&quot;&#x27;</span></span><br><span class="line">atMobiles=<span class="string">&#x27;&quot;15******&quot;&#x27;</span></span><br><span class="line">msg=<span class="variable">$1</span></span><br><span class="line">msg2=<span class="variable">$2</span></span><br><span class="line"><span class="function"><span class="title">function_SendMsgToDingding</span></span>() &#123;</span><br><span class="line">  curl <span class="variable">$webhook</span> -H <span class="string">&#x27;Content-Type: application/json&#x27;</span> -d <span class="string">&quot;</span></span><br><span class="line"><span class="string">  &#123;</span></span><br><span class="line"><span class="string">    &#x27;msgtype&#x27;: &#x27;text&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;text&#x27;: &#123;</span></span><br><span class="line"><span class="string">      &#x27;content&#x27;: &#x27;<span class="variable">$cluster</span>\n <span class="variable">$msg</span>\n <span class="variable">$msg2</span>&#x27;</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    &#x27;at&#x27;: &#123;</span></span><br><span class="line"><span class="string">      &#x27;atMobiles&#x27;: [<span class="variable">$&#123;atMobiles&#125;</span>]  </span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">    function_SendMsgToDingding</span><br><span class="line">&#125;</span><br><span class="line">main</span><br><span class="line"><span class="comment">#=====================================分割线=============================================</span></span><br></pre></td></tr></table></figure>
 
@@ -374,10 +373,9 @@
             const twitterBase   = "https://twitter.com/intent/tweet?";
             const hostUrl       = "https://gegewu12.github.io/2023/05/30/%E9%92%89%E9%92%89ceph%E5%91%8A%E8%AD%A6%E8%84%9A%E6%9C%AC/";
             const title         = "「钉钉ceph告警脚本」";
-            const excerpt       = `ceph状态监控环境：ubuntu18.04 ceph-n版
-使用：脚本名称已固定不能更改，将dingding.sh中钉钉机器人信息填写正确 将两脚本存放于 /opt/dingding/ 目录 添加定时任务即可。
+            const excerpt       = `ceph状态监控环境：ubuntu18.04 ceph-n版使用：脚本名称已固定不能更改，将dingding.sh中钉钉机器人信息填写正确 将两脚本存放于 /opt/dingding/ 目录 添加定时任务即可。
 
-一.   钉钉告警...`;
+一.   钉钉告警脚...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -399,7 +397,7 @@
                     <a class="tag-none-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a>, <a class="tag-none-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-05-31T01:55:15.344Z" itemprop="dateModified">最后编辑：2023-05-31</time>
+                    <time datetime="2023-05-31T08:14:18.403Z" itemprop="dateModified">最后编辑：2023-05-31</time>
                 </div>
             </div>
         </footer>
