@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="/images/thumb/zznnlogo.webp">
   
-  <title>分类: 迁云 | zznn</title>
+  <title>nmap实现批量扫描端口 | zznn</title>
   
   <meta name="author" content="zznn" />
   <meta http-equiv="Cache-Control" content="no-transform" />
@@ -15,17 +15,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="shell, 云原生监控, 常用软件" />
   
-  <meta name="description" content="众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类: 迁云">
-<meta property="og:url" content="https://gegewu12.github.io/categories/%E8%BF%81%E4%BA%91/index.html">
+  <meta name="description" content="nmap实现批量扫描端口参考：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Rain99-&#x2F;p&#x2F;12882677.html                （六种状态详解）https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45300786&#x2F;article&#x2F;details&#x2F;120139192   (使用说明) nmap扫描的几种状态：open(开放的)closed(关闭的)filtered(被过滤的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nmap实现批量扫描端口">
+<meta property="og:url" content="https://gegewu12.github.io/2023/06/01/nmap%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3/index.html">
 <meta property="og:site_name" content="zznn">
-<meta property="og:description" content="众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。">
+<meta property="og:description" content="nmap实现批量扫描端口参考：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Rain99-&#x2F;p&#x2F;12882677.html                （六种状态详解）https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45300786&#x2F;article&#x2F;details&#x2F;120139192   (使用说明) nmap扫描的几种状态：open(开放的)closed(关闭的)filtered(被过滤的">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
+<meta property="article:published_time" content="2023-06-01T07:45:26.000Z">
+<meta property="article:modified_time" content="2023-06-01T09:12:07.056Z">
 <meta property="article:author" content="zznn">
+<meta property="article:tag" content="云原生监控">
+<meta property="article:tag" content="常用软件">
+<meta property="article:tag" content="shell">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
   
@@ -236,171 +241,174 @@
 
         
 
-            <!-- Breadcrumb for tag & category page -->
-
-    <article class="kratos-hentry kratos-entry-border-new clearfix">
-        <div class="kratos-breadcrumb">
-            <a href="/">
-                <i class="fa fa-home"></i>
-            </a>
-            <i class="fa fa-angle-right"></i>
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/06/01/nmap%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
             
-
-                <a href="/categories/">
-                    分类
-                </a>
-
-                
-                
-                    <i class="fa fa-angle-right"></i>
-                    <a href="/categories/%E8%BF%81%E4%BA%91/">
-                        迁云
-                    </a>
-                
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">nmap实现批量扫描端口</h1>
             
             
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-06-01T07:45:26.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-06-01</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~2.41K
+                        
+                        字
+                    </li>
+                
+                
+                    <li id="/2023/06/01/nmap%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3/" class="leancloud_visitors" data-flag-title="nmap实现批量扫描端口">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1685610727056"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nmap%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3"><span class="toc-text">nmap实现批量扫描端口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-nmap-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8"><span class="toc-text">一. nmap 命令使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E5%9F%BA%E4%BA%8Enmap-%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3%E8%84%9A%E6%9C%AC"><span class="toc-text">二. 基于nmap 批量扫描端口脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h2 id="nmap实现批量扫描端口"><a href="#nmap实现批量扫描端口" class="headerlink" title="nmap实现批量扫描端口"></a><code>nmap</code>实现批量扫描端口</h2><p>参考：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Rain99-/p/12882677.html">https://www.cnblogs.com/Rain99-/p/12882677.html</a>                （六种状态详解）<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45300786/article/details/120139192">https://blog.csdn.net/qq_45300786/article/details/120139192</a>   (使用说明)</p>
+<p><code>nmap</code>扫描的几种状态：<code>open</code>(开放的)<code>closed</code>(关闭的)<code>filtered</code>(被过滤的)<code>unfiltered</code>(未被过滤的)<code>open|filtered</code>(开放或者被过滤的)<code>closed|filtered</code>(关闭或者被过滤的)<img src="/2023/06/01/nmap%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3/image-20230601154726732.png" alt="image-20230601154726732"></p>
+<h3 id="一-nmap-命令使用"><a href="#一-nmap-命令使用" class="headerlink" title="一. nmap 命令使用"></a>一. <code>nmap </code>命令使用</h3><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt install -y nmap </span><br><span class="line">yum install -y nmap</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 常用参数</span></span><br><span class="line">-sS: 使用SYN方式扫描,默认用的是-sT方式,即TCP方式.需要完成完整的三次握手,比较费时,SYN就比较快一些了</span><br><span class="line">-Pn: 禁用PING检测,这样速度快,并且可以防止有些主机无法ping通而被漏掉不扫描</span><br><span class="line">-n:  不解析域名，加快扫描速度</span><br><span class="line">-open: 只输出检测状态为open的端口,即开放的端口；</span><br><span class="line">-T4: 总共有T0-T5,貌似T4比较折中</span><br><span class="line">-sV  参数精确扫描端口有那些服务</span><br><span class="line">---------——---&gt;</span><br><span class="line">-iL: 载入ip段文件,批量扫,不用一条条执行了。</span><br><span class="line">-oX: 结果另存在xxx.xml格式</span><br><span class="line"><span class="comment"># 使用</span></span><br><span class="line">nmap -p80 10.0.0.10</span><br><span class="line">nmap -sV -p80 10.0.0.10</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-基于nmap-批量扫描端口脚本"><a href="#二-基于nmap-批量扫描端口脚本" class="headerlink" title="二. 基于nmap 批量扫描端口脚本"></a>二. 基于<code>nmap </code>批量扫描端口脚本</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#nmap批量扫描端口</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line">red=<span class="string">&quot;31m&quot;</span></span><br><span class="line">green=<span class="string">&quot;36m&quot;</span></span><br><span class="line">Network=<span class="variable">$1</span></span><br><span class="line">address=<span class="string">&quot;GEGEWU&quot;</span></span><br><span class="line"><span class="keyword">for</span> Host <span class="keyword">in</span> $(<span class="built_in">seq</span> 1 254)</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">for</span> port <span class="keyword">in</span> 80 443;<span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;##################开始检测<span class="variable">$&#123;port&#125;</span>端口#####################&quot;</span></span><br><span class="line">  check_log=<span class="string">&quot;/tmp/namp检测结果.log&quot;</span></span><br><span class="line">  <span class="built_in">touch</span> <span class="variable">$&#123;check_log&#125;</span> ||<span class="literal">true</span></span><br><span class="line">  check_open=`<span class="built_in">echo</span> -e <span class="string">&#x27;\x1dclose\x0d&#x27;</span> |<span class="built_in">timeout</span> --signal=9 2 nmap  -sS -Pn -n -T4  -p<span class="variable">$&#123;port&#125;</span> <span class="variable">$&#123;Network&#125;</span>.<span class="variable">$&#123;Host&#125;</span> |awk  <span class="string">&#x27;/report|tcp/&#123;print $0&#125;&#x27;</span> |awk <span class="string">&#x27;NR==2&#123;print $2&#125;&#x27;</span>`</span><br><span class="line">  check_port=`<span class="built_in">echo</span> -e <span class="string">&#x27;\x1dclose\x0d&#x27;</span> |<span class="built_in">timeout</span> --signal=9 2 nmap  -sS -Pn -n -T4  -p<span class="variable">$&#123;port&#125;</span> <span class="variable">$&#123;Network&#125;</span>.<span class="variable">$&#123;Host&#125;</span> |awk  <span class="string">&#x27;/report|tcp/&#123;print $0&#125;&#x27;</span> |awk <span class="string">&#x27;NR==2&#123;print $1&#125;&#x27;</span>`</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Host是: <span class="variable">$&#123;Network&#125;</span>.<span class="variable">$&#123;Host&#125;</span> 检测端口是: <span class="variable">$&#123;port&#125;</span> 状态是：<span class="variable">$&#123;check_open&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$&#123;check_open&#125;</span>&quot;</span> = <span class="string">&quot;open&quot;</span> ];</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;green&#125;</span> </span></span><br><span class="line"><span class="string">               <span class="variable">$&#123;address&#125;</span> Host <span class="variable">$&#123;Network&#125;</span>.<span class="variable">$&#123;Host&#125;</span> 的端口: <span class="variable">$&#123;check_port&#125;</span> 开放&quot;</span> </span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;address&#125;</span> Host <span class="variable">$&#123;Network&#125;</span>.<span class="variable">$&#123;Host&#125;</span>的端口<span class="variable">$&#123;check_port&#125;</span>开放&quot;</span> |column -t  &gt;&gt; <span class="variable">$&#123;check_log&#125;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="built_in">echo</span> -e <span class="string">&quot;\033[<span class="variable">$&#123;red&#125;</span> </span></span><br><span class="line"><span class="string">               <span class="variable">$&#123;address&#125;</span> Host <span class="variable">$&#123;Network&#125;</span>.<span class="variable">$&#123;Host&#125;</span>的端口<span class="variable">$&#123;check_port&#125;</span>关闭或为open之外的其他状态 \033[0m&quot;</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot; <span class="variable">$&#123;address&#125;</span> Host <span class="variable">$&#123;Network&#125;</span>.<span class="variable">$&#123;Host&#125;</span>的端口<span class="variable">$&#123;check_port&#125;</span> 关闭或为open之外的其他状态&quot;</span> |column -t  &gt;&gt; <span class="variable">$&#123;check_log&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>执行脚本方式</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh port.sh 10.0.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="/2023/06/01/nmap%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3/image-20230601171134179.png" alt="image-20230601171134179"></p>
+<p><img src="/2023/06/01/nmap%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3/image-20230601170511550.png" alt="image-20230601170511550"></p>
+<p>结语祝好！</p>
+</div>
         </div>
-    </article>
-
-
-
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                    <div class="pin-top wrapper">
-                        <div class="pin-top inner"></div>
-                    </div>
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/2023/06/01/qemu-img-virt-v2v%E9%95%9C%E5%83%8F%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/">
-                        
-                            <img class="kratos-entry-thumb-new-img" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a>
-                        <h2 class="kratos-entry-title-new"><a href="/2023/06/01/qemu-img-virt-v2v%E9%95%9C%E5%83%8F%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/" itemprop="mainEntityOfPage"><span itemprop="name headline">qemu-img virt-v2v镜像格式转换</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                qemu-img virt-v2v 镜像格式转换参考：
-https://soft.3dmgame.com/down/214093.html        ( windows安装 qemu-img)
-
-
-一. qemu-img转换格式语...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2023-06-01T03:03:09.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2023-06-01</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a>, <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                                <a id="/2023/06/01/qemu-img-virt-v2v%E9%95%9C%E5%83%8F%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/" class="leancloud_visitors" data-flag-title="qemu-img virt-v2v镜像格式转换">
-                                    <i class="fa fa-eye"></i>
-                                    <span class="leancloud-visitors-count"> </span> 次阅读
-                                </a>
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/2023/06/01/qemu-img-virt-v2v%E9%95%9C%E5%83%8F%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                    <div class="pin-top wrapper">
-                        <div class="pin-top inner"></div>
-                    </div>
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/">
-                        
-                            <img class="kratos-entry-thumb-new-img" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a>
-                        <h2 class="kratos-entry-title-new"><a href="/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/" itemprop="mainEntityOfPage"><span itemprop="name headline">vmware_v2v迁移脚本</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                v2v迁移vmware脚本一. vmware.sh脚本功能 半自动的迁移脚本（vmware.sh）功能：自动安装windows驱动自动导出vmware虚拟机为qcm2格式自动安装could-init（centos7 ubuntu）ub...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2023-05-12T06:04:20.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2023-05-12</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/change-cloub/" rel="tag">change-cloub</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                                <a id="/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/" class="leancloud_visitors" data-flag-title="vmware_v2v迁移脚本">
-                                    <i class="fa fa-eye"></i>
-                                    <span class="leancloud-visitors-count"> </span> 次阅读
-                                </a>
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/2023/05/12/vmware-v2v%E8%BF%81%E7%A7%BB%E8%84%9A%E6%9C%AC/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-
-
-
-
-    <div class="hidden">
-        <!-- 加载文章阅读对应的统计功能，评论自带的那种 -->
         
-            <div id="v-comments" class="post-comments bg-image"></div>
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://gegewu12.github.io/2023/06/01/nmap%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://gegewu12.github.io/2023/06/01/nmap%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3/";
+            const title         = "「nmap实现批量扫描端口」";
+            const excerpt       = `nmap实现批量扫描端口参考：https://www.cnblogs.com/Rain99-/p/12882677.html                （六种状态详解）https://blog.csdn.net/qq_453007...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/shell/" rel="tag">shell</a>, <a class="tag-none-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a>, <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-06-01T09:12:07.056Z" itemprop="dateModified">最后编辑：2023-06-01</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" shell Scripts同一局域网主机是否在线" href="/2023/06/01/shell-Scripts同一局域网主机是否在线/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
 <script>
     var load_comm = () => {
         const init = () => {
@@ -410,7 +418,7 @@ https://soft.3dmgame.com/down/214093.html        ( windows安装 qemu-img)
                 appKey: 'QGQtOyQ3KRl2gUnQAESqz6Nc',
                 visitor: true,
                 enableQQ: false,
-                path: '/categories/%E8%BF%81%E4%BA%91/index.html'
+                path: '/2023/06/01/nmap%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3/'
             });
         }
         if (typeof Valine === 'undefined') {
@@ -423,10 +431,8 @@ https://soft.3dmgame.com/down/214093.html        ( windows安装 qemu-img)
 </script>
 <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
 
-        
-    </div>
-
-
+    
+</article>
 
         
 
@@ -439,8 +445,6 @@ https://soft.3dmgame.com/down/214093.html        ( windows安装 qemu-img)
 
 <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
     <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
-    
-        <div class="sticky-area">
     
     
                 <aside id="krw-about" class="widget widget-kratos-about clearfix">
@@ -481,6 +485,20 @@ https://soft.3dmgame.com/down/214093.html        ( windows安装 qemu-img)
     </div>
 </aside>
             
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nmap%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3"><span class="toc-text">nmap实现批量扫描端口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-nmap-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8"><span class="toc-text">一. nmap 命令使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E5%9F%BA%E4%BA%8Enmap-%E6%89%B9%E9%87%8F%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3%E8%84%9A%E6%9C%AC"><span class="toc-text">二. 基于nmap 批量扫描端口脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li></ol></li></ol>
+    </div>
+</aside>
+                
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
