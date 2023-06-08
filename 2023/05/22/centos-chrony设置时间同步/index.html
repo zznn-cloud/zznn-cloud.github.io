@@ -17,16 +17,16 @@
   
     <meta name="keywords" content="centos, 常用软件, 环境部署" />
   
-  <meta name="description" content="centos chrony设置时间同步一. 统一时区 安装软件 （ ubuntu与centos通用 ）若使用chrony同步时间则框内只执行更改时区即可 使用ntpdate则全部执行 12345678910# 安装软件( centos ubuntu )yum install -y ntpdateapt install -y ntpdate # 设置时区cp -f &#x2F;usr&#x2F;share&#x2F;zonein">
+  <meta name="description" content="ubuntu centos使用chrony ntpdate两种方式设置时间同步一. 统一时区 安装软件 （ ubuntu与centos通用 ）若使用chrony同步时间则框内只执行更改时区即可 使用ntpdate则全部执行 12345678910# 安装软件( centos ubuntu )yum install -y ntpdateapt install -y ntpdate # 设置时区cp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos chrony设置时间同步">
 <meta property="og:url" content="https://gegewu12.github.io/2023/05/22/centos-chrony%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/index.html">
 <meta property="og:site_name" content="zznn">
-<meta property="og:description" content="centos chrony设置时间同步一. 统一时区 安装软件 （ ubuntu与centos通用 ）若使用chrony同步时间则框内只执行更改时区即可 使用ntpdate则全部执行 12345678910# 安装软件( centos ubuntu )yum install -y ntpdateapt install -y ntpdate # 设置时区cp -f &#x2F;usr&#x2F;share&#x2F;zonein">
+<meta property="og:description" content="ubuntu centos使用chrony ntpdate两种方式设置时间同步一. 统一时区 安装软件 （ ubuntu与centos通用 ）若使用chrony同步时间则框内只执行更改时区即可 使用ntpdate则全部执行 12345678910# 安装软件( centos ubuntu )yum install -y ntpdateapt install -y ntpdate # 设置时区cp">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
 <meta property="article:published_time" content="2023-05-22T02:18:29.000Z">
-<meta property="article:modified_time" content="2023-06-05T02:06:06.416Z">
+<meta property="article:modified_time" content="2023-06-08T06:44:53.424Z">
 <meta property="article:author" content="zznn">
 <meta property="article:tag" content="centos">
 <meta property="article:tag" content="常用软件">
@@ -260,7 +260,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            ~1.52K
+                            ~1.54K
                         
                         字
                     </li>
@@ -277,19 +277,20 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1685930766416"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1686206693424"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
             
                 <div class="kratos-post-inner-toc toc-div-class" >
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#centos-chrony%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">centos chrony设置时间同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E7%BB%9F%E4%B8%80%E6%97%B6%E5%8C%BA-%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6-%EF%BC%88-ubuntu%E4%B8%8Ecentos%E9%80%9A%E7%94%A8-%EF%BC%89"><span class="toc-text">一. 统一时区 安装软件 （ ubuntu与centos通用 ）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-chrony%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE-%E5%8F%AF%E5%87%BA%E5%A4%96%E7%BD%91%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%A4%96%E7%BD%91%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">二. chrony同步时间服务端配置  ( 可出外网设置和外网时间同步 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E5%AE%A2%E6%88%B7%E7%AB%AF-%E5%86%85%E7%BD%91%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">三.  客户端 ( 内网地址配置和服务端时间同步 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E6%89%A9%E5%B1%95ntp%E6%96%B9%E5%BC%8F"><span class="toc-text">四.  扩展ntp方式</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu-centos%E4%BD%BF%E7%94%A8chrony-ntpdate%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">ubuntu centos使用chrony ntpdate两种方式设置时间同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E7%BB%9F%E4%B8%80%E6%97%B6%E5%8C%BA-%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6-%EF%BC%88-ubuntu%E4%B8%8Ecentos%E9%80%9A%E7%94%A8-%EF%BC%89"><span class="toc-text">一. 统一时区 安装软件 （ ubuntu与centos通用 ）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-chrony%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE-%E5%8F%AF%E5%87%BA%E5%A4%96%E7%BD%91%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%A4%96%E7%BD%91%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">二. chrony同步时间服务端配置  ( 可出外网设置和外网时间同步 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E5%AE%A2%E6%88%B7%E7%AB%AF-%E5%86%85%E7%BD%91%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">三.  客户端 ( 内网地址配置和服务端时间同步 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E6%89%A9%E5%B1%95ntp%E6%96%B9%E5%BC%8F"><span class="toc-text">四.  扩展ntp方式</span></a></li></ol></li></ol>
                 </div>
             
             <hr />
-            <div itemprop="articleBody"><h2 id="centos-chrony设置时间同步"><a href="#centos-chrony设置时间同步" class="headerlink" title="centos chrony设置时间同步"></a><code>centos chrony</code>设置时间同步</h2><h3 id="一-统一时区-安装软件-（-ubuntu与centos通用-）"><a href="#一-统一时区-安装软件-（-ubuntu与centos通用-）" class="headerlink" title="一. 统一时区 安装软件 （ ubuntu与centos通用 ）"></a>一. 统一时区 安装软件 （ <code>ubuntu</code>与<code>centos</code>通用 ）</h3><p>若使用<code>chrony</code>同步时间则框内只执行更改时区即可 使用<code>ntpdate</code>则全部执行</p>
+            <div itemprop="articleBody"><h2 id="ubuntu-centos使用chrony-ntpdate两种方式设置时间同步"><a href="#ubuntu-centos使用chrony-ntpdate两种方式设置时间同步" class="headerlink" title="ubuntu centos使用chrony ntpdate两种方式设置时间同步"></a><code>ubuntu centos</code>使用<code>chrony ntpdate</code>两种方式设置时间同步</h2><h3 id="一-统一时区-安装软件-（-ubuntu与centos通用-）"><a href="#一-统一时区-安装软件-（-ubuntu与centos通用-）" class="headerlink" title="一. 统一时区 安装软件 （ ubuntu与centos通用 ）"></a>一. 统一时区 安装软件 （ <code>ubuntu</code>与<code>centos</code>通用 ）</h3><p>若使用<code>chrony</code>同步时间则框内只执行更改时区即可 使用<code>ntpdate</code>则全部执行</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装软件( centos ubuntu )</span></span><br><span class="line">yum install -y ntpdate</span><br><span class="line">apt install -y ntpdate </span><br><span class="line"><span class="comment"># 设置时区</span></span><br><span class="line"><span class="built_in">cp</span> -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &gt; /dev/null 2&gt;&amp;1 &amp;&amp; <span class="built_in">echo</span> <span class="string">&#x27;Asia/Shanghai&#x27;</span> &gt; /etc/timezone</span><br><span class="line">timedatectl set-timezone <span class="string">&#x27;Asia/Shanghai&#x27;</span></span><br><span class="line"><span class="comment"># 进行时间同步</span></span><br><span class="line">ntpdate ntp1.aliyun.com &gt; /dev/null 2&gt;&amp;1</span><br><span class="line"><span class="comment"># 设置时间同步写入定时任务 </span></span><br><span class="line">(crontab -l 2&gt;/dev/null | grep -v <span class="string">&quot;^#&quot;</span> || <span class="literal">true</span>; <span class="built_in">echo</span> <span class="string">&quot;0 * * * * /usr/sbin/ntpdate ntp1.aliyun.com&quot;</span>) | <span class="built_in">sort</span> - | <span class="built_in">uniq</span> - | crontab -</span><br></pre></td></tr></table></figure>
 
+<p><img src="/2023/05/22/centos-chrony%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/image-20230608142524860.png" alt="image-20230608142524860"></p>
 <p><img src="/2023/05/22/centos-chrony%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/image-20230605095948091.png" alt="image-20230605095948091"></p>
 <h3 id="二-chrony同步时间服务端配置-可出外网设置和外网时间同步"><a href="#二-chrony同步时间服务端配置-可出外网设置和外网时间同步" class="headerlink" title="二. chrony同步时间服务端配置  ( 可出外网设置和外网时间同步 )"></a>二. <code>chrony</code>同步时间服务端配置  ( 可出外网设置和外网时间同步 )</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 chrony，默认已安装 </span></span><br><span class="line">yum -y install chrony </span><br><span class="line"><span class="comment"># 能访问internet的机器选择外网ntp服务器</span></span><br><span class="line">server ntp1.aliyun.com iburst</span><br></pre></td></tr></table></figure>
 
@@ -371,8 +372,8 @@
             const twitterBase   = "https://twitter.com/intent/tweet?";
             const hostUrl       = "https://gegewu12.github.io/2023/05/22/centos-chrony%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/";
             const title         = "「centos chrony设置时间同步」";
-            const excerpt       = `centos chrony设置时间同步一. 统一时区 安装软件 （ ubuntu与centos通用 ）若使用chrony同步时间则框内只执行更改时区即可 使用ntpdate则全部执行
-12345678910# 安装软件( centos...`;
+            const excerpt       = `ubuntu centos使用chrony ntpdate两种方式设置时间同步一. 统一时区 安装软件 （ ubuntu与centos通用 ）若使用chrony同步时间则框内只执行更改时区即可 使用ntpdate则全部执行
+12345...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -394,7 +395,7 @@
                     <a class="tag-none-link" href="/tags/centos/" rel="tag">centos</a>, <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-06-05T02:06:06.416Z" itemprop="dateModified">最后编辑：2023-06-05</time>
+                    <time datetime="2023-06-08T06:44:53.424Z" itemprop="dateModified">最后编辑：2023-06-08</time>
                 </div>
             </div>
         </footer>
@@ -403,7 +404,7 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" ubuntu使用ssmtp mailutils发送邮件" href="/2023/05/21/ubuntu使用ssmtp-mailutils发送邮件/">&lt; 上一篇</a>
+                <a title=" cron初次使用以及常用定时任务设置" href="/2023/05/22/cron初次使用以及常用定时任务设置/">&lt; 上一篇</a>
             </div>
             
             
@@ -501,14 +502,14 @@
         <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#centos-chrony%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">centos chrony设置时间同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E7%BB%9F%E4%B8%80%E6%97%B6%E5%8C%BA-%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6-%EF%BC%88-ubuntu%E4%B8%8Ecentos%E9%80%9A%E7%94%A8-%EF%BC%89"><span class="toc-text">一. 统一时区 安装软件 （ ubuntu与centos通用 ）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-chrony%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE-%E5%8F%AF%E5%87%BA%E5%A4%96%E7%BD%91%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%A4%96%E7%BD%91%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">二. chrony同步时间服务端配置  ( 可出外网设置和外网时间同步 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E5%AE%A2%E6%88%B7%E7%AB%AF-%E5%86%85%E7%BD%91%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">三.  客户端 ( 内网地址配置和服务端时间同步 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E6%89%A9%E5%B1%95ntp%E6%96%B9%E5%BC%8F"><span class="toc-text">四.  扩展ntp方式</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu-centos%E4%BD%BF%E7%94%A8chrony-ntpdate%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">ubuntu centos使用chrony ntpdate两种方式设置时间同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E7%BB%9F%E4%B8%80%E6%97%B6%E5%8C%BA-%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6-%EF%BC%88-ubuntu%E4%B8%8Ecentos%E9%80%9A%E7%94%A8-%EF%BC%89"><span class="toc-text">一. 统一时区 安装软件 （ ubuntu与centos通用 ）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-chrony%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE-%E5%8F%AF%E5%87%BA%E5%A4%96%E7%BD%91%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%A4%96%E7%BD%91%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">二. chrony同步时间服务端配置  ( 可出外网设置和外网时间同步 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E5%AE%A2%E6%88%B7%E7%AB%AF-%E5%86%85%E7%BD%91%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-text">三.  客户端 ( 内网地址配置和服务端时间同步 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E6%89%A9%E5%B1%95ntp%E6%96%B9%E5%BC%8F"><span class="toc-text">四.  扩展ntp方式</span></a></li></ol></li></ol>
     </div>
 </aside>
                 
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ceph/">ceph</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/kubernetes/">kubernetes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ceph/">ceph</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/kubernetes/">kubernetes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a><span class="category-list-count">2</span></li></ul>
   </aside>
 
 
@@ -517,7 +518,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/centos/" style="font-size: 0.7em;">centos</a> <a href="/tags/ceph/" style="font-size: 0.63em;">ceph</a> <a href="/tags/change-cloub/" style="font-size: 0.6em;">change-cloub</a> <a href="/tags/club/" style="font-size: 0.7em;">club</a> <a href="/tags/docker/" style="font-size: 0.73em;">docker</a> <a href="/tags/kubernetes/" style="font-size: 0.63em;">kubernetes</a> <a href="/tags/mysql/" style="font-size: 0.7em;">mysql</a> <a href="/tags/python/" style="font-size: 0.65em;">python</a> <a href="/tags/shell/" style="font-size: 0.68em;">shell</a> <a href="/tags/ubuntu/" style="font-size: 0.73em;">ubuntu</a> <a href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" style="font-size: 0.75em;">云原生监控</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 0.78em;">云计算</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" style="font-size: 0.8em;">常用软件</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" style="font-size: 0.8em;">环境部署</a> <a href="/tags/%E8%BF%81%E4%BA%91/" style="font-size: 0.6em;">迁云</a>
+        <a href="/tags/centos/" style="font-size: 0.69em;">centos</a> <a href="/tags/ceph/" style="font-size: 0.62em;">ceph</a> <a href="/tags/change-cloub/" style="font-size: 0.6em;">change-cloub</a> <a href="/tags/club/" style="font-size: 0.69em;">club</a> <a href="/tags/docker/" style="font-size: 0.71em;">docker</a> <a href="/tags/kubernetes/" style="font-size: 0.62em;">kubernetes</a> <a href="/tags/mysql/" style="font-size: 0.69em;">mysql</a> <a href="/tags/python/" style="font-size: 0.64em;">python</a> <a href="/tags/shell/" style="font-size: 0.67em;">shell</a> <a href="/tags/ubuntu/" style="font-size: 0.71em;">ubuntu</a> <a href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" style="font-size: 0.73em;">云原生监控</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 0.76em;">云计算</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" style="font-size: 0.78em;">常用软件</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" style="font-size: 0.8em;">环境部署</a> <a href="/tags/%E8%BF%81%E4%BA%91/" style="font-size: 0.6em;">迁云</a>
       </div>
   </aside>
 
