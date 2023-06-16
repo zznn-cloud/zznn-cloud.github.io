@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/thumb/zznnlogo.webp">
+  
+  <title>nginx-module-vts监控nginx | zznn</title>
+  
+  <meta name="author" content="zznn" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="云原生监控" />
+  
+  <meta name="description" content="通过with-http_stub_status_module或nginx-module-vts监控nginxhttps:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;7119751560900378637#heading-6 前言：nginx安装时推荐编译安装 一. nginx编译两模块  （with-http_stub_status_module监控的东西太少不推荐 ）nginx-module-vts下载链">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx-module-vts监控nginx">
+<meta property="og:url" content="https://gegewu12.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/index.html">
+<meta property="og:site_name" content="zznn">
+<meta property="og:description" content="通过with-http_stub_status_module或nginx-module-vts监控nginxhttps:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;7119751560900378637#heading-6 前言：nginx安装时推荐编译安装 一. nginx编译两模块  （with-http_stub_status_module监控的东西太少不推荐 ）nginx-module-vts下载链">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
+<meta property="article:published_time" content="2023-06-16T06:01:30.000Z">
+<meta property="article:modified_time" content="2023-06-16T06:15:21.920Z">
+<meta property="article:author" content="zznn">
+<meta property="article:tag" content="云原生监控">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li>
+                                            
+                                                <a href="/">
+                                            
+                                                
+                                                    <i class="fa fa-home"></i>
+                                                
+                                                首页
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="/archives/">
+                                            
+                                                
+                                                    <i class="fa fa-file"></i>
+                                                
+                                                档案馆
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="/friends/">
+                                            
+                                                
+                                                    <i class="fa fa-paw"></i>
+                                                
+                                                好伙伴
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a>
+                                            
+                                                
+                                                    <i class="fa fa-link"></i>
+                                                
+                                                链接
+                                            </a>
+                                            
+                                                <ul class="sub-menu">
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="http://gegewu12.gitee.io">
+                                                                
+                                                                作者博客
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a href="https://gegewu12.github.io/">
+                                                                
+                                                                GitHub博客
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">
+                                                                
+                                                                项目链接
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://fontawesome.com.cn/v4/icons">
+                                                                
+                                                                图标库
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://kr-demo.candinya.com/posts/Kratos-Rebirth-Manual/">
+                                                                
+                                                                Kratos-Rebirth
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://console-e1.leancloud.cn/login">
+                                                                
+                                                                leanCloud
+                                                            </a>
+                                                        </li>
+                                                    
+                                                </ul>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/search/">
+                                            
+                                                
+                                                    <i class="fa fa-search"></i>
+                                                
+                                                搜的一下
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/2023/05/23/留言板/">
+                                            
+                                                
+                                                    <i class="fa fa-paper-plane"></i>
+                                                
+                                                留言板
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/2023/05/22/关于/">
+                                            
+                                                
+                                                    <i class="fa fa-heart"></i>
+                                                
+                                                关于
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">zznn</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>zznn</h2> <br />
+                        <span>平芜尽处是春山.</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">nginx-module-vts监控nginx</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-06-16T06:01:30.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-06-16</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~4.98K
+                        
+                        字
+                    </li>
+                
+                
+                    <li id="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/" class="leancloud_visitors" data-flag-title="nginx-module-vts监控nginx">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1686896121920"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87with-http-stub-status-module%E6%88%96nginx-module-vts%E7%9B%91%E6%8E%A7nginx"><span class="toc-text">通过with-http_stub_status_module或nginx-module-vts监控nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-nginx%E7%BC%96%E8%AF%91%E4%B8%A4%E6%A8%A1%E5%9D%97-%EF%BC%88with-http-stub-status-module%E7%9B%91%E6%8E%A7%E7%9A%84%E4%B8%9C%E8%A5%BF%E5%A4%AA%E5%B0%91%E4%B8%8D%E6%8E%A8%E8%8D%90-%EF%BC%89"><span class="toc-text">一. nginx编译两模块  （with-http_stub_status_module监控的东西太少不推荐 ）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A6%96%E6%AC%A1%E5%AE%89%E8%A3%85nginx%E7%BC%96%E8%AF%91%EF%BC%88with-http-stub-status-module%E6%A8%A1%E5%9D%97%EF%BC%89"><span class="toc-text">1.首次安装nginx编译（with-http_stub_status_module模块）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-nginx-%E5%B7%B2%E5%AE%89%E8%A3%85%E4%BD%86%E6%98%AF%E6%B2%A1%E6%9C%89%E7%BC%96%E8%AF%91nginx-module-vts%E6%A8%A1%E5%9D%97%EF%BC%88%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8nginx-module-vts%E7%9B%91%E6%8E%A7nginx%EF%BC%89"><span class="toc-text">2.nginx 已安装但是没有编译nginx-module-vts模块（推荐使用nginx-module-vts监控nginx）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-docker-compose%E6%96%87%E4%BB%B6"><span class="toc-text">3. docker-compose文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E7%9B%91%E6%8E%A7nginx-with-http-stub-status-module%E6%A8%A1%E5%9D%97-%E7%9B%91%E6%8E%A7%E7%9A%84%E4%B8%9C%E8%A5%BF%E5%A4%AA%E5%B0%91%E4%B8%8D%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8"><span class="toc-text">二.  监控nginx with-http_stub_status_module模块 ( 监控的东西太少不建议使用 )</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BF%AE%E6%94%B9nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-server%E6%A8%A1%E5%9D%97%E9%83%A8%E5%88%86-usr-local-nginx-conf-nginx-conf"><span class="toc-text">1.修改nginx配置文件 server模块部分 (&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%AD%A4%E6%A8%A1%E5%9D%97%E5%8F%AF%E6%90%AD%E9%85%8Dnginx-prometheus-exporter-latest%E9%87%87%E9%9B%86%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="toc-text">2.此模块可搭配nginx-prometheus-exporter:latest采集插件使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%87%87%E7%94%A8nginx-prometheus-exporter%E9%87%87%E9%9B%86%E6%8F%92%E4%BB%B6prometheus-yml%E9%85%8D%E7%BD%AE"><span class="toc-text">3.采用nginx-prometheus-exporter采集插件prometheus.yml配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%87%87%E7%94%A8telegraf%E9%87%87%E9%9B%86%E6%8F%92%E4%BB%B6telegraf-conf%E9%85%8D%E7%BD%AE%EF%BC%88%E6%AD%A4%E5%A4%84%E9%9C%80%E8%A6%81%E5%86%99%E6%88%90%E5%AE%9E%E9%99%85IP%E4%B8%8D%E8%83%BD%E5%86%99%E4%B8%BAlocalhost%EF%BC%89"><span class="toc-text">4  采用telegraf采集插件telegraf.conf配置（此处需要写成实际IP不能写为localhost）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-nginx-module-vts%E6%A8%A1%E5%9D%97"><span class="toc-text">三 nginx-module-vts模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BF%AE%E6%94%B9nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-server%E6%A8%A1%E5%9D%97%E9%83%A8%E5%88%86-usr-local-nginx-conf-nginx-conf-1"><span class="toc-text">1.修改nginx配置文件 server模块部分 (&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-prometheus-yml%E9%85%8D%E7%BD%AE%E7%9B%91%E6%8E%A7"><span class="toc-text">2. prometheus.yml配置监控</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E9%AA%8C%E8%AF%81"><span class="toc-text">四. 验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-with-http-stub-status-module%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-text">1. with-http_stub_status_module验证：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-nginx-module-vts%E9%AA%8C%E8%AF%81-grafana-14900-9785-15205"><span class="toc-text">2. nginx-module-vts验证 (grafana 14900 9785 15205 )</span></a></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h2 id="通过with-http-stub-status-module或nginx-module-vts监控nginx"><a href="#通过with-http-stub-status-module或nginx-module-vts监控nginx" class="headerlink" title="通过with-http_stub_status_module或nginx-module-vts监控nginx"></a>通过<code>with-http_stub_status_module</code>或<code>nginx-module-vts</code>监控<code>nginx</code></h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7119751560900378637#heading-6">https://juejin.cn/post/7119751560900378637#heading-6</a></p>
+<p>前言：<code>nginx</code>安装时推荐编译安装</p>
+<h3 id="一-nginx编译两模块-（with-http-stub-status-module监控的东西太少不推荐-）"><a href="#一-nginx编译两模块-（with-http-stub-status-module监控的东西太少不推荐-）" class="headerlink" title="一. nginx编译两模块  （with-http_stub_status_module监控的东西太少不推荐 ）"></a>一. <code>nginx</code>编译两模块  （<code>with-http_stub_status_module</code>监控的东西太少不推荐 ）</h3><p><code>nginx-module-vts</code>下载链接：<br><a target="_blank" rel="noopener" href="https://codeload.github.com/vozlt/nginx-module-vts/tar.gz/v0.1.18">https://codeload.github.com/vozlt/nginx-module-vts/tar.gz/v0.1.18</a></p>
+<p>编译安装<code>nginx</code>：<br><a href="https://gegewu12.github.io/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2nginx/">https://gegewu12.github.io/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2nginx/</a></p>
+<h4 id="1-首次安装nginx编译（with-http-stub-status-module模块）"><a href="#1-首次安装nginx编译（with-http-stub-status-module模块）" class="headerlink" title="1.首次安装nginx编译（with-http_stub_status_module模块）"></a><code>1</code>.首次安装<code>nginx</code>编译（<code>with-http_stub_status_module</code>模块）</h4><p>查看是否已有模块</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看是否已编译</span></span><br><span class="line">./nginx -V 2&gt;&amp;1 | grep -o with-http_stub_status_module</span><br></pre></td></tr></table></figure>
+
+<p>编译安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/src/<span class="variable">$&#123;dir&#125;</span> &amp;&amp; ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_stub_status_module --with-http_realip_module --with-http_slice_module --with-stream</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-nginx-已安装但是没有编译nginx-module-vts模块（推荐使用nginx-module-vts监控nginx）"><a href="#2-nginx-已安装但是没有编译nginx-module-vts模块（推荐使用nginx-module-vts监控nginx）" class="headerlink" title="2.nginx 已安装但是没有编译nginx-module-vts模块（推荐使用nginx-module-vts监控nginx）"></a><code>2.nginx</code> 已安装但是没有编译<code>nginx-module-vts</code>模块（推荐使用<code>nginx-module-vts</code>监控<code>nginx</code>）</h4><p><code>nginx-module-vts</code>下载链接：<br><a target="_blank" rel="noopener" href="https://codeload.github.com/vozlt/nginx-module-vts/tar.gz/v0.1.18">https://codeload.github.com/vozlt/nginx-module-vts/tar.gz/v0.1.18</a></p>
+<p><code>nginx</code>下载链接：<br><a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.16.1.tar.gz">http://nginx.org/download/nginx-1.16.1.tar.gz</a></p>
+<p>如果是编译安装则直接将<code>vts</code>模块解压到<code>/usr/local/src/nginx-1.16.1</code>目录使用<code>--add-module=/usr/local/src/nginx-1.16.1/nginx-module-vts-0.1.18</code>指定编译模块</p>
+<p>如果是其他安装方式如<code>apt</code>则需要下载与<code>apt</code>安装方式相同版本<code>nginx</code>安装包  解压到<code>/usr/local/src/</code>目录再将<code>vts</code>模块解压到<code>/usr/local/src/nginx-1.16.1</code>目录使用<code>--add-module=/usr/local/src/nginx-1.16.1/nginx-module-vts-0.1.18</code>指定编译模块</p>
+<p>框内编译所有操作在<code>/usr/local/src/nginx-1.16.1</code>目录执行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载nginx压缩包</span></span><br><span class="line"><span class="built_in">cd</span> /usr/local/src/nginx-1.16.1</span><br><span class="line"><span class="comment"># 将压缩包解压到</span></span><br><span class="line">wget  https://codeload.github.com/vozlt/nginx-module-vts/tar.gz/v0.1.18</span><br><span class="line">tar xvf nginx-module-vts-0.1.18.tar.gz</span><br><span class="line"><span class="comment"># 查看已有模块</span></span><br><span class="line">root@gegewu:/usr/local/src/nginx-1.16.1<span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --with-http_ssl_module --with-http_stub_status_module --with-http_realip_module --with-http_slice_module --with-stream</span><br><span class="line"><span class="comment"># 复制nginx -V内容再将vts模块编译进去只make不install (否则会覆盖)</span></span><br><span class="line">./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_stub_status_module --with-http_realip_module --with-http_slice_module --with-stream --add-module=/usr/local/src/nginx-1.16.1/nginx-module-vts-0.1.18 &amp;&amp; make</span><br><span class="line"><span class="comment"># 停止nginx</span></span><br><span class="line">systemctl stop nginx</span><br><span class="line"><span class="comment"># 此时编译完成替换新编译的nginx二进制文件</span></span><br><span class="line"><span class="built_in">cp</span> /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak</span><br><span class="line"><span class="built_in">cp</span> ./objs/nginx /usr/local/nginx/sbin/       （objs在nginx压缩包机解压目录）</span><br><span class="line"><span class="comment"># 重启 / 重新加载配置</span></span><br><span class="line">systemctl  restart nginx</span><br><span class="line">/usr/local/nginx/sbin/nginx -s reload</span><br><span class="line"><span class="comment"># nginx -V 查看VTS模块是否添加成功</span></span><br><span class="line">root@gegewu:/usr/local/src/nginx-1.16.1/objs<span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/1.16.1</span><br><span class="line">built by gcc 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.1) </span><br><span class="line">built with OpenSSL 1.1.1f  31 Mar 2020</span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --with-http_ssl_module --with-http_stub_status_module --with-http_realip_module --with-http_slice_module --with-stream --add-module=/usr/local/src/nginx-1.16.1/nginx-module-vts-0.1.18</span><br></pre></td></tr></table></figure>
+
+<p>此时编译成功！</p>
+<p><img src="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/image-20230615155432702-168689560315110.png" alt="image-20230615155432702"></p>
+<p><code>make</code>完成截图</p>
+<p><img src="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/image-20230615160200983-168689560315111.png" alt="image-20230615160200983"></p>
+<h4 id="3-docker-compose文件"><a href="#3-docker-compose文件" class="headerlink" title="3. docker-compose文件"></a><code>3. docker-compose</code>文件</h4><p><a href="https://gegewu12.github.io/2023/05/25/telegraf%E9%87%87%E9%9B%86%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6/">https://gegewu12.github.io/2023/05/25/telegraf%E9%87%87%E9%9B%86%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6/</a></p>
+<h3 id="二-监控nginx-with-http-stub-status-module模块-监控的东西太少不建议使用"><a href="#二-监控nginx-with-http-stub-status-module模块-监控的东西太少不建议使用" class="headerlink" title="二.  监控nginx with-http_stub_status_module模块 ( 监控的东西太少不建议使用 )"></a>二.  监控<code>nginx with-http_stub_status_module</code>模块 ( 监控的东西太少不建议使用 )</h3><h4 id="1-修改nginx配置文件-server模块部分-usr-local-nginx-conf-nginx-conf"><a href="#1-修改nginx配置文件-server模块部分-usr-local-nginx-conf-nginx-conf" class="headerlink" title="1.修改nginx配置文件 server模块部分 (/usr/local/nginx/conf/nginx.conf)"></a><code>1.</code>修改<code>nginx</code>配置文件 <code>server</code>模块部分 (<code>/usr/local/nginx/conf/nginx.conf</code>)</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改nginx配置文件 server模块部分</span></span><br><span class="line"><span class="comment"># nginx with-http_stub_status_module 模块</span></span><br><span class="line">location ~ /nginx_status &#123;stub_status on;access_log off;allow all;deny all;&#125;</span><br><span class="line">或</span><br><span class="line">        location /nginx_status &#123;</span><br><span class="line">            allow 127.0.0.1;</span><br><span class="line">            deny all;</span><br><span class="line">            stub_status on;</span><br><span class="line">            access_log off;</span><br><span class="line">        &#125;</span><br><span class="line">注：如果 需要windows访问还需要 放通windows的IP段</span><br><span class="line">如下：VTS模块参考</span><br><span class="line">        <span class="comment"># nginx-module-vts模块</span></span><br><span class="line">        location /status &#123;</span><br><span class="line">            allow 127.0.0.1;</span><br><span class="line">            allow windows-ip/24;</span><br><span class="line">            deny all;</span><br><span class="line">            vhost_traffic_status_display;</span><br><span class="line">            vhost_traffic_status_display_format html;</span><br><span class="line">            access_log off;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-此模块可搭配nginx-prometheus-exporter-latest采集插件使用"><a href="#2-此模块可搭配nginx-prometheus-exporter-latest采集插件使用" class="headerlink" title="2.此模块可搭配nginx-prometheus-exporter:latest采集插件使用"></a><code>2.</code>此模块可搭配<code>nginx-prometheus-exporter:latest</code>采集插件使用</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker run构建监控插件容器</span></span><br><span class="line">docker run -d --restart always -p 9113:9113 nginx/nginx-prometheus-exporter:latest -nginx.scrape-uri http://10.0.0.10/nginx_status</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-采用nginx-prometheus-exporter采集插件prometheus-yml配置"><a href="#3-采用nginx-prometheus-exporter采集插件prometheus-yml配置" class="headerlink" title="3.采用nginx-prometheus-exporter采集插件prometheus.yml配置"></a><code>3.</code>采用<code>nginx-prometheus-exporter</code>采集插件<code>prometheus.yml</code>配置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># prometheus配置</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">job_name:</span> <span class="string">&#x27;nginx-prometheus-exporter&#x27;</span></span><br><span class="line">  <span class="attr">scrape_interval:</span> <span class="string">10s</span></span><br><span class="line">  <span class="attr">static_configs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">targets:</span> [<span class="string">&#x27;10.0.0.10:9113&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-采用telegraf采集插件telegraf-conf配置（此处需要写成实际IP不能写为localhost）"><a href="#4-采用telegraf采集插件telegraf-conf配置（此处需要写成实际IP不能写为localhost）" class="headerlink" title="4  采用telegraf采集插件telegraf.conf配置（此处需要写成实际IP不能写为localhost）"></a><code>4</code>  采用<code>telegraf</code>采集插件<code>telegraf.conf</code>配置（此处需要写成实际<code>IP</code>不能写为<code>localhost</code>）</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="string">inputs.nginx</span>]]</span><br><span class="line"><span class="comment">## An array of Nginx stub_status URI to gather stats.</span></span><br><span class="line"><span class="string">urls</span> <span class="string">=</span> [<span class="string">&quot;http://10.0.0.10/nginx_status&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>注：此处<code>telegraf nginx-prometheus-exporter</code>选其一</p>
+<h3 id="三-nginx-module-vts模块"><a href="#三-nginx-module-vts模块" class="headerlink" title="三 nginx-module-vts模块"></a>三 <code>nginx-module-vts</code>模块</h3><h3 id="1-修改nginx配置文件-server模块部分-usr-local-nginx-conf-nginx-conf-1"><a href="#1-修改nginx配置文件-server模块部分-usr-local-nginx-conf-nginx-conf-1" class="headerlink" title="1.修改nginx配置文件 server模块部分 (/usr/local/nginx/conf/nginx.conf)"></a><code>1.</code>修改<code>nginx</code>配置文件 <code>server</code>模块部分 (<code>/usr/local/nginx/conf/nginx.conf</code>)</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># http模块添加</span></span><br><span class="line"><span class="comment"># 在keepalive_timeout  65;下面添加vhost_traffic_status_zone;</span></span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line">    vhost_traffic_status_zone;</span><br><span class="line"><span class="comment"># server模块添加：</span></span><br><span class="line">        location /status &#123;</span><br><span class="line">            allow 127.0.0.1;</span><br><span class="line">            <span class="comment">#deny all;</span></span><br><span class="line">            vhost_traffic_status_display;</span><br><span class="line">            vhost_traffic_status_display_format html;</span><br><span class="line">            access_log off;   </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-prometheus-yml配置监控"><a href="#2-prometheus-yml配置监控" class="headerlink" title="2. prometheus.yml配置监控"></a><code>2. prometheus.yml</code>配置监控</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nginx 监控</span></span><br><span class="line">- job_name: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">  metrics_path: /status/format/prometheus</span><br><span class="line">  static_configs:</span><br><span class="line">  - targets: [<span class="string">&#x27;10.0.0.10:80&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="四-验证"><a href="#四-验证" class="headerlink" title="四. 验证"></a>四. 验证</h3><h4 id="1-with-http-stub-status-module验证："><a href="#1-with-http-stub-status-module验证：" class="headerlink" title="1. with-http_stub_status_module验证："></a><code>1. with-http_stub_status_module</code>验证：</h4><p><img src="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/image-20230615152036398-168689560315212.png" alt="image-20230615152036398"></p>
+<p><img src="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/image-20230615153735318-168689560315213.png" alt="image-20230615153735318"></p>
+<p><img src="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/image-20230616104058752-168689560315314.png" alt="image-20230616104058752"></p>
+<p><img src="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/image-20230615154413627-168689560315315.png" alt="image-20230615154413627"></p>
+<h3 id="2-nginx-module-vts验证-grafana-14900-9785-15205"><a href="#2-nginx-module-vts验证-grafana-14900-9785-15205" class="headerlink" title="2. nginx-module-vts验证 (grafana 14900 9785 15205 )"></a><code>2. nginx-module-vts</code>验证 (<code>grafana 14900 9785 15205 </code>)</h3><p><code>http://10.0.0.10/status</code></p>
+<p><img src="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/image-20230615162814085-168689560315316.png" alt="image-20230615162814085"></p>
+<p><img src="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/image-20230615163110095-168689560315317.png" alt="image-20230615163110095"></p>
+<p><img src="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/image-20230615164454191-168689560315418.png" alt="image-20230615164454191"></p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://gegewu12.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://gegewu12.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/";
+            const title         = "「nginx-module-vts监控nginx」";
+            const excerpt       = `通过with-http_stub_status_module或nginx-module-vts监控nginxhttps://juejin.cn/post/7119751560900378637#heading-6
+前言：nginx安装...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-06-16T06:15:21.920Z" itemprop="dateModified">最后编辑：2023-06-16</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" mysql_exporter监控mysql(含监控nginx redis linux mysql)" href="/2023/06/14/mysql-exporter监控mysql/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" redis-expoter监控redis" href="/2023/06/16/redis-expoter监控redis/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'j2rHZR7PYdL07dtteIjU2I6p-9Nh9j0Va',
+                appKey: 'QGQtOyQ3KRl2gUnQAESqz6Nc',
+                visitor: true,
+                enableQQ: true,
+                path: '/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/'
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                70
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                14
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                15
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87with-http-stub-status-module%E6%88%96nginx-module-vts%E7%9B%91%E6%8E%A7nginx"><span class="toc-text">通过with-http_stub_status_module或nginx-module-vts监控nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-nginx%E7%BC%96%E8%AF%91%E4%B8%A4%E6%A8%A1%E5%9D%97-%EF%BC%88with-http-stub-status-module%E7%9B%91%E6%8E%A7%E7%9A%84%E4%B8%9C%E8%A5%BF%E5%A4%AA%E5%B0%91%E4%B8%8D%E6%8E%A8%E8%8D%90-%EF%BC%89"><span class="toc-text">一. nginx编译两模块  （with-http_stub_status_module监控的东西太少不推荐 ）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A6%96%E6%AC%A1%E5%AE%89%E8%A3%85nginx%E7%BC%96%E8%AF%91%EF%BC%88with-http-stub-status-module%E6%A8%A1%E5%9D%97%EF%BC%89"><span class="toc-text">1.首次安装nginx编译（with-http_stub_status_module模块）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-nginx-%E5%B7%B2%E5%AE%89%E8%A3%85%E4%BD%86%E6%98%AF%E6%B2%A1%E6%9C%89%E7%BC%96%E8%AF%91nginx-module-vts%E6%A8%A1%E5%9D%97%EF%BC%88%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8nginx-module-vts%E7%9B%91%E6%8E%A7nginx%EF%BC%89"><span class="toc-text">2.nginx 已安装但是没有编译nginx-module-vts模块（推荐使用nginx-module-vts监控nginx）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-docker-compose%E6%96%87%E4%BB%B6"><span class="toc-text">3. docker-compose文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E7%9B%91%E6%8E%A7nginx-with-http-stub-status-module%E6%A8%A1%E5%9D%97-%E7%9B%91%E6%8E%A7%E7%9A%84%E4%B8%9C%E8%A5%BF%E5%A4%AA%E5%B0%91%E4%B8%8D%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8"><span class="toc-text">二.  监控nginx with-http_stub_status_module模块 ( 监控的东西太少不建议使用 )</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BF%AE%E6%94%B9nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-server%E6%A8%A1%E5%9D%97%E9%83%A8%E5%88%86-usr-local-nginx-conf-nginx-conf"><span class="toc-text">1.修改nginx配置文件 server模块部分 (&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%AD%A4%E6%A8%A1%E5%9D%97%E5%8F%AF%E6%90%AD%E9%85%8Dnginx-prometheus-exporter-latest%E9%87%87%E9%9B%86%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="toc-text">2.此模块可搭配nginx-prometheus-exporter:latest采集插件使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%87%87%E7%94%A8nginx-prometheus-exporter%E9%87%87%E9%9B%86%E6%8F%92%E4%BB%B6prometheus-yml%E9%85%8D%E7%BD%AE"><span class="toc-text">3.采用nginx-prometheus-exporter采集插件prometheus.yml配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%87%87%E7%94%A8telegraf%E9%87%87%E9%9B%86%E6%8F%92%E4%BB%B6telegraf-conf%E9%85%8D%E7%BD%AE%EF%BC%88%E6%AD%A4%E5%A4%84%E9%9C%80%E8%A6%81%E5%86%99%E6%88%90%E5%AE%9E%E9%99%85IP%E4%B8%8D%E8%83%BD%E5%86%99%E4%B8%BAlocalhost%EF%BC%89"><span class="toc-text">4  采用telegraf采集插件telegraf.conf配置（此处需要写成实际IP不能写为localhost）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-nginx-module-vts%E6%A8%A1%E5%9D%97"><span class="toc-text">三 nginx-module-vts模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BF%AE%E6%94%B9nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-server%E6%A8%A1%E5%9D%97%E9%83%A8%E5%88%86-usr-local-nginx-conf-nginx-conf-1"><span class="toc-text">1.修改nginx配置文件 server模块部分 (&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-prometheus-yml%E9%85%8D%E7%BD%AE%E7%9B%91%E6%8E%A7"><span class="toc-text">2. prometheus.yml配置监控</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E9%AA%8C%E8%AF%81"><span class="toc-text">四. 验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-with-http-stub-status-module%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-text">1. with-http_stub_status_module验证：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-nginx-module-vts%E9%AA%8C%E8%AF%81-grafana-14900-9785-15205"><span class="toc-text">2. nginx-module-vts验证 (grafana 14900 9785 15205 )</span></a></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ceph/">ceph</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/kubernetes/">kubernetes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/centos/" style="font-size: 0.66em;">centos</a> <a href="/tags/ceph/" style="font-size: 0.6em;">ceph</a> <a href="/tags/club/" style="font-size: 0.66em;">club</a> <a href="/tags/docker/" style="font-size: 0.68em;">docker</a> <a href="/tags/kubernetes/" style="font-size: 0.6em;">kubernetes</a> <a href="/tags/mysql/" style="font-size: 0.66em;">mysql</a> <a href="/tags/python/" style="font-size: 0.62em;">python</a> <a href="/tags/shell/" style="font-size: 0.64em;">shell</a> <a href="/tags/ubuntu/" style="font-size: 0.7em;">ubuntu</a> <a href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" style="font-size: 0.74em;">云原生监控</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 0.72em;">云计算</a> <a href="/tags/%E5%8A%A0%E5%AF%86%E5%8D%9A%E5%AE%A2/" style="font-size: 0.76em;">加密博客</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" style="font-size: 0.78em;">常用软件</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" style="font-size: 0.8em;">环境部署</a> <a href="/tags/%E8%BF%81%E4%BA%91/" style="font-size: 0.6em;">迁云</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/16/redis-expoter%E7%9B%91%E6%8E%A7redis/"><i class="fa  fa-book"></i> redis-expoter监控redis</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/"><i class="fa  fa-book"></i> nginx-module-vts监控nginx</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/14/mysql-exporter%E7%9B%91%E6%8E%A7mysql/"><i class="fa  fa-book"></i> mysql_exporter监控mysql(含监控nginx redis linux mysql)</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/14/telegraf%E7%9B%91%E6%8E%A7mysql/"><i class="fa  fa-book"></i> telegraf监控mysql</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/12/node-exporter%E7%9B%91%E6%8E%A7linux/"><i class="fa  fa-book"></i> node_exporter监控linux</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 zznn 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by zznn.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="tencent"
+        type="playlist"
+        id="8926738453"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
