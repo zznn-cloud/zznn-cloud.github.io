@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/thumb/zznnlogo.webp">
+  
+  <title>grub rescue救援模式的处理 | zznn</title>
+  
+  <meta name="author" content="zznn" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="centos, ceph, club, docker, kubernetes, mysql, python, shell, ubuntu, 云原生监控, 云计算, 加密博客, 常用软件, 环境部署, 迁云" />
+  
+  <meta name="description" content="加密博客，需要密码才能继续阅读。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="grub rescue救援模式的处理">
+<meta property="og:url" content="https://gegewu12.github.io/2023/06/18/grub-rescue%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="zznn">
+<meta property="og:description" content="加密博客，需要密码才能继续阅读。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
+<meta property="article:published_time" content="2023-06-18T09:06:52.000Z">
+<meta property="article:modified_time" content="2023-06-18T09:25:01.860Z">
+<meta property="article:author" content="zznn">
+<meta property="article:tag" content="云原生监控">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="云计算">
+<meta property="article:tag" content="club">
+<meta property="article:tag" content="centos">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="常用软件">
+<meta property="article:tag" content="环境部署">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="shell">
+<meta property="article:tag" content="迁云">
+<meta property="article:tag" content="ceph">
+<meta property="article:tag" content="kubernetes">
+<meta property="article:tag" content="加密博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li>
+                                            
+                                                <a href="/">
+                                            
+                                                
+                                                    <i class="fa fa-home"></i>
+                                                
+                                                首页
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="/archives/">
+                                            
+                                                
+                                                    <i class="fa fa-file"></i>
+                                                
+                                                档案馆
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="/friends/">
+                                            
+                                                
+                                                    <i class="fa fa-paw"></i>
+                                                
+                                                好伙伴
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a>
+                                            
+                                                
+                                                    <i class="fa fa-link"></i>
+                                                
+                                                链接
+                                            </a>
+                                            
+                                                <ul class="sub-menu">
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="http://gegewu12.gitee.io">
+                                                                
+                                                                作者博客
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a href="https://gegewu12.github.io/">
+                                                                
+                                                                GitHub博客
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">
+                                                                
+                                                                项目链接
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://fontawesome.com.cn/v4/icons">
+                                                                
+                                                                图标库
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://kr-demo.candinya.com/posts/Kratos-Rebirth-Manual/">
+                                                                
+                                                                Kratos-Rebirth
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://console-e1.leancloud.cn/login">
+                                                                
+                                                                leanCloud
+                                                            </a>
+                                                        </li>
+                                                    
+                                                </ul>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/search/">
+                                            
+                                                
+                                                    <i class="fa fa-search"></i>
+                                                
+                                                搜的一下
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/2023/05/23/留言板/">
+                                            
+                                                
+                                                    <i class="fa fa-paper-plane"></i>
+                                                
+                                                留言板
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/2023/05/22/关于/">
+                                            
+                                                
+                                                    <i class="fa fa-heart"></i>
+                                                
+                                                关于
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">zznn</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>zznn</h2> <br />
+                        <span>平芜尽处是春山.</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/06/18/grub-rescue%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">grub rescue救援模式的处理</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-06-18T09:06:52.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-06-18</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~5.75K
+                        
+                        字
+                    </li>
+                
+                
+                    <li id="/2023/06/18/grub-rescue%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86/" class="leancloud_visitors" data-flag-title="grub rescue救援模式的处理">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1687080301860"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" style="display:none!important" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#grub-rescue%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">grub rescue救援模式的处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E5%9C%BA%E6%99%AF%E8%BF%98%E5%8E%9F"><span class="toc-text">一. 场景还原</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E6%89%8B%E5%8A%A8%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95"><span class="toc-text">二. 手动启动过程记录</span></a></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh,这是一个无效的密码。请检查并重试。" data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="e74b857682f33dfe37f09c5b7df7a37cbe3d59c480909bc557518210e8932c39">1691fc89efc86d3c56803af99dd145e6fbcaa11535983e04abc83ecee4a376587964c0df4c1e1dc2f168b460e77ca614facc9ee3d9a878fcf013718697c5f65069a21b43e9e0fb9927bdee9250cb979cc31ba05f1aefc81ee22a2e71e0977b25feb530b68eebd8f6c4f7ecde9ecdd13f4f1be28223929c24b90e19f5f289eec7fb254b2bff2609a493a04cdd58f6f1545996c47d5171e9ee3f51c70c52da68bb748aeb0b861f9621eb6d6f1c4122148758bc49438a5d03ca33e06d86bad5dc2d029497616e65a7fd75412bce14b1f7620bcec3fef7a4ed68c06cd70d73b3c3715e9a800a39de532bee011f9871b40892f20161dd4fef7970a29bbc53cdb80d5f93b3a5860f3ff01cda7e22fe51167f0270aac119f5b3c307277212f6a63e8b8c7aec9532d232c0d0c9b0f4c469a8e1a226d3df30ea196d3466e9273bc2a4e217f063d9353a7a8487d9934f4febf5351ef47c966c4282c8cbba9fcea64e21fd425a18bfff953f6c3a9ae11414adc712645db708b746c06fc19fbb1cd91820b5f6555aba542973f73f876d5a22d6e2bc4dffbbac8f40541ed98cbc30270bb036ba84ff6902cc891f655c76ad2f024c887883ec1afabbd00480dc9d6abf92b356f52e3566b35c0e82eb28338601b9490eb9417be1c5a818d659e6c13fb5fa96c38642dbdc094f85bc3f74f5853428c14fc44e70a8038a316e85e6024b1e54449204387ebbb097f0c4bff0a936eb2006e84dd5e61253689506a9ad42b5890c7b5267a8e36699ff29597cf4d62bd74175845c26e414e9e6616359d93563f7eaf0ca990088339e2500d7e79beea0cfbc705074b2c9492f5a929a14fa9f6e8d07b80880f429e2d4c0204d0a450c2ad38d065ec52a10579d0f672cdd65f2974d2d200d22ce55120c5d3fac053a00642737d27f1f66cf566702545966a1a0dbec485b32a6cf254847a96054deaa9576b9493379725d20a293847655ff1aa71d1aeb0cfd39f4cfc598d4945ea6be83f16eb5f711793d6778598650f2bcdd78145ddf91ec1607f6a8e1e038c0050d5ccb62c20832216ca98e844d09aa5bae8e484f5d0e4e979cd483f6bb19845a39e28c19cd7929c2136eb65f6e8a006fc86fc3c99c4d1ce0ce73bd97d52571fc0d54cf5222ecc99b138e2b6a3858bbca16d896bd3a68bb05939cb2e8599ceff5720cd679af122530151b1b5c248fbb85a10d6500243c24915e97be7bee2bd263830dae847597422be0aeb38cbd15691c0d6beb614a8b1de601de970a891d762a3e3893fa9b9db0be508d44746e4c8d290d921cab3be1e3fc2c04e002714dd336b01ca1c9092728b783758a2e3edc2937b7ba3d970881208b3fb9b0f199d332a1dce320973ac5054825627869c4c4aa9ca5e1d0e5d7919f82201e2da9dc078e5db2f2ccb562dcc9bcbb30c7a2dc08fe2b5bc5ace3b0eeac4705152fcc2cb49d8dba05d0490c7311bed7636771c67a99544905992787210f6d58d0025db7e9c0cf761ce173d34b00b3b09ce81a6cae447c60d90006820df9c00124f1547119044c1d397474b8679bae68a5ba1e7320f5c1fe5a5919e2af6c792d8f790e5d819c4c223e0e30c55b22888d40d2d90c16f5752cb6a82017fa14ed67d967df007c958494990a7747725c886d83ed74722c9e8a4f8f0c2f25f4602e0bd71355f1ec3c3b744286e19d8da662829f31f6be561d8e8eed4857effac8a4dc31d292ebadc4a4971996b6e5eeb459723535fb49df57aa6db66ec1b12dcfc994314d61067857e63f209cf3fd55af534fe96d60522f003693bb57e9f8d442c07bdd71a24f40e36d6f34e3bf517291788d46684c57aee51bfad3abc21121d18847d8c4e99489dcacf69fa7921adfacb0d6c8f7976b71d1164b1221e8aca6a5afbc5c7ed02c6773391dacddcddf465c3ae8d269247420fb3ac9ec15beff541613b18df2e0f8b2a56df0e7bda5106ab227386ebe3ba5457a5041534b12d367fe85391a3fa0e3dead6679e9cd3889f24c3edaa4a4fbd794f3ac14c269fa8f0f68c76b86c3cf08bd2282a3908ac8d7b5276c666ce4bba0edae395a7763dedf846d75b7659ce6b8fb2d790e97c1de8f31c06c7dd9465131058ece24852a92f1f934790c11b78920108a6c0f027f9cfa9500cf8dc80596df4383fcbe80afeb7e868f23b85d1e64fc7744c6321583f3bbca385ddacec5f09637029af38c8eb56beb5cc8dd4c57c9ae7bd3adeb1b397fb5a43f612fa42eb7a8f2b02eef4648ce19549dfec5311420111b3160235ba5aa1c7c27660f7b495eeec128f6459133f830849afa3dbad3a832e8058fa166caabeb13617232c51583956df307b49baa5fbf5977dac18f0ae1d4da4030595fbfa43fb51de72f1fbc206d495102107ba807ca233c65689f931d56f4f55e7bbbab6be0dcbb2f4759749f01b305702aa53eb1b7573424e0ad8cf339c523e465413bc7205e566b0c6249c8891e75d11b0fd9882a6fedd2b23e659ceb4dfe48000c07353f8e65e9535b8cc2546647a7ea37ccb6d2c2ab80957461691db18d1d7d938530de53a6853456aa0733d032ba8fd2cfa4cd33092601ca15ffc8dcd06b8cd693d11aec932e66e36d14ba9e11f1b0146c1925f95ae5a8d29e3809754cca63bc7c8b39d81f6b6a07ff07c5f2a1de2b78a9dd287d93e225432bc0ebf41a98809ca83574a40ab4e286fb61352b131eb94fde70de975a33a65fdf4d38c7ead5936402cfe82300040aabb2c0c7eea52becac134e97455e82f66e656eb3583733b45a4066c5d23f133baf14539c3e54b89e63ca30e0916c4b47cbbf90d161e3d8461ef9a733cc96e6ce832313ddc724e189b4401b3a0abbdc32210d4ee4ccab52b65777819ea1ae19499f484952fe7e51bdf55daf6671fc6bf6e02318ddce2343deae2e432a636960919e3beb466333b63df70dd7cca9b59e6a61f345ca338f10dc896e847a01f48ba9e342eb08e3f3b4b8ef74c223de5851059967dfb47a835f7c0da55e17c4350617101c70d5e8dcef5eceaa01b8204cbebffc3eefda205620358ee925d3ff55b6c038a568f4075d2baa04d21c58ff5ccacb4fb2eedb77581121932ebc8bf37ba4a4a7e56838e0c29703a82522c6276b02c24b248bf869058c525d26ad8031980fc427664946db172ba573b0b98a8babeb403ee4f5e870cbef57d767ba0c358e5e99256319604b3e96120b1ba0395c7dcf71c65b0f12e0fbd86772b6941d93a6f817e0743e7940cefee135e1972d2e0635130af7bda9be7ddc84eb25ef647830133852cda30aee704a60f618d459938e9350ae3bffe00b3c9c6a9fe13be9055f82d4e8857da528770334d997c480a283c326a08316cf42f41d9a0d086ba81f1c1e2cd0604d13e359911c9242e6e95bc24269de5bb749765ce6515d040d8bcd32fca85f67b28b6cee727400d0ca7b2417380608bb6caf185499f104942b42b5b7db0ae25ab1a23d3edcfe82bb56984f5bbe32371d7f807c132236f344a6d8c4ab3c9935f89012c5ed391c9345144d6905752754133ee5e4c7b0a95e1d7ba05f8b9e5d5d07cc8673286a4c2f165a24eb4d8c466e46c1af3dbcf817006cd91e724418f29c7c3530a1828137a7755e7cf6a79186bff98747b853a5c8600497f19cb9a7a3e7122b30d119274e89826e7c78c0dec4a303cdda57a0da4f1e07ee88f4e6f836f4b1d64ce55d29bc7e093041b7f5898cd7ec8baa0bbf3cb8bbda46fbac453b9e718d79889cbb08a4945718f5fdd8bd65431c030ebc970c794b2842e915760d8a6b2737de565492376ccf6a8fb2f211e1c7137e2d111dff19bb08ee504799db5d31d4d2f69dfc1de90f5566c59246c15ace35b881ba7f9f3ffb74d082b19e9960af302e7cd399e87c75b622fc675ade6beb1107918223da305bf1445d40ce2e55aebad8a8d8b79ff2c6856819b304485add3161ac44719d159499bc2dcd10cd263014a1abd36935bdba2707da59b41c717bce788c54f03c67ad864cf9cb6d6bd15543d17d8d9eaf2aa3c43b9ae7eef9</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入访问密码</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css"></div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://gegewu12.github.io/2023/06/18/grub-rescue%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://gegewu12.github.io/2023/06/18/grub-rescue%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86/";
+            const title         = "「grub rescue救援模式的处理」";
+            const excerpt       = `加密博客，需要密码才能继续阅读。`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/centos/" rel="tag">centos</a>, <a class="tag-none-link" href="/tags/ceph/" rel="tag">ceph</a>, <a class="tag-none-link" href="/tags/club/" rel="tag">club</a>, <a class="tag-none-link" href="/tags/docker/" rel="tag">docker</a>, <a class="tag-none-link" href="/tags/kubernetes/" rel="tag">kubernetes</a>, <a class="tag-none-link" href="/tags/mysql/" rel="tag">mysql</a>, <a class="tag-none-link" href="/tags/python/" rel="tag">python</a>, <a class="tag-none-link" href="/tags/shell/" rel="tag">shell</a>, <a class="tag-none-link" href="/tags/ubuntu/" rel="tag">ubuntu</a>, <a class="tag-none-link" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" rel="tag">云原生监控</a>, <a class="tag-none-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a>, <a class="tag-none-link" href="/tags/%E5%8A%A0%E5%AF%86%E5%8D%9A%E5%AE%A2/" rel="tag">加密博客</a>, <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>, <a class="tag-none-link" href="/tags/%E8%BF%81%E4%BA%91/" rel="tag">迁云</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-06-18T09:25:01.860Z" itemprop="dateModified">最后编辑：2023-06-18</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" redis-expoter监控redis" href="/2023/06/16/redis-expoter监控redis/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'j2rHZR7PYdL07dtteIjU2I6p-9Nh9j0Va',
+                appKey: 'QGQtOyQ3KRl2gUnQAESqz6Nc',
+                visitor: true,
+                enableQQ: true,
+                path: '/2023/06/18/grub-rescue%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86/'
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                71
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                15
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                15
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" style="display:none!important" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#grub-rescue%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">grub rescue救援模式的处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E5%9C%BA%E6%99%AF%E8%BF%98%E5%8E%9F"><span class="toc-text">一. 场景还原</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E6%89%8B%E5%8A%A8%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95"><span class="toc-text">二. 手动启动过程记录</span></a></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ceph/">ceph</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/default/">default</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/kubernetes/">kubernetes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/centos/" style="font-size: 0.66em;">centos</a> <a href="/tags/ceph/" style="font-size: 0.6em;">ceph</a> <a href="/tags/club/" style="font-size: 0.66em;">club</a> <a href="/tags/docker/" style="font-size: 0.68em;">docker</a> <a href="/tags/kubernetes/" style="font-size: 0.6em;">kubernetes</a> <a href="/tags/mysql/" style="font-size: 0.66em;">mysql</a> <a href="/tags/python/" style="font-size: 0.62em;">python</a> <a href="/tags/shell/" style="font-size: 0.64em;">shell</a> <a href="/tags/ubuntu/" style="font-size: 0.7em;">ubuntu</a> <a href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" style="font-size: 0.74em;">云原生监控</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 0.72em;">云计算</a> <a href="/tags/%E5%8A%A0%E5%AF%86%E5%8D%9A%E5%AE%A2/" style="font-size: 0.76em;">加密博客</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" style="font-size: 0.78em;">常用软件</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" style="font-size: 0.8em;">环境部署</a> <a href="/tags/%E8%BF%81%E4%BA%91/" style="font-size: 0.6em;">迁云</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/18/grub-rescue%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86/"><i class="fa  fa-book"></i> grub rescue救援模式的处理</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/16/redis-expoter%E7%9B%91%E6%8E%A7redis/"><i class="fa  fa-book"></i> redis-expoter监控redis</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/"><i class="fa  fa-book"></i> nginx-module-vts监控nginx</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/14/mysql-exporter%E7%9B%91%E6%8E%A7mysql/"><i class="fa  fa-book"></i> mysql_exporter监控mysql(含监控nginx redis linux mysql)</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/14/telegraf%E7%9B%91%E6%8E%A7mysql/"><i class="fa  fa-book"></i> telegraf监控mysql</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 zznn 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by zznn.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="tencent"
+        type="playlist"
+        id="8926738453"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
