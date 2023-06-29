@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/thumb/zznnlogo.webp">
+  
+  <title>FastGithub实现快速访问github | ZZNN GEGEWU</title>
+  
+  <meta name="author" content="zznn" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="常用软件, 环境部署" />
+  
+  <meta name="description" content="FastGithub实现快速访问github参考： https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;WmIvJxp-KEQUvHbxjKSZfg 软件下载链接： https:&#x2F;&#x2F;wwd.lanzout.com&#x2F;b04q38qve 密码: 2rmv 或见GEGEWU网盘         一. 项目地址gitee: https:&#x2F;&#x2F;gitee.com&#x2F;mirrors&#x2F;fastgithubgith">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FastGithub实现快速访问github">
+<meta property="og:url" content="https://gegewu12.github.io/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/index.html">
+<meta property="og:site_name" content="ZZNN GEGEWU">
+<meta property="og:description" content="FastGithub实现快速访问github参考： https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;WmIvJxp-KEQUvHbxjKSZfg 软件下载链接： https:&#x2F;&#x2F;wwd.lanzout.com&#x2F;b04q38qve 密码: 2rmv 或见GEGEWU网盘         一. 项目地址gitee: https:&#x2F;&#x2F;gitee.com&#x2F;mirrors&#x2F;fastgithubgith">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
+<meta property="article:published_time" content="2023-06-29T10:22:23.000Z">
+<meta property="article:modified_time" content="2023-06-29T10:23:25.655Z">
+<meta property="article:author" content="zznn">
+<meta property="article:tag" content="常用软件">
+<meta property="article:tag" content="环境部署">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li>
+                                            
+                                                <a href="/">
+                                            
+                                                
+                                                    <i class="fa fa-home"></i>
+                                                
+                                                首页
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="/archives/">
+                                            
+                                                
+                                                    <i class="fa fa-file"></i>
+                                                
+                                                档案馆
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="/friends/">
+                                            
+                                                
+                                                    <i class="fa fa-paw"></i>
+                                                
+                                                好伙伴
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a>
+                                            
+                                                
+                                                    <i class="fa fa-link"></i>
+                                                
+                                                链接
+                                            </a>
+                                            
+                                                <ul class="sub-menu">
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="http://gegewu12.gitee.io">
+                                                                
+                                                                作者博客
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a href="https://gegewu12.github.io/">
+                                                                
+                                                                GitHub博客
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">
+                                                                
+                                                                项目链接
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://fontawesome.com.cn/v4/icons">
+                                                                
+                                                                图标库
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://kr-demo.candinya.com/posts/Kratos-Rebirth-Manual/">
+                                                                
+                                                                Kratos-Rebirth
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://console-e1.leancloud.cn/login">
+                                                                
+                                                                leanCloud
+                                                            </a>
+                                                        </li>
+                                                    
+                                                </ul>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/search/">
+                                            
+                                                
+                                                    <i class="fa fa-search"></i>
+                                                
+                                                搜的一下
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/2023/05/23/留言板/">
+                                            
+                                                
+                                                    <i class="fa fa-paper-plane"></i>
+                                                
+                                                留言板
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/2023/05/22/关于/">
+                                            
+                                                
+                                                    <i class="fa fa-heart"></i>
+                                                
+                                                关于
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">ZZNN GEGEWU</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>ZZNN GEGEWU</h2> <br />
+                        <span>哇偶！恭喜你发现宝藏啦~</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">FastGithub实现快速访问github</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-06-29T10:22:23.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-06-29</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~2.04K
+                        
+                        字
+                    </li>
+                
+                
+                    <li id="/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/" class="leancloud_visitors" data-flag-title="FastGithub实现快速访问github">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1688034205655"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub"><span class="toc-text">FastGithub实现快速访问github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-text">一. 项目地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2"><span class="toc-text">二.软件部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E6%95%88%E6%9E%9C"><span class="toc-text">三. 效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E6%80%BB%E7%BB%93"><span class="toc-text">四. 总结</span></a></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h2 id="FastGithub实现快速访问github"><a href="#FastGithub实现快速访问github" class="headerlink" title="FastGithub实现快速访问github"></a><code>FastGithub</code>实现快速访问<code>github</code></h2><p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/WmIvJxp-KEQUvHbxjKSZfg">https://mp.weixin.qq.com/s/WmIvJxp-KEQUvHbxjKSZfg</a></p>
+<p>软件下载链接：</p>
+<p><a target="_blank" rel="noopener" href="https://wwd.lanzout.com/b04q38qve">https://wwd.lanzout.com/b04q38qve</a> 密码: <code>2rmv</code> 或见<code>GEGEWU</code>网盘</p>
+<img src="/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/image-20230629134739694.png" alt="image-20230629134739694" style="zoom:80%;">
+
+<img src="/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/image-20230629134758339.png" alt="image-20230629134758339" style="zoom:80%;">
+
+<img src="/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/image-20230629134827548.png" alt="image-20230629134827548" style="zoom:80%;">
+
+<img src="/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/image-20230629134849083.png" alt="image-20230629134849083" style="zoom:80%;">
+
+<h3 id="一-项目地址"><a href="#一-项目地址" class="headerlink" title="一. 项目地址"></a>一. 项目地址</h3><p><code>gitee</code>: <a target="_blank" rel="noopener" href="https://gitee.com/mirrors/fastgithub">https://gitee.com/mirrors/fastgithub</a><br><code>github</code>: <a target="_blank" rel="noopener" href="https://github.com/dotnetcore/FastGithub">https://github.com/dotnetcore/FastGithub</a></p>
+<h3 id="二-软件部署"><a href="#二-软件部署" class="headerlink" title="二.软件部署"></a>二.软件部署</h3><p><code>FastGithub</code><br><code>github</code>加速神器，解决<code>github</code>打不开、用户头像无法加载、<code>releases</code>无法上传下载、<code>git-clone、git-pull、git-push</code>失败等问题。</p>
+<p>1 写在前面<br><code>fastgithub</code>不具备“翻墙”功能,也没有相关的计划<br><code>fastgithub</code>不支持<code>Windows7</code>等已被发行方停止支持的操作系统，并且也不会主动提供支持<br><code>fastgithub</code>不能为您的游戏加速<br><code>fastgithub</code>没有主动在<code>github</code>之外的任何渠道发布</p>
+<p>2 部署方式</p>
+<p>2.1 <code>windows-x64</code>桌面<br>双击运行<code>FastGithub.UI.exe</code></p>
+<p>2.2 <code>windows-x64</code>服务<br><code>fastgithub.exe start  </code>// 以windows服务安装并启动<br><code>fastgithub.exe stop </code>  // 以windows服务卸载并删除</p>
+<p>2.3 linux-x64终端<br><code>sudo ./fastgithub</code><br>设置系统自动代理为<a href="http://127.0.0.1:38457，或手动代理`http/https`为`127.0.0.1:38457`">http://127.0.0.1:38457，或手动代理`http/https`为`127.0.0.1:38457`</a></p>
+<p>2.4 linux-x64服务<br><code>sudo ./fastgithub start</code> // 以<code>systemd</code>服务安装并启动<br><code>sudo ./fastgithub stop</code> // 以<code>systemd</code>服务卸载并删除<br>设置系统自动代理为<a href="http://127.0.0.1:38457，或手动代理`http/https`为`127.0.0.1:38457`">http://127.0.0.1:38457，或手动代理`http/https`为`127.0.0.1:38457`</a></p>
+<p>2.5 macOS-x64<br>双击运行<code>fastgithub</code><br>安装<code>cacert/fastgithub.cer</code>并设置信任<br>设置系统自动代理为<a href="http://127.0.0.1:38457，或手动代理`http/https`为`127.0.0.1:38457`">http://127.0.0.1:38457，或手动代理`http/https`为`127.0.0.1:38457`</a><br>具体配置详情</p>
+<p>2.6 <code>docker-compose</code>一键部署<br>准备好<code>docker 18.09, docker-compose.</code><br>在源码目录下，有一个<code>docker-compose.yaml </code>文件，专用于在实际项目中，临时使用<code>github.com</code>源码，而做的<code>demo</code>配置。<br>根据自己的需要更新<code>docker-compose.yaml</code>中的<code>sample</code>和<code>build</code>镜像即可完成拉<code>github.com</code>源码加速，并基于源码做后续的操作。</p>
+<p>3 软件功能<br>提供域名的纯净<code>IP</code>解析；<br>提供<code>IP</code>测速并选择最快的<code>IP</code>；<br>提供域名的tls连接自定义配置；<br><code>google</code>的<code>CDN</code>资源替换，解决大量国外网站无法加载<code>js</code>和<code>css</code>的问题；</p>
+<p>4 证书验证<br>4.1 git<br>git操作提示<code>SSL certificate problem</code><br>需要关闭git的证书验证：<code>git config --global http.sslverify false</code></p>
+<p>4.2 firefox<br>firefox提示连接有潜在的安全问题<br>设置-&gt;隐私与安全-&gt;证书-&gt;查看证书-&gt;证书颁发机构，导入cacert/fastgithub.cer，勾选“信任由此证书颁发机构来标识网站”</p>
+<p>5 安全性说明<br>FastGithub为每台不同的主机生成自颁发CA证书，保存在cacert文件夹下。客户端设备需要安装和无条件信任自颁发的CA证书，请不要将证书私钥泄露给他人，以免造成损失。</p>
+<p>6 合法性说明</p>
+<p>《国际联网暂行规定》第六条规定：“计算机信息网络直接进行国际联网，必须使用邮电部国家公用电信网提供的国际出入口信道。任何单位和个人不得自行建立或者使用其他信道进行国际联网。” FastGithub本地代理使用的都是“公用电信网提供的国际出入口信道”，从国外Github服务器到国内用户电脑上FastGithub程序的流量，使用的是正常流量通道，其间未对流量进行任何额外加密（仅有网页原有的TLS加密，区别于VPN的流量加密），而FastGithub获取到网页数据之后发生的整个代理过程完全在国内，不再适用国际互联网相关之规定。</p>
+<h3 id="三-效果"><a href="#三-效果" class="headerlink" title="三. 效果"></a>三. 效果</h3><img src="/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/image-20230629135654348.png" alt="image-20230629135654348" style="zoom: 67%;">
+
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四. 总结"></a>四. 总结</h3><p>FastGithub是一个强大的工具，可以帮助我们解决GitHub网站打不开和打开慢的问题。<br>它通过自动获取和更新GitHub IP地址列表，提供更快的下载速度，并避免了DNS污染和其他网络问题。<br>如果您经常使用GitHub进行开发和协作工作，不妨尝试一下FastGithub，提高您的工作效率吧！</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://gegewu12.github.io/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://gegewu12.github.io/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/";
+            const title         = "「FastGithub实现快速访问github」";
+            const excerpt       = `FastGithub实现快速访问github参考：
+https://mp.weixin.qq.com/s/WmIvJxp-KEQUvHbxjKSZfg
+软件下载链接：
+https://wwd.lanzout.com/b04q38qve...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" rel="tag">常用软件</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-06-29T10:23:25.655Z" itemprop="dateModified">最后编辑：2023-06-29</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" centos ubuntu设置开机自启动systemctl托管" href="/2023/06/29/centos-ubuntu设置开机自启动systemctl托管/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'iZXJwsNXSKDrEVhrJkKmVMDD-9Nh9j0Va',
+                appKey: 'c5a75Cd0qOXG7z6YAVve9mW3',
+                visitor: true,
+                enableQQ: true,
+                path: '/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/'
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                75
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                14
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                15
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub"><span class="toc-text">FastGithub实现快速访问github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-text">一. 项目地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2"><span class="toc-text">二.软件部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E6%95%88%E6%9E%9C"><span class="toc-text">三. 效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E6%80%BB%E7%BB%93"><span class="toc-text">四. 总结</span></a></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ceph/">ceph</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/kubernetes/">kubernetes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/centos/" style="font-size: 0.66em;">centos</a> <a href="/tags/ceph/" style="font-size: 0.6em;">ceph</a> <a href="/tags/club/" style="font-size: 0.64em;">club</a> <a href="/tags/docker/" style="font-size: 0.66em;">docker</a> <a href="/tags/kubernetes/" style="font-size: 0.6em;">kubernetes</a> <a href="/tags/mysql/" style="font-size: 0.68em;">mysql</a> <a href="/tags/python/" style="font-size: 0.62em;">python</a> <a href="/tags/shell/" style="font-size: 0.64em;">shell</a> <a href="/tags/ubuntu/" style="font-size: 0.7em;">ubuntu</a> <a href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" style="font-size: 0.74em;">云原生监控</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 0.72em;">云计算</a> <a href="/tags/%E5%8A%A0%E5%AF%86%E5%8D%9A%E5%AE%A2/" style="font-size: 0.76em;">加密博客</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" style="font-size: 0.78em;">常用软件</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" style="font-size: 0.8em;">环境部署</a> <a href="/tags/%E8%BF%81%E4%BA%91/" style="font-size: 0.6em;">迁云</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/29/FastGithub%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AEgithub/"><i class="fa  fa-book"></i> FastGithub实现快速访问github</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/29/centos-ubuntu%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8systemctl%E6%89%98%E7%AE%A1/"><i class="fa  fa-book"></i> centos ubuntu设置开机自启动systemctl托管</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/27/PostgreSQL%E9%83%A8%E7%BD%B2-%E5%88%9D%E5%A7%8B%E5%8C%96-%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8B/"><i class="fa  fa-book"></i> PostgreSQL部署 初始化 配置远程</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/26/PostgreSQL%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/"><i class="fa  fa-book"></i> PostgreSQL自动备份脚本</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/18/grub-rescue%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86/"><i class="fa  fa-book"></i> grub rescue救援模式的处理</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 ZZNN GEGEWU 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by zznn.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="tencent"
+        type="playlist"
+        id="8926738453"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
