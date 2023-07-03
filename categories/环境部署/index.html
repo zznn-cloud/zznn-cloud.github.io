@@ -660,8 +660,8 @@
                     <div class="kratos-entry-content-new">
                         <p itemProp="description">
                             
-                                mount永久挂载磁盘1. 清空磁盘
-123456789# 如果服务器上有多块磁盘，建议除系统盘外，对所有盘执行清理操作# 解除未在使用的所有磁盘的占用dmsetup remove_all   # 查看占用磁盘dmsetup stat...
+                                mount永久挂载磁盘1. 例子docker 挂盘
+1234567# 如果系统盘小于 100g，需要为 docker 单独挂盘，如果系统盘比较大，则无需为 docker 单独挂盘mkfs -t ext4 /dev/sdb   （写入永...
                             
                         </p>
                     </div>

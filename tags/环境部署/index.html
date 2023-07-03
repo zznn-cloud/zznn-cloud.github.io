@@ -1077,9 +1077,9 @@ busybox使用123# 使用(busybox + cmd)busybox telnet 10.0.0.10 80busybox route 
                     <div class="kratos-entry-content-new">
                         <p itemProp="description">
                             
-                                fio测试磁盘rbd块存储等性能一. fio安装1234# centos安装fioyum install -y fio# ubuntu安装fioapt install -y fio
-
-二. fio测试类型12345678910# 10...
+                                fio测试磁盘rbd块存储等性能前言：
+测试硬盘iops时，-bs 可以指定小点，如4K；测试硬盘吞吐量时，-bs可以指定大点，例如4M
+一. fio安装1234# centos安装fioyum install -y fio# ubu...
                             
                         </p>
                     </div>
@@ -1260,8 +1260,8 @@ busybox使用123# 使用(busybox + cmd)busybox telnet 10.0.0.10 80busybox route 
                     <div class="kratos-entry-content-new">
                         <p itemProp="description">
                             
-                                mount永久挂载磁盘1. 清空磁盘
-123456789# 如果服务器上有多块磁盘，建议除系统盘外，对所有盘执行清理操作# 解除未在使用的所有磁盘的占用dmsetup remove_all   # 查看占用磁盘dmsetup stat...
+                                mount永久挂载磁盘1. 例子docker 挂盘
+1234567# 如果系统盘小于 100g，需要为 docker 单独挂盘，如果系统盘比较大，则无需为 docker 单独挂盘mkfs -t ext4 /dev/sdb   （写入永...
                             
                         </p>
                     </div>
