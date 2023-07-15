@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/thumb/zznnlogo.webp">
+  
+  <title>kolla kolla-ansible源码部署并使用kolla-ansible部署单机版openstack | ZZNN GEGEWU</title>
+  
+  <meta name="author" content="zznn" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="云计算, 加密博客" />
+  
+  <meta name="description" content="kolla kolla-ansible私有化部署参考https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;5d58f6f9e2c7https:&#x2F;&#x2F;www.cnblogs.com&#x2F;jinyuanliu&#x2F;p&#x2F;11056775.html   ( 主要参考 )https:&#x2F;&#x2F;fuscoyu.github.io&#x2F;2022&#x2F;01&#x2F;21&#x2F;%E6%9E%84%E5%BB%BAkolla-images&#x2F;  （kol">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kolla kolla-ansible源码部署并使用kolla-ansible部署单机版openstack">
+<meta property="og:url" content="https://gegewu12.github.io/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/index.html">
+<meta property="og:site_name" content="ZZNN GEGEWU">
+<meta property="og:description" content="kolla kolla-ansible私有化部署参考https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;5d58f6f9e2c7https:&#x2F;&#x2F;www.cnblogs.com&#x2F;jinyuanliu&#x2F;p&#x2F;11056775.html   ( 主要参考 )https:&#x2F;&#x2F;fuscoyu.github.io&#x2F;2022&#x2F;01&#x2F;21&#x2F;%E6%9E%84%E5%BB%BAkolla-images&#x2F;  （kol">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
+<meta property="article:published_time" content="2023-07-15T08:17:31.000Z">
+<meta property="article:modified_time" content="2023-07-15T08:19:17.090Z">
+<meta property="article:author" content="zznn">
+<meta property="article:tag" content="云计算">
+<meta property="article:tag" content="加密博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li>
+                                            
+                                                <a href="/">
+                                            
+                                                
+                                                    <i class="fa fa-home"></i>
+                                                
+                                                首页
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="/archives/">
+                                            
+                                                
+                                                    <i class="fa fa-file"></i>
+                                                
+                                                档案馆
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="/friends/">
+                                            
+                                                
+                                                    <i class="fa fa-paw"></i>
+                                                
+                                                好伙伴
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a>
+                                            
+                                                
+                                                    <i class="fa fa-link"></i>
+                                                
+                                                链接
+                                            </a>
+                                            
+                                                <ul class="sub-menu">
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">
+                                                                
+                                                                项目链接
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://fontawesome.com.cn/v4/icons">
+                                                                
+                                                                图标库
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://kr-demo.candinya.com/posts/Kratos-Rebirth-Manual/">
+                                                                
+                                                                Kratos-Rebirth
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://console-e1.leancloud.cn/login">
+                                                                
+                                                                leanCloud
+                                                            </a>
+                                                        </li>
+                                                    
+                                                </ul>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/search/">
+                                            
+                                                
+                                                    <i class="fa fa-search"></i>
+                                                
+                                                搜的一下
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/2023/05/23/留言板/">
+                                            
+                                                
+                                                    <i class="fa fa-paper-plane"></i>
+                                                
+                                                留言板
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu12.github.io/2023/05/22/关于/">
+                                            
+                                                
+                                                    <i class="fa fa-heart"></i>
+                                                
+                                                关于
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">ZZNN GEGEWU</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>ZZNN GEGEWU</h2> <br />
+                        <span>哇偶！恭喜你发现宝藏啦~</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">kolla kolla-ansible源码部署并使用kolla-ansible部署单机版openstack</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-07-15T08:17:31.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-07-15</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~7.60K
+                        
+                        字
+                    </li>
+                
+                
+                    <li id="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/" class="leancloud_visitors" data-flag-title="kolla kolla-ansible源码部署并使用kolla-ansible部署单机版openstack">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1689409157090"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#kolla-kolla-ansible%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2"><span class="toc-text"> kolla kolla-ansible私有化部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A6%81%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%9A%84Libvirt%E6%9C%8D%E5%8A%A1"><span class="toc-text">禁用宿主机的Libvirt服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NOTE"><span class="toc-text">NOTE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E9%83%A8%E7%BD%B2kolla"><span class="toc-text">一.  部署kolla</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85kolla"><span class="toc-text">1.安装kolla</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ubuntu-%E9%AB%98%E7%89%88%E6%9C%AC-openstack-yoga-%E7%8E%AF%E5%A2%83%E5%8F%AF%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8kolla-sh%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C-%E9%83%A8%E7%BD%B2"><span class="toc-text">ubuntu( 高版本 openstack-yoga 环境可直接使用kolla.sh脚本执行 部署)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#centos-%E6%9C%AA%E6%B5%8B%E8%AF%95"><span class="toc-text">centos( 未测试 )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96-%E7%89%88%E6%9C%AC%E4%B8%BA%E9%AB%98%E7%89%88%E6%9C%ACopenstack%E6%97%B6%E9%9C%80%E8%A6%81-python3%E7%9A%84%E5%8C%85%E5%8D%B3python3-pip-python3-devel"><span class="toc-text">安装依赖 (版本为高版本openstack时需要 python3的包即python3-pip python3-devel )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81-%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85pip%E6%BA%90"><span class="toc-text">2、 配置国内pip源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%94%9F%E6%88%90%E8%99%9A%E6%8B%9F%E5%8C%96%E7%8E%AF%E5%A2%83%E5%9C%A8%E8%99%9A%E6%8B%9F%E5%8C%96%E7%8E%AF%E5%A2%83%E6%89%A7%E8%A1%8C"><span class="toc-text">3.生成虚拟化环境在虚拟化环境执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AE%89%E8%A3%85stable%E7%89%88kolla-%EF%BC%88%E4%BD%8E%E7%89%88%E6%9C%AC%EF%BC%89"><span class="toc-text">4.安装stable版kolla （低版本）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%AB%98%E7%89%88%E6%9C%ACstable-%E7%89%88%E6%9C%AC-kolla-yoga%E7%89%88-%EF%BC%88%E9%AB%98%E7%89%88%E6%9C%AC-%E6%9C%AC%E6%AC%A1%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-text">4.高版本stable 版本 kolla yoga版 （高版本 本次使用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%AE%89%E8%A3%85tox%EF%BC%8C%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">5、安装tox，生成配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81docker%E5%AE%89%E8%A3%85"><span class="toc-text"> 5、docker安装</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E7%BC%96%E8%AF%91%E9%95%9C%E5%83%8F"><span class="toc-text">二. 编译镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85kolla-ansible"><span class="toc-text">三.  编译安装kolla-ansible</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9C%A8%E8%99%9A%E6%8B%9F%E5%8C%96%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%93%8D%E4%BD%9C"><span class="toc-text">1. 在虚拟化环境下操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85ansible"><span class="toc-text">2、安装ansible</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%AE%89%E8%A3%85kolla-ansible"><span class="toc-text">3、安装kolla-ansible</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E5%88%A9%E7%94%A8%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85%E7%9A%84kolla-ansible%E6%9E%84%E5%BB%BAall-in-one%E7%89%88openstack"><span class="toc-text">四. 利用源码安装的kolla-ansible构建all-in-one版openstack</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="toc-text">1.修改文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AE%BE%E7%BD%AE%E4%B8%BB%E6%9C%BA%E5%90%8D%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-text">2.设置主机名安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8kolla-ansible%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-text">3.使用kolla-ansible安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E4%BF%AE%E6%94%B9-Hypervisor-Type-%E6%AD%A4%E5%A4%84%E5%8D%B3%E6%98%AF%E5%88%A9%E7%94%A8%E4%BA%86kolla-ansible%E7%9A%84%E5%90%88%E5%B9%B6%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7"><span class="toc-text">4、修改 Hypervisor Type 此处即是利用了kolla-ansible的合并配置文件属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E9%85%8D%E7%BD%AE"><span class="toc-text">检查配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E9%83%A8%E7%BD%B2"><span class="toc-text">开始部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5"><span class="toc-text">生成密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%AE%8C%E6%88%90%E6%95%88%E6%9E%9C"><span class="toc-text">部署完成效果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94-%E6%89%A9%E5%B1%95"><span class="toc-text">五.  扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A5%E9%94%99"><span class="toc-text">报错</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h2 id="kolla-kolla-ansible私有化部署"><a href="#kolla-kolla-ansible私有化部署" class="headerlink" title=" kolla kolla-ansible私有化部署"></a><code> kolla kolla-ansible</code>私有化部署</h2><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5d58f6f9e2c7">https://www.jianshu.com/p/5d58f6f9e2c7</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jinyuanliu/p/11056775.html">https://www.cnblogs.com/jinyuanliu/p/11056775.html</a>   ( 主要参考 )<br><a target="_blank" rel="noopener" href="https://fuscoyu.github.io/2022/01/21/%E6%9E%84%E5%BB%BAkolla-images/">https://fuscoyu.github.io/2022/01/21/%E6%9E%84%E5%BB%BAkolla-images/</a>  （kolla构建openstack镜像）</p>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@ceph-3:~<span class="comment"># hostnamectl</span></span><br><span class="line">   Static hostname: ceph-3</span><br><span class="line">         Icon name: computer-vm</span><br><span class="line">           Chassis: vm</span><br><span class="line">        Machine ID: 5aded787c9c2487896e5b25dcfa8f871</span><br><span class="line">           Boot ID: 6793c80dfa1b46e584f93ef269858343</span><br><span class="line">    Virtualization: vmware</span><br><span class="line">  Operating System: Ubuntu 20.04.3 LTS</span><br><span class="line">            Kernel: Linux 5.4.0-139-generic</span><br><span class="line">      Architecture: x86-64</span><br></pre></td></tr></table></figure>
+
+<p><code>NOTE</code>: 高版本如<code>yoga</code>需要<code>python3.8</code>及以上</p>
+<h4 id="禁用宿主机的Libvirt服务"><a href="#禁用宿主机的Libvirt服务" class="headerlink" title="禁用宿主机的Libvirt服务"></a>禁用宿主机的<code>Libvirt</code>服务</h4><p>大多数操作系统会默认启动 <code>Libvirt，</code>但使用<code>Kolla</code>来部署 <code>OpenStack </code>的话，<code>Libvirt </code>应该在容器中运行并管理虚拟机。所以宿主机的<code> Libvirt</code> 需要被关闭，以免造成冲突。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关门libvirtd</span></span><br><span class="line">systemctl stop libvirtd.service</span><br><span class="line">systemctl <span class="built_in">disable</span> libvirtd.service</span><br></pre></td></tr></table></figure>
+
+<h3 id="NOTE"><a href="#NOTE" class="headerlink" title="NOTE"></a><code>NOTE</code></h3><p>本文环境除源码安装<code>kolla kolla-ansible</code>外 所有环境配置可通过执行<code>kolla.sh</code>脚本完成参考云计算目录。</p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715151157804.png" alt="image-20230715151157804"></p>
+<h3 id="一-部署kolla"><a href="#一-部署kolla" class="headerlink" title="一.  部署kolla"></a>一.  部署<code>kolla</code></h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p><a target="_blank" rel="noopener" href="https://fuscoyu.github.io/2022/01/21/%E6%9E%84%E5%BB%BAkolla-images/">https://fuscoyu.github.io/2022/01/21/%E6%9E%84%E5%BB%BAkolla-images/</a> </p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715160116251.png" alt="image-20230715160116251"></p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715160148218.png" alt="image-20230715160148218"></p>
+<p>kolla镜像目前已达到个2345个，实际上不是完全独立的2345个服务。而是针对不同的场景分别构建，达到全面覆盖的结果。同时支持binary和source两种构建方案，而且支持不同的操作系统CentOS，Ubuntu，Debian作为基础镜像，可以满足用户不同的需求。同时也支持在不修改源代码情况下，对镜像进行定制。</p>
+<h4 id="1-安装kolla"><a href="#1-安装kolla" class="headerlink" title="1.安装kolla"></a><code>1.</code>安装<code>kolla</code></h4><h4 id="ubuntu-高版本-openstack-yoga-环境可直接使用kolla-sh脚本执行-部署"><a href="#ubuntu-高版本-openstack-yoga-环境可直接使用kolla-sh脚本执行-部署" class="headerlink" title="ubuntu( 高版本 openstack-yoga 环境可直接使用kolla.sh脚本执行 部署)"></a><code>ubuntu</code>( 高版本 <code>openstack-yoga</code> 环境可直接使用<code>kolla.sh</code>脚本执行 部署)</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu安装依赖</span></span><br><span class="line">apt install sshpass ssh vim git python3-dev libffi-dev gcc libssl-dev python3-pip python3-venv -y</span><br></pre></td></tr></table></figure>
+
+<h4 id="centos-未测试"><a href="#centos-未测试" class="headerlink" title="centos( 未测试 )"></a><code>centos</code>( 未测试 )</h4><h4 id="安装依赖-版本为高版本openstack时需要-python3的包即python3-pip-python3-devel"><a href="#安装依赖-版本为高版本openstack时需要-python3的包即python3-pip-python3-devel" class="headerlink" title="安装依赖 (版本为高版本openstack时需要 python3的包即python3-pip python3-devel )"></a>安装依赖 (版本为高版本<code>openstack</code>时需要 <code>python3</code>的包即<code>python3-pip python3-devel</code> )</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">yum install epel-release -y </span><br><span class="line">yum install -y python3-pip python3-devel libffi-devel openssl-devel gcc git -y </span><br><span class="line">pip install -U pip </span><br></pre></td></tr></table></figure>
+
+<h4 id="2、-配置国内pip源"><a href="#2、-配置国内pip源" class="headerlink" title="2、 配置国内pip源"></a><code>2、</code> 配置国内<code>pip</code>源</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置pip清华源</span></span><br><span class="line"><span class="built_in">mkdir</span> ~/.pip</span><br><span class="line"> </span><br><span class="line"><span class="built_in">cat</span> &lt;&lt; <span class="string">EOF &gt; ~/.pip/pip.conf</span></span><br><span class="line"><span class="string">[global]</span></span><br><span class="line"><span class="string">timeout = 6000 </span></span><br><span class="line"><span class="string">index-url = https://pypi.tuna.tsinghua.edu.cn/simple/</span></span><br><span class="line"><span class="string">[install]</span></span><br><span class="line"><span class="string">trusted-host=pypi.tuna.tsinghua.edu.cn</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-生成虚拟化环境在虚拟化环境执行"><a href="#3-生成虚拟化环境在虚拟化环境执行" class="headerlink" title="3.生成虚拟化环境在虚拟化环境执行"></a><code>3.</code>生成虚拟化环境在虚拟化环境执行</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成虚拟化环境</span></span><br><span class="line">python3 -m venv ~/venv3</span><br><span class="line"><span class="built_in">source</span> /root/venv3/bin/activate</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-安装stable版kolla-（低版本）"><a href="#4-安装stable版kolla-（低版本）" class="headerlink" title="4.安装stable版kolla （低版本）"></a><code>4.</code>安装<code>stable</code>版<code>kolla</code> （低版本）</h4><p>链接可选<code>github</code>：<code>https://github.com/openstack/kolla.git </code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载源码 (根据需要下载所需版本如-b stable/yoga)</span></span><br><span class="line">git <span class="built_in">clone</span> https://git.openstack.org/openstack/kolla -b stable/rocky</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">pip install -r kolla/requirements.txt -r kolla/test-requirements.txt</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 源码安装</span></span><br><span class="line">pip install kolla/</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-高版本stable-版本-kolla-yoga版-（高版本-本次使用）"><a href="#4-高版本stable-版本-kolla-yoga版-（高版本-本次使用）" class="headerlink" title="4.高版本stable 版本 kolla yoga版 （高版本 本次使用）"></a><code>4.</code>高版本<code>stable </code>版本<code> kolla yoga</code>版 （高版本 本次使用）</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 高版本yoga 下载源码 </span></span><br><span class="line">git <span class="built_in">clone</span> https://git.openstack.org/openstack/kolla -b stable/yoga  (本次使用)</span><br><span class="line">或</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/openstack/kolla.git -b stable/yoga</span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">pip3 install -r kolla/requirements.txt -r kolla/test-requirements.txt tox</span><br><span class="line"><span class="comment"># 源码安装</span></span><br><span class="line">pip3 install kolla/</span><br></pre></td></tr></table></figure>
+
+<p>报错参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5d58f6f9e2c7">https://www.jianshu.com/p/5d58f6f9e2c7</a></p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230710182812664.png" alt="image-20230710182812664"></p>
+<p>安装完成截图：</p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715124502732.png" alt="image-20230715124502732"></p>
+<h4 id="5、安装tox，生成配置文件"><a href="#5、安装tox，生成配置文件" class="headerlink" title="5、安装tox，生成配置文件"></a><code>5、</code>安装<code>tox，</code>生成配置文件</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成配置文件</span></span><br><span class="line"><span class="comment"># pip3 install -U tox</span></span><br><span class="line"><span class="built_in">cd</span> kolla/</span><br><span class="line">tox -e genconfig</span><br><span class="line"><span class="built_in">cp</span> -rv etc/kolla /etc/</span><br></pre></td></tr></table></figure>
+
+<p>忽略此报错：</p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715125104251.png" alt="image-20230715125104251"></p>
+<p>**编辑 <code>kolla-build.conf</code>**：控制 <code>Kolla Image Build </code>的细则</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-----------------配置方式1----------------------</span></span><br><span class="line">vim /etc/kolla/kolla-build.conf</span><br><span class="line">[DEFAULT]</span><br><span class="line"><span class="comment"># base = centos</span></span><br><span class="line">base = ubuntu</span><br><span class="line">base_arch = x86_64</span><br><span class="line">install_type = <span class="built_in">source</span></span><br><span class="line">skip_existing = <span class="literal">true</span></span><br><span class="line">namespace = kolla</span><br><span class="line">push = <span class="literal">false</span></span><br><span class="line"><span class="comment"># The Docker Images tag (string value)</span></span><br><span class="line"><span class="comment"># tag = 6.0.0</span></span><br><span class="line"><span class="comment"># tag = zznnyoga</span></span><br><span class="line">openstack_branch = yoga</span><br><span class="line"><span class="comment">#--------------------方式2-----------------------</span></span><br><span class="line">[DEFAULT]</span><br><span class="line">base = debian <span class="comment"># 基础镜像 可选centos，debian，ubuntu。默认centos</span></span><br><span class="line">base_arch = x86_64 <span class="comment"># 基础镜像架构x86_64</span></span><br><span class="line">skip_existing = <span class="literal">true</span> <span class="comment"># 跳过已构建的镜像</span></span><br><span class="line">registry = leifeng.harbor.com <span class="comment"># 指定镜像仓库</span></span><br><span class="line">install_type = <span class="built_in">source</span> <span class="comment"># 安装OpenStack类型，可选source，binary。 推荐source 源码安装</span></span><br><span class="line">openstack_branch = victoria <span class="comment"># openstack 版本</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5、docker安装"><a href="#5、docker安装" class="headerlink" title=" 5、docker安装"></a><code> 5、docker</code>安装</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装docker</span></span><br><span class="line">yum install docker -y</span><br><span class="line">apt install docker -y</span><br><span class="line"><span class="comment"># 配置docker mountflags 在[Service]中添加MountFlags=shared</span></span><br><span class="line"><span class="comment"># vim /usr/lib/systemd/system/docker.service</span></span><br><span class="line">[Service]</span><br><span class="line">MountFlags=shared</span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p><code>MountFlags=shared</code>为<code>neutron</code>的要求，必须配置为<code>share</code>，否则后面部署的时候<code>neutron</code>可能会有问题 此配置是为了使多个容器能够使用同一个目录。</p>
+<h3 id="二-编译镜像"><a href="#二-编译镜像" class="headerlink" title="二. 编译镜像"></a>二. 编译镜像</h3><p>简单的来理解 <code>Kolla </code>组件的话，它就是一个自动化构建部署 <code>OpenStack</code> 服务所需要的镜像的工具。其内含组织了大量的 <code>Dockerfile</code>，供构建镜像时使用。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构建镜像不指定参数表示构建所有镜像</span></span><br><span class="line">kolla-build</span><br></pre></td></tr></table></figure>
+
+<p>也可以添加参数项 <code>-p default</code> 对应 <code>kolla-build.conf</code> 的 <code>[profiles] Sections，default </code>类型表示仅构建核心项目的镜像。</p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/1592208-20190620155254114-690163405.png" alt="img"></p>
+<p>如果个别镜像编译失败可以重新执行以上操作，因为<code>docker</code>的容器缓存，重新编译会很快。</p>
+<p><strong>NOTE：</strong>但有些情况下，可能会把错误的配置参数<code> Cache</code> 住，此时建议执行 <code>Cleanup </code>操作之后再重跑：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从系统中移除部署的容器</span></span><br><span class="line">tools/cleanup-containers</span><br><span class="line"><span class="comment"># 移除由于残余网络变化引发 docker 启动的 neutron-agents 主机</span></span><br><span class="line">tools/cleanup-host</span><br><span class="line"><span class="comment"># 从 Cache 中移除所有的 docker image</span></span><br><span class="line">tools/cleanup-images</span><br></pre></td></tr></table></figure>
+
+<p>也可以查看一下可编译的镜像</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看编译完成的镜像</span></span><br><span class="line">kolla-build --list-images</span><br></pre></td></tr></table></figure>
+
+<p>构建镜像成功截图：</p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715134940273.png" alt="image-20230715134940273"></p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715140256816.png" alt="image-20230715140256816"></p>
+<h3 id="三-编译安装kolla-ansible"><a href="#三-编译安装kolla-ansible" class="headerlink" title="三.  编译安装kolla-ansible"></a>三.  编译安装<code>kolla-ansible</code></h3><h4 id="1-在虚拟化环境下操作"><a href="#1-在虚拟化环境下操作" class="headerlink" title="1. 在虚拟化环境下操作"></a><code>1.</code> 在虚拟化环境下操作</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成虚拟化环境</span></span><br><span class="line">python3 -m venv ~/venv3</span><br><span class="line"><span class="built_in">source</span> /root/venv3/bin/activate</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715141931263.png" alt="image-20230715141931263"></p>
+<h4 id="2、安装ansible"><a href="#2、安装ansible" class="headerlink" title="2、安装ansible"></a><code>2、</code>安装<code>ansible</code></h4><p><code>ansible</code>的版本要大于<code>2.0</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装ansible</span></span><br><span class="line">pip install <span class="string">&#x27;ansible&gt;=4,&lt;6&#x27;</span> -i https://pypi.tuna.tsinghua.edu.cn/simple/</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、安装kolla-ansible"><a href="#3、安装kolla-ansible" class="headerlink" title="3、安装kolla-ansible"></a><code>3、</code>安装<code>kolla-ansible</code></h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译安装kolla-ansible yoga版本即14.0.0</span></span><br><span class="line"><span class="comment"># git clone https://github.com/openstack/kolla-ansible -b stable/rocky</span></span><br><span class="line"><span class="comment"># 官网github托管方式</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/openstack/kolla-ansible -b stable/yoga</span><br><span class="line"><span class="comment"># 个人gitee方式需要秘钥</span></span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/gegewu12/kolla-ansible-yoga.git</span><br><span class="line"><span class="built_in">cd</span> kolla-ansible-yoga</span><br><span class="line"><span class="comment"># 执行部署</span></span><br><span class="line">pip3 install -r requirements.txt -r test-requirements.txt -e .</span><br></pre></td></tr></table></figure>
+
+<p>配置<code>kolla-ansible</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置kolla-ansible</span></span><br><span class="line"><span class="built_in">mkdir</span> -p /etc/kolla</span><br><span class="line"><span class="built_in">cp</span> etc/kolla/globals.yml /etc/kolla/   </span><br><span class="line"><span class="built_in">cp</span> etc/kolla/passwords.yml /etc/kolla/</span><br><span class="line"><span class="built_in">cp</span> ansible/inventory/* /root/</span><br><span class="line"><span class="built_in">cd</span> /etc/kolla &amp;&amp; kolla-genpwd</span><br></pre></td></tr></table></figure>
+
+<p>源码安装完成截图：</p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715141614531.png" alt="image-20230715141614531"></p>
+<p>教程到此即可结束 下方保留是为了文章的完整性 下方构建请移步云计算目录。</p>
+<h3 id="四-利用源码安装的kolla-ansible构建all-in-one版openstack"><a href="#四-利用源码安装的kolla-ansible构建all-in-one版openstack" class="headerlink" title="四. 利用源码安装的kolla-ansible构建all-in-one版openstack"></a>四. 利用源码安装的kolla-ansible构建<code>all-in-one</code>版<code>openstack</code></h3><h4 id="1-修改文件"><a href="#1-修改文件" class="headerlink" title="1.修改文件"></a><code>1.</code>修改文件</h4><p>编辑 <code>globals.yml</code>文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kolla_install_type: &quot;source&quot;</span><br><span class="line">openstack_release：需要与镜像的 Tag 一致，否则部署时找不到镜像。</span><br><span class="line">network_interface：指定管理网接口</span><br><span class="line">neutron_external_interface：指定外部网接口</span><br><span class="line">kolla_internal_vip_address：指定 HAProxy 虚拟 IP，单点部署可以弃用 HAProxy enable_haproxy: &quot;no&quot;。</span><br><span class="line">enable_horizon: &quot;yes&quot;</span><br></pre></td></tr></table></figure>
+
+<p>实际配置可选</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">kolla_base_distro: <span class="string">&quot;ubuntu&quot;</span></span><br><span class="line">openstack_release: <span class="string">&quot;yoga&quot;</span></span><br><span class="line">kolla_internal_vip_address: <span class="string">&quot;10.0.0.39&quot;</span>  <span class="comment"># 找一个网段内没有占用的ip</span></span><br><span class="line">network_interface: <span class="string">&quot;ens33&quot;</span></span><br><span class="line">neutron_external_interface: <span class="string">&quot;ens37&quot;</span></span><br><span class="line">enable_haproxy: <span class="string">&quot;yes&quot;</span> </span><br><span class="line">nova_compute_virt_type: <span class="string">&quot;qemu&quot;</span>    <span class="comment"># 使⽤虚拟机部署时,该配置项必须改为qemu,默认值为kvm</span></span><br><span class="line"><span class="comment">#kolla_install_type: &quot;source&quot;     # 使⽤基于源代码的image</span></span><br><span class="line"><span class="comment">#enable_cinder: &quot;yes&quot;             # 这一个是启动cinder块存储并使用我们的VG</span></span><br><span class="line"><span class="comment">#enable_cinder_backend_lvm: &quot;yes&quot;</span></span><br><span class="line"><span class="comment"># 配置私有阿里云仓库</span></span><br><span class="line">openstack_release: <span class="string">&quot;zznnyoga&quot;</span></span><br><span class="line">docker_registry: <span class="string">&quot;registry.cn-hangzhou.aliyuncs.com&quot;</span>        <span class="comment"># 拉取 docker 镜像的源</span></span><br><span class="line">docker_namespace: <span class="string">&quot;zznn&quot;</span> </span><br></pre></td></tr></table></figure>
+
+<h4 id="2-设置主机名安装依赖"><a href="#2-设置主机名安装依赖" class="headerlink" title="2.设置主机名安装依赖"></a><code>2.</code>设置主机名安装依赖</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置主机名</span></span><br><span class="line">hostnamectl set-hostname localhost</span><br><span class="line"><span class="comment"># 使用kolla.sh脚本安装必要依赖(注释 kolla.sh脚本对应函数执行即可)</span></span><br><span class="line"><span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">software_source       <span class="comment"># 所有节点执行</span></span><br><span class="line"><span class="comment">#kolla_kvm             # 暂不执行执行后会出现报错（所有节点执行）</span></span><br><span class="line">update_system         <span class="comment"># 所有节点执行</span></span><br><span class="line">install_docker_ce     <span class="comment"># 所有节点执行</span></span><br><span class="line">install_docker_sdk    <span class="comment"># 所有节点执行</span></span><br><span class="line"><span class="comment">#install_ansible_kolla # kolla部署节点执行</span></span><br><span class="line"><span class="comment">#kolla_file            # kolla部署节点执行</span></span><br><span class="line"><span class="comment">#Volume_Group         # 只在存储节点执行 </span></span><br><span class="line"><span class="comment">#kolla_configure       # 导入配置global.yml</span></span><br><span class="line"><span class="comment">#kolla_run             # 执行安装all-in-one版此处建议手动执行</span></span><br><span class="line">&#125;</span><br><span class="line">main</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-使用kolla-ansible安装依赖"><a href="#3-使用kolla-ansible安装依赖" class="headerlink" title="3.使用kolla-ansible安装依赖"></a><code>3.</code>使用<code>kolla-ansible</code>安装依赖</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># # 这一步为了让当前目录有ansible.cfg</span></span><br><span class="line"><span class="built_in">cd</span> ~  &amp;&amp; kolla-ansible install-deps</span><br><span class="line"><span class="comment"># 自动构建环境会自动写入/etc/hosts文件内容 需要删除多余的保留唯一解析即可</span></span><br><span class="line">kolla-ansible -i ./all-in-one bootstrap-servers </span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715153829768.png" alt="image-20230715153829768"></p>
+<h4 id="4、修改-Hypervisor-Type-此处即是利用了kolla-ansible的合并配置文件属性"><a href="#4、修改-Hypervisor-Type-此处即是利用了kolla-ansible的合并配置文件属性" class="headerlink" title="4、修改 Hypervisor Type 此处即是利用了kolla-ansible的合并配置文件属性"></a><code>4、</code>修改 <code>Hypervisor Type</code> 此处即是利用了<code>kolla-ansible</code>的合并配置文件属性</h4><p>因为操作环境是<code> VMware</code> 的虚拟机，所以存在嵌套虚拟化不支持 <code>KVM</code> 的问题，如果你希望启动 <code>OpenStack</code> 实例，那就需要启用 <code>QEMU（Default KVM）</code>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /etc/kolla/config/nova</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt; <span class="string">EOF &gt; /etc/kolla/config/nova/nova-compute.conf</span></span><br><span class="line"><span class="string">[libvirt]</span></span><br><span class="line"><span class="string">virt_type=qemu</span></span><br><span class="line"><span class="string">cpu_mode = none</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="检查配置"><a href="#检查配置" class="headerlink" title="检查配置"></a>检查配置</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kolla-ansible -i ./all-in-one prechecks</span><br></pre></td></tr></table></figure>
+
+<h4 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kolla-ansible -i ./all-in-one deploy</span><br></pre></td></tr></table></figure>
+
+<h4 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成密钥文件</span></span><br><span class="line">kolla-ansible  post-deploy                     </span><br><span class="line"><span class="built_in">cp</span> /etc/kolla/admin-openrc.sh  /root</span><br></pre></td></tr></table></figure>
+
+<h4 id="部署完成效果"><a href="#部署完成效果" class="headerlink" title="部署完成效果"></a>部署完成效果</h4><p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715160659808.png" alt="image-20230715160659808"></p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715161014321.png" alt="image-20230715161014321"></p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715161036285.png" alt="image-20230715161036285"></p>
+<h3 id="五-扩展"><a href="#五-扩展" class="headerlink" title="五.  扩展"></a>五.  扩展</h3><h4 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h4><p>在用<code>Dockerfile</code>制作镜像的时候总是出现如下错误</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTPSConnectionPool(host=<span class="string">&#x27;files.pythonhosted.org&#x27;</span>, port=443): Read timed out.</span><br></pre></td></tr></table></figure>
+
+<p><strong>原因分析:</strong></p>
+<p>在下载<code>python</code>库的时候，由于国内网络原因，<code>python</code>包的下载速度非常慢，查看<code>pip </code>文档，只要在 pip的时候控制超时即可, 具体参数为<code>--default-timeout=100，</code>后面的时间可以自己指定。</p>
+<p><img src="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/image-20230715135059667.png" alt="image-20230715135059667"></p>
+<p>可以在<code>kolla-build</code>中指定一下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos kolla]<span class="comment"># pwd</span></span><br><span class="line">/root/kolla</span><br><span class="line">[root@centos kolla]<span class="comment"># more tox.ini | grep pip</span></span><br><span class="line">install_command = pip --default-timeout=1000 install &#123;opts&#125; &#123;packages&#125;</span><br></pre></td></tr></table></figure>
+
+<p>教程结束。</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://gegewu12.github.io/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://gegewu12.github.io/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/";
+            const title         = "「kolla kolla-ansible源码部署并使用kolla-ansible部署单机版openstack」";
+            const excerpt       = ` kolla kolla-ansible私有化部署参考https://www.jianshu.com/p/5d58f6f9e2c7https://www.cnblogs.com/jinyuanliu/p/11056775.html  ...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a>, <a class="tag-none-link" href="/tags/%E5%8A%A0%E5%AF%86%E5%8D%9A%E5%AE%A2/" rel="tag">加密博客</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-07-15T08:19:17.090Z" itemprop="dateModified">最后编辑：2023-07-15</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Mysql主从复制A-B" href="/2023/07/14/Mysql主从复制A-B/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'iZXJwsNXSKDrEVhrJkKmVMDD-9Nh9j0Va',
+                appKey: 'c5a75Cd0qOXG7z6YAVve9mW3',
+                visitor: true,
+                enableQQ: true,
+                path: '/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/'
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                80
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                14
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                15
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#kolla-kolla-ansible%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2"><span class="toc-text"> kolla kolla-ansible私有化部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A6%81%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%9A%84Libvirt%E6%9C%8D%E5%8A%A1"><span class="toc-text">禁用宿主机的Libvirt服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NOTE"><span class="toc-text">NOTE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E9%83%A8%E7%BD%B2kolla"><span class="toc-text">一.  部署kolla</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85kolla"><span class="toc-text">1.安装kolla</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ubuntu-%E9%AB%98%E7%89%88%E6%9C%AC-openstack-yoga-%E7%8E%AF%E5%A2%83%E5%8F%AF%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8kolla-sh%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C-%E9%83%A8%E7%BD%B2"><span class="toc-text">ubuntu( 高版本 openstack-yoga 环境可直接使用kolla.sh脚本执行 部署)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#centos-%E6%9C%AA%E6%B5%8B%E8%AF%95"><span class="toc-text">centos( 未测试 )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96-%E7%89%88%E6%9C%AC%E4%B8%BA%E9%AB%98%E7%89%88%E6%9C%ACopenstack%E6%97%B6%E9%9C%80%E8%A6%81-python3%E7%9A%84%E5%8C%85%E5%8D%B3python3-pip-python3-devel"><span class="toc-text">安装依赖 (版本为高版本openstack时需要 python3的包即python3-pip python3-devel )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81-%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85pip%E6%BA%90"><span class="toc-text">2、 配置国内pip源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%94%9F%E6%88%90%E8%99%9A%E6%8B%9F%E5%8C%96%E7%8E%AF%E5%A2%83%E5%9C%A8%E8%99%9A%E6%8B%9F%E5%8C%96%E7%8E%AF%E5%A2%83%E6%89%A7%E8%A1%8C"><span class="toc-text">3.生成虚拟化环境在虚拟化环境执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AE%89%E8%A3%85stable%E7%89%88kolla-%EF%BC%88%E4%BD%8E%E7%89%88%E6%9C%AC%EF%BC%89"><span class="toc-text">4.安装stable版kolla （低版本）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%AB%98%E7%89%88%E6%9C%ACstable-%E7%89%88%E6%9C%AC-kolla-yoga%E7%89%88-%EF%BC%88%E9%AB%98%E7%89%88%E6%9C%AC-%E6%9C%AC%E6%AC%A1%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-text">4.高版本stable 版本 kolla yoga版 （高版本 本次使用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%AE%89%E8%A3%85tox%EF%BC%8C%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">5、安装tox，生成配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81docker%E5%AE%89%E8%A3%85"><span class="toc-text"> 5、docker安装</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E7%BC%96%E8%AF%91%E9%95%9C%E5%83%8F"><span class="toc-text">二. 编译镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85kolla-ansible"><span class="toc-text">三.  编译安装kolla-ansible</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9C%A8%E8%99%9A%E6%8B%9F%E5%8C%96%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%93%8D%E4%BD%9C"><span class="toc-text">1. 在虚拟化环境下操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85ansible"><span class="toc-text">2、安装ansible</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%AE%89%E8%A3%85kolla-ansible"><span class="toc-text">3、安装kolla-ansible</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E5%88%A9%E7%94%A8%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85%E7%9A%84kolla-ansible%E6%9E%84%E5%BB%BAall-in-one%E7%89%88openstack"><span class="toc-text">四. 利用源码安装的kolla-ansible构建all-in-one版openstack</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="toc-text">1.修改文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AE%BE%E7%BD%AE%E4%B8%BB%E6%9C%BA%E5%90%8D%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-text">2.设置主机名安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8kolla-ansible%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-text">3.使用kolla-ansible安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E4%BF%AE%E6%94%B9-Hypervisor-Type-%E6%AD%A4%E5%A4%84%E5%8D%B3%E6%98%AF%E5%88%A9%E7%94%A8%E4%BA%86kolla-ansible%E7%9A%84%E5%90%88%E5%B9%B6%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7"><span class="toc-text">4、修改 Hypervisor Type 此处即是利用了kolla-ansible的合并配置文件属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E9%85%8D%E7%BD%AE"><span class="toc-text">检查配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E9%83%A8%E7%BD%B2"><span class="toc-text">开始部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5"><span class="toc-text">生成密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%AE%8C%E6%88%90%E6%95%88%E6%9E%9C"><span class="toc-text">部署完成效果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94-%E6%89%A9%E5%B1%95"><span class="toc-text">五.  扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A5%E9%94%99"><span class="toc-text">报错</span></a></li></ol></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ceph/">ceph</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/kubernetes/">kubernetes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/centos/" style="font-size: 0.67em;">centos</a> <a href="/tags/ceph/" style="font-size: 0.6em;">ceph</a> <a href="/tags/club/" style="font-size: 0.64em;">club</a> <a href="/tags/docker/" style="font-size: 0.67em;">docker</a> <a href="/tags/kubernetes/" style="font-size: 0.6em;">kubernetes</a> <a href="/tags/mysql/" style="font-size: 0.69em;">mysql</a> <a href="/tags/python/" style="font-size: 0.62em;">python</a> <a href="/tags/shell/" style="font-size: 0.67em;">shell</a> <a href="/tags/ubuntu/" style="font-size: 0.69em;">ubuntu</a> <a href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" style="font-size: 0.73em;">云原生监控</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 0.71em;">云计算</a> <a href="/tags/%E5%8A%A0%E5%AF%86%E5%8D%9A%E5%AE%A2/" style="font-size: 0.76em;">加密博客</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" style="font-size: 0.78em;">常用软件</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" style="font-size: 0.8em;">环境部署</a> <a href="/tags/%E8%BF%81%E4%BA%91/" style="font-size: 0.6em;">迁云</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/"><i class="fa  fa-book"></i> kolla kolla-ansible源码部署并使用kolla-ansible部署单机版openstack</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/07/14/Mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6A-B/"><i class="fa  fa-book"></i> Mysql主从复制A-B</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/07/14/speedtest-%E6%B5%8B%E8%AF%95%E7%BD%91%E7%BB%9C%E5%B8%A6%E5%AE%BD/"><i class="fa  fa-book"></i> speedtest 测试网络带宽</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/07/06/OpenStack-%E5%AE%89%E5%85%A8%E7%BB%84-linux-ssh%E7%99%BD%E5%90%8D%E5%8D%95%E9%85%8D%E7%BD%AE/"><i class="fa  fa-book"></i> OpenStack 安全组 linux ssh白名单配置</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/30/%E6%A0%B9%E6%8D%AE%E8%BF%9B%E7%A8%8B%E5%90%8Dpid%E5%8F%8A%E7%94%A8%E6%88%B7%E6%9F%A5%E7%9C%8Blinux%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E8%84%9A%E6%9C%AC/"><i class="fa  fa-book"></i> 根据进程名pid及用户查看linux系统相关信息脚本</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 ZZNN GEGEWU 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by zznn.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="tencent"
+        type="playlist"
+        id="8926738453"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
