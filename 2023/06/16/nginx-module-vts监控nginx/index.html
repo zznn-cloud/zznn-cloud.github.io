@@ -20,17 +20,17 @@
   <meta name="description" content="通过with-http_stub_status_module或nginx-module-vts监控nginxhttps:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;7119751560900378637#heading-6 前言：nginx安装时推荐编译安装 一. nginx编译两模块  （with-http_stub_status_module监控的东西太少不推荐 ）nginx-module-vts下载链">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx-module-vts监控nginx">
-<meta property="og:url" content="https://gegewu12.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/index.html">
+<meta property="og:url" content="https://gegewu-could.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/index.html">
 <meta property="og:site_name" content="ZZNN GEGEWU">
 <meta property="og:description" content="通过with-http_stub_status_module或nginx-module-vts监控nginxhttps:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;7119751560900378637#heading-6 前言：nginx安装时推荐编译安装 一. nginx编译两模块  （with-http_stub_status_module监控的东西太少不推荐 ）nginx-module-vts下载链">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
+<meta property="og:image" content="https://gegewu-could.github.io/images/thumb/zznnlogo.webp">
 <meta property="article:published_time" content="2023-06-16T06:01:30.000Z">
 <meta property="article:modified_time" content="2023-06-16T06:15:21.920Z">
 <meta property="article:author" content="zznn">
 <meta property="article:tag" content="云原生监控">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gegewu12.github.io/images/thumb/zznnlogo.webp">
+<meta name="twitter:image" content="https://gegewu-could.github.io/images/thumb/zznnlogo.webp">
   
   <!-- 站点验证相关 -->
   
@@ -163,7 +163,7 @@
                                     
                                         <li>
                                             
-                                                <a href="https://gegewu12.github.io/search/">
+                                                <a href="https://gegewu-could.github.io/search/">
                                             
                                                 
                                                     <i class="fa fa-search"></i>
@@ -175,7 +175,7 @@
                                     
                                         <li>
                                             
-                                                <a href="https://gegewu12.github.io/2023/05/23/留言板/">
+                                                <a href="https://gegewu-could.github.io/2023/05/23/留言板/">
                                             
                                                 
                                                     <i class="fa fa-paper-plane"></i>
@@ -187,7 +187,7 @@
                                     
                                         <li>
                                             
-                                                <a href="https://gegewu12.github.io/2023/05/22/关于/">
+                                                <a href="https://gegewu-could.github.io/2023/05/22/关于/">
                                             
                                                 
                                                     <i class="fa fa-heart"></i>
@@ -239,7 +239,7 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="https://gegewu12.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/">
+    <link itemprop="mainEntityOfPage" href="https://gegewu-could.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
@@ -286,7 +286,7 @@
             <div itemprop="articleBody"><h2 id="通过with-http-stub-status-module或nginx-module-vts监控nginx"><a href="#通过with-http-stub-status-module或nginx-module-vts监控nginx" class="headerlink" title="通过with-http_stub_status_module或nginx-module-vts监控nginx"></a>通过<code>with-http_stub_status_module</code>或<code>nginx-module-vts</code>监控<code>nginx</code></h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7119751560900378637#heading-6">https://juejin.cn/post/7119751560900378637#heading-6</a></p>
 <p>前言：<code>nginx</code>安装时推荐编译安装</p>
 <h3 id="一-nginx编译两模块-（with-http-stub-status-module监控的东西太少不推荐-）"><a href="#一-nginx编译两模块-（with-http-stub-status-module监控的东西太少不推荐-）" class="headerlink" title="一. nginx编译两模块  （with-http_stub_status_module监控的东西太少不推荐 ）"></a>一. <code>nginx</code>编译两模块  （<code>with-http_stub_status_module</code>监控的东西太少不推荐 ）</h3><p><code>nginx-module-vts</code>下载链接：<br><a target="_blank" rel="noopener" href="https://codeload.github.com/vozlt/nginx-module-vts/tar.gz/v0.1.18">https://codeload.github.com/vozlt/nginx-module-vts/tar.gz/v0.1.18</a></p>
-<p>编译安装<code>nginx</code>：<br><a href="https://gegewu12.github.io/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2nginx/">https://gegewu12.github.io/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2nginx/</a></p>
+<p>编译安装<code>nginx</code>：<br><a target="_blank" rel="noopener" href="https://gegewu12.github.io/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2nginx/">https://gegewu12.github.io/2023/05/15/%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2nginx/</a></p>
 <h4 id="1-首次安装nginx编译（with-http-stub-status-module模块）"><a href="#1-首次安装nginx编译（with-http-stub-status-module模块）" class="headerlink" title="1.首次安装nginx编译（with-http_stub_status_module模块）"></a><code>1</code>.首次安装<code>nginx</code>编译（<code>with-http_stub_status_module</code>模块）</h4><p>查看是否已有模块</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看是否已编译</span></span><br><span class="line">./nginx -V 2&gt;&amp;1 | grep -o with-http_stub_status_module</span><br></pre></td></tr></table></figure>
 
@@ -304,7 +304,7 @@
 <p><img src="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/image-20230615155432702-168689560315110.png" alt="image-20230615155432702"></p>
 <p><code>make</code>完成截图</p>
 <p><img src="/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/image-20230615160200983-168689560315111.png" alt="image-20230615160200983"></p>
-<h4 id="3-docker-compose文件"><a href="#3-docker-compose文件" class="headerlink" title="3. docker-compose文件"></a><code>3. docker-compose</code>文件</h4><p><a href="https://gegewu12.github.io/2023/05/25/telegraf%E9%87%87%E9%9B%86%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6/">https://gegewu12.github.io/2023/05/25/telegraf%E9%87%87%E9%9B%86%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6/</a></p>
+<h4 id="3-docker-compose文件"><a href="#3-docker-compose文件" class="headerlink" title="3. docker-compose文件"></a><code>3. docker-compose</code>文件</h4><p><a target="_blank" rel="noopener" href="https://gegewu12.github.io/2023/05/25/telegraf%E9%87%87%E9%9B%86%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6/">https://gegewu12.github.io/2023/05/25/telegraf%E9%87%87%E9%9B%86%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6/</a></p>
 <h3 id="二-监控nginx-with-http-stub-status-module模块-监控的东西太少不建议使用"><a href="#二-监控nginx-with-http-stub-status-module模块-监控的东西太少不建议使用" class="headerlink" title="二.  监控nginx with-http_stub_status_module模块 ( 监控的东西太少不建议使用 )"></a>二.  监控<code>nginx with-http_stub_status_module</code>模块 ( 监控的东西太少不建议使用 )</h3><h4 id="1-修改nginx配置文件-server模块部分-usr-local-nginx-conf-nginx-conf"><a href="#1-修改nginx配置文件-server模块部分-usr-local-nginx-conf-nginx-conf" class="headerlink" title="1.修改nginx配置文件 server模块部分 (/usr/local/nginx/conf/nginx.conf)"></a><code>1.</code>修改<code>nginx</code>配置文件 <code>server</code>模块部分 (<code>/usr/local/nginx/conf/nginx.conf</code>)</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改nginx配置文件 server模块部分</span></span><br><span class="line"><span class="comment"># nginx with-http_stub_status_module 模块</span></span><br><span class="line">location ~ /nginx_status &#123;stub_status on;access_log off;allow all;deny all;&#125;</span><br><span class="line">或</span><br><span class="line">        location /nginx_status &#123;</span><br><span class="line">            allow 127.0.0.1;</span><br><span class="line">            deny all;</span><br><span class="line">            stub_status on;</span><br><span class="line">            access_log off;</span><br><span class="line">        &#125;</span><br><span class="line">注：如果 需要windows访问还需要 放通windows的IP段</span><br><span class="line">如下：VTS模块参考</span><br><span class="line">        <span class="comment"># nginx-module-vts模块</span></span><br><span class="line">        location /status &#123;</span><br><span class="line">            allow 127.0.0.1;</span><br><span class="line">            allow windows-ip/24;</span><br><span class="line">            deny all;</span><br><span class="line">            vhost_traffic_status_display;</span><br><span class="line">            vhost_traffic_status_display_format html;</span><br><span class="line">            access_log off;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-此模块可搭配nginx-prometheus-exporter-latest采集插件使用"><a href="#2-此模块可搭配nginx-prometheus-exporter-latest采集插件使用" class="headerlink" title="2.此模块可搭配nginx-prometheus-exporter:latest采集插件使用"></a><code>2.</code>此模块可搭配<code>nginx-prometheus-exporter:latest</code>采集插件使用</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker run构建监控插件容器</span></span><br><span class="line">docker run -d --restart always -p 9113:9113 nginx/nginx-prometheus-exporter:latest -nginx.scrape-uri http://10.0.0.10/nginx_status</span><br></pre></td></tr></table></figure>
@@ -381,7 +381,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "https://gegewu12.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/",
+                text: "https://gegewu-could.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -393,7 +393,7 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "https://gegewu12.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/";
+            const hostUrl       = "https://gegewu-could.github.io/2023/06/16/nginx-module-vts%E7%9B%91%E6%8E%A7nginx/";
             const title         = "「nginx-module-vts监控nginx」";
             const excerpt       = `通过with-http_stub_status_module或nginx-module-vts监控nginxhttps://juejin.cn/post/7119751560900378637#heading-6
 前言：nginx安装...`;
