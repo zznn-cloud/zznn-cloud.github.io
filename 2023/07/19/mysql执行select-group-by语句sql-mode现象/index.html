@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/thumb/zznnlogo.webp">
+  
+  <title>mysql执行select group_by语句sql_mode现象 | ZZNN GEGEWU</title>
+  
+  <meta name="author" content="zznn" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="mysql, 环境部署" />
+  
+  <meta name="description" content="mysql执行select group_by语句sql_mode&#x3D;only_full_group_by报错现象环境安装完特定版本mysql的任何环境 本次使用test mysql版本mysql5.7 参考https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq118640594X&#x2F;article&#x2F;details&#x2F;128024350  配置文件位置ubuntu:&#x2F;etc&#x2F;mysql&#x2F;mysql.conf.d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql执行select group_by语句sql_mode现象">
+<meta property="og:url" content="https://gegewu-could.github.io/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/index.html">
+<meta property="og:site_name" content="ZZNN GEGEWU">
+<meta property="og:description" content="mysql执行select group_by语句sql_mode&#x3D;only_full_group_by报错现象环境安装完特定版本mysql的任何环境 本次使用test mysql版本mysql5.7 参考https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq118640594X&#x2F;article&#x2F;details&#x2F;128024350  配置文件位置ubuntu:&#x2F;etc&#x2F;mysql&#x2F;mysql.conf.d">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gegewu-could.github.io/images/thumb/zznnlogo.webp">
+<meta property="article:published_time" content="2023-07-19T10:15:57.000Z">
+<meta property="article:modified_time" content="2023-07-19T10:19:20.821Z">
+<meta property="article:author" content="zznn">
+<meta property="article:tag" content="环境部署">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gegewu-could.github.io/images/thumb/zznnlogo.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li>
+                                            
+                                                <a href="/">
+                                            
+                                                
+                                                    <i class="fa fa-home"></i>
+                                                
+                                                首页
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="/archives/">
+                                            
+                                                
+                                                    <i class="fa fa-file"></i>
+                                                
+                                                档案馆
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="/friends/">
+                                            
+                                                
+                                                    <i class="fa fa-paw"></i>
+                                                
+                                                好伙伴
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a>
+                                            
+                                                
+                                                    <i class="fa fa-link"></i>
+                                                
+                                                链接
+                                            </a>
+                                            
+                                                <ul class="sub-menu">
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">
+                                                                
+                                                                项目链接
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://fontawesome.com.cn/v4/icons">
+                                                                
+                                                                图标库
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://kr-demo.candinya.com/posts/Kratos-Rebirth-Manual/">
+                                                                
+                                                                Kratos-Rebirth
+                                                            </a>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a target="_blank" rel="noopener" href="https://console-e1.leancloud.cn/login">
+                                                                
+                                                                leanCloud
+                                                            </a>
+                                                        </li>
+                                                    
+                                                </ul>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu-could.github.io/search/">
+                                            
+                                                
+                                                    <i class="fa fa-search"></i>
+                                                
+                                                搜的一下
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu-could.github.io/2023/05/23/留言板/">
+                                            
+                                                
+                                                    <i class="fa fa-paper-plane"></i>
+                                                
+                                                留言板
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                        <li>
+                                            
+                                                <a href="https://gegewu-could.github.io/2023/05/22/关于/">
+                                            
+                                                
+                                                    <i class="fa fa-heart"></i>
+                                                
+                                                关于
+                                            </a>
+                                            
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">ZZNN GEGEWU</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>ZZNN GEGEWU</h2> <br />
+                        <span>哇偶！恭喜你发现宝藏啦~</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="https://gegewu-could.github.io/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">mysql执行select group_by语句sql_mode现象</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-07-19T10:15:57.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-07-19</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">zznn</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~3.86K
+                        
+                        字
+                    </li>
+                
+                
+                    <li id="/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/" class="leancloud_visitors" data-flag-title="mysql执行select group_by语句sql_mode现象">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1689761960821"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode-only-full-group-by%E6%8A%A5%E9%94%99%E7%8E%B0%E8%B1%A1"><span class="toc-text">mysql执行select group_by语句sql_mode&#x3D;only_full_group_by报错现象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE"><span class="toc-text">配置文件位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E8%B1%A1"><span class="toc-text">现象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3"><span class="toc-text">解决</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80"><span class="toc-text">方式一</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%AF%B9%E6%97%A7%E5%BA%93%E6%89%A7%E8%A1%8C%E4%BF%AE%E6%94%B9mode-sql%E5%8F%82%E6%95%B0-%EF%BC%88%E6%AD%A4%E5%A4%84%E5%81%87%E8%AE%BE%E6%97%A7%E5%BA%93%E4%B8%BAtest%EF%BC%89"><span class="toc-text">1. 对旧库执行修改mode_sql参数 （此处假设旧库为test）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E7%94%9F%E6%95%88-%E5%BB%BA%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E9%83%A8%E7%BD%B2%E5%AE%8C%E6%AF%95%E5%B0%B1%E9%85%8D%E7%BD%AE%E6%AD%A4%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE"><span class="toc-text">2.设置全局生效 (建议数据库部署完毕就配置此全局配置)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E6%88%90%E5%8A%9F"><span class="toc-text">验证成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C"><span class="toc-text">方式二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-any-value-%E6%88%96-group-concat"><span class="toc-text">使用 any_value() 或 group_concat()</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-any-value-%EF%BC%9A%E5%B0%86%E5%88%86%E5%88%B0%E5%90%8C%E4%B8%80%E7%BB%84%E7%9A%84%E6%95%B0%E6%8D%AE%E9%87%8C%E7%AC%AC%E4%B8%80%E6%9D%A1%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8C%87%E5%AE%9A%E5%88%97%E5%80%BC%E4%BD%9C%E4%B8%BA%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE%E3%80%82-%EF%BC%88any-value-%E5%87%BD%E6%95%B0%E5%B0%B1%E6%98%AFMySQL%E6%8F%90%E4%BE%9B%E7%9A%84%E7%94%A8%E6%9D%A5%E6%8A%91%E5%88%B6ONLY-FULL-GROUP-BY%E5%80%BC%E8%A2%AB%E6%8B%92%E7%BB%9D%E7%9A%84%EF%BC%89"><span class="toc-text">1. any_value()：将分到同一组的数据里第一条数据的指定列值作为返回数据。 （any_value()函数就是MySQL提供的用来抑制ONLY_FULL_GROUP_BY值被拒绝的）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-group-concat-%EF%BC%9A%E5%B0%86%E5%88%86%E5%88%B0%E5%90%8C%E4%B8%80%E7%BB%84%E7%9A%84%E6%95%B0%E6%8D%AE%E9%BB%98%E8%AE%A4%E7%94%A8%E9%80%97%E5%8F%B7%E9%9A%94%E5%BC%80%E4%BD%9C%E4%B8%BA%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE"><span class="toc-text">2. group_concat()：将分到同一组的数据默认用逗号隔开作为返回数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95"><span class="toc-text">扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%8E%B0%E8%B1%A1%E8%BF%98%E5%8E%9F-%E5%8F%AF%E7%94%A8%E4%B8%8B%E9%9D%A2%E7%9A%84sql%E8%AF%AD%E5%8F%A5%E5%88%9B%E5%BA%93%E5%AE%9E%E9%AA%8C"><span class="toc-text">1. 现象还原 可用下面的sql语句创库实验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%AA%8C%E8%AF%81sql%E8%AF%AD%E5%8F%A5"><span class="toc-text">2. 验证sql语句</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h2 id="mysql执行select-group-by语句sql-mode-only-full-group-by报错现象"><a href="#mysql执行select-group-by语句sql-mode-only-full-group-by报错现象" class="headerlink" title="mysql执行select group_by语句sql_mode=only_full_group_by报错现象"></a><code>mysql</code>执行<code>select group_by</code>语句<code>sql_mode=only_full_group_by</code>报错现象</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>安装完特定版本<code>mysql</code>的任何环境 本次使用<code>test mysql</code>版本<code>mysql5.7</code></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq118640594X/article/details/128024350">https://blog.csdn.net/qq118640594X/article/details/128024350</a></p>
+<p><img src="/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/image-20230719094741996.png" alt="image-20230719094741996"></p>
+<h3 id="配置文件位置"><a href="#配置文件位置" class="headerlink" title="配置文件位置"></a>配置文件位置</h3><p><code>ubuntu</code>:<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code><br><code>centos</code>: <code>vim /etc/my.cnf</code></p>
+<h3 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h3><p><code>sql_mode=only_full_group_by</code></p>
+<img src="/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/image-20230719091503156.png" alt="image-20230719091503156" style="zoom:150%;">
+
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p><strong>修改全局<code>mode</code>参数时只对执行完此条语句后创建的数据库生效 若想对旧的数据库生效则需要 在旧数据下面执行语句 建议 安装完成数据库后便在<code>mysql</code>全局配置文件下进行配置此时即可全局永久生效</strong></p>
+<h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><h5 id="1-对旧库执行修改mode-sql参数-（此处假设旧库为test）"><a href="#1-对旧库执行修改mode-sql参数-（此处假设旧库为test）" class="headerlink" title="1. 对旧库执行修改mode_sql参数 （此处假设旧库为test）"></a><code>1. </code>对旧库执行修改<code>mode_sql</code>参数 （此处假设旧库为<code>test</code>）</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 列出全部数据库</span><br><span class="line"><span class="keyword">show</span> databases;  </span><br><span class="line"># 选择test数据库</span><br><span class="line">use test; </span><br><span class="line"># 查看test数据库的表</span><br><span class="line"><span class="keyword">show</span> tables;</span><br><span class="line"># 查询sql_mode参数</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> @<span class="variable">@global</span>.sql_mode;                                                                                                                 </span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------------------------------------------------------------------------------------------------------------------------+    </span></span><br><span class="line"><span class="operator">|</span> @<span class="variable">@global</span>.sql_mode                                                                                                                         <span class="operator">|</span>    </span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------------------------------------------------------------------------------------------------------------------------+    </span></span><br><span class="line"><span class="operator">|</span> ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION <span class="operator">|</span>    </span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------------------------------------------------------------------------------------------------------------------------+    </span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec) </span><br><span class="line"># 取消ONLY_FULL_GROUP_BY参数 sql_mode根据上面查询出的实际更改</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SET</span> <span class="keyword">GLOBAL</span> sql_mode<span class="operator">=</span><span class="string">&#x27;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&#x27;</span>;                                                                                                                                               </span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-设置全局生效-建议数据库部署完毕就配置此全局配置"><a href="#2-设置全局生效-建议数据库部署完毕就配置此全局配置" class="headerlink" title="2.设置全局生效 (建议数据库部署完毕就配置此全局配置)"></a><code>2.</code>设置全局生效 <strong>(建议数据库部署完毕就配置此全局配置)</strong></h5><p>在<code>[mysqld]</code>模块下新增一行配置 (<code>sql_mode</code>根据实际查询出来的结果填写) 修改完成后重启数据库（<code>systemctl restart mysqld</code>）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 编辑配置文件设置全局生效</span><br><span class="line">[mysqld]</span><br><span class="line">sql_mode<span class="operator">=</span><span class="string">&#x27;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&#x27;</span></span><br><span class="line"># 保存后重启数据库</span><br><span class="line">systemctl restart mysqld</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/image-20230719093717423.png" alt="image-20230719093717423"></p>
+<h3 id="验证成功"><a href="#验证成功" class="headerlink" title="验证成功"></a>验证成功</h3><p><img src="/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/image-20230719093555460.png" alt="image-20230719093555460"></p>
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><h3 id="使用-any-value-或-group-concat"><a href="#使用-any-value-或-group-concat" class="headerlink" title="使用 any_value() 或 group_concat()"></a>使用 <code>any_value() </code>或 <code>group_concat()</code></h3><h5 id="1-any-value-：将分到同一组的数据里第一条数据的指定列值作为返回数据。-（any-value-函数就是MySQL提供的用来抑制ONLY-FULL-GROUP-BY值被拒绝的）"><a href="#1-any-value-：将分到同一组的数据里第一条数据的指定列值作为返回数据。-（any-value-函数就是MySQL提供的用来抑制ONLY-FULL-GROUP-BY值被拒绝的）" class="headerlink" title="1. any_value()：将分到同一组的数据里第一条数据的指定列值作为返回数据。 （any_value()函数就是MySQL提供的用来抑制ONLY_FULL_GROUP_BY值被拒绝的）"></a><strong><code>1. any_value()</code>：将分到同一组的数据里第一条数据的指定列值作为返回数据。</strong> （<code>any_value()</code>函数就是<code>MySQL</code>提供的用来抑制<code>ONLY_FULL_GROUP_BY</code>值被拒绝的）</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">sql</span> 语句</span><br><span class="line"><span class="keyword">select</span> Beijing,any_value(Shanghai) <span class="keyword">from</span> city <span class="keyword">group</span> <span class="keyword">by</span> Beijing</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-group-concat-：将分到同一组的数据默认用逗号隔开作为返回数据"><a href="#2-group-concat-：将分到同一组的数据默认用逗号隔开作为返回数据" class="headerlink" title="2. group_concat()：将分到同一组的数据默认用逗号隔开作为返回数据"></a><strong><code>2. group_concat()</code>：将分到同一组的数据默认用逗号隔开作为返回数据</strong></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">sql</span> 语句</span><br><span class="line"><span class="keyword">select</span> Beijing,group_concat(Shanghai) <span class="keyword">from</span> city <span class="keyword">group</span> <span class="keyword">by</span> Beijing</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/image-20230719093322644.png" alt="image-20230719093322644"></p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><h4 id="1-现象还原-可用下面的sql语句创库实验"><a href="#1-现象还原-可用下面的sql语句创库实验" class="headerlink" title="1. 现象还原 可用下面的sql语句创库实验"></a><code>1. </code>现象还原 可用下面的<code>sql</code>语句创库实验</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> Navicat Premium Data Transfer</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment"> Source Server         : test</span></span><br><span class="line"><span class="comment"> Source Server Type    : MySQL</span></span><br><span class="line"><span class="comment"> Source Server Version : 50743</span></span><br><span class="line"><span class="comment"> Source Host           : 172.100.70.179:3306</span></span><br><span class="line"><span class="comment"> Source Schema         : test</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment"> Target Server Type    : MySQL</span></span><br><span class="line"><span class="comment"> Target Server Version : 50743</span></span><br><span class="line"><span class="comment"> File Encoding         : 65001</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment"> Date: 18/07/2023 16:49:21</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">SET</span> NAMES utf8mb4;</span><br><span class="line"><span class="keyword">SET</span> FOREIGN_KEY_CHECKS <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Table structure for city</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> `city`;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `city`  (</span><br><span class="line">  `id` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `Beijing` <span class="type">varchar</span>(<span class="number">255</span>) <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_bin <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `Shanghai` <span class="type">varchar</span>(<span class="number">255</span>) <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_bin <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`) <span class="keyword">USING</span> BTREE</span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB <span class="type">CHARACTER</span> <span class="keyword">SET</span> <span class="operator">=</span> utf8 <span class="keyword">COLLATE</span> <span class="operator">=</span> utf8_bin ROW_FORMAT <span class="operator">=</span> <span class="keyword">Dynamic</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Records of city</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `city` <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;北京&#x27;</span>, <span class="string">&#x27;上海&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `city` <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">&#x27;武汉&#x27;</span>, <span class="string">&#x27;昆明&#x27;</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">SET</span> FOREIGN_KEY_CHECKS <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-验证sql语句"><a href="#2-验证sql语句" class="headerlink" title="2. 验证sql语句"></a><code>2. </code>验证<code>sql</code>语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `city`;</span><br><span class="line"><span class="keyword">select</span> Beijing,Shanghai <span class="keyword">from</span> `city`; </span><br><span class="line"><span class="keyword">select</span> Beijing,Shanghai <span class="keyword">from</span> `city` <span class="keyword">group</span> <span class="keyword">by</span> Beijing</span><br><span class="line"><span class="keyword">select</span> Beijing,any_value(Shanghai) <span class="keyword">from</span> city <span class="keyword">group</span> <span class="keyword">by</span> Beijing</span><br><span class="line"><span class="keyword">select</span> Beijing,group_concat(Shanghai) <span class="keyword">from</span> city <span class="keyword">group</span> <span class="keyword">by</span> Beijing</span><br><span class="line"><span class="keyword">select</span> Beijing,Shanghai <span class="keyword">from</span> city <span class="keyword">group</span> <span class="keyword">by</span> Beijing,Shanghai</span><br></pre></td></tr></table></figure>
+
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://gegewu-could.github.io/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://gegewu-could.github.io/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/";
+            const title         = "「mysql执行select group_by语句sql_mode现象」";
+            const excerpt       = `mysql执行select group_by语句sql_mode=only_full_group_by报错现象环境安装完特定版本mysql的任何环境 本次使用test mysql版本mysql5.7
+参考https://blog.cs...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/mysql/" rel="tag">mysql</a>, <a class="tag-none-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" rel="tag">环境部署</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-07-19T10:19:20.821Z" itemprop="dateModified">最后编辑：2023-07-19</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" kolla kolla-ansible源码部署并使用kolla-ansible部署单机版openstack" href="/2023/07/15/kolla-kolla-ansible源码部署并使用kolla-ansible部署单机版openstack/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'iZXJwsNXSKDrEVhrJkKmVMDD-9Nh9j0Va',
+                appKey: 'c5a75Cd0qOXG7z6YAVve9mW3',
+                visitor: true,
+                enableQQ: true,
+                path: '/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/'
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                81
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                14
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                15
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode-only-full-group-by%E6%8A%A5%E9%94%99%E7%8E%B0%E8%B1%A1"><span class="toc-text">mysql执行select group_by语句sql_mode&#x3D;only_full_group_by报错现象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE"><span class="toc-text">配置文件位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E8%B1%A1"><span class="toc-text">现象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3"><span class="toc-text">解决</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80"><span class="toc-text">方式一</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%AF%B9%E6%97%A7%E5%BA%93%E6%89%A7%E8%A1%8C%E4%BF%AE%E6%94%B9mode-sql%E5%8F%82%E6%95%B0-%EF%BC%88%E6%AD%A4%E5%A4%84%E5%81%87%E8%AE%BE%E6%97%A7%E5%BA%93%E4%B8%BAtest%EF%BC%89"><span class="toc-text">1. 对旧库执行修改mode_sql参数 （此处假设旧库为test）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E7%94%9F%E6%95%88-%E5%BB%BA%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E9%83%A8%E7%BD%B2%E5%AE%8C%E6%AF%95%E5%B0%B1%E9%85%8D%E7%BD%AE%E6%AD%A4%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE"><span class="toc-text">2.设置全局生效 (建议数据库部署完毕就配置此全局配置)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E6%88%90%E5%8A%9F"><span class="toc-text">验证成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C"><span class="toc-text">方式二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-any-value-%E6%88%96-group-concat"><span class="toc-text">使用 any_value() 或 group_concat()</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-any-value-%EF%BC%9A%E5%B0%86%E5%88%86%E5%88%B0%E5%90%8C%E4%B8%80%E7%BB%84%E7%9A%84%E6%95%B0%E6%8D%AE%E9%87%8C%E7%AC%AC%E4%B8%80%E6%9D%A1%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8C%87%E5%AE%9A%E5%88%97%E5%80%BC%E4%BD%9C%E4%B8%BA%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE%E3%80%82-%EF%BC%88any-value-%E5%87%BD%E6%95%B0%E5%B0%B1%E6%98%AFMySQL%E6%8F%90%E4%BE%9B%E7%9A%84%E7%94%A8%E6%9D%A5%E6%8A%91%E5%88%B6ONLY-FULL-GROUP-BY%E5%80%BC%E8%A2%AB%E6%8B%92%E7%BB%9D%E7%9A%84%EF%BC%89"><span class="toc-text">1. any_value()：将分到同一组的数据里第一条数据的指定列值作为返回数据。 （any_value()函数就是MySQL提供的用来抑制ONLY_FULL_GROUP_BY值被拒绝的）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-group-concat-%EF%BC%9A%E5%B0%86%E5%88%86%E5%88%B0%E5%90%8C%E4%B8%80%E7%BB%84%E7%9A%84%E6%95%B0%E6%8D%AE%E9%BB%98%E8%AE%A4%E7%94%A8%E9%80%97%E5%8F%B7%E9%9A%94%E5%BC%80%E4%BD%9C%E4%B8%BA%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE"><span class="toc-text">2. group_concat()：将分到同一组的数据默认用逗号隔开作为返回数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95"><span class="toc-text">扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%8E%B0%E8%B1%A1%E8%BF%98%E5%8E%9F-%E5%8F%AF%E7%94%A8%E4%B8%8B%E9%9D%A2%E7%9A%84sql%E8%AF%AD%E5%8F%A5%E5%88%9B%E5%BA%93%E5%AE%9E%E9%AA%8C"><span class="toc-text">1. 现象还原 可用下面的sql语句创库实验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%AA%8C%E8%AF%81sql%E8%AF%AD%E5%8F%A5"><span class="toc-text">2. 验证sql语句</span></a></li></ol></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ceph/">ceph</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/club/">club</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/kubernetes/">kubernetes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/py/">py</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/">云原生监控</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">常用软件</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%81%E4%BA%91/">迁云</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/centos/" style="font-size: 0.66em;">centos</a> <a href="/tags/ceph/" style="font-size: 0.6em;">ceph</a> <a href="/tags/club/" style="font-size: 0.64em;">club</a> <a href="/tags/docker/" style="font-size: 0.66em;">docker</a> <a href="/tags/kubernetes/" style="font-size: 0.6em;">kubernetes</a> <a href="/tags/mysql/" style="font-size: 0.7em;">mysql</a> <a href="/tags/python/" style="font-size: 0.62em;">python</a> <a href="/tags/shell/" style="font-size: 0.66em;">shell</a> <a href="/tags/ubuntu/" style="font-size: 0.68em;">ubuntu</a> <a href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7/" style="font-size: 0.74em;">云原生监控</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 0.72em;">云计算</a> <a href="/tags/%E5%8A%A0%E5%AF%86%E5%8D%9A%E5%AE%A2/" style="font-size: 0.76em;">加密博客</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" style="font-size: 0.78em;">常用软件</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" style="font-size: 0.8em;">环境部署</a> <a href="/tags/%E8%BF%81%E4%BA%91/" style="font-size: 0.6em;">迁云</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/07/19/mysql%E6%89%A7%E8%A1%8Cselect-group-by%E8%AF%AD%E5%8F%A5sql-mode%E7%8E%B0%E8%B1%A1/"><i class="fa  fa-book"></i> mysql执行select group_by语句sql_mode现象</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/07/15/kolla-kolla-ansible%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2%E5%B9%B6%E4%BD%BF%E7%94%A8kolla-ansible%E9%83%A8%E7%BD%B2%E5%8D%95%E6%9C%BA%E7%89%88openstack/"><i class="fa  fa-book"></i> kolla kolla-ansible源码部署并使用kolla-ansible部署单机版openstack</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/07/14/Mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6A-B/"><i class="fa  fa-book"></i> Mysql主从复制A-B</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/07/14/speedtest-%E6%B5%8B%E8%AF%95%E7%BD%91%E7%BB%9C%E5%B8%A6%E5%AE%BD/"><i class="fa  fa-book"></i> speedtest 测试网络带宽</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/07/06/OpenStack-%E5%AE%89%E5%85%A8%E7%BB%84-linux-ssh%E7%99%BD%E5%90%8D%E5%8D%95%E9%85%8D%E7%BD%AE/"><i class="fa  fa-book"></i> OpenStack 安全组 linux ssh白名单配置</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 ZZNN GEGEWU 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by zznn.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="tencent"
+        type="playlist"
+        id="8926738453"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
