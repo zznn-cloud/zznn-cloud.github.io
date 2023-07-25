@@ -74,11 +74,11 @@
       
         <tags>
             
-            <tag> 云原生监控 </tag>
-            
             <tag> 常用软件 </tag>
             
             <tag> 环境部署 </tag>
+            
+            <tag> 云原生监控 </tag>
             
             <tag> mysql </tag>
             
@@ -107,9 +107,9 @@
       
         <tags>
             
-            <tag> 云原生监控 </tag>
-            
             <tag> 环境部署 </tag>
+            
+            <tag> 云原生监控 </tag>
             
         </tags>
       
@@ -782,9 +782,9 @@
       
         <tags>
             
-            <tag> 云原生监控 </tag>
-            
             <tag> 常用软件 </tag>
+            
+            <tag> 云原生监控 </tag>
             
             <tag> 加密博客 </tag>
             
@@ -1164,11 +1164,11 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> 常用软件 </tag>
             
             <tag> 环境部署 </tag>
+            
+            <tag> docker </tag>
             
         </tags>
       
@@ -1193,9 +1193,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> 常用软件 </tag>
+            
+            <tag> docker </tag>
             
         </tags>
       
@@ -1220,11 +1220,11 @@
       
         <tags>
             
+            <tag> 常用软件 </tag>
+            
             <tag> 云原生监控 </tag>
             
             <tag> docker </tag>
-            
-            <tag> 常用软件 </tag>
             
         </tags>
       
@@ -1249,9 +1249,9 @@
       
         <tags>
             
-            <tag> 云原生监控 </tag>
-            
             <tag> 常用软件 </tag>
+            
+            <tag> 云原生监控 </tag>
             
             <tag> 加密博客 </tag>
             
@@ -1305,9 +1305,9 @@
       
         <tags>
             
-            <tag> 云原生监控 </tag>
-            
             <tag> 常用软件 </tag>
+            
+            <tag> 云原生监控 </tag>
             
             <tag> 加密博客 </tag>
             
@@ -1334,9 +1334,9 @@
       
         <tags>
             
-            <tag> 云原生监控 </tag>
-            
             <tag> 常用软件 </tag>
+            
+            <tag> 云原生监控 </tag>
             
         </tags>
       
@@ -1361,9 +1361,9 @@
       
         <tags>
             
-            <tag> 云原生监控 </tag>
-            
             <tag> 常用软件 </tag>
+            
+            <tag> 云原生监控 </tag>
             
             <tag> 加密博客 </tag>
             
@@ -1390,9 +1390,9 @@
       
         <tags>
             
-            <tag> 云原生监控 </tag>
-            
             <tag> 常用软件 </tag>
+            
+            <tag> 云原生监控 </tag>
             
         </tags>
       
@@ -1538,7 +1538,7 @@
       <link href="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/"/>
       <url>/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="rsync热同步磁盘"><a href="#rsync热同步磁盘" class="headerlink" title="rsync热同步磁盘"></a><code>rsync</code>热同步磁盘</h2><p>参考</p><p><a href="https://www.jianshu.com/p/ff09ceffa816">https://www.jianshu.com/p/ff09ceffa816</a><br><a href="https://www.cnblogs.com/lsdb/p/13922209.html">https://www.cnblogs.com/lsdb/p/13922209.html</a><br><a href="https://www.cnblogs.com/Dev0ps/p/8948457.html">https://www.cnblogs.com/Dev0ps/p/8948457.html</a><br><a href="https://www.cnblogs.com/kevingrace/p/8529792.html">https://www.cnblogs.com/kevingrace/p/8529792.html</a>            (主要参考&gt;&gt; 包括：过滤 限流等)<br><a href="https://blog.csdn.net/u014270566/article/details/107299120">https://blog.csdn.net/u014270566/article/details/107299120</a>  (主要参考)</p><p><img src="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/image-20230522140303874.png" alt="image-20230522140303874"></p><p>系统：centos7.9<br>本机：10.0.0.10<br>远端：10.0.0.20</p><p>rsync介绍：</p><p><img src="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/image-20230522140354945.png" alt="image-20230522140354945"></p><h2 id="一-安装rsync"><a href="#一-安装rsync" class="headerlink" title="一.  安装rsync"></a>一.  安装<code>rsync</code></h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 客户端和服务端程序都在rsync一个包里，客户机和服务机都装这个包就完事了 / 启动服务</span></span><br><span class="line">yum install rsync -y</span><br><span class="line"><span class="comment"># 创建测试磁盘写入测试文件</span></span><br></pre></td></tr></table></figure><p><img src="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/image-20230522140446180.png" alt="image-20230522140446180"></p><h3 id="二-操作同步文件夹-磁盘"><a href="#二-操作同步文件夹-磁盘" class="headerlink" title="二. 操作同步文件夹 / 磁盘"></a>二. 操作同步文件夹 / 磁盘</h3><p>将本机数据盘同步到其他机器<br>10机器挂载到：/change/windows<br>20机器挂载到：/mnt</p><h4 id="1-本机器内同步"><a href="#1-本机器内同步" class="headerlink" title="1.本机器内同步"></a><code>1.</code>本机器内同步</h4><p>rsync -a 源目录或文件 目标目录或文件<br>例如：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -a /dir1/ /dir2/     <span class="comment">#dir1下所有文件同步到dir2下</span></span><br></pre></td></tr></table></figure><h3 id="2-远程同步-（在20机器上执行）"><a href="#2-远程同步-（在20机器上执行）" class="headerlink" title="2.远程同步 （在20机器上执行）"></a><code>2.</code>远程同步 （在20机器上执行）</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">例</span><br><span class="line"><span class="comment"># 将192.168.1.77服务器/etc/hosts文件拷贝到本地/dir1文件夹下</span></span><br><span class="line">rsync -av root@192.168.1.77:/etc/hosts /dir1/     </span><br><span class="line"><span class="comment"># 执行同步10 &gt;&gt; 20 ( 在20操作 ) 将远端10目录：/change/windows 拷贝到20当前目录:/mnt</span></span><br><span class="line">rsync -avzrP root@10.0.0.10:/change/windows /mnt  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 本机执行远程拷贝相当于scp （10操作）</span></span><br><span class="line">或 如下（注意带/*）可以将/path/to/source/目录下所有的文件（不包括隐藏文件）一起拷贝到10.0.0.10机器的/path/to/dest/目录下</span><br><span class="line"><span class="comment"># rsync -e &quot;ssh -p22&quot; -avpgolr /path/to/source/* user@10.0.0.20:/path/to/dest/</span></span><br></pre></td></tr></table></figure><h3 id="三-效果"><a href="#三-效果" class="headerlink" title="三. 效果"></a>三. 效果</h3><p><img src="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/image-20230522140846926.png" alt="image-20230522140846926"></p><p><img src="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/image-20230522140900255.png" alt="image-20230522140900255"></p><h3 id="四-参数信息"><a href="#四-参数信息" class="headerlink" title="四.  参数信息"></a>四.  参数信息</h3><p>客户端同步<br>rsync -参数 用户名@同步服务器的IP::rsyncd.conf中那个方括号里的内容 本地存放路径 如:<br>rsync -avzP <a href="mailto:&#110;&#x65;&#x6d;&#111;&#x40;&#x31;&#x39;&#50;&#46;&#49;&#x36;&#56;&#46;&#49;&#48;&#46;&#x31;">&#110;&#x65;&#x6d;&#111;&#x40;&#x31;&#x39;&#50;&#46;&#49;&#x36;&#56;&#46;&#49;&#48;&#46;&#x31;</a>::nemo /backup<br>说明：<br>-a 参数，相当于-rlptgoD，-r 是递归 -l 是链接文件，意思是拷贝链接文件；-p 表示保持文件原有权限；-t 保持文件原有时间；-g 保持文件原有用户组；-o 保持文件原有属主；-D 相当于块设备文件；<br>-z 传输时压缩；<br>-P 传输进度；<br>-v 传输时的进度等信息，和-P有点关系，自己试试。可以看文档；</p><p><strong>参数详解</strong></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">1-v, --verbose 详细模式输出</span><br><span class="line">2-q, --quiet 精简输出模式</span><br><span class="line">3-c, --checksum 打开校验开关，强制对文件传输进行校验</span><br><span class="line">4-a, --archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD</span><br><span class="line">5-r, --recursive 对子目录以递归模式处理</span><br><span class="line">6-R, --relative 使用相对路径信息</span><br><span class="line">7-b, --backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用--suffix选项来指定不同的备份文件前缀。</span><br><span class="line">8--backup-dir 将备份文件(如~filename)存放在在目录下。</span><br><span class="line">9-suffix=SUFFIX 定义备份文件前缀</span><br><span class="line">10-u, --update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件。(不覆盖更新的文件)</span><br><span class="line">11-l, --links 保留软链结</span><br><span class="line">12-L, --copy-links 像对待常规文件一样处理软链接</span><br><span class="line">13--copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链接</span><br><span class="line">14--safe-links 忽略指向SRC路径目录树以外的链接</span><br><span class="line">15-H, --hard-links 保留硬链接</span><br><span class="line">16-p, --perms 保持文件权限</span><br><span class="line">17-o, --owner 保持文件属主信息</span><br><span class="line">18-g, --group 保持文件属组信息</span><br><span class="line">19-D, --devices 保持设备文件信息</span><br><span class="line">20-t, --<span class="built_in">times</span> 保持文件时间信息</span><br><span class="line">21-S, --sparse 对稀疏文件进行特殊处理以节省DST的空间</span><br><span class="line">22-n, --dry-run显示哪些文件将被传输</span><br><span class="line">23-W, --whole-file 拷贝文件，不进行增量检测</span><br><span class="line">24-x, --one-file-system 不要跨越文件系统边界</span><br><span class="line">25-B, --block-size=SIZE 检验算法使用的块尺寸，默认是700字节</span><br><span class="line">26-e, --rsh=COMMAND 指定使用rsh、ssh方式进行数据同步</span><br><span class="line">27--rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息</span><br><span class="line">28-C, --cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件</span><br><span class="line">29--existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件</span><br><span class="line">30--delete 删除那些DST中SRC没有的文件</span><br><span class="line">31--delete-excluded 同样删除接收端那些被该选项指定排除的文件</span><br><span class="line">32--delete-after 传输结束以后再删除</span><br><span class="line">33--ignore-errors 即使出现IO错误也进行删除</span><br><span class="line">34--max-delete=NUM 最多删除NUM个文件</span><br><span class="line">35--partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输</span><br><span class="line">36--force 强制删除目录，即使不为空</span><br><span class="line">37--numeric-ids 不将数字的用户和组ID匹配为用户名和组名</span><br><span class="line">38--<span class="built_in">timeout</span>=TIME IP超时时间，单位为秒</span><br><span class="line">39-I, --ignore-times 不跳过那些有同样的时间和长度的文件</span><br><span class="line">40--size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间</span><br><span class="line">41--modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0</span><br><span class="line">42-T --temp-dir=DIR 在DIR中创建临时文件</span><br><span class="line">43--compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份</span><br><span class="line">44-P 等同于 --partial</span><br><span class="line">45--progress 显示备份过程</span><br><span class="line">46-z, --compress 对备份的文件在传输时进行压缩处理</span><br><span class="line">47--exclude=PATTERN 指定排除不需要传输的文件模式</span><br><span class="line">48--include=PATTERN 指定不排除而需要传输的文件模式</span><br><span class="line">49--exclude-from=FILE 排除FILE中指定模式的文件</span><br><span class="line">50--include-from=FILE 不排除FILE指定模式匹配的文件</span><br><span class="line">51--version 打印版本信息</span><br><span class="line">52--address 绑定到特定的地址</span><br><span class="line">53--config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件</span><br><span class="line">54--port=PORT 指定其他的rsync服务端口</span><br><span class="line">55--blocking-io 对远程shell使用阻塞IO</span><br><span class="line">56-stats 给出某些文件的传输状态</span><br><span class="line">57--progress 在传输时现实传输过程</span><br><span class="line">58--log-format=formAT 指定日志文件格式</span><br><span class="line">59--password-file=FILE 从FILE中得到密码</span><br><span class="line">60--bwlimit=KBPS 限制I/O带宽，KBytes per second</span><br><span class="line">61-h, --<span class="built_in">help</span> 显示帮助信息</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="rsync热同步磁盘"><a href="#rsync热同步磁盘" class="headerlink" title="rsync热同步磁盘"></a><code>rsync</code>热同步磁盘</h2><p>参考</p><p><a href="https://www.jianshu.com/p/ff09ceffa816">https://www.jianshu.com/p/ff09ceffa816</a><br><a href="https://www.cnblogs.com/lsdb/p/13922209.html">https://www.cnblogs.com/lsdb/p/13922209.html</a><br><a href="https://www.cnblogs.com/Dev0ps/p/8948457.html">https://www.cnblogs.com/Dev0ps/p/8948457.html</a><br><a href="https://www.cnblogs.com/kevingrace/p/8529792.html">https://www.cnblogs.com/kevingrace/p/8529792.html</a>            (主要参考&gt;&gt; 包括：过滤 限流等)<br><a href="https://blog.csdn.net/u014270566/article/details/107299120">https://blog.csdn.net/u014270566/article/details/107299120</a>  (主要参考)</p><p><img src="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/image-20230522140303874.png" alt="image-20230522140303874"></p><p>系统：centos7.9<br>本机：10.0.0.10<br>远端：10.0.0.20</p><p>rsync介绍：</p><p><img src="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/image-20230522140354945.png" alt="image-20230522140354945"></p><h2 id="一-安装rsync"><a href="#一-安装rsync" class="headerlink" title="一.  安装rsync"></a>一.  安装<code>rsync</code></h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 客户端和服务端程序都在rsync一个包里，客户机和服务机都装这个包就完事了 / 启动服务</span></span><br><span class="line">yum install rsync -y</span><br><span class="line"><span class="comment"># 创建测试磁盘写入测试文件</span></span><br></pre></td></tr></table></figure><p><img src="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/image-20230522140446180.png" alt="image-20230522140446180"></p><h3 id="二-操作同步文件夹-磁盘"><a href="#二-操作同步文件夹-磁盘" class="headerlink" title="二. 操作同步文件夹 / 磁盘"></a>二. 操作同步文件夹 / 磁盘</h3><p>将本机数据盘同步到其他机器<br>10机器挂载到：/change/windows<br>20机器挂载到：/mnt</p><h4 id="1-本机器内同步"><a href="#1-本机器内同步" class="headerlink" title="1.本机器内同步"></a><code>1.</code>本机器内同步</h4><p>rsync -a 源目录或文件 目标目录或文件<br>例如：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -a /dir1/ /dir2/     <span class="comment">#dir1下所有文件同步到dir2下</span></span><br></pre></td></tr></table></figure><h3 id="2-远程同步-（在20机器上执行）"><a href="#2-远程同步-（在20机器上执行）" class="headerlink" title="2.远程同步 （在20机器上执行）"></a><code>2.</code>远程同步 （在20机器上执行）</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">例</span><br><span class="line"><span class="comment"># 将192.168.1.77服务器/etc/hosts文件拷贝到本地/dir1文件夹下</span></span><br><span class="line">rsync -av root@192.168.1.77:/etc/hosts /dir1/     </span><br><span class="line"><span class="comment"># 执行同步10 &gt;&gt; 20 ( 在20操作 ) 将远端10目录：/change/windows 拷贝到20当前目录:/mnt</span></span><br><span class="line">rsync -avzrP root@10.0.0.10:/change/windows /mnt  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 本机执行远程拷贝相当于scp （10操作）</span></span><br><span class="line">或 如下（注意带/*）可以将/path/to/source/目录下所有的文件（不包括隐藏文件）一起拷贝到10.0.0.10机器的/path/to/dest/目录下</span><br><span class="line"><span class="comment"># rsync -e &quot;ssh -p22&quot; -avpgolr /path/to/source/* user@10.0.0.20:/path/to/dest/</span></span><br></pre></td></tr></table></figure><h3 id="三-效果"><a href="#三-效果" class="headerlink" title="三. 效果"></a>三. 效果</h3><p><img src="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/image-20230522140846926.png" alt="image-20230522140846926"></p><p><img src="/2023/05/22/rsync%E7%83%AD%E5%90%8C%E6%AD%A5%E7%A3%81%E7%9B%98/image-20230522140900255.png" alt="image-20230522140900255"></p><h3 id="四-参数信息"><a href="#四-参数信息" class="headerlink" title="四.  参数信息"></a>四.  参数信息</h3><p>客户端同步<br>rsync -参数 用户名@同步服务器的IP::rsyncd.conf中那个方括号里的内容 本地存放路径 如:<br>rsync -avzP <a href="mailto:&#110;&#101;&#109;&#x6f;&#x40;&#x31;&#57;&#50;&#46;&#49;&#54;&#56;&#46;&#49;&#x30;&#x2e;&#x31;">&#110;&#101;&#109;&#x6f;&#x40;&#x31;&#57;&#50;&#46;&#49;&#54;&#56;&#46;&#49;&#x30;&#x2e;&#x31;</a>::nemo /backup<br>说明：<br>-a 参数，相当于-rlptgoD，-r 是递归 -l 是链接文件，意思是拷贝链接文件；-p 表示保持文件原有权限；-t 保持文件原有时间；-g 保持文件原有用户组；-o 保持文件原有属主；-D 相当于块设备文件；<br>-z 传输时压缩；<br>-P 传输进度；<br>-v 传输时的进度等信息，和-P有点关系，自己试试。可以看文档；</p><p><strong>参数详解</strong></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">1-v, --verbose 详细模式输出</span><br><span class="line">2-q, --quiet 精简输出模式</span><br><span class="line">3-c, --checksum 打开校验开关，强制对文件传输进行校验</span><br><span class="line">4-a, --archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD</span><br><span class="line">5-r, --recursive 对子目录以递归模式处理</span><br><span class="line">6-R, --relative 使用相对路径信息</span><br><span class="line">7-b, --backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用--suffix选项来指定不同的备份文件前缀。</span><br><span class="line">8--backup-dir 将备份文件(如~filename)存放在在目录下。</span><br><span class="line">9-suffix=SUFFIX 定义备份文件前缀</span><br><span class="line">10-u, --update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件。(不覆盖更新的文件)</span><br><span class="line">11-l, --links 保留软链结</span><br><span class="line">12-L, --copy-links 像对待常规文件一样处理软链接</span><br><span class="line">13--copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链接</span><br><span class="line">14--safe-links 忽略指向SRC路径目录树以外的链接</span><br><span class="line">15-H, --hard-links 保留硬链接</span><br><span class="line">16-p, --perms 保持文件权限</span><br><span class="line">17-o, --owner 保持文件属主信息</span><br><span class="line">18-g, --group 保持文件属组信息</span><br><span class="line">19-D, --devices 保持设备文件信息</span><br><span class="line">20-t, --<span class="built_in">times</span> 保持文件时间信息</span><br><span class="line">21-S, --sparse 对稀疏文件进行特殊处理以节省DST的空间</span><br><span class="line">22-n, --dry-run显示哪些文件将被传输</span><br><span class="line">23-W, --whole-file 拷贝文件，不进行增量检测</span><br><span class="line">24-x, --one-file-system 不要跨越文件系统边界</span><br><span class="line">25-B, --block-size=SIZE 检验算法使用的块尺寸，默认是700字节</span><br><span class="line">26-e, --rsh=COMMAND 指定使用rsh、ssh方式进行数据同步</span><br><span class="line">27--rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息</span><br><span class="line">28-C, --cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件</span><br><span class="line">29--existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件</span><br><span class="line">30--delete 删除那些DST中SRC没有的文件</span><br><span class="line">31--delete-excluded 同样删除接收端那些被该选项指定排除的文件</span><br><span class="line">32--delete-after 传输结束以后再删除</span><br><span class="line">33--ignore-errors 即使出现IO错误也进行删除</span><br><span class="line">34--max-delete=NUM 最多删除NUM个文件</span><br><span class="line">35--partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输</span><br><span class="line">36--force 强制删除目录，即使不为空</span><br><span class="line">37--numeric-ids 不将数字的用户和组ID匹配为用户名和组名</span><br><span class="line">38--<span class="built_in">timeout</span>=TIME IP超时时间，单位为秒</span><br><span class="line">39-I, --ignore-times 不跳过那些有同样的时间和长度的文件</span><br><span class="line">40--size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间</span><br><span class="line">41--modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0</span><br><span class="line">42-T --temp-dir=DIR 在DIR中创建临时文件</span><br><span class="line">43--compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份</span><br><span class="line">44-P 等同于 --partial</span><br><span class="line">45--progress 显示备份过程</span><br><span class="line">46-z, --compress 对备份的文件在传输时进行压缩处理</span><br><span class="line">47--exclude=PATTERN 指定排除不需要传输的文件模式</span><br><span class="line">48--include=PATTERN 指定不排除而需要传输的文件模式</span><br><span class="line">49--exclude-from=FILE 排除FILE中指定模式的文件</span><br><span class="line">50--include-from=FILE 不排除FILE指定模式匹配的文件</span><br><span class="line">51--version 打印版本信息</span><br><span class="line">52--address 绑定到特定的地址</span><br><span class="line">53--config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件</span><br><span class="line">54--port=PORT 指定其他的rsync服务端口</span><br><span class="line">55--blocking-io 对远程shell使用阻塞IO</span><br><span class="line">56-stats 给出某些文件的传输状态</span><br><span class="line">57--progress 在传输时现实传输过程</span><br><span class="line">58--log-format=formAT 指定日志文件格式</span><br><span class="line">59--password-file=FILE 从FILE中得到密码</span><br><span class="line">60--bwlimit=KBPS 限制I/O带宽，KBytes per second</span><br><span class="line">61-h, --<span class="built_in">help</span> 显示帮助信息</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -1785,11 +1785,11 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> 常用软件 </tag>
             
             <tag> 环境部署 </tag>
+            
+            <tag> docker </tag>
             
         </tags>
       
@@ -1814,9 +1814,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> 常用软件 </tag>
+            
+            <tag> docker </tag>
             
         </tags>
       
@@ -2169,9 +2169,9 @@
       
         <tags>
             
-            <tag> 云原生监控 </tag>
-            
             <tag> 常用软件 </tag>
+            
+            <tag> 云原生监控 </tag>
             
             <tag> 加密博客 </tag>
             
