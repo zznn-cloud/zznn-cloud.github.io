@@ -7,7 +7,8 @@ var backimg =[
     "url(/img/bg5.jpg)",
     "url(/img/bg6.jpg)",
     "url(/img/bg7.jpg)",
-    "url(/img/bg8.jpg)"
+    "url(/img/bg8.jpg)",
+    "url(/img/bg9.jpg)"
   ];
   //获取背景图片总数，生成随机数
   var bgindex =Math.floor(Math.random() * backimg.length);
@@ -22,7 +23,8 @@ var backimg =[
     "url(/img/bg5.jpg)",
     "url(/img/bg6.jpg)",
     "url(/img/bg7.jpg)",
-    "url(/img/bg8.jpg)"
+    "url(/img/bg8.jpg)",
+    "url(/img/bg9.jpg)"
   ];
   //获取banner图片总数，生成随机数
   var bannerindex =Math.floor(Math.random() * bannerimg.length);
