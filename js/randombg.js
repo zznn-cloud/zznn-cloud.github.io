@@ -8,7 +8,17 @@ var backimg =[
     "url(/img/bg6.jpg)",
     "url(/img/bg7.jpg)",
     "url(/img/bg8.jpg)",
-    "url(/img/bg9.jpg)"
+    "url(/img/bg9.jpg)",
+    "url(/img/bg10.jpg)",
+    "url(/img/bg11.jpg)",
+    "url(/img/bg12.jpg)",
+    "url(/img/loading.jpg)",
+    "url(/img/article.jpg)",
+    "url(/img/article2.jpg)",
+    "url(/img/article15.jpg)",
+    "url(/img/article19.jpg)",
+    "url(/img/article20.jpg)",
+    "url(/img/article14.jpg)"
   ];
   //获取背景图片总数，生成随机数
   var bgindex =Math.floor(Math.random() * backimg.length);
@@ -24,7 +34,17 @@ var backimg =[
     "url(/img/bg6.jpg)",
     "url(/img/bg7.jpg)",
     "url(/img/bg8.jpg)",
-    "url(/img/bg9.jpg)"
+    "url(/img/bg9.jpg)",
+    "url(/img/bg10.jpg)",
+    "url(/img/bg11.jpg)",
+    "url(/img/bg12.jpg)",
+    "url(/img/loading.jpg)",
+    "url(/img/article.jpg)",
+    "url(/img/article2.jpg)",
+    "url(/img/article15.jpg)",
+    "url(/img/article19.jpg)",
+    "url(/img/article20.jpg)",
+    "url(/img/article14.jpg)"
   ];
   //获取banner图片总数，生成随机数
   var bannerindex =Math.floor(Math.random() * bannerimg.length);
