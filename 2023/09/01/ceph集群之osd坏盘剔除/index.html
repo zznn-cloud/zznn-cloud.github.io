@@ -1,0 +1,310 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ceph集群之osd坏盘剔除 | ZzNnWn</title><meta name="author" content="zznn"><meta name="copyright" content="zznn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="加密博客，需要密码才能继续阅读。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ceph集群之osd坏盘剔除">
+<meta property="og:url" content="https://gegewu-cloud.github.io/2023/09/01/ceph%E9%9B%86%E7%BE%A4%E4%B9%8Bosd%E5%9D%8F%E7%9B%98%E5%89%94%E9%99%A4/">
+<meta property="og:site_name" content="ZzNnWn">
+<meta property="og:description" content="加密博客，需要密码才能继续阅读。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gegewu-cloud.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2023-09-01T12:34:45.000Z">
+<meta property="article:modified_time" content="2023-09-01T13:16:02.227Z">
+<meta property="article:author" content="zznn">
+<meta property="article:tag" content="加密博客">
+<meta property="article:tag" content="云计算">
+<meta property="article:tag" content="ceph">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gegewu-cloud.github.io/img/avatar.jpg"><link rel="shortcut icon" href="/img/zznnlogo.webp"><link rel="canonical" href="https://gegewu-cloud.github.io/2023/09/01/ceph%E9%9B%86%E7%BE%A4%E4%B9%8Bosd%E5%9D%8F%E7%9B%98%E5%89%94%E9%99%A4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: zznn","link":"链接: ","source":"来源: ZzNnWn","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ceph集群之osd坏盘剔除',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-01 21:16:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style type="text/css"> .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body { left: -66px !important; /* 默认情况下缩进左侧66px,只留一点箭头部分 */ }
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover { left: 0 !important; /* 鼠标悬停是左侧缩进归零，完全显示按钮 */ } </style><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="https://gegewu-cloud.github.io/2023/05/23/留言板/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="https://gegewu-cloud.github.io/2023/05/22/关于/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/article.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="ZzNnWn"><span class="site-name">ZzNnWn</span></a></span><div id="he-plugin-simple"></div><div id="none_space">   </div><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="https://gegewu-cloud.github.io/2023/05/23/留言板/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="https://gegewu-cloud.github.io/2023/05/22/关于/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ceph集群之osd坏盘剔除</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-01T12:34:45.000Z" title="发表于 2023-09-01 20:34:45">2023-09-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-01T13:16:02.227Z" title="更新于 2023-09-01 21:16:02">2023-09-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ceph/">ceph</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">12</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ceph集群之osd坏盘剔除"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh,这是一个无效的密码。请检查并重试。" data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="b22c3dd65bd35e4f1d1810c9b67d06d566574d5bc0d713e50121df8637f4c9a4">729e698e3453280de24556b4e376a8111cd39f8b0c39816b6028c181dff2ce240871853004f99f0b66bd7ab391493090efd6a8a064ee787d414f01a517f963bf1fb958ff4fe6c45a0a249f602c506a1903bd453dc4e1025c187cbfaef18ca29aedd5bfa0ce6972dafc0428a17a9ec899da30535227c9f98128f8cb83977cb52aa0ef580f56840627bfff98dc4cfe1384cb922175bf052acfe270a106a0b51f8e8abe30f0a52f5aaafdb17088f6f1d8abd4149f5a7fb7145e6b8c632fb66801283d20be0fe6500f1843e8710c55034faa9d01577314f24245ba29007169f70a8eab1474e09c7236f8db0b25029c82979f96bb17dbcce840035fde94e07a64b0a9c796b88281c652b2a936e2b5fc202c738acfcf426d801b051ec917c270f43823f57b19955152e82a020dd495341872fc1778ca5e755a16e22424e5d035b61d59408f4882148ca9051c344c7625b820dabc59c600e03ab05dcaac4c54ff9f56fde3076653547546f4ef432d230c6098dfaf612523d9a7ac70646dbf4148accd1e5d551daefa94589e3f6201a9a1452a6070fcdcb2896eeb29255f70de3ec4bbd83e9a936314275664e304e7ed1a8e7cf474377ff74e6bacba5391ac2820f90f0299d4b9976086f18b14797731fb928efaad19116ed09cee5b09c535c9e545133ee771d5ba99c18dcd9291486d0fba1587d45f367f03e74c4b9f99bb9e31c1feb38d377bc65b83621e62c31b8fec2234c87e1ae2c7fbecdaf2d2ede3d6f663cce758994d2f88e3ebacdb151a0d5476b4756aac45967ff495eca894fb35aea0c194c85a3a9d2b84e83079add220b61ad2a391648f041dc0aa7c611269efa7b1a18ccc8c768ee254dc20313b08ca44af5c82057d6a8eeb08d7fed6231395ae7cb6a1e90307c2a944086233673729de7c1c10533150053db5a05a4b6302bdc3e1ca897a00619d86a66a8d0344d598f6696a0d0b5579718a71d766f5e68b7672f27f171b463bfebae2466dc66e8e450882d76ead17ea72226658d8a7f9167380e609d5b537e72e554e9f92f043b9db5b8faab6ed4026b4aefb1b33c67940616d299d6c9a8997b8402540790dbd043d35ca1365f51a1784728dad29a6dc53d8787e40e34c73461f5301b345160a33b8aee6fc17c0d6ad6211b57b4653fb4382e1157497375fffed9ef6177d6752d1c812e434a382f6e7fcfd09eff0ee2ef096fdb1592238576ba2305040a11bbb2a035da9a6a30893ffaa3714cb12734039a22f4479d69382e71c8abd1fbb223ae7b792f91089ba1e44028506cb8549938a2427d9b0a07b07dca14f0e3b588cf77090428b0cd771259f9b2a70ee8e853d64263cee3b7b081142754ef9738e89af5ba26cc927b98b6de876df9332079b5d359b1281d76fdf294573b3ffda8675f49c313ea8f1201992c7080c152ac89f45dd17f57e36f2fe6b5a3bd83505631b9a42e2592e862167cbdfb57b20a88425859b916f66016ac3febe76eb8dacbd0dd038edd9e5586ff8de99a038d6a8aa32e2ec26669bf574dbb450cb6ea8382e971ec7f2e1634b16709e12020fedcf5567ee9ce25a5b19f83e1b7e8d8aaf5d8613e31792a2b1f4d150f8d92d0e21c3578469ac579be70bbc29d03a0e8a7fcdfc23676901dc8948b9ae8f074ddcaec942af62ef1c24b4dff0c1a4fbe5c0d3087aa8518088739f5680b95eccf47f6da8863bd0e558e6a27530f925f3d9367a65bcd84b4d7276783e904ed72291be534ef8c969aed1f33af4b17cc45fe1e3e1956869c2720699c24f9b6ec0a5df5720735fb9080a62a34cf191b717118d0e2619d26fb17401403e1c86aed01975a448a026c487c8448ba8f6c25e0ad6bd6f634ae0ca7e7d80cdc92ffd34d601867e3427ee7a0fc45b5107f2f9d017a66a2cd8e5d9dd25d8994975fbca9cd1b490e95753916e6094769623e9b021164c7544365e6039b31b6a8cea373036a5485edcb00976d2c9275c7b4068657aff33b960e30b0b75e308ae0d0405273ba574c09b44bcaf202062582a561ebeb99a8311979e44ec28cc55470d05184aae837c0722ab066623bc14d28e5a16dc69c9eeb84c774ab5ef5c0dee3b3fabe4f3f67b40e7006f8f9e1c7cc4f1068fe44cd014517e0e0d54d08543cdcd2273812e6e91946947948bdb58225dacc887a87fb7ffc074b2f12d3057ac3a0a8c12f7eb64ce3fe017e6161910cf146bd0f433e26e8fbc608cb09b2e6946262f0033f924010431e436f631ffb3843eec47fb981033e6410b069b0fe596f0b63b891c990c1fead6a027faafd6abd3195487f68dde15d38f9973771b4885f5bc791d4f5a06e9ba44dc89c59b91f556e6fb15fb4c9076ce17642907d4b3be5121cf11227cb09e5a266564070fa76426c720fa9b02b2cdfba4f6e8eaff284152ae4a008c390f080348a31278355ec590866dd5b6c94619d0327355b15a4a4ce9297559062fccfa878df19d08d8574512d3a861314091229cd4baf8e8b3f753bb1fc9dd181b45015d7593385ef5ac7b3edb684187c3b46df1bf36a983641c7417db2c02d1945496fe49d5d026cbeb445137b87c653224fd923bf40af49c07c9e15df940b3d48dceff08d4c7ac61fa32397b257037c6f79743fc6428e6ae527886bd97ecaa22a5eaa6cbb2daf45c16d0a61f38bc31c8dbd1bc80c9f37ca88a2169095fbbe7171bfe84abac148d2f95348734c353e06882b4c86cb66c866a644655f4bc55bd43507a85751fed3d0b6e0ec559dffde0a0255e53293991cb7c010467a872078d4774f0989b2ce521db83a10e72361accba9520d7b22804490dc9e7b08d62a11406c0eaa4631b6488ebb5f36aba9dc22546f6eb640291f5245dd395dd3d4ae866c64450f6af5404b2b67ff072e984219a4add251c2d5433b3644e636b886ba1e099529e401da88ff75fc642a8eb08220c3baed743157535635a4d0d05e88d207a959302c2a7af22386d69f4d3ab4752d28243e459b4009793a08615065fe01cad7c693db80375df96301641c62e94305c34babd3b0c1ca7198252a8f87f72a70a19604d02f512861e2748a61e7784f174c95606cd4cdf0f866a9ebac3ca68e8c5b516bea73a3ef6afbce6725536ee99ea9206558bd0f02655d872483d02cf6e07a4ff4de4be2ca5ba0df092b70545b321853b3be568cf9c08eaef1383675d3a5ffd6fb4e28b4f29eb90e7d03772a82af9f220a506db72db80cdc2e35a08906999d59b23a8390c468d98fee1b60fa14d9731f5239753ec67c595a966965fa7892ca21cc004a10d81a1679bb21f24fde12761898ea87fd6f4af2d2235060ba7edbf32a892de746b35d35fa97c3c7bc056148ba504ef0184488669bac21d1a1e536346cedfd03a59136fc4162546d9506dab24ce738bf17daa1af691e7e94dd021242527ea39760abef7fc4ba30c2c2fe548315b9eb28faa12060fdbba07cc67fe3ee0f0069993022181d7e9327270f64407cf86a03058db10c5e075bd10f33a176cfd3abafc216579e30a488a3517400bfd85732359dbbfb839d4ddd14fd1f5180b602619943aae5674764facd6d41024a7c6ca6c39651b76c79163db3d1967592503e7f724d6ea15d4a7eea52fa963de41437e22c37dda18b76bbe909b3380e2f43e1ddfe05897f3369fc99788739d9113b7a7be4ab34566e2fa5c9e7123afd18447f87c04466c93d10dd60b321bdd339e03498fb94bb76f2b65ed82fafea45f11a854313ff981450e29d29472db131f9069c56de63d2a13aa35e7a8aade8b20d079c2cbfddc9d087d1bbfa4eeb29484f161880317682a128049dda14f0d341af59ba19a08ab4632d175e9824ee83e97247eefc38634594a7b2b149fed632e4b43e3d5eebc96a701f09212d0a0029c61be6187d7622e729b3efa81c7f9b72149c029580417587fa3df7dd780d85e1175fb8f862f73fe8ee90bea3b9e09fa2f1b2652b9ca1fce5b0acba0d80780460fcffddc13cd74427d1dc8656f8614ff009ed46249ea607c142e207b4405f52415f09101c1accf47eacde1ce95d55224870e82a5361ebfd6bdea4067822f7bba54421d82903e6c8ff8f6b2111d6ebb3cc4183c64820ffb2996236f808d5ac4f3c46fd786e7a780748a03c64e28878f38615ef9c03235309e57c05918a2070ab14c54596bfa2618fb7824b70f7bf2125121aac431fb27fb301ea69f1f6e9a3bcc2dbf80f84dd576f69445f835c1ddc71dcc9bd24895598b7247691b9510841a689faff456dd347ba6c119a134f54df68c21d5e5c782b9d079ab1238337b45943480e71af0275f6a9f88525aa8362520a85b3a74612e8927b21b57967add6e17032f3676a65242f4a81c94496a5b7d516c3a82ae8c7199995bd387620ceeea58e5fa9c22d5865e5d558841ab66486117d149b3d85c934efa39d02a44dc8fe080adb0b083ca1b5843635a155bdf153b1586d8fc372695f594f23cc7bfe65c340a3b9e98105f85ca95773b5d5c9adcbc820bfeeff0e4caa6c5cc972f7d575de3cee7778e1410c3d78752b784bd3b2665f992ac178a7c404c02d1d3a85fbb76bedff636512f3d1fc285d63598644480cfc58d236ee387bb5e0a5eab91aa3646121e31907fcf34426375d659a404a10f570724e1ae36e2a20daa4c59ff055363ef758c35dc549136d790833e7125d4f33eff0d45b7c32e2eb4f490ba5087e69b05c5a460fb51bde35953baea530c930de70107862e697abb6ef82b4a8db79f43c26720d65d8287bfa8bcc955c8f45d5bcb6f7ceb3f98936cddf946e75ff36222e1ad9ccef4a0dc7a8f750622a1465f357fc90dbda165e0517714fd73bcebb357c2d587d2a7b4fe5f081d48b0b6d511da8e7fefb6a4f78cb60135cbf0d6281dd212d145da6f5c1af96c7fa7b92dd9676d106b82310af3f4b036a661650781f84a184a13d3275d12b078903a78259bb3d9241643ffefa9d8e8971bee454e1fe7183d10bdc1896f06abf272a4b8e4b9dbfcbd984b71dd1b8ce21b40afd9a376e3157ee3619bf1c0152dd9f65c8770abb78370ceabed42315c21544a8e7485c48e19665248095a87d7733e2e9c2e9318b76c0362ac96eff7b2c2a5150b46b871b59b7b62e2501f0bb12e71865ac5a24dd8f9647137b5ccaff068e25b65895466a63f42a1978c08681e6dc371521b171f05edfaf3c72134cbfc71d90d2dd1246291dd76d818ef90e3abc4c1a745fd286d2b9a11284ac94288eaad5ead003f005e74791d33092733b1f7a4da497a6cfd5b8a71141816f44f3c2ae01dcedd8c254d0adfc5856e907488cdb6b8cc6873c3ab9fd7336f0ffb62da56645c0c96a3dc1f8769244b94abe8c69847f7a0ad06f67d3e60e639b36062cd296a8d83431b1ffd8f4ed3bb40d62ab67f9688134cb42e81ef9992f7471c62104ebbb3bd8f103f75b90b904a5bbc019708dcc8bf159609544d25a684ab873b5194db471b883a633925adde0511d401daea181ef53e2cf36c2c662070580b009a4f51ff52c249a7473f36cbc8fcc29bd9676dd435d5d35c34ab5962e46dbb3fb707e27bb5f74de01ded1d329662d80318c5233f0d5b79710a670e5c80dc3972418d8430dd501bcbcb18a35d03d6899a3eb18a2b49a2b931f59f4ad5e80181ef2c7cc15e94178d61f609ab31aafcf34bef6aa821882f232d5e9707cbdfd0b5fb45190ad3a8929f9259597ff76637a277c524a188239be9afc7cc98900364939a7facc4e2dd7469ba136a3e74d1cb622404475c471d1d888bd407eb35c92cc11e0617cc11542a128c2cbf421954eee77414ac4d07f2427d21229a70e9e6747179c44e13497b00b823fbf1757d0231fdd4fe56f2e700f7d9c3d135a2a486fbf2d9db6819b7d991441fc1460316e566d29e2b3aac31c56ad798f410bbd41ed4585d8aa2dfcda0ff401af3288ef73e0c5ea01cfd82e226b2617c91acf84a0e6854c8c6393eba9a469cf05336d47662a40fc776f5641f66805e004c314579743b0d1ce41f4a4c732a03f4735bc9a19eeb4c40a2fbfc60ba1af5766c8dd056c32ef059cf7705c301806e96bf57b8484a11ada55953cdaf800567206070187537f2a03962e2075ca0aed23842dbcdfb74a034f713e5bcc5696a014fae8367909babe7c78a0fa02b7781bb6a4ea3eca2532b939f77fb40622b646ef3b7830b287b3e3617f2b3f89e9443aed65963dfd83890a4adef189b2a3adb5051dea1d6d38d9afd983e07395590720885b9ed4ef3fde3281b06f11736b646b56dc5bbd211dede6e63deba38a868cc6597bb3c9997bd9d99a1510bedb34e2c339de423885522f12e04f3b16d95d6234d321310c92d88970e2b2a5b9261bbd3e32ba75364ae673601ec7e5d2f3b09664f6c80ddb34d28989fa4417360d365dfebe8f070f6ffb4c6fab987ef6f94e888aa5a9ac6fab2d4a41307c0daf920270e31ea1e410d3de8fce79aa64b6c0dbb1c2ce3d5885c777013db91e48e452a2a79a21382066d752de08414dad890faec72aab1ad82dc4ed6024a616a73b9ff8cd05d4e66442994e1f90c731c5ba6b71109e05709fe1484e8095a86241e2b65a98ce4648941c4a76f76952b0d464b33b76b056d694a31cd0cb7e75bbf2de099e1a99ffce255115a15affbef70edf4b24208c3303da76bba0d3e0ad103166e96298e9884c18ca16e15025e1b32d134c7c0d56153436d1e1b0418deaeb257a7517c7887ecfa6b7a58945fd49bdb3848dab56fc0e62883da6c0086edeb3e91e33f6a9de359ec7a167437fed5c630ff67e0d85339aa8b7613c86797182d29d0db088c96c77fb9c66b3ac4aebf96ba78bc268f6c66fac50428c63498a892f03443116a78207ab54fc20a40d4548030c1f391bed487ab0b62f56acfca406ff34bdaf59fc8eed84dde816e57635a69a5762a2639ebff7e23aeb713d31d8da78b63b4cdaf0f633deefadb387df6d47c20904e5815926ee016a257187ef0e84f124aac61037a4669d44062476d035e9a4065545f4dfc234d73a320453a78f1f574beee69e2582fe8aaf2a12b9c3ee96486197a47e251e30467fe398093b3b85b22c2c5d92fa09ba189eb3dc844a64466f83e2b961b1614de1022d618122cb5b401498abac5295832adaae0cb92e7b82283e9059ae83fe52b9c80c3cdea35ff6e3339cd24ca62a7d06d3161e233c00d5616a13658bc2a51c5863e2a73c484d850197c1fc8ccb66bb45e698dd2d7416dfe45254178b166ff74a0c0dbe25ebf73ad5b2a26b3076de6607f1da9f7dfaecd719d51b17acfca807d2007dddd74915d4f0376371b293a30462e801b6efe6fc620666760d7668c16bf294ba6add8752730f8d8b8c30cbe6d5b2e4a5c893e65f28ac98c95eb773965d0f79cbabb8ab59284a8c3501bbc36d53ddd62b47df07554e4eef90dce74610f6b3b4b61f3f101d7cb17c680c9abb2ef817aba60ca34ff1b225f404d12b2deb437aa9b473582a2c5e6e37bb9059bc2cfb5966138f1aa9a255a5d01f24c9ab91ef3b266c8f4562d94077e3ed245889a233f1b547e17ec3653650e0fb927340310261f76adcd86d3cee77ee932ba92bfce94024df37ce506c2050b749292d88771203ec7795058916187b285375954805f6bb07fc9797ccc13d3abee7c73ab8acab12c3c00d9b027b0cd62b0749bc0c09a3c85e62ea96a09f52cae835d675e4459e1c783c6b0336377b63417c35181cb786b0a43212cb6ba1e6855dc8ac272b71cc9e90b1d2426793aaf974a99d0588ff9713b86e5b1390321e640a21972795167714c9ebaab7f0683c08e39a85e23ac8475ae27815e2f19d6653012221d6a45d0f4889fcb6421564710c3b3d00436799b5833faae1213a5411536ee0305ee9c983870626032d19050ede2bc804569e86cae1692419e72a48b688afae53683ed8c59e82bc6315447a6030b425c292e59090b27ef0ae9d362e22267b6810ab216108334f8531c04fc3ebf404f3203f5ab0b92f8db4c72c14c205fafb96a9feea69ffeac25f1b3485b1e2097066b674f2da082b2a5f7d6df43ab6aa47871ee6aa80f35fd1b9e9ae53457f75400da27640bcb775d734578956b2169474be324c9bc4f18f4417dc51b24e48d5e8e8e63c98f3d68f0235c5542b2875eda8222fff2be5dceee2b6a3619aa932f1cac65b26abeb421ffd4edd1914d9f9c9cdeda083720c05da2b146b42153aa4c756a0ec39f5e9212c2be0b64f3ed43053dd150e1a563c8c22e2c431871070de45b625d09b56cc75fa06a603ebc55a9a82f2a8de09bd1d6889798618931fd50c6c63adda337134a1340446fa4751c9a0bd4f3bc985dcf9a3e083c27462897d1539c66a97c7a4c368772e185a43558f42bcadefd273525f146c587851b1b01634a7a30e33839274ced12181cb5cd5129fbcae4d80840ca43adc8456a4e527c218c977d0a7d75fc5b928a4d18aa3713b0a5426e08dba52637f48afa10f30a76102e775176105b436813510ad4512c53b1d017f990adf4f1bce2aaa1961eb19a5b3d37d4e078499e02e9c9e2319c8df22bdbd390a9c6cc72e72cbf337133cc03bcf4ee8b4524b4279425649f388440ace7ff02d6dce635f865f0c075e2609e43ff7d76b6a5d0d235dfee2f4034ae55c66182fd509c734e13a7cdb685e3eb89594d679b56bd191eb934d8b78e357bbe90f2013893a54905115a21f4edd1dfabf059d3e58dd690c7a296e8b727e11d131f3846d7bdf00e71e61ad3b1b6d1138e2add7cafb945fc6cb0b06a3466893db9d8f9228f3a85c62fec49eaa9ee5d6281d3bbf1cb4924036023f054141d220a3a7753ce53db3f3c6d608dfdb4895ec7a9f7b209f2710f29b7ecf0bc8fcd902d5085c1b42027b91aa942ee25af685a2919b8c0e6d88f19c82b07c6c8e54290b9f3dd513d9cf0aea9cca0d03afeef13fd15110d1ff65319d0f6b321d719ab9be4c7de4331db29f0c32b5c13e2f0459e84857199007fd1f6b11f0b3c79e33e8710734e68dd684cf1af30da3c5945e593ef4412ffb154a3506fec3e944585b51d8c0f7065ff337749eb8365d9d3bdcb9fd92c40ae2dc14f02de09cc0e875eb6fe3c8baad619ea98f5ee46cdb0876798acfb65090fe6560dd5e49c3eb1b0e8bbaff9a718be493119a2e3ff4bf088ce140805e01e9e5f980c5e8274c19b0479d59b8a25b36ee0b9da3653f37ae1060672fbc873a45c6724f0ed2133147d47e10d4e2b772be413f89983a8cc27a812c1af7234e5ea6d5883f9a2466480b9b5ca7474de5ab6135a6bc7257723de8ec26897e8dc5744b460e747a5c113347a5de8340a0dd99c197b479fd012b320e82f8cb327017c6788643aa49d7edb2b2bb6215fb885013f6585c0a0ab7d93e603b589a3194607c14046744c6cdb4e79f5e1c05425f478eab6a18798d58cf5eca39aaef8d5df862daa1dc2cfb12491c39ce43c9996cb9a29e445c35c539dc9ed62405650113257b304991c504c9beffac503ec85abccf2be77217789c62182d66302a464b345a86bda11ad8f039071da655271640ebfe8b528230e908e8d9d25fda9b7e55e82a54677b2ea06a229f39ab60e9b4ad84ecb8d26329e6aebd8e930bd8bb3abdd76dfc88f1d9163727e2c1945fd624b3f2d4293fe84886edbf28db568339bcbaf334df4f8eef676814140b5ea4bc38beeec505512051dadbd6e6c7a074b3aa24781be12378f40d010119ffd6b59d5f93bb370a30fc3754a8913e37eca3cb53d8bdde878c3a1db0c6314a5764756d27a38d6ce4b37a4ea56d3ff3376b5f7c0b1f0d50c6603f0b848d435eb8ae977ca4e1cc50f8ae2bd3df7c92eae1c43942adbff84de274ad0db7f94e69a8e12421f126b9ad917754fa07778e4e478550ecf1898eb81dccd820d0da7f9f2462f474bd5faaa7392eec0eb51f8a251a51f8c7b6e69633b9484a8bf618b1521b5cb51f952d180afc41832a9327f09374ca653201eaf1c7bcf3d8baf716928527ee990fe6240beed51c51178be9f63b1cee59f19862f9a8b921e2047b92a23db19343880f308fa99b1f5b3c6f34916f51fa6c340d656237121683bc6bf58eb91c6b7d643cf6288bd27ed6713a3b7277a6147c3e7f8ea54218e14defb1196fbfc2c863c2024d8aa64252be9038112cacb669fc0525aa36cf46ed5d920716680ab938cda79a84dea9042b43358fedf4ca45263fc0b5b02664ae77e61ef704555cb7e6dee65d9bc1c9be918e545337e152e7e3722938718fb776d4d3adf15cb6a950b1558eb748882687342d4b2aedc7b4b935028f7a8787efe66ae28bcc1a46a1ad229b5c7f2c1c8ecc0d2d309e5a897e43f75579c6d76209eebadc098f162bcd7c4e79558708c78436cead6a40900fab0e9c070f641d1f9f9c8ebaf64f729be07e53bf83242ea50df82ede4e1e211f4d281389639b32550c6e676a96c24b65d7739a9a079fab495b5f5cce99c6e1157950888e0dc33da9c78b92d11e1cdbea02dbd2fedb6e25094c60b948f30fdb6d99acae80f86eb2b34f972f10b8124550297e99c869590fcd4551a3b98a7a6854aa7e0b0071f8ae04197a50e01742e8cc8c94815866c43ff1ac7633124bffecb1866679a194576d7ed3cf1d8bb3c1e421862014cc902d08d6026bba58590bf1de32bbac95da2a6240577f771108eadc160de4a2ca396124a6c63ad5cd4128e21aea791c55ddb6f925e87952f569ee413d925da916c0695c692f0304cf36c87760f2491446fdcebc00c6838ae4c3ea36b3a5510e962099852ff81bde801a7424d895e6579c263c6d0a20a60eab2c53c4eb39928a3fea2a7455f56aae13a0b8ad71f0955af4d05c8591a7109e39c7e03b64fb2fbc95c8978958a653b7e9dcb153f693fbd6418f3db364782479c1ee201f6c9980c333b3cc49e2c2a752689cb21dd4b52e568ed236f622d2a8a0d860076e773f5fe48e7a6464c5dd2b90859cfcc94f4128b9bb2f606cc3fed70ff6adf406f7771f250e24269a1f727896c552c733949634cc2c6cea83b81ef3fbe81fb070d5809bfa7c7d1af560c638434f98d06eb4c6639c3d724b2e9b6aa2fd6e5052c62ecbfbed007b120181dadb834f915c35a94987bc877536bf1379a0fbb4fc72ad460ec4c1f8ddfc6cd4b75494708054166d5a2fd72649fefeb25b9464015142b15ca6cafb94f8fe424a744931f6acc72a3decc630d792668744ce6f4bad0778e134072a10744845a5eb41fd46f2f8e7d1ecde713f3585a517e174218de211b619294d382137a6b59e94c2a209b8a574c14377746785f8f76c70d159d019b4e65a77c003d4e3b4651c563fc6d2a3cd5fc21078dbd3bde08ddb62c083fdfee9f69cfde5f46236e50a80d992960c925d40a643627979fbe97b457911eb1834e2aab35e004a36379b4126d45b2034aee77ea38bd3bdebc687cc992e3de187fdf1a37be20a70fafe7407c6544ebc39081f794f166ea4ee57e657bbafe4c52de344229ea733dc8c8d433b8be69c993283235fee874da005850572640b2cbad58d62c5bf030a50e433d059c178180048e3739fb1ab94171d2fc9350762088004cb19d77c5a7d57850c78d83b165d953e30aa1d67e17cc4814a40f87124ba9b2d7fd3fe4f58f17fcb6e7a67502dd6d1829a530afa98e92669f7ac3fdaa4c4e745f7ae49ea5b95bc515ebdb8ce536c8598e967212af734ee633d1583bee9a6524624df3c15ec4e4518a2f629a8984ff21447bfafbaeb1cc795830c57208a67ff4451c97f1090b77f4948ec29296dd6184d5c168ac5c02bb5e139b22bbe3cb1162e1a63197eee5ddef675d9e0e757c32e49fc4ccd48999189e848d621db2820de5b4c532f2cb73b64adfd8ed5ebd6d084b9660be446446a34511df731372072bed967186e8d90a35e280959231d78328e839403a38aa4379e4fff5790e7fe55e0f007520e557d948f0ad4c7412b38c117427248cc916c40f150841f5fe38aa74a546a8ece0aab5ebef19957687305c475c3da2a429f53a1f099ee2c56fd1080a2be10b21a75135ca72e2b9f71b806b4db437e9c5f87463dd2d45792cad91ae698b85f9e46e490a7b844e9e0f4950c8e1ef6b2b51bdb1b21820e60a03de7c655ecb11906f30360e93a8906927bddf105843d7c6915319d2aa76b1c0fb771a22d428a326916b26c120ca7f70a66efa37b8109794c3a623a3e04efc5eb6cceece65a8ece4f08f2faab3f9aeb30fbffa820c55015dc16fffac20030e6a9578155334499a5db8537529a9a941a1d18b61554f6eebb0f4ab46795bbd6e355c9f7f40d066c079d303a171f7efc53ebd304d5cb7b4e1b05f8e2e1e31af11a57d00ee6fdcfffb6e416ab3ea684575006cedd664d895262a4d0a95fb6a488c073d68cd07746dfffe619f6ee5be5ffdedaaa939803227acbe95c34da2b8f8e66fa6563e6450568f96664ee3f87225a95e6d63bc8fcfda5ab24ee709cdd01d0dc41a95a6b8e5ca7a5ba9cd41afb8953216f550b907e25d73d76b4ca85b0d834cc7d4d506cf36559996f3a499cf3fde41af5b5402da3d41815026bd73d2a7f292d71d79ce1b4f26c445f2a058037bf83a0f13fa31258019440c007056b0208339504ea9fe6dfcbc199fec5e761da6d42059882889f3c7ac08b6039f75b5e298620674af3832dce0a5e5f74dbce24fab94ff9a408b9447f69ddf3f3e6c57c7da0d5fb53cacab5204e99e6a6e40e7f40b62d5d4b07776da897868caf5</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入二级权限密码访问</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://gegewu-cloud.github.io">zznn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://gegewu-cloud.github.io/2023/09/01/ceph%E9%9B%86%E7%BE%A4%E4%B9%8Bosd%E5%9D%8F%E7%9B%98%E5%89%94%E9%99%A4/">https://gegewu-cloud.github.io/2023/09/01/ceph集群之osd坏盘剔除/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://gegewu-cloud.github.io" target="_blank">ZzNnWn</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8A%A0%E5%AF%86%E5%8D%9A%E5%AE%A2/">加密博客</a><a class="post-meta__tags" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><a class="post-meta__tags" href="/tags/ceph/">ceph</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpayqr.webp" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechatpayqr.webp" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipayqr.webp" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipayqr.webp" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/09/01/ceph%E9%9B%86%E7%BE%A4%E4%B9%8B%E6%B7%BB%E5%8A%A0%E5%88%A0%E9%99%A4%E4%B8%BB%E6%9C%BA/" title="ceph集群之添加删除主机与标签"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ceph集群之添加删除主机与标签</div></div></a></div><div class="next-post pull-right"><a href="/2023/09/01/cephadm%E4%B8%8Edeploy%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/" title="cephadm与deploy方式部署对象存储"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">cephadm与deploy方式部署对象存储</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/09/01/ceph-deploy%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2cephfs/" title="ceph-deploy方式部署cephfs"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-01</div><div class="title">ceph-deploy方式部署cephfs</div></div></a></div><div><a href="/2023/08/30/cephadm%E4%B8%8Eceph-deploy%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F%E9%9B%86%E7%BE%A4%E8%BF%90%E7%BB%B4/" title="cephadm与ceph-deploy部署方式集群运维"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://gegewu-cloud.github.io/img/article16.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-30</div><div class="title">cephadm与ceph-deploy部署方式集群运维</div></div></a></div><div><a href="/2023/09/01/cephadm%E4%B8%8Edeploy%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/" title="cephadm与deploy方式部署对象存储"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-01</div><div class="title">cephadm与deploy方式部署对象存储</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">zznn</div><div class="author-info__description">众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/GEGEWU-CLOUD"><i class="fab fa-github"></i><span>GeGewu ZzNn</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/GEGEWU-CLOUD" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:878891611@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到GeGeWu ZzNn的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content toc-div-class" style="display:none"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ceph%E9%9B%86%E7%BE%A4%E4%B9%8Bosd%E5%9D%8F%E7%9B%98%E5%89%94%E9%99%A4"><span class="toc-number">1.</span> <span class="toc-text">ceph集群之osd坏盘剔除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E8%AF%A6%E7%BB%86%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">一. 详细操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9F%A5%E7%9C%8B%E6%95%85%E9%9A%9Cosd%E6%83%85%E5%86%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.查看故障osd情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AE%9E%E6%96%BD%E5%89%94%E9%99%A4"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.实施剔除</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/01/ceph%E9%9B%86%E7%BE%A4%E4%B9%8B%E6%B7%BB%E5%8A%A0%E5%88%A0%E9%99%A4%E4%B8%BB%E6%9C%BA/" title="ceph集群之添加删除主机与标签">ceph集群之添加删除主机与标签</a><time datetime="2023-09-01T13:00:22.000Z" title="发表于 2023-09-01 21:00:22">2023-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/01/ceph%E9%9B%86%E7%BE%A4%E4%B9%8Bosd%E5%9D%8F%E7%9B%98%E5%89%94%E9%99%A4/" title="ceph集群之osd坏盘剔除">ceph集群之osd坏盘剔除</a><time datetime="2023-09-01T12:34:45.000Z" title="发表于 2023-09-01 20:34:45">2023-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/01/cephadm%E4%B8%8Edeploy%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/" title="cephadm与deploy方式部署对象存储">cephadm与deploy方式部署对象存储</a><time datetime="2023-09-01T07:37:41.000Z" title="发表于 2023-09-01 15:37:41">2023-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/01/ceph-deploy%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2cephfs/" title="ceph-deploy方式部署cephfs">ceph-deploy方式部署cephfs</a><time datetime="2023-09-01T07:34:06.000Z" title="发表于 2023-09-01 15:34:06">2023-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/01/cephadm%E9%83%A8%E7%BD%B2cephfs%E4%B8%8Efio%E6%B5%8B%E8%AF%95%E5%AD%98%E5%82%A8%E6%80%A7%E8%83%BD/" title="cephadm部署cephfs与fio测试存储性能">cephadm部署cephfs与fio测试存储性能</a><time datetime="2023-09-01T07:27:03.000Z" title="发表于 2023-09-01 15:27:03">2023-09-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/article.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 By zznn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://gegewu-cloud.github.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addModeChange('mermaid', runMermaid)
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'iZXJwsNXSKDrEVhrJkKmVMDD-9Nh9j0Va',
+      appKey: 'c5a75Cd0qOXG7z6YAVve9mW3',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="/js/sakura.js"></script><div class="aplayer no-destroy" data-id="8926738453" data-server="tencent" data-type="playlist" data-fixed="true" data-autoplay="true" data-lrcType="-1" data-order="random"> </div><script async data-pjax src="/js/randombg.js"></script><script async src="/js/diytitle.js"></script><script src="https://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script><script src="/js/weather.js"></script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script defer src="/live2d-widget-master/autoload.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="东风夜放花千树，更吹落，星如雨。,宝马雕车香满路。,凤箫声动，玉壶光转，一夜鱼龙舞。,蛾儿雪柳黄金缕，笑语盈盈暗香去。,众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
