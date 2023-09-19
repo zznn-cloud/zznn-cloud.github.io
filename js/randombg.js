@@ -14,7 +14,7 @@ var backimg =[
   "url(/img/bg14.jpg)",
   "url(/img/bg15.jpg)",
   "url(/img/bg16.png)",
-  "url(/img/bg17.png)",
+  "url(/img/bg17.jpg)",
   "url(/img/bg18.png)",
   "url(/img/bg19.jpg)",
   "url(/img/bg21.jpg)",
@@ -49,7 +49,7 @@ var backimg =[
     "url(/img/bg14.jpg)",
     "url(/img/bg15.jpg)",
     "url(/img/bg16.png)",
-    "url(/img/bg17.png)",
+    "url(/img/bg17.jpg)",
     "url(/img/bg18.png)",
     "url(/img/bg19.jpg)",
     "url(/img/bg21.jpg)",
@@ -64,7 +64,7 @@ var backimg =[
     "url(/img/article2.jpg)",
     "url(/img/article15.jpg)"
   ];
-  //获取banner图片总数，生成随机数
+  //获取banner图片总数,生成随机数
   var bannerindex =Math.floor(Math.random() * bannerimg.length);
   //重设banner图片
   document.getElementById("page-header").style.backgroundImage = bannerimg[bannerindex];
