@@ -17,6 +17,33 @@
     
     
     <entry>
+      <title>物理服务器结构图</title>
+      <link href="/2024/01/17/%E7%89%A9%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BB%93%E6%9E%84%E5%9B%BE.md/"/>
+      <url>/2024/01/17/%E7%89%A9%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BB%93%E6%9E%84%E5%9B%BE.md/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh,这是一个无效的密码。请检查并重试。" data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="a101a4e0a212e1faccbafdf093b4cc044988de82cf3b3c5537923092e59acbbc">4d04042c6ca46bd44e1433b27a81c2cf1d7ebe395378e6b7d366280b19cd34464dbaf1b441366bd6ad20f97f778b89aeeeaf429e24c71e03e0a8cad736649e91abcfee610148ffd49863b8dcf69717f732bc5b0443b6a4537c6ce8a8359ff7ac906e1b81d8f6edddea231135d781bc9ae284f13735736da6d34c00d44605b7c30e7344cc7f246170a7461e02156e0270386cea09f3da07a7d2caa7b0e9bacdbdd143cef3b90a917a983a84595f7c29b66902127c0d30858c04f2f7e1721dc28e9c11ffae93e14f329e2cab6a374942253b38c850e62926e397e9e3f23120d21ae9870f7e10ce8675e6b386f0f464bd96dc0fc9b71351e9815b91dba90034df37b2cbd2e021890d4cfc271cc1ed99992be681f4909e09787b257f22ddd2da5712fed8b558b5058dde66fb3b7c903515468e6c25b17caef585734efe2734274e9c9e5327493b8f13a1eb0f901a46a5e30f75d47fc37bd165f1d06901627d47f8bd7b63136f1a84218c67e3c5547fc140aeb1d5a2e1e43bd4b9de7b3a7184521c791892b953b52bbdd1933d356599e3064b91b07965b7f85f3a1ff50db5c5ec02a93abd0bb97831494e288ba380b169fc713641517f09c0a2529376851d2a5b8b40173c58fa51919a752e61b30fdca22b75957b9b110fc0498f45e0336ca79b1d22c7cff5d6942975a6fbc0edf341e1ba63f5d0a615126c60df8874fb44b8ccdf9b53d9f27a013f3553ad8518bc175d4e59ef3c146b5cdec8bd17c16a2c1f5f70b1d21758650f4648906ffb83de2287e948493ed00cbdf825daf3e88766781947dbea2d8ab8275707f9375d6a2c7d9518e55d35abd49813028cb7e631948a64c4538fb3b772b65e3b5ce3ceb383a3c496bae48800031ba768c8836c2fd91e62575e265e34f77df59f7218e7374c1b3acbe95280f55ecdbad937162d49e04239a3335035cfabdd97162d4a3bb5686542fd35063269299b0836a8b86ee9fcc018f71a782e30d87c28683867b5849af1526919387d3dae55ee4a7947b9a5c54c3b3525b632b1438e32a338ef81b48d4a528e78e0515a5ba5870be97d217ff4f00e0362fd7457f1d6646a753bf62eade2a2eee1632fbf3db01fde2e4015ff36cb64dda20facfefe99393ff90ead74e68d9e69b2681015fb768c9febbe579fadf66c405edf6f6713770a8a9e6f06bef66fa6c33cfa6207356c4bf36f6f39106b0914e18df403e4adbcc22ba567f7fd14cfe5e5004318f898aa27ddaab5df461712263e23bdaebf9b1e678b8fda710ea8f848e56905846dfec99edab3dc50ddb0db6c0d063886b3937963e86c0ed9f406b3ca7b56cca838c194d185197ad74927947165b2bd6fb985083885840b52630ff569028679106f240d9d6113e4be21b9d0f298e393e86522662fe37afbf7dcdc4796a8532f84dd6afc1545f912e0cca951b5d022540d80c6da9a0433c168319c68364b9fb5d8d5057b5b1e86f98f20161b36ba05c74ae595c4a2fe2acddabcd403479b08116c73b24276844874fa1655957c1cc1acff639fd9f383967811466ff7a02d42d4bf01cca977ca3db2010adc9cd2251aec0ebc172f47e92db60c653f70b9be4b3577539dd2cc3a0de6005feb433f9b430f1adfeefb9822419815bba15d7e4d65fef5faf9f12d9a7071ed6000109cd02b4dd4fb3191fc0885c2fa94e06f2232eb54fa2b44a0d2252d5efe7d923ca51782</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入访问密码</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> default </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> default </tag>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>本站说明</title>
       <link href="/2024/01/17/%E6%9C%AC%E7%AB%99%E8%AF%B4%E6%98%8E.md/"/>
       <url>/2024/01/17/%E6%9C%AC%E7%AB%99%E8%AF%B4%E6%98%8E.md/</url>
