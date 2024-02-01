@@ -17,6 +17,31 @@
     
     
     <entry>
+      <title>使用vercel构建chatgpt-nex-web实现国内访问</title>
+      <link href="/2024/01/31/%E4%BD%BF%E7%94%A8vercel%E6%9E%84%E5%BB%BAchatgpt-nex-web%E5%AE%9E%E7%8E%B0%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE/"/>
+      <url>/2024/01/31/%E4%BD%BF%E7%94%A8vercel%E6%9E%84%E5%BB%BAchatgpt-nex-web%E5%AE%9E%E7%8E%B0%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="使用vercel构建chatgpt-nex-web实现国内访问"><a href="#使用vercel构建chatgpt-nex-web实现国内访问" class="headerlink" title="使用vercel构建chatgpt-nex-web实现国内访问"></a>使用vercel构建chatgpt-nex-web实现国内访问</h2><p>概览：</p><ul><li>需要在某宝购买openai-key</li><li>可购买直连key或中转key 如果购买的为中转key则需要填写中转服务地址</li><li><a href="https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web">chatgpt-nex-web项目地址</a> 先fork到自己仓库</li><li><a href="https://vercel.com/new/clone?repository-url=https://github.com/Yidadaa/ChatGPT-Next-Web&env=OPENAI_API_KEY&env=CODE&env=GOOGLE_API_KEY&project-name=chatgpt-next-web&repository-name=ChatGPT-Next-Web">vercel部署地址</a></li></ul><h4 id="一-构建"><a href="#一-构建" class="headerlink" title="一. 构建"></a>一. 构建</h4><p>添加如下环境变量即可</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CODE: passwd</span><br><span class="line">BASE<span class="emphasis">_URL: https://chatapi<span class="strong">***</span></span></span><br><span class="line"><span class="strong"><span class="emphasis">OPENAI_API_KEY: sk-wD6Ha8FsvZfbpH7AD53**</span><span class="strong">****</span><span class="strong">****</span>*</span></span><br></pre></td></tr></table></figure><p><img src="https://github.com/zznn-cloud/zznn-cloud-blog-images/raw/main/Qexo/24/2/image_c4148f2652bb4fe1369077b9bafea30c.png" alt="https://github.com/zznn-cloud/zznn-cloud-blog-images/raw/main/Qexo/24/2/image_c4148f2652bb4fe1369077b9bafea30c.png"></p><p>此时构建完成。</p><h4 id="二-使用"><a href="#二-使用" class="headerlink" title="二. 使用"></a>二. 使用</h4><ul><li><p>若key额度不够则需要充值, 其他key使用此平台访问chatgpt需要如下操作</p></li><li><p>直连key直接填写后即可使用自定义接口处 接口地址保留默认“/api/openai”</p></li><li><p>中转key则自定义接口处 接口地址需要填写中转服务器</p><p><img src="https://github.com/zznn-cloud/zznn-cloud-blog-images/raw/main/Qexo/24/2/image_6f3a9535578411a50e84c4b23940099b.png" alt="https://github.com/zznn-cloud/zznn-cloud-blog-images/raw/main/Qexo/24/2/image_6f3a9535578411a50e84c4b23940099b.png"></p></li></ul><p>建议使用cloudfare给vercel绑定域名访问。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>公有云私有云对象桶信息配置</title>
       <link href="/2024/01/29/%E5%85%AC%E6%9C%89%E4%BA%91%E7%A7%81%E6%9C%89%E4%BA%91%E5%AF%B9%E8%B1%A1%E6%A1%B6%E4%BF%A1%E6%81%AF%E9%85%8D%E7%BD%AE/"/>
       <url>/2024/01/29/%E5%85%AC%E6%9C%89%E4%BA%91%E7%A7%81%E6%9C%89%E4%BA%91%E5%AF%B9%E8%B1%A1%E6%A1%B6%E4%BF%A1%E6%81%AF%E9%85%8D%E7%BD%AE/</url>
