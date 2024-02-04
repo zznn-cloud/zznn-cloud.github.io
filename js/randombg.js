@@ -2,7 +2,6 @@
 var backimg =[
   "url(/img/bg1.jpg)",
   "url(/img/橘子.jpg)",
-  "url(/img/海鸥.jpg)",
   "url(/img/狗尾巴草.png)",
   "url(/img/流星.jpg)",
   "url(/img/猫咪.jpg)",
@@ -16,7 +15,6 @@ var backimg =[
   var bannerimg =[
     "url(/img/bg1.jpg)",
     "url(/img/橘子.jpg)",
-    "url(/img/海鸥.jpg)",
     "url(/img/狗尾巴草.png)",
     "url(/img/流星.jpg)",
     "url(/img/猫咪.jpg)",
