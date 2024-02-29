@@ -7,7 +7,7 @@ var backimg =[
   "url(/img/落日.jpg)",
   //"url(/img/猫咪.jpg)",
   //"url(/img/bg8.jpg)",
-  "url(/img/bg1.jpg)",
+  //"url(/img/bg1.jpg)",
   "url(/img/云彩.jpg)",
   "url(/img/桃花.jpg)"
   ];
@@ -24,7 +24,7 @@ var backimg =[
     "url(/img/落日.jpg)",
     //"url(/img/猫咪.jpg)",
     //"url(/img/bg8.jpg)",
-    "url(/img/bg1.jpg)",
+    //"url(/img/bg1.jpg)",
     "url(/img/云彩.jpg)",
     "url(/img/桃花.jpg)"
   ];
