@@ -23,6 +23,7 @@ var backimg =[
   //"url(/img/bg8.jpg)",
   //"url(/img/bg1.jpg)",
   //"url(/img/云彩.jpg)",
+  "url(/img/bg29.jpg)",
   "url(/img/桃花.jpg)"
   ];
   //获取背景图片总数，生成随机数
@@ -54,6 +55,7 @@ var backimg =[
     //"url(/img/bg8.jpg)",
     //"url(/img/bg1.jpg)",
     //"url(/img/云彩.jpg)",
+    "url(/img/bg29.jpg)",
     "url(/img/桃花.jpg)"
   ];
   //获取banner图片总数,生成随机数
