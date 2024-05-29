@@ -28,7 +28,13 @@ var backimg =[
   //"url(/img/瀑布.png)",
   "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrxl5m.png)",
   "url(https://drive.zznnwn.cloudns.biz/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrx1em.jpg)",
-  "url(/img/桃花.jpg)"
+  
+  "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E7%A7%91%E6%8A%80%E5%A3%81%E7%BA%B8/wallhaven-yxlvdd.jpg)",
+  "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-jxjz9p.jpg)",
+  "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrxxkj.jpg)",
+  "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-gpkyd7.jpg)",
+  "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-o5mpm7.png)"
+  //"url(/img/桃花.jpg)"
   ];
   //获取背景图片总数，生成随机数
   var bgindex =Math.floor(Math.random() * backimg.length);
@@ -64,7 +70,13 @@ var backimg =[
     //"url(/img/瀑布.png)",
     "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrxl5m.png)",
     "url(https://drive.zznnwn.cloudns.biz/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrx1em.jpg)",
-    "url(/img/桃花.jpg)"
+    
+    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E7%A7%91%E6%8A%80%E5%A3%81%E7%BA%B8/wallhaven-yxlvdd.jpg)",
+    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-jxjz9p.jpg)",
+    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrxxkj.jpg)",
+    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-gpkyd7.jpg)",
+    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-o5mpm7.png)"
+    //"url(/img/桃花.jpg)"
   ];
   //获取banner图片总数,生成随机数
   var bannerindex =Math.floor(Math.random() * bannerimg.length);
