@@ -11,7 +11,7 @@ var backimg =[
    "url(/img/橘子.jpg)",
   //"url(/img/狗尾巴草.png)",
   //"url(/img/bg1.jpg)",
-  //"url(/img/bg6.jpg)",
+  "url(/img/bg6.jpg)",
   //"url(/img/bg7.jpg)",
   //"url(/img/flower.jpg)",
   //"url(/img/flower1.jpg)",
@@ -32,7 +32,7 @@ var backimg =[
   //"url(/img/bg8.jpg)",
   //"url(/img/bg1.jpg)",
   //"url(/img/云彩.jpg)",  #----
-  //"url(/img/bg29.jpg)",
+  "url(/img/海上生明月.jpg)",
   //"url(/img/科技少女.jpg)",
   "url(/img/瀑布.png)",
   "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrxl5m.png)",
