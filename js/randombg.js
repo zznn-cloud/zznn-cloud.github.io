@@ -49,48 +49,7 @@ var backimg =[
   document.getElementById("web_bg").style.backgroundImage = backimg[bgindex];
   //随机banner数组,图片可以换成图床链接，注意最后一条后面不要有逗号
   var bannerimg =[
-  "url(/img/橘子.jpg)",
-  //"url(/img/狗尾巴草.png)",
-  //"url(/img/bg1.jpg)",
-  //"url(/img/bg6.jpg)",
-  //"url(/img/bg7.jpg)",
-  //"url(/img/flower.jpg)",
-  //"url(/img/flower1.jpg)",
-  "url(/img/bg9.jpg)",
-  "url(/img/bg10.png)",
-  "url(/img/懒洋洋.jpg)",
-  "url(/img/旅行小狗.jpg)",
-  //"url(/img/初恋.jpg)",
-  //"url(/img/落日.png)",
-  //"url(/img/打水漂.png)",
-  "url(/img/图书.png)",
-  "url(/img/山水绿色.png)",
-  "url(/img/流星.jpg)",
-  //"url(/img/暴雪.jpg)",
-  //"url(/img/落日.jpg)",
-  //"url(/img/猫咪.jpg)",
-  //"url(/img/bg8.jpg)",
-  //"url(/img/bg1.jpg)",
-  //"url(/img/云彩.jpg)", #----
-  "url(/img/bg.png)",
-  //"url(/img/bg29.jpg)",
-  //"url(/img/科技少女.jpg)",
-  "url(/img/瀑布.png)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrxl5m.png)",
-    "url(https://drive.zznnwn.cloudns.biz/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrx1em.jpg)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E7%A7%91%E6%8A%80%E5%A3%81%E7%BA%B8/wallhaven-yxlvdd.jpg)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-jxjz9p.jpg)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrxxkj.jpg)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-gpkyd7.jpg)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-l8oody.png)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-7pkqxo.jpg)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E7%A7%91%E6%8A%80%E5%A3%81%E7%BA%B8/wallhaven-yxlvdd.jpg)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-o5mpm7.png)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-x6ydwv.jpg)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E7%A7%91%E6%8A%80%E5%A3%81%E7%BA%B8/wallhaven-yxl9rk.png)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%90%84%E7%A7%8D%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8/IMG_5945.jpeg)",
-    "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%90%84%E7%A7%8D%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8/587e71fe-3272-446b-9a8a-d905781dd680.jpeg)"
-    //"url(/img/桃花.jpg)"
+  "url(/img/bg.png)"
   ];
   //获取banner图片总数,生成随机数
   var bannerindex =Math.floor(Math.random() * bannerimg.length);
