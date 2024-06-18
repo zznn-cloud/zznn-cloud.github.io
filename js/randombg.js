@@ -1,6 +1,14 @@
 //随机背景图片数组,图片可以换成图床链接，注意最后一条后面不要有逗号
 var backimg =[
-  "url(/img/橘子.jpg)",
+"url(/img/bg.png)"
+  ];
+  //获取背景图片总数，生成随机数
+  var bgindex =Math.floor(Math.random() * backimg.length);
+  //重设背景图片
+  document.getElementById("web_bg").style.backgroundImage = backimg[bgindex];
+  //随机banner数组,图片可以换成图床链接，注意最后一条后面不要有逗号
+  var bannerimg =[
+   "url(/img/橘子.jpg)",
   //"url(/img/狗尾巴草.png)",
   //"url(/img/bg1.jpg)",
   //"url(/img/bg6.jpg)",
@@ -42,14 +50,6 @@ var backimg =[
   "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%90%84%E7%A7%8D%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8/IMG_5945.jpeg)",
   "url(https://drive.wn-apple-teawine.fun/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%90%84%E7%A7%8D%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8/587e71fe-3272-446b-9a8a-d905781dd680.jpeg)"
   //"url(/img/桃花.jpg)"
-  ];
-  //获取背景图片总数，生成随机数
-  var bgindex =Math.floor(Math.random() * backimg.length);
-  //重设背景图片
-  document.getElementById("web_bg").style.backgroundImage = backimg[bgindex];
-  //随机banner数组,图片可以换成图床链接，注意最后一条后面不要有逗号
-  var bannerimg =[
-  "url(/img/bg.png)"
   ];
   //获取banner图片总数,生成随机数
   var bannerindex =Math.floor(Math.random() * bannerimg.length);
