@@ -23,7 +23,7 @@ var backimg =[
   //"url(/img/猫咪.jpg)",
   //"url(/img/bg8.jpg)",
   //"url(/img/bg1.jpg)",
-  "url(/img/云彩.jpg)",
+  //"url(/img/云彩.jpg)",  #----
   //"url(/img/bg29.jpg)",
   //"url(/img/科技少女.jpg)",
   "url(/img/瀑布.png)",
@@ -71,7 +71,7 @@ var backimg =[
   //"url(/img/猫咪.jpg)",
   //"url(/img/bg8.jpg)",
   //"url(/img/bg1.jpg)",
-  "url(/img/云彩.jpg)",
+  //"url(/img/云彩.jpg)", #----
   "url(/img/bg.png)",
   //"url(/img/bg29.jpg)",
   //"url(/img/科技少女.jpg)",
