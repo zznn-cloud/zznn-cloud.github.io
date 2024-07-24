@@ -2,7 +2,7 @@
 var backimg =[
    "url(/img/橘子.jpg)",
   //"url(/img/狗尾巴草.png)",
-  //"url(/img/bg1.jpg)",
+  "url(/img/bg1.jpg)",
   "url(/img/bg6.jpg)",
   //"url(/img/bg7.jpg)",
   //"url(/img/flower.jpg)",
@@ -52,7 +52,7 @@ var backimg =[
   var bannerimg =[
    "url(/img/橘子.jpg)",
   //"url(/img/狗尾巴草.png)",
-  //"url(/img/bg1.jpg)",
+  "url(/img/bg1.jpg)",
   "url(/img/bg6.jpg)",
   //"url(/img/bg7.jpg)",
   //"url(/img/flower.jpg)",
