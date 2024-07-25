@@ -75,7 +75,7 @@ var backimg =[
   //"url(/img/bg8.jpg)",
   //"url(/img/bg1.jpg)",
   //"url(/img/云彩.jpg)",  #----
-  "url(/img/海上生明月.jpg)",
+  //"url(/img/海上生明月.jpg)",
   //"url(/img/科技少女.jpg)",
   "url(/img/瀑布.png)",
   "url(/img/wallhaven-j5gy6w.jpg)",
