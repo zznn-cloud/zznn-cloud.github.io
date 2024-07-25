@@ -25,7 +25,7 @@ var backimg =[
   //"url(/img/云彩.jpg)",  #----
   //"url(/img/海上生明月.jpg)",
   //"url(/img/科技少女.jpg)",
-  "url(/img/瀑布.png)",
+  //"url(/img/瀑布.png)",
   "url(/img/wallhaven-j5gy6w.jpg)",
   "url(/img/wallhaven-l8782r.png)",
   //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrxl5m.png)",
@@ -77,7 +77,7 @@ var backimg =[
   //"url(/img/云彩.jpg)",  #----
   //"url(/img/海上生明月.jpg)",
   //"url(/img/科技少女.jpg)",
-  "url(/img/瀑布.png)",
+  //"url(/img/瀑布.png)",
   "url(/img/wallhaven-j5gy6w.jpg)",
   "url(/img/wallhaven-l8782r.png)",
   //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-rrxl5m.png)",
