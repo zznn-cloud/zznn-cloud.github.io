@@ -37,6 +37,7 @@ var backimg =[
   "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%B0%8F%E6%B8%85%E6%96%B0/wallhaven-exm8xk.jpg)",
   "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E9%AC%BC%E5%88%80/17_se.jpg)",
   "url(https://cdn.jsdelivr.net/gh/chuchendjs/picgo/picgo/pg4.png)",
+  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-3lv8j6.jpg)",
   "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%90%84%E7%A7%8D%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8/btf8.png)"
   ];
   //获取背景图片总数，生成随机数
@@ -83,6 +84,7 @@ var backimg =[
   "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%B0%8F%E6%B8%85%E6%96%B0/wallhaven-exm8xk.jpg)",
   "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E9%AC%BC%E5%88%80/17_se.jpg)",
   "url(https://cdn.jsdelivr.net/gh/chuchendjs/picgo/picgo/pg4.png)",
+  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-3lv8j6.jpg)",
   "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%90%84%E7%A7%8D%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8/btf8.png)"
   ];
   //获取banner图片总数,生成随机数
