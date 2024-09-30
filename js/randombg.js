@@ -39,7 +39,9 @@ var backimg =[
   "url(https://cdn.jsdelivr.net/gh/chuchendjs/picgo/picgo/pg4.png)",
   "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-3lv8j6.jpg)",
   "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%90%84%E7%A7%8D%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8/btf8.png)",
-  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E9%A3%8E%E6%99%AF/Snipaste_2024-09-24_14-44-57.png)"
+  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E9%A3%8E%E6%99%AF/Snipaste_2024-09-24_14-44-57.png)",
+  //冰镇草莓🍓
+  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-83jy11.jpg)"
   ];
   //获取背景图片总数，生成随机数
   var bgindex =Math.floor(Math.random() * backimg.length);
@@ -87,7 +89,9 @@ var backimg =[
   "url(https://cdn.jsdelivr.net/gh/chuchendjs/picgo/picgo/pg4.png)",
   "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-3lv8j6.jpg)",
   "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%90%84%E7%A7%8D%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8/btf8.png)",
-  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E9%A3%8E%E6%99%AF/Snipaste_2024-09-24_14-44-57.png)"
+  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E9%A3%8E%E6%99%AF/Snipaste_2024-09-24_14-44-57.png)",
+  //冰镇草莓🍓
+  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-83jy11.jpg)"
   ];
   //获取banner图片总数,生成随机数
   var bannerindex =Math.floor(Math.random() * bannerimg.length);
