@@ -25,16 +25,16 @@ gulp.task('minify-js', function () {
         .pipe(gulp.dest('./public'))
 });
 // 压缩图片
-//gulp.task('minify-images', function() {
-//    return gulp.src('./public/images/**/*.*')
-//        .pipe(imagemin(
-//        [imagemin.gifsicle({'optimizationLevel': 3}),
-//        imagemin.jpegtran({'progressive': true}),
-//        imagemin.optipng({'optimizationLevel': 7}),
-//        imagemin.svgo()],
-//        {'verbose': true}))
-//        .pipe(gulp.dest('./public/images'))
-//});
+gulp.task('minify-images', function() {
+    return gulp.src('./public/images/**/*.*')
+        .pipe(imagemin(
+        [imagemin.gifsicle({'optimizationLevel': 3}),
+        imagemin.jpegtran({'progressive': true}),
+        imagemin.optipng({'optimizationLevel': 7}),
+        imagemin.svgo()],
+        {'verbose': true}))
+        .pipe(gulp.dest('./public/images'))
+});
 //因为我图片用的第三方图床存放的，所以就没压缩图片。(并且最后测试压缩图片时，发现有点权限问题，
 //整了两个多小时没整好！@^@)
 
