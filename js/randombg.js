@@ -1,33 +1,5 @@
 //随机背景图片数组,图片可以换成图床链接，注意最后一条后面不要有逗号
 var backimg =[
-  //"url(/img/橘子.jpg)",
-  //"url(/img/狗尾巴草.png)",
-  //"url(/img/bg1.jpg)",
-  //"url(/img/bg6.jpg)",
-  //"url(/img/bg7.jpg)",
-  //"url(/img/flower.jpg)",
-  //"url(/img/flower1.jpg)",
-  //"url(/img/bg9.jpg)",
-  //"url(/img/bg10.png)",
-  //"url(/img/懒洋洋.jpg)",
-  //"url(/img/旅行小狗.jpg)",
-  //"url(/img/初恋.jpg)",
-  //"url(/img/落日.png)",
-  //"url(/img/打水漂.png)",
-  //"url(/img/图书.png)",
-  //"url(/img/流星.jpg)",
-  //"url(/img/bg.png)",
-  //"url(/img/暴雪.jpg)",
-  //"url(/img/落日.jpg)",
-  //"url(/img/猫咪.jpg)",
-  //"url(/img/bg8.jpg)",
-  //"url(/img/bg1.jpg)",
-  //"url(/img/云彩.jpg)",  #----
-  //"url(/img/海上生明月.jpg)",
-  //"url(/img/科技少女.jpg)",
-  //"url(/img/瀑布.png)",
-  //"url(/img/wallhaven-j5gy6w.jpg)",
-  //"url(/img/wallhaven-l8782r.png)",
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-jxjz9p.jpg)",
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%90%84%E7%A7%8D%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8/587e71fe-3272-446b-9a8a-d905781dd680.jpeg)",
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-jxpj9m.jpg)",
@@ -65,14 +37,10 @@ var backimg =[
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-o5k319.jpg)",
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-85llm2.jpg)",
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-6dv6xq.jpg)",
- "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-6d9lr7.jpg)"
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/16.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/17.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/8.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/12.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/9.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/2.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/11.jpg)"
+ "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-6d9lr7.jpg)",
+ "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%B0%8F%E6%B8%85%E6%96%B0/wallhaven-2ypz3x.png)",
+ "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%B0%8F%E6%B8%85%E6%96%B0/wallhaven-d693wm.png)",
+ "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%B0%8F%E6%B8%85%E6%96%B0/wallhaven-9d3zrk.png)"
   ];
   //获取背景图片总数，生成随机数
   var bgindex =Math.floor(Math.random() * backimg.length);
@@ -81,34 +49,6 @@ var backimg =[
   //随机banner数组,图片可以换成图床链接，注意最后一条后面不要有逗号
   var bannerimg =[
   //"url(/img/橘子.jpg)",
-  //"url(/img/狗尾巴草.png)",
-  //"url(/img/bg1.jpg)",
-  //"url(/img/bg6.jpg)",
-  //"url(/img/bg7.jpg)",
-  //"url(/img/flower.jpg)",
-  //"url(/img/flower1.jpg)",
-  //"url(/img/bg9.jpg)",
-  //"url(/img/bg10.png)",
-  //"url(/img/懒洋洋.jpg)",
-  //"url(/img/旅行小狗.jpg)",
-  //"url(/img/初恋.jpg)",
-  //"url(/img/落日.png)",
-  //"url(/img/打水漂.png)",
-  //"url(/img/图书.png)",
-  //"url(/img/流星.jpg)",
-  //"url(/img/bg.png)",
-  //"url(/img/暴雪.jpg)",
-  //"url(/img/落日.jpg)",
-  //"url(/img/猫咪.jpg)",
-  //"url(/img/bg8.jpg)",
-  //"url(/img/bg1.jpg)",
-  //"url(/img/云彩.jpg)",  #----
-  //"url(/img/海上生明月.jpg)",
-  //"url(/img/科技少女.jpg)",
-  //"url(/img/瀑布.png)",
-  //"url(/img/桃花.jpg)",
-  //"url(/img/wallhaven-j5gy6w.jpg)",
-  //"url(/img/wallhaven-l8782r.png)",
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-jxjz9p.jpg)",
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%90%84%E7%A7%8D%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8/587e71fe-3272-446b-9a8a-d905781dd680.jpeg)",
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E6%B8%A9%E9%A6%A8/wallhaven-jxpj9m.jpg)",
@@ -146,14 +86,10 @@ var backimg =[
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-o5k319.jpg)",
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-85llm2.jpg)",
  "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-6dv6xq.jpg)",
- "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-6d9lr7.jpg)"
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/16.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/17.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/8.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/12.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/9.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/2.jpg)",
-  //"url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/11.jpg)"
+ "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/blog_banner/wallhaven-6d9lr7.jpg)",
+ "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%B0%8F%E6%B8%85%E6%96%B0/wallhaven-2ypz3x.png)",
+ "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%B0%8F%E6%B8%85%E6%96%B0/wallhaven-d693wm.png)",
+ "url(https://onenote.zznnwn.cloudns.biz/api/raw/?path=/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8%F0%9F%8D%A1/%E5%8A%A8%E6%BC%AB/%E5%B0%8F%E6%B8%85%E6%96%B0/wallhaven-9d3zrk.png)"
   ];
   //获取banner图片总数,生成随机数
   var bannerindex =Math.floor(Math.random() * bannerimg.length);
