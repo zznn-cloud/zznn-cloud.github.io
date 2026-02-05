@@ -1,3 +1,13 @@
-/* build time:Tue Feb 03 2026 11:57:15 GMT+0000 (Coordinated Universal Time)*/
-.layout_post>#post{background:rgba(255,255,255,.9)}#aside_content .card-widget,#recent-posts>.recent-post-item,.layout_page>div:first-child:not(.recent-posts),.layout_post>#page,.layout_post>#post,.read-mode .layout_post>#post{background:rgba(255,255,255,.9)}
-/* rebuild by neat */
+/* 文章页背景 */
+.layout_post>#post {
+    /* 以下代表透明度为0.5 可以自行修改*/
+    background: rgba(255,255,255,.9);
+}
+
+/* 所有页面背景 */
+#aside_content .card-widget, #recent-posts>.recent-post-item, .layout_page>div:first-child:not(.recent-posts), .layout_post>#page, .layout_post>#post, .read-mode .layout_post>#post{
+    /* 以下代表透明度为0.5 */
+    background: rgba(255,255,255,.9);
+}
+# 彩色导航
+@import "//at.alicdn.com/t/c/font_4426032_wnvg24di0w.css";
